@@ -11,6 +11,7 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-10-24 | Demo path updated from the prototype run on BASS-II Table 7.1 data |
 
 ---
 
@@ -270,10 +271,12 @@ The 30-second video and the live pitch follow the same path. Every step must wor
 | Seconds | Action | What the viewer sees |
 |---|---|---|
 | 0 to 4 | App opens on Map, material SIBAL, preset "ISS cabin" | Dots, U-shaped boundary, star in burn region, badge `DANGER` |
-| 4 to 10 | Drag airflow down to 2 cm/s | Star crosses the boundary; badge changes to `SELF-EXTINGUISHES` |
+| 4 to 10 | Lower oxygen to 17% and airflow to about 2 cm/s | Star crosses the boundary near NASA's quenched tests; badge changes to `SELF-EXTINGUISHES` |
 | 10 to 15 | Choose preset "Exploration 8.2 psia / 34% O2" | Star jumps into the hatched area; badge `UNTESTED`; pressure warning |
 | 15 to 20 | Click a dot | Evidence card with NASA source and page |
 | 20 to 28 | Ask "Is cotton fabric safe in a lunar habitat with low airflow?" | Cited answer, `LOW` badge (no lunar-gravity tests), research-gap flag |
 | 28 to 30 | End card | "FlameAtlas · Know what burns before you fly." |
 
 The exact outcome at each step depends on the verified data; rehearse with the final evidence base and adjust slider values so each step shows the intended state.
+
+Prototype check (2026-10-24, `prototype/`, unverified Table 7.1 data for 2.2 cm SIBAL): 21% O2 at 10 cm/s gives `DANGER` (P = 0.99); 21% O2 at 2.2 cm/s is still `DANGER` (P = 0.91), because the fabric kept burning down to 2 to 2.5 cm/s at about 21% O2 in BASS-II; 17% O2 at 2.2 cm/s gives `SELF-EXTINGUISHES` (P = 0.16), close to the quenched test GMT100-T13 (17.5% O2, 2.2 cm/s); the 8.2 psia preset gives `UNTESTED` with the pressure warning. Lowering airflow alone at ISS oxygen therefore does not change the status, which is itself a point worth making in the pitch.
