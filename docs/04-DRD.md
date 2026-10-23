@@ -131,7 +131,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 │ Sources                                                                      │
 │ ▸ [1] BASS-II Summary Report, p. 99  "Quenching flow velocities were found…" │
 │ ▸ [2] Flammability of Materials on the Moon, p. 1  "SIBAL fabric has been…"  │
-│                                                                     7 of 20 │
+│                                                                      7 of 20 │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
