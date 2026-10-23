@@ -1,0 +1,23 @@
+# Raw NASA downloads are large; re-create them with: python scripts/fetch_psi.py
+data/raw/**
+!data/raw/**/
+!data/raw/psi/manifest.csv
+!data/raw/ntrs/manifest.csv
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
