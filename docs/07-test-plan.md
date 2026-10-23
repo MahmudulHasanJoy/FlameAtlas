@@ -131,7 +131,7 @@ Type: **U** unit, **I** integration, **D** data, **A** AI evaluation, **M** manu
 | TC-47 | A | NFR-PERF-02 | Latency from the evaluation run | Median ≤ 10 s, p95 ≤ 20 s |
 | TC-48 | M | NFR-PERF-03 | Open the app after it has gone to sleep | First chart within 60 s |
 | TC-49 | M | NFR-REL-01 | Deploy with an invalid API key | Map and cards work; Ask shows the configured error |
-| TC-50 | D | NFR-SEC-01 | `git log -p \| grep -E "sk-ant-"` and page-source check | No matches |
+| TC-50 | D | NFR-SEC-01 | `git log -p \| grep -E "sk-ant-[A-Za-z0-9_-]{20,}"` (a real key shape, so this line does not match itself) and page-source check | No matches |
 | TC-51 | M | NFR-ACC-02 | Keyboard-only walkthrough of the demo path | Every control reachable and usable |
 | TC-52 | U | NFR-MAINT-02 | Add a fixture material with records only | Appears in the material list and map with no code change |
 | TC-53 | M | NFR-REL-02 | Run locally with network blocked except the Claude API | Map, cards and Ask all work |
