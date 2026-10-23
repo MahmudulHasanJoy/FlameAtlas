@@ -66,7 +66,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 │ [ISS cabin ▼]             │                                                  │
 │                           │   O2 %                                           │
 │ Oxygen  (% by volume)     │   40 ┤░░░░░░░░░░░░ untested ░░░░░░░░░░░░░░░░░░   │
-│ ──────●────────── 21.0    │      ┤░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   │
+│ ──────●────────── 21.0    │      ┤░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   │
 │                           │   22 ┤      ● ●   burn region     ●   ●          │
 │ Airflow (cm/s)            │      ┤   ■   ●  ★ habitat   ●      ■             │
 │ ────●──────────── 10      │   17 ┤ ■  ■ ╲______ boundary ______╱ ■           │
@@ -119,7 +119,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 │ │ Is cotton fabric safe in a lunar habitat with low airflow?   │             │
 │ └──────────────────────────────────────────────────────────────┘             │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ ◐ MEDIUM confidence · 2 close microgravity tests; no lunar-gravity tests     │
+│ ○ LOW confidence · tests exist only in microgravity; none at lunar gravity   │
 │                                                                              │
 │ In microgravity, cotton-fiberglass fabric kept burning at airflows as low as │
 │ 2 to 5 cm/s at about 17 to 21% oxygen [1]. NASA notes that in lunar gravity  │
@@ -131,7 +131,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 │ Sources                                                                      │
 │ ▸ [1] BASS-II Summary Report, p. 99  "Quenching flow velocities were found…" │
 │ ▸ [2] Flammability of Materials on the Moon, p. 1  "SIBAL fabric has been…"  │
-│                                                                   7 of 20 ▢ │
+│                                                                     7 of 20 │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -273,7 +273,7 @@ The 30-second video and the live pitch follow the same path. Every step must wor
 | 4 to 10 | Drag airflow down to 2 cm/s | Star crosses the boundary; badge changes to `SELF-EXTINGUISHES` |
 | 10 to 15 | Choose preset "Exploration 8.2 psia / 34% O2" | Star jumps into the hatched area; badge `UNTESTED`; pressure warning |
 | 15 to 20 | Click a dot | Evidence card with NASA source and page |
-| 20 to 28 | Ask "Is cotton fabric safe in a lunar habitat with low airflow?" | Cited answer, `MEDIUM` badge, research-gap flag |
+| 20 to 28 | Ask "Is cotton fabric safe in a lunar habitat with low airflow?" | Cited answer, `LOW` badge (no lunar-gravity tests), research-gap flag |
 | 28 to 30 | End card | "FlameAtlas · Know what burns before you fly." |
 
 The exact outcome at each step depends on the verified data; rehearse with the final evidence base and adjust slider values so each step shows the intended state.
