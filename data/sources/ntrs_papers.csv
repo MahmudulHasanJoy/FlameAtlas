@@ -1,0 +1,44 @@
+ntrs_id,experiment,topic,title
+20210011385,BASS-II,flammability limits,Burning and Suppression of Solids-II (BASS-II) Summary Report
+20160000593,BASS-II,flammability limits,Combustion of Solids in Microgravity: Results from the BASS-II Experiment
+20140011099,BASS,flammability limits,Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment
+20150008961,BASS-II,flammability limits,Microgravity Flammability of PMMA Rods in Concurrent Flow
+20150008962,BASS-II,flame spread,"Concurrent Flame Growth, Spread and Extinction over Composite Fabric Samples in Low Speed Purely Forced Flow in Microgravity"
+20130012832,BASS,flame spread,Flammability Aspects of a Cotton-Fiberglass Fabric in Opposed and Concurrent Airflow in Microgravity
+20170006615,BASS-II,blowoff limits,Mixed Convection Blowoff Limits as a Function of Oxygen Concentration and Upward Forced Stretch Rate for Burning PMMA Rods
+20160012691,BASS-II,blowoff limits,Correlation of Normal Gravity Mixed Convection Blowoff Limits with Microgravity Forced Flow Blowoff Limits
+20150019858,BASS-II,combustion products,Results from On-Board CSA-CP and CDM Sensor Readings During the BASS-II Experiment
+20170001636,Saffire,large-scale fire,"The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status"
+20170000230,Saffire,large-scale fire,Operation and Development Status of the Spacecraft Fire Experiments (Saffire)
+20150022421,Saffire,flammability limits,Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire)
+20170008805,Saffire,large-scale fire,Results of Large-Scale Spacecraft Flammability Tests
+20150000894,Saffire,large-scale fire,Large-Scale Spacecraft Fire Safety Tests
+20180005168,Saffire,large-scale fire,Saffire: A Novel Approach to Study of Spacecraft Fire Safety Using Un-Manned Spacecraft
+20210011521,Saffire-IV/V,large-scale fire,Fire Safety Implications of Preliminary Results from Saffire IV and V Experiments on Large Scale Spacecraft Fires
+20220002714,Saffire-IV,large-scale fire,Model Development of Large-Scale Spacecraft Fires During the Saffire-IV Experiments
+20240008602,Saffire-V,large-scale fire,Vehicle Modeling During the Burning of Thermally Thick Samples in the Saffire V Experiments
+20240002981,Saffire-VI,large-scale fire,Preliminary Results from the Saffire VI Experiment
+20260001992,Saffire-VI,combustion products,Heat and Smoke Emission from Tests on the Saffire VI Experiment
+20200000361,SoFIE,ignition and extinction,Solid Fuel Ignition and Extinction (SoFIE) Project on ISS
+20190030735,SoFIE,ignition and extinction,SoFIE Design/Status
+20210022617,FLEX,cool flames,Isolated Single Droplet Combustion: FLEX Experiments onboard the International Space Station
+20040053557,theory,flammability limits,Extinction Criteria for Opposed-Flow Flame Spread in a Microgravity Environment
+20240007628,theory,flammability limits,Extinction of Solid Diffusion Flame in Microgravity: Details of Quenching and Blowoff Processes
+20010073996,SIBAL,flammability limits,Solid Inflammability Boundary at Low-Speed (SIBAL)
+19990053968,SIBAL,flammability limits,Solid Inflammability Boundary at Low Speed (SIBAL)
+19890014267,theory,flammability limits,An Experimental Study of Opposed Flow Diffusion Flame Extinction over a Thin Fuel in Microgravity
+20200000557,Saffire,flame spread,Buoyancy Effects on Concurrent Flame Spread Over Thick PMMA
+20210017787,theory,flame spread,Determining the Cause of Reduced Concurrent Flame Spread over Thin Solid Fuels in Low Pressure and Low Gravity
+20205004657,theory,flame spread,Effects of Confinement on Flame Spread in Microgravity
+20140004923,ground test,flame spread,Opposed-Flow Flame Spread in a Narrow Channel Apparatus over Thin PMMA Sheets
+20040084155,test method,material screening,A New Test Method for Material Flammability Assessment in Microgravity and Extraterrestrial Environments
+20040053558,test method,material screening,An Earth-Based Equivalent Low Stretch Apparatus to Assess Material Flammability for Microgravity and Extraterrestrial Fire-Safety Applications
+20080034883,exploration atmospheres,flammability limits,"Microgravity Flame Spread in Exploration Atmospheres: Pressure, Oxygen, and Velocity Effects on Opposed and Concurrent Flame Spread"
+20080013149,exploration atmospheres,ignition,Piloted Ignition Delay of PMMA in Space Exploration Atmospheres
+20080012607,exploration atmospheres,ignition,Effect of Pressure on Piloted Ignition Delay of PMMA
+20260003925,exploration atmospheres,habitat design,Impacts of Reduced Pressure Atmospheres on Environmental Control and Life Support Systems (ECLSS) Architectures
+20240015307,partial gravity,flammability limits,Flammability of Materials on the Moon
+20010074003,partial gravity,flame spread,Three-Dimensional Upward Flame Spreading in Partial-Gravity Buoyant Flows
+20250010975,Nomex,material screening,Characterizing the Flammability of Nomex Fabric for the Preparation of FM2
+20205000063,program,fire safety overview,Spacecraft Fire Safety Technology Development Plan For Exploration Missions
+20170007283,program,fire safety overview,Spacecraft Fire Safety Research at NASA Glenn Research Center
