@@ -1,0 +1,155 @@
+accession,acronym,folder,file_name,bytes,local_path,downloaded
+PSI-10,ACME/Flame Design,Experimental table,PSI-10_Experimental table_Flame Design_Normal Flame.csv,26933,PSI-10_ACME_Flame_Design/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv,True
+PSI-10,ACME/Flame Design,Experimental table,PSI-10_Experimental table_Flame Design_Inverse Flame.csv,17314,PSI-10_ACME_Flame_Design/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv,True
+PSI-10,ACME/Flame Design,metadata,PSI-10_metadata_PSI-10-ISA.zip,17047,PSI-10_ACME_Flame_Design/metadata/PSI-10_metadata_PSI-10-ISA.zip,True
+PSI-10,ACME/Flame Design,Reports,PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf,4152310,PSI-10_ACME_Flame_Design/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf,True
+PSI-10,ACME/Flame Design,Science Documents,PSI-10_Science Documents_SRD_ACMEFlameDesign.pdf,471072,PSI-10_ACME_Flame_Design/Science Documents/PSI-10_Science Documents_SRD_ACMEFlameDesign.pdf,True
+PSI-10,ACME/Flame Design,Reports,PSI-10_Reports_TaskbookRpts.pdf,284417,PSI-10_ACME_Flame_Design/Reports/PSI-10_Reports_TaskbookRpts.pdf,True
+PSI-10,ACME/Flame Design,Reports,PSI-10_Reports_TaskbookPubsList_Feb2023.pdf,97986,PSI-10_ACME_Flame_Design/Reports/PSI-10_Reports_TaskbookPubsList_Feb2023.pdf,True
+PSI-10,ACME/Flame Design,Experimental table,PSI-10_Experimental table_Flame Design_Normal Flame.csv,26933,PSI-10_ACME_Flame_Design/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv,True
+PSI-10,ACME/Flame Design,Experimental table,PSI-10_Experimental table_Flame Design_Inverse Flame.csv,17314,PSI-10_ACME_Flame_Design/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv,True
+PSI-10,ACME/Flame Design,Science Documents,PSI-10_Science Documents_ACME_SORD.pdf,300262,PSI-10_ACME_Flame_Design/Science Documents/PSI-10_Science Documents_ACME_SORD.pdf,True
+PSI-10,ACME/Flame Design,Science Documents,PSI-10_Science Documents_ACME_ISRD.pdf,1860945,PSI-10_ACME_Flame_Design/Science Documents/PSI-10_Science Documents_ACME_ISRD.pdf,True
+PSI-10,ACME/Flame Design,Representative Image(s),PSI-10_Representative Image(s)_Flame Design_In Space flame.jpg,380532,PSI-10_ACME_Flame_Design/Representative Image(s)/PSI-10_Representative Image(s)_Flame Design_In Space flame.jpg,True
+PSI-10,ACME/Flame Design,Representative Image(s),PSI-10_Representative Image(s)_Flame Design_Flame Stages.jpg,222982,PSI-10_ACME_Flame_Design/Representative Image(s)/PSI-10_Representative Image(s)_Flame Design_Flame Stages.jpg,True
+PSI-10,ACME/Flame Design,Representative Image(s),PSI-10_Representative Image(s)_CIR support on ISS.jpg,48462,PSI-10_ACME_Flame_Design/Representative Image(s)/PSI-10_Representative Image(s)_CIR support on ISS.jpg,True
+PSI-10,ACME/Flame Design,Representative Image(s),PSI-10_Representative Image(s)_ACME Flame Design Hardware.jpg,91764,PSI-10_ACME_Flame_Design/Representative Image(s)/PSI-10_Representative Image(s)_ACME Flame Design Hardware.jpg,True
+PSI-10,ACME/Flame Design,Representative Image(s),PSI-10_Representative Image(s)_ACME logo.png,127968,PSI-10_ACME_Flame_Design/Representative Image(s)/PSI-10_Representative Image(s)_ACME logo.png,True
+PSI-100,SAFFIRE-III,Experimental table,PSI-100_Experimental table_SAFFIRE-3.csv,239,PSI-100_SAFFIRE-III/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv,True
+PSI-100,SAFFIRE-III,Engineering Documents,PSI-100_Engineering Documents_SAFFIRE Offgassing Testing Strategy.pdf,1696929.0,PSI-100_SAFFIRE-III/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE Offgassing Testing Strategy.pdf,False
+PSI-100,SAFFIRE-III,Presentations,PSI-100_Presentations_SAFFIRE_45 I Con of Env Sys presentation.pdf,2821941.0,PSI-100_SAFFIRE-III/Presentations/PSI-100_Presentations_SAFFIRE_45 I Con of Env Sys presentation.pdf,False
+PSI-100,SAFFIRE-III,Presentations,PSI-100_Presentations_SAFFIRE_46th I Con of Env Sys presentation.pdf,2199305.0,PSI-100_SAFFIRE-III/Presentations/PSI-100_Presentations_SAFFIRE_46th I Con of Env Sys presentation.pdf,False
+PSI-100,SAFFIRE-III,Presentations,PSI-100_Presentations_SAFFIRE_47th I Con of Env Sys presentation.pdf,5224988.0,PSI-100_SAFFIRE-III/Presentations/PSI-100_Presentations_SAFFIRE_47th I Con of Env Sys presentation.pdf,False
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Saffire_Data_Table2017.161.00.42.03-EU.csv,5230949.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Saffire_Data_Table2017.161.00.42.03-EU.csv,True
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Saffire-III Telemetry Data.xlsx,8677965.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Saffire-III Telemetry Data.xlsx,True
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Saffire-III 1 Hz Telemetry Data.xlsx,21290090.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Saffire-III 1 Hz Telemetry Data.xlsx,True
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Raw telemetry file.csv,1656916.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Raw telemetry file.csv,True
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Saffire III Sample 1 Sensors.xlsx,22548166.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Saffire III Sample 1 Sensors.xlsx,True
+PSI-100,SAFFIRE-III,Raw Data,PSI-100_Raw Data_Saffire III Sample 2 Sensors.xlsx,5361279.0,PSI-100_SAFFIRE-III/Raw Data/PSI-100_Raw Data_Saffire III Sample 2 Sensors.xlsx,True
+PSI-100,SAFFIRE-III,Science Documents,PSI-100_Science Documents_SAFFIRE-III Image Directory Nomenclature_v3.0.pdf,273485.0,PSI-100_SAFFIRE-III/Science Documents/PSI-100_Science Documents_SAFFIRE-III Image Directory Nomenclature_v3.0.pdf,True
+PSI-100,SAFFIRE-III,Science Documents,PSI-100_Science Documents_SAFFIRE-III_MergeResult-raw_Final.xlsx,7701589.0,PSI-100_SAFFIRE-III/Science Documents/PSI-100_Science Documents_SAFFIRE-III_MergeResult-raw_Final.xlsx,True
+PSI-100,SAFFIRE-III,Science Documents,PSI-100_Science Documents_SAFFIRE-III_MergeResult-jpeg_Final.xlsx,7879404.0,PSI-100_SAFFIRE-III/Science Documents/PSI-100_Science Documents_SAFFIRE-III_MergeResult-jpeg_Final.xlsx,True
+PSI-100,SAFFIRE-III,Science Documents,"PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf",186259.0,PSI-100_SAFFIRE-III/Science Documents/PSI-100_Science Documents_SAFFIRE Objectives_ Development and Status.pdf,True
+PSI-100,SAFFIRE-III,Science Documents,PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx,65426.0,PSI-100_SAFFIRE-III/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx,True
+PSI-100,SAFFIRE-III,Engineering Documents,PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf,40256.0,PSI-100_SAFFIRE-III/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf,True
+PSI-101,SAME-R,Experimental table,PSI-101_Experimental table_SAME-R.csv,5674,PSI-101_SAME-R/Experimental table/PSI-101_Experimental table_SAME-R.csv,True
+PSI-101,SAME-R,Reports,PSI-101_Reports_SAME-R_Final Report.pdf,4578437.0,PSI-101_SAME-R/Reports/PSI-101_Reports_SAME-R_Final Report.pdf,True
+PSI-101,SAME-R,Science Documents,PSI-101_Science Documents_SAME_Baseline Concept Description Document_001 Rev A.pdf,247315.0,PSI-101_SAME-R/Science Documents/PSI-101_Science Documents_SAME_Baseline Concept Description Document_001 Rev A.pdf,True
+PSI-101,SAME-R,Science Documents,PSI-101_Science Documents_SAME_Operations Manual_007.pdf,699811.0,PSI-101_SAME-R/Science Documents/PSI-101_Science Documents_SAME_Operations Manual_007.pdf,True
+PSI-102,SAME,Experimental table,PSI-102_Experimental table_SAME.csv,331,PSI-102_SAME/Experimental table/PSI-102_Experimental table_SAME.csv,True
+PSI-102,SAME,metadata,PSI-102_metadata_PSI-170_SAME.zip,13127,PSI-102_SAME/metadata/PSI-102_metadata_PSI-170_SAME.zip,True
+PSI-102,SAME,Reports,PSI-102_Reports_SAME_Final Science Report.pdf,3712845.0,PSI-102_SAME/Reports/PSI-102_Reports_SAME_Final Science Report.pdf,True
+PSI-102,SAME,Science Documents,PSI-102_Science Documents_SAME_Baseline Concept Description Doc.pdf,247315.0,PSI-102_SAME/Science Documents/PSI-102_Science Documents_SAME_Baseline Concept Description Doc.pdf,True
+PSI-102,SAME,Science Documents,PSI-102_Science Documents_SAME_Operations Manual_007.pdf,699811.0,PSI-102_SAME/Science Documents/PSI-102_Science Documents_SAME_Operations Manual_007.pdf,True
+PSI-106,SLICE,Experimental table,PSI-106_Experimental table_Slice.csv,734,PSI-106_SLICE/Experimental table/PSI-106_Experimental table_Slice.csv,True
+PSI-106,SLICE,Experimental table,PSI-106_Experimental table_Slice.csv,734,PSI-106_SLICE/Experimental table/PSI-106_Experimental table_Slice.csv,True
+PSI-107,SPICE,Experimental table,PSI-107_Experimental table_Spice.csv,31205,PSI-107_SPICE/Experimental table/PSI-107_Experimental table_Spice.csv,True
+PSI-107,SPICE,Reports,PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf,2227738.0,PSI-107_SPICE/Reports/PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf,True
+PSI-107,SPICE,Science Documents,PSI-107_Science Documents_SPICE_SRD.doc,1112064.0,PSI-107_SPICE/Science Documents/PSI-107_Science Documents_SPICE_SRD.doc,True
+PSI-107,SPICE,Reports,PSI-107_Reports_SPICE_30-DayPostFlightReport.pdf,160909.0,PSI-107_SPICE/Reports/PSI-107_Reports_SPICE_30-DayPostFlightReport.pdf,True
+PSI-107,SPICE,Reports,PSI-107_Reports_SPICE_FinalReport.pdf,601754.0,PSI-107_SPICE/Reports/PSI-107_Reports_SPICE_FinalReport.pdf,True
+PSI-115,,metadata,PSI-115_metadata_PSI-185_Utilization of the S.zip,7021,PSI-115_NA/metadata/PSI-115_metadata_PSI-185_Utilization of the S.zip,True
+PSI-115,,Reports,PSI-115_Reports_NNX17AF08A_FinalReport.pdf,10617514.0,PSI-115_NA/Reports/PSI-115_Reports_NNX17AF08A_FinalReport.pdf,True
+PSI-115,,Science Documents,PSI-115_Science Documents_DataOrganizationDocument.pdf,96899.0,PSI-115_NA/Science Documents/PSI-115_Science Documents_DataOrganizationDocument.pdf,True
+PSI-117,,Reports,PSI-117_Reports_Dissertation_Combustion Behavior Of Sub-Millimeter Sized Oxygenated And N-Alka.pdf,8072629,PSI-117_NA/Reports/PSI-117_Reports_Dissertation_Combustion Behavior Of Sub-Millimeter Sized Oxygenated And N-Alka.pdf,True
+PSI-142,,Experimental table,PSI-142_Experimental table_Data Summary Table.csv,727,PSI-142_NA/Experimental table/PSI-142_Experimental table_Data Summary Table.csv,True
+PSI-142,,Experimental table,PSI-142_Experimental table_Data Summary Table.csv,727,PSI-142_NA/Experimental table/PSI-142_Experimental table_Data Summary Table.csv,True
+PSI-159,ACME CFI-G,Experimental table,PSI-159_Experimental table_CFI-G_Normal Flames.csv,22166,PSI-159_ACME_CFI-G/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv,True
+PSI-159,ACME CFI-G,Experimental table,PSI-159_Experimental table_CFI-G_Inverse Flames.csv,39422,PSI-159_ACME_CFI-G/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv,True
+PSI-159,ACME CFI-G,metadata,PSI-159_metadata_PSI-159-ISA.zip,8404,PSI-159_ACME_CFI-G/metadata/PSI-159_metadata_PSI-159-ISA.zip,True
+PSI-159,ACME CFI-G,Reports,PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf,3894907,PSI-159_ACME_CFI-G/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf,True
+PSI-159,ACME CFI-G,Experimental table,PSI-159_Experimental table_CFI-G_Normal Flames.csv,22166,PSI-159_ACME_CFI-G/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv,True
+PSI-159,ACME CFI-G,Experimental table,PSI-159_Experimental table_CFI-G_Inverse Flames.csv,39422,PSI-159_ACME_CFI-G/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv,True
+PSI-159,ACME CFI-G,Representative Image(s),PSI-159_Representative Image(s)_ACME logo.png,127968,PSI-159_ACME_CFI-G/Representative Image(s)/PSI-159_Representative Image(s)_ACME logo.png,True
+PSI-159,ACME CFI-G,Representative Image(s),PSI-159_Representative Image(s)_CFI-G_Observation of non-premixed quasi-steady spherical cool flames on porous burners.jpg,9866,PSI-159_ACME_CFI-G/Representative Image(s)/PSI-159_Representative Image(s)_CFI-G_Observation of non-premixed quasi-steady spherical cool flames on porous burners.jpg,True
+PSI-20,ACME BRE,Experimental table,PSI-20_Experimental table_ACME BRE.csv,1113,PSI-20_ACME_BRE/Experimental table/PSI-20_Experimental table_ACME BRE.csv,True
+PSI-20,ACME BRE,Experimental table,PSI-20_Experimental table_ACME BRE.csv,1113,PSI-20_ACME_BRE/Experimental table/PSI-20_Experimental table_ACME BRE.csv,True
+PSI-21,ACME CLD Flame,Experimental table,PSI-21_Experimental table_CLD Flame.csv,2454,PSI-21_ACME_CLD_Flame/Experimental table/PSI-21_Experimental table_CLD Flame.csv,True
+PSI-21,ACME CLD Flame,Experimental table,PSI-21_Experimental table_CLD Flame.csv,2454,PSI-21_ACME_CLD_Flame/Experimental table/PSI-21_Experimental table_CLD Flame.csv,True
+PSI-22,ACME E-FIELD Flames,Experimental table,PSI-22_Experimental table_ACME E-FIELD Flames.csv,2475,PSI-22_ACME_E-FIELD_Flames/Experimental table/PSI-22_Experimental table_ACME E-FIELD Flames.csv,True
+PSI-23,ACME s-Flame,Experimental table,PSI-23_Experimental table_ACME s-Flame.csv,2456,PSI-23_ACME_s-Flame/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_ACME non-imaging data file description.pdf,377001.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_ACME non-imaging data file description.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_ACME_Integrated_Science_Requirements_RevB.pdf,1878639.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_ACME_Integrated_Science_Requirements_RevB.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_ACME Science Operation Requirements revA 20111018.pdf,300262.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_ACME Science Operation Requirements revA 20111018.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_ACME Integrated Science Requirements Definition Review 20100505.pdf,3119886.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_ACME Integrated Science Requirements Definition Review 20100505.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_s-Flame SCR 200802.pdf,2382728.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_s-Flame SCR 200802.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_s-Flame_SRD_20100125.pdf,946359.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_s-Flame_SRD_20100125.pdf,True
+PSI-23,ACME s-Flame,Reports,PSI-23_Reports_s-Flame 30-day report Inc 63 20201216.pdf,301047.0,PSI-23_ACME_s-Flame/Reports/PSI-23_Reports_s-Flame 30-day report Inc 63 20201216.pdf,True
+PSI-23,ACME s-Flame,Reports,PSI-23_Reports_s_Flame_final_report_20210729.pdf,3182281.0,PSI-23_ACME_s-Flame/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf,True
+PSI-23,ACME s-Flame,Science Documents,PSI-23_Science Documents_ACME s-Flame  DoD.pdf,801605.0,PSI-23_ACME_s-Flame/Science Documents/PSI-23_Science Documents_ACME s-Flame  DoD.pdf,True
+PSI-25,BASS-II,Experimental table,PSI-25_Experimental table_BASS-II.csv,16590,PSI-25_BASS-II/Experimental table/PSI-25_Experimental table_BASS-II.csv,True
+PSI-25,BASS-II,metadata,PSI-25_metadata_PSI_metadata_PSI-101_BASS-II.zip,13439,PSI-25_BASS-II/metadata/PSI-25_metadata_PSI_metadata_PSI-101_BASS-II.zip,True
+PSI-25,BASS-II,Engineering Documents,PSI-25_Engineering Documents_BASS-II_Engineering Requirements.pptx,1123356.0,PSI-25_BASS-II/Engineering Documents/PSI-25_Engineering Documents_BASS-II_Engineering Requirements.pptx,True
+PSI-25,BASS-II,Reference Data,PSI-25_Reference Data_Fan calibration data.xlsx,23973.0,PSI-25_BASS-II/Reference Data/PSI-25_Reference Data_Fan calibration data.xlsx,True
+PSI-25,BASS-II,Science Documents,PSI-25_Science Documents_BASS-II_Test.Matrices.xlsx,28956.0,PSI-25_BASS-II/Science Documents/PSI-25_Science Documents_BASS-II_Test.Matrices.xlsx,True
+PSI-25,BASS-II,Science Documents,PSI-25_Science Documents_BASS-II_ReadMe.docx,21538.0,PSI-25_BASS-II/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx,True
+PSI-25,BASS-II,Reports,PSI-25_Reports_BASS-II Summary Report.pdf,48972416.0,PSI-25_BASS-II/Reports/PSI-25_Reports_BASS-II Summary Report.pdf,True
+PSI-25,BASS-II,Science Documents,PSI-25_Science Documents_BASS-II_SRD.pdf,1108340.0,PSI-25_BASS-II/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf,True
+PSI-25,BASS-II,Engineering Documents,PSI-25_Engineering Documents_BASS-II_Ops.docx,1111856.0,PSI-25_BASS-II/Engineering Documents/PSI-25_Engineering Documents_BASS-II_Ops.docx,True
+PSI-25,BASS-II,Representative Image(s),PSI-25_Representative Image(s)_BASS-II_flame testing.jpg,37525,PSI-25_BASS-II/Representative Image(s)/PSI-25_Representative Image(s)_BASS-II_flame testing.jpg,True
+PSI-26,BASS,Experimental table,PSI-26_Experimental table_BASS.csv,4726,PSI-26_BASS/Experimental table/PSI-26_Experimental table_BASS.csv,True
+PSI-26,BASS,metadata,PSI-26_metadata_PSI-102_BASS.zip,11647,PSI-26_BASS/metadata/PSI-26_metadata_PSI-102_BASS.zip,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_FlammabilityAspectsofCottonFiberglassFabric_ASGSR2012.pdf,3212109.0,PSI-26_BASS/Presentations/PSI-26_Presentations_FlammabilityAspectsofCottonFiberglassFabric_ASGSR2012.pdf,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf,4640227.0,PSI-26_BASS/Presentations/PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf,True
+PSI-26,BASS,Science Documents,PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx,8837026.0,PSI-26_BASS/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_Flammability Aspects of Fabric_USNationalCombustion2013.pdf,2804257.0,PSI-26_BASS/Presentations/PSI-26_Presentations_Flammability Aspects of Fabric_USNationalCombustion2013.pdf,True
+PSI-26,BASS,Reports,PSI-26_Reports_SPICE_FinalReport.pdf,553693.0,PSI-26_BASS/Reports/PSI-26_Reports_SPICE_FinalReport.pdf,False
+PSI-26,BASS,Reports,PSI-26_Reports_BASS_FinalReport.pdf,553693.0,PSI-26_BASS/Reports/PSI-26_Reports_BASS_FinalReport.pdf,False
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_SLICE_SysReqDesignReview.pdf,1429180.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_SLICE_SysReqDesignReview.pdf,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_Crew Training 2010.pdf,1348519.0,PSI-26_BASS/Presentations/PSI-26_Presentations_Crew Training 2010.pdf,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_Crew Training 2011.pdf,1339967.0,PSI-26_BASS/Presentations/PSI-26_Presentations_Crew Training 2011.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_BASS_SysAcceptanceReview.1.pdf,2892502.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_BASS_SysAcceptanceReview.1.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_BASS_SysAcceptanceReview.2.pdf,1804490.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_BASS_SysAcceptanceReview.2.pdf,True
+PSI-26,BASS,Science Documents,PSI-26_Science Documents_Planned_Test Matrix.xlsx,20976.0,PSI-26_BASS/Science Documents/PSI-26_Science Documents_Planned_Test Matrix.xlsx,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_BASS ERD.pptx,2856973.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_BASS ERD.pptx,True
+PSI-26,BASS,Presentations,PSI-26_Presentations_BASS Overview.pptx,1623251.0,PSI-26_BASS/Presentations/PSI-26_Presentations_BASS Overview.pptx,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_SPICE Housing.pdf,192768.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_SPICE Housing.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_SPICE_FanHousing.pdf,133889.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_SPICE_FanHousing.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Flat.Fuel.Sample2mm.pdf,52408.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Flat.Fuel.Sample2mm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Sibal.Flat.Sample.pdf,121535.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Sibal.Flat.Sample.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.SampleAssembly.pdf,65227.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.SampleAssembly.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Spherical.Sample_2cm.pdf,78407.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Spherical.Sample_2cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Blk.PMMA.Rod.pdf,78284.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Blk.PMMA.Rod.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Flat.Fuel.Sample_2cm.pdf,129048.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Flat.Fuel.Sample_2cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Flat.Samples_2cm.pdf,58392.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Flat.Samples_2cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Sibal.Flat.Fuel.Sample_2cm.pdf,55267.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Sibal.Flat.Fuel.Sample_2cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Spherical.Section.pdf,595300.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Spherical.Section.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Blk.Rod.Sample.pdf,65282.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Blk.Rod.Sample.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_PMMA.Flat_1cm.pdf,1108850.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_PMMA.Flat_1cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_SPICE-front-window.pdf,148197.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_SPICE-front-window.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_60054MAFH000_C.pdf,562119.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_60054MAFH000_C.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_SolidFuelFrame.pdf,97640.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_SolidFuelFrame.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Flat.Sample.Frame_2cm.pdf,586059.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Flat.Sample.Frame_2cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Flat.Sample.Frame_1cm.pdf,586727.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Flat.Sample.Frame_1cm.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Drawing_Solid.Fuel.Sample_2cmSphere.pdf,54006.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Drawing_Solid.Fuel.Sample_2cmSphere.pdf,True
+PSI-26,BASS,Engineering Documents,PSI-26_Engineering Documents_Short Nozzle MFA10771.pdf,52766.0,PSI-26_BASS/Engineering Documents/PSI-26_Engineering Documents_Short Nozzle MFA10771.pdf,True
+PSI-26,BASS,Science Documents,PSI-26_Science Documents_SRD_BASS.pdf,884257.0,PSI-26_BASS/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf,True
+PSI-26,BASS,Science Documents,PSI-26_Science Documents_DLD_BASS.pdf,69653.0,PSI-26_BASS/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf,True
+PSI-26,BASS,Science Documents,PSI-26_Science Documents_As Run_Test Matrix.xlsx,111886.0,PSI-26_BASS/Science Documents/PSI-26_Science Documents_As Run_Test Matrix.xlsx,True
+PSI-39,CFI,Experimental table,PSI-39_Experimental table_CFI.csv,7792,PSI-39_CFI/Experimental table/PSI-39_Experimental table_CFI.csv,True
+PSI-39,CFI,metadata,PSI-39_metadata_PSI-118_CFI.zip,10237,PSI-39_CFI/metadata/PSI-39_metadata_PSI-118_CFI.zip,True
+PSI-39,CFI,Reports,PSI-39_Reports_CFI Science Final Report.pdf,811459.0,PSI-39_CFI/Reports/PSI-39_Reports_CFI Science Final Report.pdf,True
+PSI-39,CFI,Science Documents,PSI-39_Science Documents_CFI_DataSummary_Spreadsheet_Jan2021.xlsx,208743.0,PSI-39_CFI/Science Documents/PSI-39_Science Documents_CFI_DataSummary_Spreadsheet_Jan2021.xlsx,True
+PSI-39,CFI,Science Documents,PSI-39_Science Documents_SRD_CFI.pdf,12260561.0,PSI-39_CFI/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf,True
+PSI-39,CFI,Science Documents,PSI-39_Science Documents_CFI_SCR.pdf,3630234.0,PSI-39_CFI/Science Documents/PSI-39_Science Documents_CFI_SCR.pdf,True
+PSI-47,DAFT / DAFT-2,Experimental table,PSI-47_Experimental table_DAFT.csv,518,PSI-47_DAFT___DAFT-2/Experimental table/PSI-47_Experimental table_DAFT.csv,True
+PSI-47,DAFT / DAFT-2,metadata,PSI-47_metadata_PSI-126_DAFT_DAFT-2.zip,8454,PSI-47_DAFT___DAFT-2/metadata/PSI-47_metadata_PSI-126_DAFT_DAFT-2.zip,True
+PSI-47,DAFT / DAFT-2,Reports,PSI-47_Reports_DAFT_FinalReport.doc,8844800.0,PSI-47_DAFT___DAFT-2/Reports/PSI-47_Reports_DAFT_FinalReport.doc,True
+PSI-47,DAFT / DAFT-2,Reports,PSI-47_Reports_DAFT_30Day.PostFlightReport.pdf,185648.0,PSI-47_DAFT___DAFT-2/Reports/PSI-47_Reports_DAFT_30Day.PostFlightReport.pdf,True
+PSI-47,DAFT / DAFT-2,Reports,PSI-47_Reports_DAFT_1YearReport.doc,4919296.0,PSI-47_DAFT___DAFT-2/Reports/PSI-47_Reports_DAFT_1YearReport.doc,True
+PSI-47,DAFT / DAFT-2,Representative Image(s),PSI-47_Representative Image(s)_DAFT on ISS.jpg,1312134,PSI-47_DAFT___DAFT-2/Representative Image(s)/PSI-47_Representative Image(s)_DAFT on ISS.jpg,True
+PSI-60,,metadata,PSI-60_metadata_NEWID-5_Computational and Ex.zip,7743,PSI-60_NA/metadata/PSI-60_metadata_NEWID-5_Computational and Ex.zip,True
+PSI-62,,metadata,PSI-62_metadata_NEWID-7_Concurrent Flame Spr.zip,9694,PSI-62_NA/metadata/PSI-62_metadata_NEWID-7_Concurrent Flame Spr.zip,True
+PSI-68,FLEX-2,Experimental table,PSI-68_Experimental table_Flex2.csv,1029,PSI-68_FLEX-2/Experimental table/PSI-68_Experimental table_Flex2.csv,True
+PSI-69,FLEX,Experimental table,PSI-69_Experimental table_FLEX.csv,24776,PSI-69_FLEX/Experimental table/PSI-69_Experimental table_FLEX.csv,True
+PSI-98,SAFFIRE-I,Experimental table,PSI-98_Experimental table_SAFFIRE-1.csv,469,PSI-98_SAFFIRE-I/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv,True
+PSI-98,SAFFIRE-I,Engineering Documents,PSI-98_Engineering Documents_SAFFIRE Offgassing Testing Strategy.pdf,1696929.0,PSI-98_SAFFIRE-I/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE Offgassing Testing Strategy.pdf,False
+PSI-98,SAFFIRE-I,Raw Data,PSI-98_Raw Data_Saffire-I Telemetry Data Good Process Version.xlsx,2775737.0,PSI-98_SAFFIRE-I/Raw Data/PSI-98_Raw Data_Saffire-I Telemetry Data Good Process Version.xlsx,False
+PSI-98,SAFFIRE-I,Raw Data,PSI-98_Raw Data_Saffire-I Sample 1 Sensor Data Complete TM graphs.xlsx,25066841.0,PSI-98_SAFFIRE-I/Raw Data/PSI-98_Raw Data_Saffire-I Sample 1 Sensor Data Complete TM graphs.xlsx,False
+PSI-98,SAFFIRE-I,Raw Data,PSI-98_Raw Data_Saffire-I Sample 2 Sensor Data Complete TM graphs.xlsx,24892655.0,PSI-98_SAFFIRE-I/Raw Data/PSI-98_Raw Data_Saffire-I Sample 2 Sensor Data Complete TM graphs.xlsx,True
+PSI-98,SAFFIRE-I,Science Documents,PSI-98_Science Documents_SAFFIRE-I Image Directory Nomenclature.pdf,262860.0,PSI-98_SAFFIRE-I/Science Documents/PSI-98_Science Documents_SAFFIRE-I Image Directory Nomenclature.pdf,True
+PSI-98,SAFFIRE-I,Science Documents,PSI-98_Science Documents_SAFFIRE-1_MergeResult-jpeg_Update_Final_v2.xlsx,12325177.0,PSI-98_SAFFIRE-I/Science Documents/PSI-98_Science Documents_SAFFIRE-1_MergeResult-jpeg_Update_Final_v2.xlsx,True
+PSI-98,SAFFIRE-I,Science Documents,"PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf",186259.0,PSI-98_SAFFIRE-I/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives_ Development and Status.pdf,True
+PSI-98,SAFFIRE-I,Science Documents,PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx,65426.0,PSI-98_SAFFIRE-I/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx,True
+PSI-98,SAFFIRE-I,Engineering Documents,PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf,13957.0,PSI-98_SAFFIRE-I/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf,True
+PSI-99,SAFFIRE-II,Experimental table,PSI-99_Experimental table_SAFFIRE-2.csv,1973,PSI-99_SAFFIRE-II/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,True

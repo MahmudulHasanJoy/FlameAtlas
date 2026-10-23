@@ -30,6 +30,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 API = "https://psi.nasa.gov/geode-py/ws"
 ROOT = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "psi")
@@ -79,15 +80,31 @@ def wanted(acc, f):
     return None
 
 
+def download(acc, folder, f, dest):
+    """Fetch one file via a presigned S3 URL; write to .part first so interrupted runs never leave a bad file."""
+    q = urllib.parse.urlencode({"file": f["file_name"], "version": f.get("version", 1), "redirect": "false"})
+    try:
+        signed = get(f"{API}/studies/{acc}/download?{q}", as_json=False).decode().strip()
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        data = get(signed, as_json=False)
+        with open(dest + ".part", "wb") as fh:
+            fh.write(data)
+        os.replace(dest + ".part", dest)
+        return True, f"ok   {acc} {folder}/{f['file_name']} ({len(data) // 1024} KB)"
+    except Exception as e:
+        return False, f"FAIL {acc} {folder}/{f['file_name']}: {e}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", help="accessions to fetch, e.g. PSI-26")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--workers", type=int, default=8, help="parallel downloads")
     args = ap.parse_args()
 
     os.makedirs(ROOT, exist_ok=True)
     accessions = args.only or combustion_accessions()
-    rows = []
+    rows, jobs = [], []
     for acc in accessions:
         inv = get(f"{API}/repo/investigations/{acc}")
         name = f"{acc}_{safe(inv.get('investigationAcronym') or 'NA').replace(' ', '_').replace('/', '-')}"
@@ -105,22 +122,22 @@ def main():
                          os.path.relpath(dest, ROOT)])
             if args.dry_run or (os.path.exists(dest) and os.path.getsize(dest) == f.get("file_size")):
                 continue
-            q = urllib.parse.urlencode({"file": f["file_name"], "version": f.get("version", 1), "redirect": "false"})
-            try:
-                signed = get(f"{API}/studies/{acc}/download?{q}", as_json=False).decode().strip()
-                os.makedirs(os.path.dirname(dest), exist_ok=True)
-                data = get(signed, as_json=False)
-                with open(dest, "wb") as fh:
-                    fh.write(data)
-                print(f"ok   {acc} {folder}/{f['file_name']} ({len(data) // 1024} KB)")
-            except Exception as e:
-                print(f"FAIL {acc} {folder}/{f['file_name']}: {e}", file=sys.stderr)
+            jobs.append((acc, folder, f, dest))
+
+    failures = 0
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        for ok, msg in pool.map(lambda job: download(*job), jobs):
+            print(msg, file=sys.stdout if ok else sys.stderr, flush=True)
+            failures += not ok
 
     with open(os.path.join(ROOT, "manifest.csv"), "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["accession", "acronym", "folder", "file_name", "bytes", "local_path"])
-        w.writerows(rows)
-    print(f"{len(rows)} files in selection, {sum(r[4] for r in rows) / 1e6:.0f} MB; manifest at {ROOT}/manifest.csv")
+        w.writerow(["accession", "acronym", "folder", "file_name", "bytes", "local_path", "downloaded"])
+        for r in rows:
+            w.writerow(r + [os.path.exists(os.path.join(ROOT, r[5])) or args.dry_run])
+    print(f"{len(rows)} files in selection, {sum(r[4] for r in rows) / 1e6:.0f} MB, {failures} failed; "
+          f"manifest at {ROOT}/manifest.csv")
+    sys.exit(1 if failures else 0)
 
 
 if __name__ == "__main__":
