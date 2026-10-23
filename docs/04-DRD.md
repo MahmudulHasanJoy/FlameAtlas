@@ -92,7 +92,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ Material [All ▼]   Experiment [All ▼]   [ ] Show unverified   42 cards       │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ BASS-II · NTRS 20210011385 · p. 99, Table 7.1                    ✔ Verified  │
+│ BASS-II · NTRS 20210011385 · p. 96, Table 7.1                    ✔ Verified  │
 │ Material   SIBAL cotton-fiberglass fabric                                    │
 │ Conditions 16.4 to 21% O2 · 2 to 53 cm/s · ~101 kPa · microgravity · concur. │
 │ Outcome    Burned at most conditions; quenched below 2.2 to 5 cm/s           │
@@ -129,7 +129,7 @@ The app uses Streamlit's `wide` layout. Widths below assume a 1440 px laptop scr
 │   airflow.                                                                   │
 │                                                                              │
 │ Sources                                                                      │
-│ ▸ [1] BASS-II Summary Report, p. 99  "Quenching flow velocities were found…" │
+│ ▸ [1] BASS-II Summary Report, p. 100 "Quenching flow velocities were found…" │
 │ ▸ [2] Flammability of Materials on the Moon, p. 1  "SIBAL fabric has been…"  │
 │                                                                      7 of 20 │
 └──────────────────────────────────────────────────────────────────────────────┘

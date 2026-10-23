@@ -58,9 +58,9 @@ One request per source. The user message contains the whole document text with e
 
 ```text
 === SOURCE NTRS-20210011385: Burning and Suppression of Solids-II (BASS-II) Summary Report ===
-=== PAGE 104 (printed 99) ===
+=== PAGE 104 (printed 96) ===
 ...page text...
-=== PAGE 105 (printed 100) ===
+=== PAGE 105 (printed 97) ===
 ...
 ```
 
@@ -86,7 +86,7 @@ class CandidateRecord(BaseModel):
     outcome: Outcome
     extinction_mode: ExtinctionMode | None
     spread_rate_mm_s: float | None
-    locator: str                  # "p.99 Table 7.1 row GMT45-T4" (printed page)
+    locator: str                  # "p.96 Table 7.1 row GMT45-T4" (printed page)
     evidence_quote: str           # the exact words in the source that support the outcome, at most 200 chars
 
 class CandidateCard(BaseModel):

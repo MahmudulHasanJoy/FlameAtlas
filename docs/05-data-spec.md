@@ -167,7 +167,7 @@ One row is **one observed outcome at one set of conditions**. A test that swept 
 | `material_id` | string | | yes | Must exist in `materials.csv` |
 | `sample_variant` | string | | no | Short text such as `2.2 cm wide` or `3/8 in clear rod`; boundaries are fitted per variant when more than one exists |
 | `source_id` | string | | yes | Must exist in `sources.csv` |
-| `source_locator` | string | | yes | Page plus table, figure, row or test label, for example `p.99 Table 7.1 GMT100-T13` |
+| `source_locator` | string | | yes | Page plus table, figure, row or test label, for example `p.96 Table 7.1 GMT100-T13` |
 | `experiment` | string | | yes | `BASS`, `BASS-II`, `SAFFIRE-I`, ... |
 | `test_label` | string | | no | Test number as printed in the source |
 | `geometry` | `Geometry` | | yes | |
@@ -206,7 +206,7 @@ One JSON object per line, one card per source that has at least one verified rec
   "outcome_summary": "Burned at most conditions; flames quenched as flow was reduced to 2 to 5 cm/s, and one narrow sample blew off at 47 cm/s.",
   "key_finding": "Quenching flow velocities were between 1 and 5 cm/s, higher at lower oxygen.",
   "safety_takeaway": "A cotton-fiberglass fabric fire can survive very gentle airflow in microgravity; slowing ventilation alone is not a reliable way to put it out.",
-  "locator": "pp. 98-100, Table 7.1 and Fig. 7.7",
+  "locator": "pp. 96-100, Table 7.1 and Fig. 7.7",
   "record_ids": ["REC-00001", "REC-00002"],
   "status": "verified",
   "model": "claude-opus-5-5",
@@ -220,9 +220,9 @@ Card text fields have length limits enforced by the schema: `key_finding` at mos
 
 | Field | Type | Example |
 |---|---|---|
-| `chunk_id` | string | `NTRS-20210011385:p099:c02` |
+| `chunk_id` | string | `NTRS-20210011385:p104:c02` |
 | `source_id` | string | `NTRS-20210011385` |
-| `page` | int | 99 (1-based, as in the PDF) |
+| `page` | int | 104 (1-based PDF index; the printed page is 96) |
 | `experiment` | string | `BASS-II` |
 | `material_ids` | string | `sibal` (semicolon-separated; Chroma metadata values must be scalars) |
 | `title` | string | Source title, for display |
@@ -256,7 +256,7 @@ Intermediate flows that the source does not list are not invented.
 
 ### 5.3 Worked example: NTRS 20210011385, Table 7.1
 
-Table 7.1 ("Test summary of flat SIBAL fabrics in concurrent flow in BASS and BASS-II", p. 99) has 31 rows. Six rows, and the records they produce:
+Table 7.1 ("Test summary of flat SIBAL fabrics in concurrent flow in BASS and BASS-II", printed p. 96, PDF p. 104) has 31 rows. Six rows, and the records they produce:
 
 | Source row | Flow (cm/s) | O2 (%) | Comment | Records |
 |---|---|---|---|---|
@@ -271,10 +271,10 @@ As CSV (columns abbreviated to those that vary):
 
 ```csv
 record_id,material_id,sample_variant,source_id,source_locator,experiment,test_label,o2_pct,pressure_kpa,pressure_reported,flow_cm_s,flow_direction,gravity,outcome,extinction_mode,exclude_from_fit,exclude_reason,method,status
-REC-00001,sibal,2.2 cm wide,NTRS-20210011385,p.99 Table 7.1 GMT45-T4,BASS-II,GMT45-T4,18.7,101.3,false,10,concurrent,micro,burned,,false,,manual_table,verified
-REC-00002,sibal,2.2 cm wide,NTRS-20210011385,p.99 Table 7.1 GMT45-T4,BASS-II,GMT45-T4,18.7,101.3,false,2.2,concurrent,micro,self_extinguished,quench,false,,manual_table,verified
-REC-00003,sibal,2.2 cm wide,NTRS-20210011385,p.99 Table 7.1 GMT175-T9,BASS-II,GMT175-T9,16.4,101.3,false,10,concurrent,micro,no_ignition,,false,,manual_table,verified
-REC-00004,sibal,1.2 cm wide,NTRS-20210011385,p.99 Table 7.1 GMT190-T21,BASS-II,GMT190-T21,17.2,101.3,false,47,concurrent,micro,self_extinguished,blowoff,false,,manual_table,verified
+REC-00001,sibal,2.2 cm wide,NTRS-20210011385,p.96 Table 7.1 GMT45-T4,BASS-II,GMT45-T4,18.7,101.3,false,10,concurrent,micro,burned,,false,,manual_table,verified
+REC-00002,sibal,2.2 cm wide,NTRS-20210011385,p.96 Table 7.1 GMT45-T4,BASS-II,GMT45-T4,18.7,101.3,false,2.2,concurrent,micro,self_extinguished,quench,false,,manual_table,verified
+REC-00003,sibal,2.2 cm wide,NTRS-20210011385,p.96 Table 7.1 GMT175-T9,BASS-II,GMT175-T9,16.4,101.3,false,10,concurrent,micro,no_ignition,,false,,manual_table,verified
+REC-00004,sibal,1.2 cm wide,NTRS-20210011385,p.96 Table 7.1 GMT190-T21,BASS-II,GMT190-T21,17.2,101.3,false,47,concurrent,micro,self_extinguished,blowoff,false,,manual_table,verified
 ```
 
 (`verified_by` and `verified_on` omitted here for width.)
@@ -316,7 +316,7 @@ Rules for reviewers:
 4. If the source gives an approximate value (for example "~ 22.1"), store the number and write "approximate" in `o2_note`.
 5. If PSI and a paper disagree on a condition for the same test, the paper wins; write both in `notes`.
 6. Never verify a row you cannot find in under two minutes at its locator; reject it and say why.
-7. Page numbers in `source_locator` are the numbers **printed on the page** (for example `p.99` in NTRS 20210011385). Where a document has no printed numbers, use the PDF page index and write `pdf p.N`. Passage metadata in Chroma always stores the PDF page index (Section 4.6); the card view shows the printed number.
+7. Page numbers in `source_locator` are the numbers **printed on the page** (for example `p.96` for Table 7.1 of NTRS 20210011385, which is PDF page 104). Where a document has no printed numbers, use the PDF page index and write `pdf p.N`. Passage metadata in Chroma always stores the PDF page index (Section 4.6); the card view shows the printed number.
 
 ## 7. Normalization
 
