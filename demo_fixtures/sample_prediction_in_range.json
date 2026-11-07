@@ -1,0 +1,33 @@
+{
+  "inputs": {
+    "oxygen_pct": 17.0,
+    "pressure_kpa": 101.3,
+    "flow_cm_s": 5.0,
+    "material": "sibal"
+  },
+  "in_training_range": true,
+  "prediction": "no_spread",
+  "probabilities": {
+    "no_spread": 0.8,
+    "marginal_spread": 0.0,
+    "spread": 0.2
+  },
+  "model": {
+    "type": "gradient_boosting",
+    "n_train": 48,
+    "cv_accuracy": 0.7133,
+    "features": ["oxygen_pct", "pressure_kpa", "flow_cm_s", "material"]
+  },
+  "nearest_experiments": [
+    {
+      "report_id": "NTRS-20210011385",
+      "oxygen_pct": 17.1,
+      "pressure_kpa": 101.3,
+      "flow_cm_s": 5.0,
+      "outcome": "no_spread",
+      "material": "sibal",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011385"
+    }
+  ],
+  "explanation": null
+}

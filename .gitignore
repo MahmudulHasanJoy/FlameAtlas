@@ -4,6 +4,9 @@ data/raw/**
 !data/raw/psi/manifest.csv
 !data/raw/ntrs/manifest.csv
 
+# PSI raw download cache (re-create with scripts/build_experiments_parquet.py)
+cache/psi_raw/
+
 # Python
 __pycache__/
 *.py[cod]
