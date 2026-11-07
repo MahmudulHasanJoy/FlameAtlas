@@ -8,10 +8,10 @@
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>
   :root {
+    /* ---- Dark mode (default) ---- */
     --bg-marketing: #08090a;
     --bg-panel: #0f1011;
     --bg-surface: #191a1b;
-    --bg-surface-2: #28282c;
     --text-primary: #f7f8f8;
     --text-secondary: #d0d6e0;
     --text-tertiary: #8a8f98;
@@ -32,6 +32,34 @@
     --ff-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --ff-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     --font-features: 'cv01', 'ss03';
+    --plot-bg: rgba(0,0,0,0);
+    --plot-text: #8a8f98;
+  }
+
+  html.light {
+    /* ---- Light mode ---- */
+    --bg-marketing: #f7f8f8;
+    --bg-panel: #ffffff;
+    --bg-surface: #f3f4f5;
+    --text-primary: #101828;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --text-quaternary: #9ca3af;
+    --brand-bg: #4f46e5;
+    --brand-accent: #6366f1;
+    --brand-hover: #818cf8;
+    --success: #059669;
+    --danger: #dc2626;
+    --warning: #d97706;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-standard: rgba(0, 0, 0, 0.12);
+    --radius-micro: 2px;
+    --radius-comfortable: 6px;
+    --radius-card: 8px;
+    --radius-panel: 12px;
+    --shadow-surface: rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px 0px;
+    --plot-bg: #ffffff;
+    --plot-text: #6b7280;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,27 +73,62 @@
     background: var(--bg-panel);
     border-bottom: 1px solid var(--border-subtle);
     padding: 14px 28px;
-    display: flex; align-items: center; gap: 20px;
+    display: flex; align-items: center; gap: 16px;
     flex-shrink: 0;
   }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 510; letter-spacing: -0.24px; font-size: 17px; }
   .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-accent); box-shadow: 0 0 8px var(--brand-accent); }
   .tagline { color: var(--text-tertiary); font-size: 12px; font-weight: 400; letter-spacing: normal; }
-  .api-status { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .api-status { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); }
   .api-status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 6px var(--success); }
   .api-status .dot.off { background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+  .theme-toggle {
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border-standard);
+    border-radius: var(--radius-comfortable); width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text-secondary);
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+  .theme-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 
-  main { display: grid; grid-template-columns: 260px 1fr 280px; gap: 20px; padding: 20px 28px; overflow-y: auto; }
-  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
-  @media (max-width: 768px) { main { grid-template-columns: 1fr; } header { padding: 12px 16px; } }
+  main { display: grid; gap: 20px; padding: 20px 28px; overflow-y: auto; }
+  /* Default desktop: 3 columns */
+  @media (min-width: 900px) {
+    main { grid-template-columns: 260px 1fr 280px; }
+  }
+  /* Tablet: stack right panel under center, keep left narrow */
+  @media (min-width: 600px) and (max-width: 899px) {
+    main { grid-template-columns: 240px 1fr; grid-template-areas:
+      "left  center"
+      "right right"; }
+    .left-panel { grid-area: left; }
+    .center-panel { grid-area: center; }
+    .right-panel { grid-area: right; }
+  }
+  /* Mobile: single column stack */
+  @media (max-width: 599px) {
+    main { grid-template-columns: 1fr; grid-template-areas:
+      "left"
+      "center"
+      "right"; }
+    .left-panel { grid-area: left; }
+    .center-panel { grid-area: center; }
+    .right-panel { grid-area: right; }
+    header { padding: 12px 16px; gap: 10px; }
+    .tagline { display: none; }
+    main { padding: 12px 16px; gap: 12px; }
+    .panel { border-radius: var(--radius-card); }
+  }
 
   .footer {
     background: var(--bg-panel);
     border-top: 1px solid var(--border-subtle);
-    padding: 14px 28px;
-    font-size: 11px; color: var(--text-tertiary); font-family: var(--ff-mono);
+    padding: 12px 28px;
+    font-size: 10px; color: var(--text-tertiary); font-family: var(--ff-mono);
     flex-shrink: 0;
   }
+  @media (max-width: 599px) { .footer { padding: 10px 16px; } }
 
   /* ---------- Panels ---------- */
   .panel {
@@ -192,12 +255,17 @@
       <div>FlameAtlas</div>
     </div>
     <div class="tagline">Microgravity fire-safety explorer · NASA Space Apps 2026 · "Flame in Freefall"</div>
-    <div class="api-status" id="apiStatus"><div class="dot off"></div><span id="apiStatusText">checking...</span></div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+      </button>
+      <div class="api-status" id="apiStatus"><div class="dot off"></div><span id="apiStatusText">checking...</span></div>
+    </div>
   </header>
 
   <main>
     <!-- Left: habitat controls -->
-    <aside class="panel">
+    <aside class="panel left-panel">
       <div class="panel-head"><span class="panel-title">habitat conditions</span></div>
       <div class="panel-body">
         <div class="control-group">
@@ -225,7 +293,7 @@
     </aside>
 
     <!-- Center: plot + prediction -->
-    <div class="center">
+    <div class="center center-panel">
       <div class="plot-wrap" id="plotWrap">
         <div id="boundary-plot"></div>
         <div class="plot-placeholder" id="plotPlaceholder">loading boundary plot...</div>
@@ -258,7 +326,7 @@
     </div>
 
     <!-- Right: nearest experiments -->
-    <aside class="panel">
+    <aside class="panel right-panel">
       <div class="panel-head"><span class="panel-title">nearest experiments</span></div>
       <div class="panel-body">
         <div class="guard" id="guard">
@@ -299,11 +367,39 @@
     retryBtn: document.getElementById('retryBtn'),
     plotPlaceholder: document.getElementById('plotPlaceholder'),
     predCard: document.getElementById('predCard'),
+    themeToggle: document.getElementById('themeToggle'),
+    html: document.documentElement,
   };
 
   let plotlyReady = false;
   let debounceTimer;
   let plotlyLoadFailed = false;
+
+  /* ---------- Theme ---------- */
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      els.html.classList.add('light');
+    } else {
+      els.html.classList.remove('light');
+    }
+    localStorage.setItem('flameatlas-theme', theme);
+    if (plotlyReady) {
+      Plotly.relayout('boundary-plot', {
+        'paper_bgcolor': getComputedStyle(els.html).getPropertyValue('--plot-bg').trim(),
+        'plot_bgcolor': getComputedStyle(els.html).getPropertyValue('--plot-bg').trim(),
+      });
+    }
+  }
+  function initTheme() {
+    const saved = localStorage.getItem('flameatlas-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'light');
+    applyTheme(theme);
+  }
+  els.themeToggle.addEventListener('click', () => {
+    const isLight = els.html.classList.contains('light');
+    applyTheme(isLight ? 'dark' : 'light');
+  });
 
   function setApiStatus(ok) {
     const dot = els.apiStatus.querySelector('.dot');
@@ -455,13 +551,16 @@
         hovertemplate: 'your habitat<br>o2 %{y}% · flow %{x} cm/s<extra></extra>',
       });
 
+      const plotBg = getComputedStyle(els.html).getPropertyValue('--plot-bg').trim();
+      const plotText = getComputedStyle(els.html).getPropertyValue('--plot-text').trim();
+
       Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
         margin: { l: 40, r: 20, t: 10, b: 40 },
-        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
-        font: { family: 'Inter, sans-serif', size: 11, color: '#8a8f98' },
+        paper_bgcolor: plotBg, plot_bgcolor: plotBg,
+        font: { family: 'Inter, sans-serif', size: 11, color: plotText },
         xaxis: { type: 'log', title: 'airflow (cm/s, log)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', tickvals: [0.5,1,2,5,10,20,50], range: [Math.log10(Math.min(...flows)), Math.log10(Math.max(...flows))] },
         yaxis: { title: 'oxygen (%)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', range: [Math.min(...o2s), Math.max(...o2s)], dtick: 5 },
-        legend: { orientation: 'h', y: -0.12, x: 0.5, xanchor: 'center', font: { size: 10, color: '#8a8f98' }, bgcolor: 'rgba(0,0,0,0)' },
+        legend: { orientation: 'h', y: -0.12, x: 0.5, xanchor: 'center', font: { size: 10, color: plotText }, bgcolor: 'rgba(0,0,0,0)' },
         hovermode: 'closest',
       }, { responsive: true });
       plotlyReady = true;
@@ -518,6 +617,7 @@
   els.retryBtn.addEventListener('click', predict);
 
   // Init
+  initTheme();
   checkApi();
   setInterval(checkApi, 10000);
   predict();
