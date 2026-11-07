@@ -2,63 +2,96 @@
 
 **Know what burns before you fly.**
 
-FlameAtlas turns NASA's microgravity fire research into an interactive flammability map, one evidence card per study, and an assistant that answers only from cited NASA sources. It is our entry for the **NASA Space Apps Challenge 2026** challenge *Flame in Freefall*, Dhaka local event.
+FlameAtlas is a microgravity fire-safety explorer — your entry for the **NASA Space Apps Challenge 2026**, challenge *"Flame in Freefall"*, theme *"The Next Frontier"*, Dhaka local event.
 
-In microgravity, hot gas does not rise, so cabin airflow decides whether a flame survives. NASA's BASS-II experiment on the ISS found that some materials keep burning at **lower oxygen levels in gentle spacecraft-like airflow than they do on Earth**. FlameAtlas lets a habitat designer pick a material, set oxygen and airflow, and see what NASA's tests say, with every point traceable to its source and a clear `UNTESTED` label where NASA's data runs out.
+It answers one question for spacecraft and habitat designers: **"Will this material burn up there?"**
 
-## Status
+Set oxygen concentration, pressure, flow velocity, and material, and a gradient-boosting model trained on published NASA microgravity combustion results predicts the flame-spread regime (`no_spread` / `marginal_spread` / `spread`), with class probabilities, an out-of-range guard, and an explanation layer that cites the nearest real experiments by report ID and NTRS URL.
+
+## What's in the repo
 
 | Part | State |
 |---|---|
-| Documentation (`docs/`) | Baseline v1.0, 2026-10-24 |
-| NASA data download (`scripts/`, `data/`) | Done: 24 PSI combustion investigations, 43 NTRS papers |
-| Practice prototype (`prototype/`) | Flammability map on 48 BASS-II test results; 22 passing tests |
-| Hackathon build (`flameatlas/`) | Built during the hackathon, 14 to 15 November 2026 |
+| `src/api/app.py` | FastAPI `POST /predict` + `GET /boundary` — gradient-boosting classifier, honest cross-validation, training-range guard, nearest-experiment retrieval |
+| `src/compute/model.py` | Training pipeline: gradient-boosting on `cache/experiments.parquet`, stratified CV, model artifact + metadata |
+| `cache/experiments.parquet` | 620 curated test rows from PSI experimental tables + BASS-II (O₂, pressure, flow, material, outcome, report_id, source_url) |
+| `scripts/build_experiments_parquet.py` | Column-mapping parser for all 22 PSI experimental-table CSVs (BASS-II, SAFFIRE-1/2, FLEX, FLEX-2, CFI, CFI-G, ACME BRE, Flame Design) |
+| `scripts/fetch_ntrs.py` | Downloads all 43 NTRS papers (PDF + citation JSON) |
+| `frontend/dashboard.html` | Self-contained dark/light-mode slider UI with Plotly decision-boundary plot, probability bar, nearest-experiment citations |
+| `docs/` | 12 spec documents: PRD, TRD, SDD, DRD, data spec, AI/RAG spec, test plan, project plan, risk register, decision log, glossary, Glenn resources |
+| `demo_fixtures/` | Offline demo fixtures (sample predictions, Glenn imagery) |
+| `LICENSE` | Apache-2.0 |
+
+## Quick start
+
+**1. Start the API server** (terminal 1):
+
+```powershell
+cd C:\Users\mhjjo\FlameAtlas
+$env:PYTHONPATH="src"
+C:\Python314\python.exe -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+```
+
+**2. Open the frontend** (terminal 2, or double-click in File Explorer):
+
+```powershell
+Start-Process "C:\Users\mhjjo\FlameAtlas\frontend\dashboard.html"
+```
+
+The dashboard opens at `file:///.../frontend/dashboard.html` and calls `http://127.0.0.1:8000`.
+
+**3. Train the model** (if you need to retrain):
+
+```powershell
+C:\Python314\python.exe scripts/build_experiments_parquet.py
+C:\Python314\python.exe src/compute/model.py
+```
+
+**4. Fetch raw NASA data** (optional — raw downloads are git-ignored, ~440 MB):
+
+```powershell
+python scripts/fetch_ntrs.py        # 43 NTRS papers, 0 failures
+python scripts/build_experiments_parquet.py   # builds cache/experiments.parquet from PSI tables
+```
+
+## Features
+
+- **Flame-spread prediction** — gradient-boosting classifier with honest stratified cross-validation (CV accuracy reported, not invented)
+- **Out-of-range guard** — if requested conditions fall outside the training envelope, returns no prediction and an explanation; never extrapolates silently
+- **Nearest experiments** — each prediction links to the 3 closest real NASA tests by feature distance, with report IDs and clickable NTRS citations
+- **Decision-boundary plot** — P(spread) heatmap over O₂ × airflow with the P = 0.5 contour and real experiment points overlaid
+- **Light/dark mode** — toggle in the header, persists in localStorage, respects OS preference
+- **Mobile responsive** — single-column stack on phones, two-column on tablets, three-column on desktop
+- **Offline demo** — `demo_fixtures/` contains sample predictions so the UI can run without live data
+
+## Data sources
+
+| Source | Role | Status |
+|---|---|---|
+| NASA PSI (Physical Sciences Informatics) | Combustion experiment tables (BASS, BASS-II, SAFFIRE, FLEX, CFI, ACME, …) | 22 experimental-table CSVs downloaded, parsed into `experiments.parquet` |
+| NASA NTRS (Technical Reports Server) | Research papers and reports | 43 papers downloaded (PDF + citation JSON), 0 failures |
+| NASA Glenn Combustion Science | Experiment documentation, facility docs (CIR, MDCA), imagery | Documented in `docs/glenn-resources.md`, imagery cached in `demo_fixtures/glenn/` |
+
+All PSI data is CC0-1.0. NTRS documents are mostly US Government works. Raw downloads (~440 MB) are git-ignored; only manifests and curated tables are committed.
 
 ## Documentation
 
-Start with [`docs/README.md`](docs/README.md). The set:
+Start with [`docs/README.md`](docs/README.md). The full set:
 
 | Document | Contents |
 |---|---|
 | [01 PRD](docs/01-PRD.md) | Problem, users, user stories, functional and non-functional requirements |
 | [02 TRD](docs/02-TRD.md) | Stack, constraints, interfaces, quality targets, cost model |
-| [03 SDD](docs/03-SDD.md) | Architecture, UML class, sequence, state, ER and deployment diagrams |
+| [03 SDD](docs/03-SDD.md) | Architecture, UML diagrams, deployment |
 | [04 DRD](docs/04-DRD.md) | Wireframes, chart and status design, accessibility, demo path |
 | [05 Data spec](docs/05-data-spec.md) | Sources, schemas, outcome rules, verification workflow |
-| [06 AI/RAG spec](docs/06-ai-rag-spec.md) | Extraction, retrieval, boundary model, confidence rule, evaluation |
-| [07 Test plan](docs/07-test-plan.md) | 53 test cases and the traceability matrix |
+| [06 AI/RAG spec](docs/06-ai-rag-spec.md) | Boundary model, confidence rule, evaluation |
+| [07 Test plan](docs/07-test-plan.md) | Test cases and traceability matrix |
 | [08 Project plan](docs/08-project-plan.md) | Timeline, RACI, hackathon run sheet |
 | [09 Risk register](docs/09-risk-register.md) | Risks and mitigations |
-| [10 Decision log](docs/10-decisions.md) | Architecture decision records |
+| [10 Decision log](docs/10-decisions.md) | Architecture decision records (ADR-0001 to 0014) |
 | [11 Glossary](docs/11-glossary.md) | Fire science, NASA and AI terms |
-
-## Quick start
-
-Try the prototype:
-
-```bash
-cd prototype
-pip install -r requirements.txt
-streamlit run app.py        # opens http://localhost:8501
-pytest -q                   # 22 tests
-```
-
-Fetch the NASA source data (about 440 MB, not stored in git):
-
-```bash
-python scripts/fetch_psi.py
-python scripts/fetch_ntrs.py
-```
-
-## Repository layout
-
-```text
-docs/        documentation set
-scripts/     reproducible NASA data download
-data/        source lists and manifests (raw downloads are git-ignored); see data/README.md
-prototype/   pre-hackathon practice prototype of the flammability map
-```
+| [Glenn resources](docs/glenn-resources.md) | NASA Glenn Combustion Science experiments and facilities |
 
 ## Team
 
@@ -70,10 +103,12 @@ prototype/   pre-hackathon practice prototype of the flammability map
 | Syed Mehedi Hussain | Integration and QA Developer |
 | Farhan Alam Chowdhury | Story and Presentation Lead |
 
-## Data and credits
+## Caveats
 
-- **NASA Physical Sciences Informatics (PSI)**, https://psi.nasa.gov: experiment data from BASS, BASS-II, Saffire and other combustion investigations, released under CC0-1.0.
-- **NASA Technical Reports Server (NTRS)**, https://ntrs.nasa.gov: research papers and reports. PDFs are downloaded locally and not redistributed here.
-- **NASA Space Apps Challenge 2026**, theme "The Next Frontier".
+- FlameAtlas summarizes published NASA research for exploration and education. It does **not** certify materials and does **not** replace NASA-STD-6001 testing.
+- The boundary model is trained on BASS-II and related PSI results; extrapolation outside tested conditions returns `UNTESTED` / no prediction.
+- Raw NASA data (~440 MB) is not stored in git; run the fetch scripts to obtain it.
 
-FlameAtlas summarizes published NASA research for exploration and education. It does not certify materials and does not replace NASA-STD-6001 testing.
+## License
+
+Apache-2.0. Public repository.
