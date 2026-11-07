@@ -282,7 +282,7 @@
 
   async function checkApi() {
     try {
-      await fetch(API + '/', { method: 'HEAD', cache: 'no-store' });
+      await fetch(API + '/', { method: 'GET', cache: 'no-store' });
       setApiStatus(true);
     } catch (e) { setApiStatus(false); }
   }
