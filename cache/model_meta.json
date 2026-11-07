@@ -64,5 +64,10 @@
     ]
   },
   "spread_threshold": 0.6,
-  "no_spread_threshold": 0.4
+  "no_spread_threshold": 0.4,
+  "known_materials": [
+    "nomex",
+    "pmma",
+    "sibal"
+  ]
 }

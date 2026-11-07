@@ -8,13 +8,13 @@ All numbers come from the trained model or the data table; nothing is guessed.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
-import pickle
-from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+import joblib
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -28,6 +28,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 DATA = REPO / "cache" / "experiments.parquet"
 MODEL_ARTIFACT = REPO / "cache" / "model.joblib"
+MODEL_CHECKSUM = REPO / "cache" / "model.sha256"
 MODEL_META = REPO / "cache" / "model_meta.json"
 
 NUMERIC_FEATURES = ["oxygen_pct", "pressure_kpa", "flow_cm_s"]
@@ -38,14 +39,40 @@ TARGET = "outcome_class"
 # Classes the competition prediction object reports, in order.
 CLASS_ORDER = ["no_spread", "marginal_spread", "spread"]
 
+# Materials known to the trained model. Anything outside this list is rejected
+# outright instead of being silently passed through the unknown-category path.
+KNOWN_MATERIALS = {"sibal", "pmma", "nomex"}
+
 # Thresholds that turn P(spread) into the 3-class prediction, mirroring the
 # prototype's MARGINAL band (core.py classify_habitat).
 SPREAD_THRESHOLD = 0.60
 NO_SPREAD_THRESHOLD = 0.40
 
+# Physical input bounds (defense in depth beyond the envelope guard).
+O2_MIN, O2_MAX = 10.0, 40.0
+PRESSURE_MIN, PRESSURE_MAX = 30.0, 110.0
+FLOW_MIN, FLOW_MAX = 0.5, 60.0
+
 
 class ModelNotTrainedError(RuntimeError):
     pass
+
+
+class ModelTamperError(RuntimeError):
+    pass
+
+
+def _compute_checksum(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(8192), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _write_checksum(path: Path) -> None:
+    checksum = _compute_checksum(path)
+    path.with_suffix(".sha256").write_text(checksum + "\n")
 
 
 def load_data() -> pd.DataFrame:
@@ -63,7 +90,11 @@ def build_preprocessor() -> ColumnTransformer:
     return ColumnTransformer(
         transformers=[
             ("num", StandardScaler(), NUMERIC_FEATURES),
-            ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), CATEGORICAL_FEATURES),
+            (
+                "cat",
+                OneHotEncoder(handle_unknown="ignore", sparse_output=False),
+                CATEGORICAL_FEATURES,
+            ),
         ],
         remainder="drop",
     )
@@ -78,6 +109,9 @@ def train(df: pd.DataFrame | None = None) -> dict[str, Any]:
     is trained only on rows with a known flow rate. Rows without flow still
     live in experiments.parquet (condition-range coverage + nearest-experiment
     references) but are excluded from training.
+
+    The saved artifact is accompanied by a SHA-256 checksum file so that any
+    tampering is detected at load time.
     """
     if df is None:
         df = load_data()
@@ -132,11 +166,22 @@ def train(df: pd.DataFrame | None = None) -> dict[str, Any]:
         },
         "spread_threshold": SPREAD_THRESHOLD,
         "no_spread_threshold": NO_SPREAD_THRESHOLD,
+        "known_materials": sorted(KNOWN_MATERIALS),
     }
 
-    with open(MODEL_ARTIFACT, "wb") as fh:
-        pickle.dump(pipe, fh)
-    MODEL_META.write_text(json.dumps(meta, indent=2))
+    # Atomic write: write to temp, then rename, then checksum.
+    tmp_artifact = MODEL_ARTIFACT.with_suffix(".joblib.tmp")
+    with open(tmp_artifact, "wb") as fh:
+        joblib.dump(pipe, fh)
+    os.replace(tmp_artifact, MODEL_ARTIFACT)
+    _write_checksum(MODEL_ARTIFACT)
+
+    tmp_meta = MODEL_META.with_suffix(".json.tmp")
+    tmp_meta.write_text(json.dumps(meta, indent=2))
+    os.replace(tmp_meta, MODEL_META)
+    # Make metadata read-only after training so the range guard can't be silently
+    # widened at runtime.
+    MODEL_META.chmod(0o444)
 
     print(f"Trained gradient-boosting classifier on {len(df)} rows")
     print(f"  classes: {present}")
@@ -148,19 +193,66 @@ def train(df: pd.DataFrame | None = None) -> dict[str, Any]:
     return meta
 
 
+def _load_model_safely() -> Any:
+    """Load the model artifact only if its SHA-256 checksum matches."""
+    if not MODEL_ARTIFACT.exists() or not MODEL_CHECKSUM.exists():
+        raise ModelNotTrainedError(
+            "Model artifact or checksum missing. Run: python src/compute/model.py"
+        )
+    expected = MODEL_CHECKSUM.read_text().strip()
+    actual = _compute_checksum(MODEL_ARTIFACT)
+    if expected != actual:
+        raise ModelTamperError(
+            "Model artifact checksum mismatch — possible tampering. "
+            "Retrain with: python src/compute/model.py"
+        )
+    return joblib.load(MODEL_ARTIFACT)
+
+
 class FlameAtlasModel:
-    """Loaded model with training-range guard and nearest-experiment lookup."""
+    """Loaded model with training-range guard and nearest-experiment lookup.
+
+    The model artifact is integrity-checked at load time. Any modification of
+    cache/model.joblib without regenerating cache/model.sha256 causes a
+    ModelTamperError and the API refuses to serve predictions.
+    """
 
     def __init__(self) -> None:
         if not MODEL_ARTIFACT.exists() or not MODEL_META.exists():
             raise ModelNotTrainedError(
-                "Model artifact or metadata missing. Run train() first."
+                "Model artifact or metadata missing. Run: python src/compute/model.py"
             )
-        with open(MODEL_ARTIFACT, "rb") as fh:
-            self.pipe = pickle.load(fh)
+        self.pipe = _load_model_safely()
         self.meta = json.loads(MODEL_META.read_text())
         self.df = load_data()
         self.classes = list(self.meta["classes"])
+        # Known materials from metadata, intersected with what the encoder saw.
+        self.known_materials = set(self.meta.get("known_materials", KNOWN_MATERIALS))
+
+    def validate_inputs(
+        self, oxygen_pct: float, pressure_kpa: float, flow_cm_s: float, material: str
+    ) -> None:
+        """Reject out-of-bounds or unknown inputs before they reach the model."""
+        if not (O2_MIN <= oxygen_pct <= O2_MAX):
+            raise ValueError(
+                f"oxygen_pct {oxygen_pct} outside physical bounds "
+                f"[{O2_MIN}, {O2_MAX}]"
+            )
+        if not (PRESSURE_MIN <= pressure_kpa <= PRESSURE_MAX):
+            raise ValueError(
+                f"pressure_kpa {pressure_kpa} outside physical bounds "
+                f"[{PRESSURE_MIN}, {PRESSURE_MAX}]"
+            )
+        if not (FLOW_MIN <= flow_cm_s <= FLOW_MAX):
+            raise ValueError(
+                f"flow_cm_s {flow_cm_s} outside physical bounds "
+                f"[{FLOW_MIN}, {FLOW_MAX}]"
+            )
+        if material not in self.known_materials:
+            raise ValueError(
+                f"material '{material}' not in known materials "
+                f"{sorted(self.known_materials)}"
+            )
 
     def in_training_range(self, oxygen_pct: float, pressure_kpa: float, flow_cm_s: float) -> bool:
         fr = self.meta["feature_range"]
@@ -170,18 +262,17 @@ class FlameAtlasModel:
             and fr["flow_cm_s"]["min"] <= flow_cm_s <= fr["flow_cm_s"]["max"]
         )
 
-    def _class_probabilities(self, oxygen_pct, pressure_kpa, flow_cm_s, material) -> dict[str, float]:
+    def _class_probabilities(
+        self, oxygen_pct: float, pressure_kpa: float, flow_cm_s: float, material: str
+    ) -> dict[str, float]:
         X = pd.DataFrame(
             [[oxygen_pct, pressure_kpa, flow_cm_s, material]],
             columns=FEATURES,
         )
         proba = self.pipe.predict_proba(X)[0]
-        # Map model classes (subset of CLASS_ORDER present in training) to the
-        # full 3-class output. Classes not in training get 0.0.
         out = {c: 0.0 for c in CLASS_ORDER}
         for cls, p in zip(self.classes, proba):
             out[cls] = float(p)
-        # Normalize so the three classes sum to 1.
         total = sum(out.values())
         if total > 0:
             out = {c: round(v / total, 4) for c, v in out.items()}
@@ -203,21 +294,26 @@ class FlameAtlasModel:
         # Normalized distance: O2 (per 2 pts), pressure (per 20 kPa), flow (log2).
         d_o2 = (df["oxygen_pct"] - oxygen_pct).abs() / 2.0
         d_press = (df["pressure_kpa"] - pressure_kpa).abs() / 20.0
-        d_flow = (np.log2(df["flow_cm_s"].clip(lower=0.5)) - np.log2(max(flow_cm_s, 0.5))).abs()
+        d_flow = (
+            np.log2(df["flow_cm_s"].clip(lower=0.5))
+            - np.log2(max(flow_cm_s, 0.5))
+        ).abs()
         df = df.assign(distance=d_o2 + d_press + d_flow)
         nearest = df.sort_values("distance").head(k)
         out = []
         for _, r in nearest.iterrows():
-            out.append({
-                "report_id": r["report_id"],
-                "oxygen_pct": round(float(r["oxygen_pct"]), 2),
-                "pressure_kpa": round(float(r["pressure_kpa"]), 2),
-                "flow_cm_s": round(float(r["flow_cm_s"]), 2),
-                "outcome": r["outcome_class"],
-                "material": r["material"],
-                "source_url": r["source_url"],
-                "distance": round(float(r["distance"]), 4),
-            })
+            out.append(
+                {
+                    "report_id": r["report_id"],
+                    "oxygen_pct": round(float(r["oxygen_pct"]), 2),
+                    "pressure_kpa": round(float(r["pressure_kpa"]), 2),
+                    "flow_cm_s": round(float(r["flow_cm_s"]), 2),
+                    "outcome": r["outcome_class"],
+                    "material": r["material"],
+                    "source_url": r["source_url"],
+                    "distance": round(float(r["distance"]), 4),
+                }
+            )
         return out
 
     def predict(
@@ -225,9 +321,13 @@ class FlameAtlasModel:
     ) -> dict[str, Any]:
         """Return the competition prediction object with limits attached.
 
-        If conditions fall outside the training range, returns no prediction
-        and an explanation (never extrapolates silently).
+        Validates inputs first, then checks the training envelope. If conditions
+        fall outside the envelope, returns no prediction and an explanation —
+        never extrapolates silently.
         """
+        # Input validation (bounds + known material) before any model call.
+        self.validate_inputs(oxygen_pct, pressure_kpa, flow_cm_s, material)
+
         in_range = self.in_training_range(oxygen_pct, pressure_kpa, flow_cm_s)
         inputs = {
             "oxygen_pct": oxygen_pct,
@@ -249,7 +349,9 @@ class FlameAtlasModel:
                     "cv_accuracy": self.meta["cv_accuracy"],
                     "features": self.meta["features"],
                 },
-                "nearest_experiments": self.nearest_experiments(oxygen_pct, pressure_kpa, flow_cm_s),
+                "nearest_experiments": self.nearest_experiments(
+                    oxygen_pct, pressure_kpa, flow_cm_s
+                ),
                 "explanation": (
                     "Requested conditions are outside the published experimental "
                     f"envelope (O2 {fr['oxygen_pct']['min']}-{fr['oxygen_pct']['max']}%, "
