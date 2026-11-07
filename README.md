@@ -95,13 +95,14 @@ Start with [`docs/README.md`](docs/README.md). The full set:
 
 ## Team
 
-| Member | Role |
-|---|---|
-| Md. Mahmudul Hasan | Team Lead, AI and RAG |
-| Opi Mojumdar | Dashboard Developer |
-| Aurin Subah | Data and Science Developer |
-| Syed Mehedi Hussain | Integration and QA Developer |
-| Farhan Alam Chowdhury | Story and Presentation Lead |
+| Member | Role | Affiliation |
+|---|---|---|
+| Md. Mahmudul Hasan | Researcher | CSE, Independent University, Bangladesh |
+| Meharab Hossen Opi | DevOps | CSE, Independent University, Bangladesh |
+| Aurin Subah | Data Analyst | CSE, Independent University, Bangladesh |
+| Syed Mehedi Hussain | System Architect | CSE, Independent University, Bangladesh |
+| Meem Arafat Hossain | QA & IoT Developer | EEE, Khulna University of Engineering & Technology |
+| Farhan Alam Chowdhury | Creative Lead | BBA, Bangladesh University of Business and Technology |
 
 ## Caveats
 
