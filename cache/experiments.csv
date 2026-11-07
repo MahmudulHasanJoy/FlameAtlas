@@ -1,49 +1,621 @@
 oxygen_pct,pressure_kpa,flow_cm_s,material,sample_geometry,outcome_class,report_id,source_url,source_file
-18.5,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.5,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.5,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.7,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.7,101.3,2.2,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.7,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.7,101.3,29.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.8,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.8,101.3,2.4,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.8,101.3,4.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.8,101.3,2.6,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.5,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.5,101.3,2.2,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.6,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.6,101.3,3.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.4,101.3,10.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.4,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.4,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.4,101.3,2.6,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.1,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.8,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.9,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.9,101.3,2.8,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.9,101.3,6.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-16.9,101.3,53.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,3.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,47.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.1,101.3,10.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.1,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-17.2,101.3,10.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-18.2,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.8,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.8,101.3,2.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.8,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.8,101.3,2.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,2.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-20.7,101.3,2.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-21.0,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-21.0,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-21.0,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
-21.0,101.3,19.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype/data/sibal_bass_table71.csv
+37.082819,101.146,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.1286026,101.491,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.2319452,101.698,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+84.9977932,96.182,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+40.193315,96.665,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+56.486430899999995,101.56,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+56.5263488,101.767,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+35.5416217,101.974,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+35.585594900000004,102.111,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+28.9768222,102.318,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.1369888,102.525,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.399102199999998,102.732,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.124403100000002,102.87,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.4875805,103.008,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+46.939618700000004,101.491,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.2288808,43.23,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+25.290767199999998,43.368,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+34.537108700000005,101.215,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+26.2286322,101.491,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.2467161,101.698,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+50.049218100000004,105.214,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+50.202813899999995,50.814,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+31.9651909,51.09,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.237890200000002,51.435,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.2017175,52.262,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+43.3408794,101.698,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+43.3829814,102.042,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+26.997243100000002,102.318,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+27.0380954,102.663,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+56.9603349,101.698,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+57.196312299999995,101.905,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+57.2032341,102.042,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.4248407,102.111,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.6162786,102.249,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+43.471854300000004,101.284,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+27.110305699999998,101.491,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+56.865802499999994,101.422,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+45.5719081,101.491,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.5417242,101.629,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+49.714864600000006,101.698,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+31.817171599999998,101.974,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+46.0992465,102.525,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+64.4458404,101.767,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+41.1995618,101.836,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+25.627037299999998,102.042,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+64.3889549,50.814,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+41.158351100000004,50.883,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+25.6080232,51.09,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+32.736470600000004,51.228,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+41.327601200000004,51.435,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+2.0,51.918,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+49.126247899999996,304.542,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+49.8054913,303.99,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+31.8569512,304.197,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+56.9103938,200.017,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+45.588982099999996,200.086,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+45.5328049,200.017,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.478772,200.362,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.0628255,200.431,,unknown,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.7128374,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.6169206,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.566307300000002,102.732,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.4939076,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.431758,102.732,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.3863566,102.732,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.3460708,102.801,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.2822015,102.939,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1883189,102.87,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1357214,102.939,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.0867151,103.008,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.9828781,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.919187,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.8580728,102.18,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.797337499999998,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.7379511,102.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.666972,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.608389199999998,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.5485391,102.732,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.4907733,102.801,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.4429245,102.939,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.380732100000003,103.008,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.322776,103.077,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.255067800000003,103.215,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1832917,103.284,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.112322799999998,103.284,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.0535703,103.352,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.0108197,103.352,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.9796361,103.352,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.9415737,103.284,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.0188478,101.698,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.9521205,101.698,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.872432699999997,101.836,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.802136299999997,101.905,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.7274975,102.042,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.6583339,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.5935113,102.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.5363297,102.318,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.4891116,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.4441536,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.401684,102.387,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.3628498,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.323089799999998,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.2842409,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.2392691,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1997282,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1642461,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1330073,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.087982500000003,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.0458311,102.732,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.6945546,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.998571500000004,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.379785999999996,103.008,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.8755156,103.352,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.3169325,103.904,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.872053799999996,100.181,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.5586869,100.457,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.3429444,100.457,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.8236568,101.767,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.7053473,102.042,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.5464744,102.387,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.264027899999995,102.87,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.894966600000004,103.49,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.6279977,103.835,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.2816521,104.318,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.0057661,104.662,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.1068834,105.628,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.0409062,105.628,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.5614547,105.628,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.174856,106.11,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+35.8337895,106.11,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+30.0281323,101.56,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.401881600000003,102.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.8965886,102.663,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.786474999999996,102.87,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.9703491,104.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.6921633,104.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.4961367,104.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.0676005,104.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.3448053,103.973,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.0400179,103.973,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.8534858,103.973,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.5929881,103.973,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.445698799999995,103.904,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.2735024,103.835,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.092323,103.835,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.4349885,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.6570926,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.1344603,101.698,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.8553501,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.3907361,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.9543498,101.698,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.887352899999996,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.2135709,103.146,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.5351771,104.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.2579633,104.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.1426502,104.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+35.959538,104.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.8389773,127.484,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.7248069,127.691,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.0982574,127.691,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.8733316,127.76,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.7591064,127.898,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.4886695,128.105,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.9437129,126.588,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.784957399999996,127.415,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.5960225,127.001,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.3985713,127.277,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.2547209,127.415,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.9403054,127.691,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.744160900000004,127.691,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.8542439,127.415,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.683345599999996,127.691,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.522143,127.967,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.3608129,128.312,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.2269326,128.587,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.0189347,128.863,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.8150549,129.139,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.6276376,129.346,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.9021209,129.001,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.758473,129.208,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.5704463,129.346,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.4814006,129.622,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.2594439,130.104,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.0272275,130.587,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.8429675,130.725,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.859835100000005,127.208,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.5841809,128.863,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.4925333,128.518,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.4012765,128.932,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.150599,129.69,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.0872924,129.897,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.007803200000005,130.104,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.7709109,130.725,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.7159045,130.794,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.3237392,131.0,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.9651533,131.138,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.5979956,131.207,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+37.2524632,131.276,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.9301945,131.345,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+36.5498172,131.414,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.5565745,127.139,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.4453826,127.277,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.2202621,127.553,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.0754941,127.76,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.9782968,127.829,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.8258954,127.898,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.65883,127.967,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.4641571,128.105,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.308824200000004,128.174,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.6116096,127.967,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.42703,127.967,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.221479200000005,127.898,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.1649393,128.036,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.4712947,101.56,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.254638400000005,101.767,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.1981265,101.767,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+39.0565564,101.905,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.8965224,101.974,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.695438100000004,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.4496992,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+38.2566898,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.9432834,101.491,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.742973499999998,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+29.3952369,101.836,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+28.942261600000002,102.594,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.9912572,101.629,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.8975718,101.974,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.8213735,102.111,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.7380999,102.18,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.6772012,102.18,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.6181778,102.18,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.545970999999998,102.18,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.452292,102.249,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.3933489,102.318,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.3433022,102.387,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.287972500000002,102.387,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.22457,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1524174,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.1046071,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.058213,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+20.0485764,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.9858989,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.968905,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.9163298,102.456,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.859637499999998,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+19.804819300000002,102.525,,C2H4,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+40.0,94.432,,C3H8,gaseous,marginal_spread,PSI PSI-10,https://psi.nasa.gov/studies/PSI-10,psi_raw
+21.0,110.0,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+15.0,110.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+12.0,110.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+13.5,110.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+30.0,49.538,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+85.0,220.66,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+50.0,55.165,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+18.0,55.165,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+85.0,330.99,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+50.0,330.99,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0,330.99,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+18.0,110.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+19.0,110.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+30.0,55.165,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+85.0,220.66,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+50.0,220.66,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0,220.66,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+40.0,330.99,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+70.0,330.99,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+45.0,330.99,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+30.0,55.165,,butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.39,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9822946,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.6321188,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.2905163,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.0426741,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.985804200000004,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.613517099999996,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.3391583,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+36.9578072,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+36.4549879,94.44,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.01,101.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.9638709,101.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+18.02,101.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+17.9685675,101.33,,ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.57,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.3031985,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.0548195,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.8126117,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.6221513,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.2509153,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.1212087,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.0669262,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+23.41,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+23.3649188,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+23.3254802,101.33,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.26,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.463861300000005,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.7171369,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+36.9281404,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.8532281,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.424096,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.3756802,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.293776199999996,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.97,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.8586481,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.7473561,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.669481100000002,50.665,,50% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.54,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.404489999999996,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.1274328,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.679484200000005,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.9543758,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.7663625,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.709578,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.6528047,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+36.642278700000006,94.44,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.25,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.2224743,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.200455400000003,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.179814399999998,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.1591749,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.140256700000002,101.33,,propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.45,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.4118729,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9156864,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.437638,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.11,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.1072309,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.1044619,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.07,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0684692,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0654078,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0623465,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0615813,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.050331,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0240854,202.66,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.67,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6689654,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6668964,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6663791,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.666120499999998,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6585869,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6435213,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.640382799999998,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.6372442,303.99,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.96,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.725896399999996,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.476887500000004,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9508666,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.124223099999995,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.749898800000004,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.5683743,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.3678232,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.2403076,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.9133851,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.8927834,101.33,,30% propane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.87,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.590020200000005,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+36.3879118,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+34.080788,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+33.4933586,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+33.2446428,50.665,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.85,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.6626309,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.484238500000004,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.198039099999995,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.893935400000004,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.4151721,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.3585316,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.2061285,202.66,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.97,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.496667099999996,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.0017987,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.932621,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.2085537,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.9619681,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.928950099999998,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.892942,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.838955900000002,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.7540819,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+20.722123500000002,101.33,,30% ethane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.86,50.665,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.317216,50.665,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.8521822,50.665,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+37.205176800000004,50.665,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+35.5439854,50.665,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.85,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.6546482,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.537253,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.4310549,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.2491915,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.081634799999996,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9605939,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9263058,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.5474447,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.4750235,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.4056477,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.93,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.4233062,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.9271344,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.8318854,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.7190712,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.617434499999995,202.66,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.78,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+39.4946781,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.845523,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.5436483,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.265702600000004,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+38.0783875,101.33,,30% butane,gaseous,marginal_spread,PSI PSI-159,https://psi.nasa.gov/studies/PSI-159,psi_raw
+21.0,101.3,,100% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+26.5,101.3,,100% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+21.0,101.3,,50% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+26.5,101.3,,50% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+3400.0,101.3,,50% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+26.5,101.3,,100%C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+2100.0,101.3,,100%C2H4,burner,no_spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+21.0,101.3,,100%C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+25.0,101.3,,100% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+25.0,101.3,,100% CH4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+25.0,101.3,,50% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+34.0,101.3,,100% C2H4,burner,spread,PSI PSI-20,https://psi.nasa.gov/studies/PSI-20,psi_raw
+22.2,101.3,,100 micron PMMA film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,200 micron PMMA film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,100 micron film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,300 micron PMMA film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,200 micron 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,2 cm 0.1 mm PMMA film,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,400 micron film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,2 cm 0.2 mm PMMA film,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,1 cm 0.2 mm PMMA film,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,300 micron film 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,2 cm 0.4 mm thick film,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.0,101.3,,1 cm wide 200 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.3,101.3,,2 cm 100 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.5,101.3,,1 cm wide 200 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,1 cm wide 200 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,2 cm 100 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.8,101.3,,1 cm wide 200 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.7,101.3,,1 cm wide 200 micron thick PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,Nomex natural (nomex III),film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,Nomex natural (nomex III),film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.7,101.3,,Nomex natural (nomex III),film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,Japan Wax candle,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,1 mm thick PMMA 1 sided 2 cm,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,3 mm thick PMMA 1 sided 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.8,101.3,,2 cm wide 5 mm thick 1 sided PMMA,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.8,101.3,,5 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,3 mm thick PMMA 2 sided 2 cm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.8,101.3,,1 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.9,101.3,,1 cm wide PMMA 1 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.1,101.3,,1 cm wide PMMA 2 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.0,101.3,,1 cm wide PMMA 3 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.1,101.3,,4 mm thick 1 cm wide PMMA slab,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.0,101.3,,1 cm wide PMMA 5 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.7,101.3,,2 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.8,101.3,,4 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,2mm thick PMMA 1 sided 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.3,,2 cm 4 mm 1 sided PMMA slab,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.2,101.3,,1 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.8,101.3,,2 cm wide PMMA 2 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.9,101.3,,2 cm wide PMMA 3 mm thick,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.0,101.3,,4 mm thick 2 cm 2ide PMMA slab,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.0,101.3,,5 mm thick PMMA 2 cm wide,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+22.2,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.0,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+14.8,101.3,,"3/8""clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.1,101.3,,"1/2"" clear PMMA rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+14.2,101.3,,"1/2"" clear PMMA rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.7,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.0,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.7,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.5,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.0,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.4,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+13.6,101.3,,"3/8"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.9,101.3,,"1/2"" clear PMMA rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+14.6,101.3,,"1/2"" clear PMMA rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.3,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.1,101.3,,"3/8"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.7,101.3,,"3/8"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+14.5,101.3,,"3/8""clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.1,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.2,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.3,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.5,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.9,101.3,,"3/8"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+15.4,101.3,,"1/2"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.7,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.7,101.3,,"1/4"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,1/4 clear rod,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.5,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.3,101.3,,"0.5"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.9,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.4,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.6,101.3,,"0.5"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.0,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.5,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.7,101.3,,"0.5"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.6,101.3,,"0.5"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.4,101.3,,1/4 blac rod,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.0,101.3,,1/4 black rod,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.2,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.8,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.0,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.5,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.0,101.3,,"1/4"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.3,101.3,,1/4 black rod,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.8,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.0,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.2,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+19.0,101.3,,"3/8"" black rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.9,101.3,,"3/8"" clear rod",film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.5,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.2,101.3,,4 cm spherical section,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.7,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.8,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.3,101.3,,4 cm spherical section,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.4,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.1,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.8,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.5,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+16.9,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.6,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.4,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.2,101.3,,1 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.1,101.3,,1 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+17.2,101.3,,2 cm Sibal moved igniter,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+18.2,101.3,,1 cm SIBAL top side ign,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.8,101.3,,2 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+20.7,101.3,,1 cm SIBAL,film,marginal_spread,PSI PSI-25,https://psi.nasa.gov/studies/PSI-25,psi_raw
+21.0,101.325,,C12H26,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+17.0,101.325,,C12H26,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+17.0,101.325,,[.75]/[.25] C12H26/iso-dodecane,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+21.0,101.325,,[.75]/[.25] C12H26/iso-dodecane,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+17.0,101.325,,[.60]/[.40] C12H26/iso-dodecane,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+21.0,101.325,,[.60]/[.40] C12H26/iso-dodecane,fiber,marginal_spread,PSI PSI-39,https://psi.nasa.gov/studies/PSI-39,psi_raw
+17.0,50.663,0.1,IsoOctane (pure),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,n-Octane (pure),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Heptane (pure),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Decane (pure),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Ethanol (pure),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Propanol (95%) Glycerol (5%) (mixture),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Heptane (50%) IsoOctane (50%) (mixture),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+17.0,50.663,0.1,Propanol (80%) Glycerol (20%) (mixture),droplet,marginal_spread,PSI PSI-68,https://psi.nasa.gov/studies/PSI-68,psi_raw
+21.0,101.018,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+21.0,101.498,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+34.0,71.874,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+34.0,71.927,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+30.0,71.634,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+30.0,72.087,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+20.0,71.861,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+20.0,72.541,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+18.0,103.098,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+18.0,101.565,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+15.0,102.111,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+14.000000000000002,102.271,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+15.0,101.458,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+13.0,102.765,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+14.000000000000002,102.445,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+13.0,102.405,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+12.0,102.925,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+25.0,71.661,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+25.0,71.501,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+24.0,71.141,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+23.0,71.221,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+23.0,71.554,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+17.0,71.621,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+17.0,71.487,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+16.0,101.605,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+24.0,71.581,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+19.0,101.111,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+19.0,101.058,,Methanol,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+16.0,101.298,,Heptane,droplet,spread,PSI PSI-69,https://psi.nasa.gov/studies/PSI-69,psi_raw
+21.5,101.3,20.0,SIBAL Fabric,fabric,spread,PSI PSI-98,https://psi.nasa.gov/studies/PSI-98,psi_raw
+21.5,101.3,20.0,Silicone,fabric,no_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.1,101.3,20.0,Silicone,fabric,no_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.1,101.3,20.0,Cotton-Fiberglass (SIBAL),fabric,marginal_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.1,101.3,20.0,nan,fabric,marginal_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.1,101.3,20.0,PMMA & Nomex,fabric,marginal_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.1,101.3,20.0,PMMA,fabric,marginal_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+22.0,101.3,20.0,nan,fabric,marginal_spread,PSI PSI-99,https://psi.nasa.gov/studies/PSI-99,psi_raw
+18.5,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.5,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.7,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.7,101.3,2.2,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.7,101.3,29.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.8,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.8,101.3,2.4,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.8,101.3,4.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.8,101.3,2.6,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.5,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.5,101.3,2.2,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.6,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.6,101.3,3.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.4,101.3,10.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.4,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.4,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.4,101.3,2.6,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.1,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.8,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.9,101.3,4.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.9,101.3,2.8,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.9,101.3,6.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+16.9,101.3,53.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.2,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.2,101.3,3.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.2,101.3,47.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.1,101.3,10.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.1,101.3,5.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+17.2,101.3,10.0,sibal,fabric_strip,no_spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+18.2,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+20.8,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+20.8,101.3,2.5,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+20.7,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+20.7,101.3,2.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+21.0,101.3,5.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+21.0,101.3,10.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+21.0,101.3,11.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype
+21.0,101.3,19.0,sibal,fabric_strip,spread,NTRS-20210011385,https://ntrs.nasa.gov/citations/20210011385,prototype

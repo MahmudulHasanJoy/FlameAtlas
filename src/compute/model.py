@@ -71,9 +71,20 @@ def build_preprocessor() -> ColumnTransformer:
 
 def train(df: pd.DataFrame | None = None) -> dict[str, Any]:
     """Train the gradient-boosting classifier, report honest CV accuracy,
-    save the model artifact and metadata to cache/."""
+    save the model artifact and metadata to cache/.
+
+    The classifier needs all four features (oxygen_pct, pressure_kpa,
+    flow_cm_s, material) to place a prediction on the flammability map, so it
+    is trained only on rows with a known flow rate. Rows without flow still
+    live in experiments.parquet (condition-range coverage + nearest-experiment
+    references) but are excluded from training.
+    """
     if df is None:
         df = load_data()
+
+    # The boundary model is defined on the O2 x flow plane; rows without flow
+    # cannot be placed on the map and are excluded from training.
+    df = df.dropna(subset=["oxygen_pct", "flow_cm_s"]).copy()
 
     y = df[TARGET].astype(str)
     # Only train on classes actually present; be honest about what we can predict.
