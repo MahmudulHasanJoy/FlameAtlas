@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlameAtlas · Microgravity Fire-Safety Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  :root {
+    /* Linear design system tokens */
+    --bg-marketing: #08090a;
+    --bg-panel: #0f1011;
+    --bg-surface: #191a1b;
+    --bg-surface-2: #28282c;
+    --text-primary: #f7f8f8;
+    --text-secondary: #d0d6e0;
+    --text-tertiary: #8a8f98;
+    --text-quaternary: #62666d;
+    --brand-bg: #5e6ad2;
+    --brand-accent: #7170ff;
+    --brand-hover: #828fff;
+    --success: #10b981;
+    --danger: #f43f5e;
+    --warning: #f59e0b;
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-standard: rgba(255, 255, 255, 0.08);
+    --radius-micro: 2px;
+    --radius-comfortable: 6px;
+    --radius-card: 8px;
+    --radius-panel: 12px;
+    --shadow-subtle: rgba(0,0,0,0.03) 0px 1.2px 0px 0px;
+    --shadow-surface: rgba(255,255,255,0.05) 0px 0px 0px 1px, rgba(0,0,0,0.2) 0px 0px 12px 0px inset;
+    --shadow-elevated: rgba(0,0,0,0.4) 0px 2px 4px;
+    --ff-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --ff-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-features: 'cv01', 'ss03';
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg-marketing); color: var(--text-primary); font-family: var(--ff-sans); font-feature-settings: "cv01", "ss03"; -webkit-font-smoothing: antialiased; }
+  body { background: var(--bg-marketing); min-height: 100vh; }
+
+  /* ---------- Shell ---------- */
+  .shell { display: grid; grid-template-rows: auto 1fr auto; height: 100vh; overflow: hidden; }
+
+  header {
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 20px;
+    flex-shrink: 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 510; letter-spacing: -0.24px; font-size: 17px; }
+  .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-accent); box-shadow: 0 0 8px var(--brand-accent); }
+  .tagline { color: var(--text-tertiary); font-size: 12px; font-weight: 400; letter-spacing: normal; }
+  .api-status { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); }
+  .api-status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 6px var(--success); }
+  .api-status .dot.off { background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+
+  main { display: grid; grid-template-columns: 260px 1fr 280px; gap: 20px; padding: 20px 28px; overflow-y: auto; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { main { grid-template-columns: 1fr; } header { padding: 12px 16px; } }
+
+  .footer {
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border-subtle);
+    padding: 14px 28px;
+    font-size: 11px; color: var(--text-tertiary); font-family: var(--ff-mono);
+    flex-shrink: 0;
+  }
+
+  /* ---------- Panels ---------- */
+  .panel {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-standard);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-surface);
+    display: flex; flex-direction: column;
+  }
+  .panel-head {
+    padding: 14px 18px; border-bottom: 1px solid var(--border-subtle);
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  .panel-title { font-size: 13px; font-weight: 510; letter-spacing: -0.13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+  .panel-body { padding: 16px 18px; flex: 1; overflow: auto; }
+
+  .control-group { margin-bottom: 18px; }
+  .control-label { font-size: 11px; font-weight: 510; color: var(--text-tertiary); margin-bottom: 8px; display: block; letter-spacing: normal; }
+  .control-value { font-size: 13px; font-family: var(--ff-mono); color: var(--text-primary); font-weight: 500; margin-top: 4px; }
+  input[type=range] { width: 100%; accent-color: var(--brand-accent); cursor: pointer; }
+  .select-wrap { position: relative; }
+  select {
+    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-standard);
+    border-radius: var(--radius-comfortable); color: var(--text-primary); font-family: var(--ff-sans);
+    font-size: 13px; padding: 8px 10px; cursor: pointer; appearance: none;
+  }
+  select::-ms-expand { display: none; }
+
+  /* ---------- Center: plot + prediction ---------- */
+  .center { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .plot-wrap {
+    flex: 1; background: rgba(255,255,255,0.01); border: 1px solid var(--border-standard);
+    border-radius: var(--radius-card); overflow: hidden; position: relative; min-height: 420px;
+  }
+  #boundary-plot { width: 100%; height: 100%; }
+  .status-row { display: flex; gap: 14px; align-items: stretch; min-height: 150px; }
+  .status-card { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid var(--border-standard); border-radius: var(--radius-card); box-shadow: var(--shadow-surface); padding: 18px; display: flex; flex-direction: column; justify-content: center; }
+  .status-badge { font-size: 17px; font-weight: 590; letter-spacing: -0.24px; margin-bottom: 6px; }
+  .status-p { font-size: 13px; font-family: var(--ff-mono); color: var(--text-tertiary); margin-bottom: 10px; }
+  .meta { font-size: 11px; color: var(--text-quaternary); font-family: var(--ff-mono); border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: auto; }
+
+  .prob-row { display: flex; gap: 12px; min-height: 100px; }
+  .prob-bar { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid var(--border-standard); border-radius: var(--radius-card); padding: 16px; display: flex; flex-direction: column; justify-content: center; }
+  .prob-label { font-size: 11px; font-weight: 510; color: var(--text-tertiary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .prob-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .prob-item:last-child { margin-bottom: 0; }
+  .prob-name { width: 78px; font-size: 12px; color: var(--text-secondary); }
+  .prob-track { flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+  .prob-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+  .prob-val { font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); white-space: nowrap; }
+
+  /* ---------- Right: nearest experiments ---------- */
+  .nearest-list { display: flex; flex-direction: column; gap: 10px; }
+  .nearest-item {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card); padding: 10px 12px; font-size: 12px;
+  }
+  .nearest-item .head { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .nearest-item .id { font-family: var(--ff-mono); font-weight: 510; color: var(--brand-accent); font-size: 11px; text-decoration: none; }
+  .nearest-item .id:hover { color: var(--brand-hover); text-decoration: underline; }
+  .nearest-item .outcome { font-size: 9px; font-weight: 590; padding: 1px 6px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .outcome.spread { background: rgba(244,63,94,0.15); color: var(--danger); }
+  .outcome.no-spread { background: rgba(16,185,129,0.15); color: var(--success); }
+  .outcome.marginal_spread { background: rgba(245,158,11,0.15); color: var(--warning); }
+  .nearest-item .meta { font-size: 10px; color: var(--text-tertiary); font-family: var(--ff-mono); margin-top: 4px; }
+  .nearest-item .dist { font-family: var(--ff-mono); color: var(--text-tertiary); }
+
+  .empty { color: var(--text-tertiary); font-size: 12px; text-align: center; padding: 30px; }
+
+  /* ---------- Status colors ---------- */
+  .st-spread { color: var(--danger); }
+  .st-marginal { color: var(--warning); }
+  .st-no-spread { color: var(--success); }
+  .st-outrange { color: var(--text-tertiary); }
+
+  .api-error-panel { background: rgba(244,63,94,0.08); border: 1px solid rgba(244,63,94,0.2); border-radius: var(--radius-card); padding: 16px 18px; color: var(--text-secondary); font-size: 13px; }
+  .api-error-panel code { background: rgba(244,63,94,0.2); color: var(--danger); padding: 2px 6px; border-radius: var(--radius-micro); font-family: var(--ff-mono); font-size: 11px; }
+
+  /* Range guard overlay */
+  .guard {
+    background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+    border-radius: var(--radius-card); padding: 18px; color: var(--text-secondary);
+    display: none; flex-direction: column; gap: 10px;
+  }
+  .guard.show { display: flex; }
+  .guard .guard-title { font-weight: 590; color: var(--warning); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .guard p { font-size: 12px; line-height: 1.5; }
+  .guard .range { font-family: var(--ff-mono); font-size: 11px; color: var(--text-tertiary); }
+
+  .disclaimer { margin-top: 24px; font-size: 10px; color: var(--text-tertiary); line-height: 1.5; border-top: 1px solid var(--border-subtle); padding-top: 10px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div>FlameAtlas</div>
+    </div>
+    <div class="tagline">Microgravity fire-safety explorer · NASA Space Apps 2026 · “Flame in Freefall”</div>
+    <div class="api-status" id="apiStatus"><div class="dot off"></div><span id="apiStatusText">offline</span></div>
+  </header>
+
+  <main>
+    <!-- Left: habitat controls -->
+    <aside class="panel">
+      <div class="panel-head"><span class="panel-title">habitat conditions</span></div>
+      <div class="panel-body">
+        <div class="control-group">
+          <label class="control-label">oxygen (% by volume)</label>
+          <input type="range" id="o2" min="10" max="40" step="0.1" value="21">
+          <span class="control-value" id="o2Val">21.0%</span>
+        </div>
+        <div class="control-group">
+          <label class="control-label">pressure (kpa)</label>
+          <input type="range" id="pressure" min="30" max="110" step="0.1" value="101.3">
+          <span class="control-value" id="pressureVal">101.3 kPa</span>
+        </div>
+        <div class="control-group">
+          <label class="control-label">airflow (cm/s)</label>
+          <input type="range" id="flow" min="0.5" max="60" step="0.1" value="10">
+          <span class="control-value" id="flowVal">10.0 cm/s</span>
+        </div>
+        <div class="control-group">
+          <label class="control-label">material</label>
+          <div class="select-wrap"><select id="material"></select></div>
+        </div>
+        <p style="font-size:10px;color:var(--text-tertiary);margin-top:12px;">change a slider to re-predict</p>
+      </div>
+    </aside>
+
+    <!-- Center: plot + prediction -->
+    <div class="center">
+      <div class="plot-wrap" id="plotWrap"><div id="boundary-plot"></div></div>
+      <div class="status-row">
+        <div class="status-card" id="predCard">
+          <div class="status-badge st-outrange" id="predBadge">—</div>
+          <div class="status-p" id="predProb">no prediction</div>
+          <div class="meta" id="predMeta"></div>
+        </div>
+        <div class="prob-bar">
+          <div class="prob-label">class probabilities</div>
+          <div class="prob-item">
+            <span class="prob-name">no spread</span>
+            <div class="prob-track"><div class="prob-fill" id="fillNo" style="background:var(--success);width:0%"></div></div>
+            <span class="prob-val" id="valNo">0.00</span>
+          </div>
+          <div class="prob-item">
+            <span class="prob-name">marginal</span>
+            <div class="prob-track"><div class="prob-fill" id="fillMarg" style="background:var(--warning);width:0%"></div></div>
+            <span class="prob-val" id="valMarg">0.00</span>
+          </div>
+          <div class="prob-item">
+            <span class="prob-name">spread</span>
+            <div class="prob-track"><div class="prob-fill" id="fillSpread" style="background:var(--danger);width:0%"></div></div>
+            <span class="prob-val" id="valSpread">0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: nearest experiments -->
+    <aside class="panel">
+      <div class="panel-head"><span class="panel-title">nearest experiments</span></div>
+      <div class="panel-body">
+        <div class="guard" id="guard">
+          <div class="guard-title"><span class="dot" style="background:var(--warning);box-shadow:none;"></span>outside the published experimental envelope</div>
+          <p id="guardMsg">no prediction returned; extrapolating a fire-safety answer beyond tested data is unsafe.</p>
+          <div class="range" id="guardRange"></div>
+        </div>
+        <div id="nearestList" class="nearest-list"></div>
+        <div class="empty" id="emptyList">no experiments</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    flameatlas summarizes published nasa research for exploration and education · does not certify materials · does not replace nasa-std-6001 testing ·
+    data: nasa psi / ntrs · model: gradient-boosting · n_train <span id="metaN">—</span> · cv accuracy <span id="metaAcc">—</span>
+  </footer>
+</div>
+
+<script>
+  const API = 'http://127.0.0.1:8000';
+  const materials = { sibal: 'sibal cotton-fiberglass fabric', pmma: 'pmma (acrylic)', nomex: 'nomex aramid fabric' };
+  const materialSel = document.getElementById('material');
+  Object.entries(materials).forEach(([k, v]) => {
+    const o = document.createElement('option'); o.value = k; o.textContent = v; materialSel.appendChild(o);
+  });
+
+  const els = {
+    o2: document.getElementById('o2'), pressure: document.getElementById('pressure'), flow: document.getElementById('flow'),
+    o2Val: document.getElementById('o2Val'), pressureVal: document.getElementById('pressureVal'), flowVal: document.getElementById('flowVal'),
+    predBadge: document.getElementById('predBadge'), predProb: document.getElementById('predProb'), predMeta: document.getElementById('predMeta'),
+    fillNo: document.getElementById('fillNo'), fillMarg: document.getElementById('fillMarg'), fillSpread: document.getElementById('fillSpread'),
+    valNo: document.getElementById('valNo'), valMarg: document.getElementById('valMarg'), valSpread: document.getElementById('valSpread'),
+    nearestList: document.getElementById('nearestList'), emptyList: document.getElementById('emptyList'),
+    guard: document.getElementById('guard'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
+    apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
+    metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
+  };
+
+  let plotlyReady = false;
+  let debounceTimer;
+
+  function setApiStatus(ok) {
+    const dot = els.apiStatus.querySelector('.dot');
+    els.apiStatusText.textContent = ok ? 'online' : 'offline';
+    dot.className = 'dot ' + (ok ? '' : 'off');
+  }
+
+  async function checkApi() {
+    try {
+      await fetch(API + '/', { method: 'HEAD', cache: 'no-store' });
+      setApiStatus(true);
+    } catch (e) { setApiStatus(false); }
+  }
+
+  function outcomeClass(c) { return c === 'spread' ? 'spread' : c === 'no_spread' ? 'no-spread' : 'marginal_spread'; }
+
+  function renderPrediction(p) {
+    const metaLine = p.model ? `${p.model.type} · n_train ${p.model.n_train} · cv ${(p.model.cv_accuracy*100).toFixed(1)}%` : '';
+    els.metaN.textContent = p.model ? p.model.n_train : '—';
+    els.metaAcc.textContent = p.model ? (p.model.cv_accuracy*100).toFixed(1) : '—';
+
+    if (!p.in_training_range) {
+      els.predBadge.className = 'status-badge st-outrange';
+      els.predBadge.textContent = 'no prediction — out of range';
+      els.predProb.textContent = '';
+      els.predMeta.textContent = '';
+      [els.fillNo, els.fillMarg, els.fillSpread].forEach(f => f.style.width = '0%');
+      [els.valNo, els.valMarg, els.valSpread].forEach(v => v.textContent = '0.00');
+      els.guardRange.textContent = `envelope: o2 ${p.model?.feature_range?.oxygen_pct?.min}-${p.model?.feature_range?.oxygen_pct?.max}%, pressure ${p.model?.feature_range?.pressure_kpa?.min}-${p.model?.feature_range?.pressure_kpa?.max} kpa, flow ${p.model?.feature_range?.flow_cm_s?.min}-${p.model?.feature_range?.flow_cm_s?.max} cm/s`;
+      els.guard.classList.add('show');
+      els.predCard.style.borderColor = 'transparent';
+      return;
+    }
+
+    els.guard.classList.remove('show');
+    const probs = p.probabilities || {};
+    const cls = p.prediction || 'marginal_spread';
+    els.predBadge.className = `status-badge st-${outcomeClass(cls)}`;
+    els.predBadge.textContent = cls.replace('_', ' ').toUpperCase();
+    els.predProb.textContent = `p(spread) = ${(probs.spread||0).toFixed(2)}`;
+    els.predMeta.textContent = metaLine;
+    els.predCard.style.borderColor = cls === 'spread' ? 'var(--danger)' : cls === 'no_spread' ? 'var(--success)' : 'var(--warning)';
+
+    [els.fillNo, els.fillMarg, els.fillSpread].forEach((f, i) => {
+      const v = [probs.no_spread, probs.marginal_spread, probs.spread][i] || 0;
+      f.style.width = (v * 100).toFixed(1) + '%';
+    });
+    [els.valNo, els.valMarg, els.valSpread].forEach((v, i) => {
+      v.textContent = ([probs.no_spread, probs.marginal_spread, probs.spread][i] || 0).toFixed(2);
+    });
+
+    renderNearest(p.nearest_experiments || []);
+    renderBoundary(p);
+  }
+
+  function renderNearest(list) {
+    els.nearestList.innerHTML = '';
+    els.emptyList.style.display = list.length ? 'none' : 'block';
+    list.forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'nearest-item';
+      div.innerHTML = `
+        <div class="head">
+          <a class="id" href="${e.source_url}" target="_blank" rel="noopener">${e.report_id}</a>
+          <span class="outcome ${outcomeClass(e.outcome)}">${e.outcome.replace('_', ' ')}</span>
+        </div>
+        <div class="meta">${e.oxygen_pct.toFixed(1)}% o2 · ${e.flow_cm_s.toFixed(1)} cm/s · ${e.material}<span class="dist"> · dist ${e.distance.toFixed(2)}</span></div>
+      `;
+      els.nearestList.appendChild(div);
+    });
+  }
+
+  function renderBoundary(p) {
+    // Boundary is fetched separately via /boundary; this is a placeholder hook.
+  }
+
+  async function predict() {
+    const o2 = parseFloat(els.o2.value);
+    const pressure = parseFloat(els.pressure.value);
+    const flow = parseFloat(els.flow.value);
+    const material = materialSel.value;
+    els.o2Val.textContent = o2.toFixed(1) + '%';
+    els.pressureVal.textContent = pressure.toFixed(1) + ' kPa';
+    els.flowVal.textContent = flow.toFixed(1) + ' cm/s';
+
+    try {
+      const r = await fetch(API + '/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ oxygen_pct: o2, pressure_kpa: pressure, flow_cm_s: flow, material }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const p = await r.json();
+      renderPrediction(p);
+      fetchBoundary(material, pressure);
+    } catch (e) {
+      setApiStatus(false);
+      els.predBadge.textContent = 'api unreachable';
+      els.predBadge.className = 'status-badge st-outrange';
+      els.guard.classList.remove('show');
+    }
+  }
+
+  async function fetchBoundary(material, pressure) {
+    try {
+      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`);
+      if (!r.ok) return;
+      const b = await r.json();
+      drawBoundary(b);
+    } catch (e) { /* boundary optional */ }
+  }
+
+  function drawBoundary(b) {
+    const flows = b.flows;
+    const o2s = b.o2s;
+    const P = b.P_spread;
+    const inside = b.inside;
+
+    // Heatmap of P(spread), masked outside envelope
+    const z = P.map((row, i) => row.map((v, j) => inside[i][j] ? (v === null ? null : v) : null));
+    const heat = {
+      x: flows, y: o2s, z, zmin: 0, zmax: 1, colorscale: [[0, 'rgba(255,255,255,0)'], [1, 'rgba(213,94,0,0.12)']],
+      showscale: false, hoverinfo: 'skip', name: 'spread region',
+    };
+    const untested = {
+      x: flows, y: o2s,
+      z: inside.map(row => row.map(v => v ? null : 1)),
+      colorscale: [[0, 'rgba(71,84,103,0.18)'], [1, 'rgba(71,84,103,0.18)']],
+      showscale: false, hoverinfo: 'skip', name: 'untested',
+      hovertemplate: 'no nasa tests here<extra></extra>',
+    };
+    // Contour at P = 0.5
+    const contour = {
+      x: flows, y: o2s, z: P,
+      contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
+      line: { color: '#101828', width: 2 },
+      showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
+    };
+    // Experiments overlaid
+    const exp = b.experiments || [];
+    const byOutcome = {};
+    exp.forEach(e => { (byOutcome[e.outcome] = byOutcome[e.outcome] || []).push(e); });
+    const traces = [];
+    const styles = { spread: { color: '#f43f5e', symbol: 'circle' }, 'no_spread': { color: '#10b981', symbol: 'square' }, marginal_spread: { color: '#f59e0b', symbol: 'diamond' } };
+    Object.entries(byOutcome).forEach(([outcome, pts]) => {
+      const s = styles[outcome] || styles.marginal_spread;
+      traces.push({
+        x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
+        marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
+        customdata: pts.map(p => [p.report_id, p.source_url]),
+        hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br><a href="%{customdata[1]}" target="_blank">ntrs report</a><extra></extra>',
+      });
+    });
+    // Habitat star
+    traces.push({
+      x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
+      marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
+      hovertemplate: 'your habitat<br>o2 %{y}% · flow %{x} cm/s<extra></extra>',
+    });
+
+    Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
+      margin: { l: 40, r: 20, t: 10, b: 40 },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { family: 'Inter, sans-serif', size: 11, color: '#8a8f98' },
+      xaxis: { type: 'log', title: 'airflow (cm/s, log)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', tickvals: [0.5,1,2,5,10,20,50], range: [Math.log10(Math.min(...flows)), Math.log10(Math.max(...flows))] },
+      yaxis: { title: 'oxygen (%)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', range: [Math.min(...o2s), Math.max(...o2s)], dtick: 5 },
+      legend: { orientation: 'h', y: -0.12, x: 0.5, xanchor: 'center', font: { size: 10, color: '#8a8f98' }, bgcolor: 'rgba(0,0,0,0)' },
+      hovermode: 'closest',
+    }, { responsive: true });
+    plotlyReady = true;
+  }
+
+  // Wire inputs
+  [els.o2, els.pressure, els.flow, materialSel].forEach(el => {
+    el.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(predict, 150); });
+  });
+
+  // Init
+  checkApi();
+  setInterval(checkApi, 10000);
+  predict();
+</script>
+</body>
+</html>
