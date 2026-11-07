@@ -92,6 +92,16 @@
     border-radius: var(--radius-comfortable); color: var(--text-primary); font-family: var(--ff-sans);
     font-size: 13px; padding: 8px 10px; cursor: pointer; appearance: none;
   }
+  select option {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  select option:checked, select option:hover {
+    background: var(--brand-accent);
+    color: #ffffff;
+  }
   select::-ms-expand { display: none; }
 
   /* ---------- Center: plot + prediction ---------- */
