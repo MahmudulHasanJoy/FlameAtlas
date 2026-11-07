@@ -3,14 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Content Security Policy: restricts resources to trusted origins only. -->
-<meta http-equiv="Content-Security-Policy"
-      content="default-src 'self';
-               script-src 'self' https://cdn.plot.ly https://fonts.googleapis.com;
-               style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
-               font-src 'self' https://fonts.gstatic.com;
-               img-src 'self' data:;
-               connect-src 'self' http://127.0.0.1:8000;">
 <title>FlameAtlas · Microgravity Fire-Safety Explorer</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
@@ -174,22 +166,6 @@
   }
   select::-ms-expand { display: none; }
 
-  /* ---------- API key input ---------- */
-  .api-key-group {
-    background: rgba(245,158,11,0.05);
-    border: 1px solid rgba(245,158,11,0.2);
-    border-radius: var(--radius-card);
-    padding: 12px;
-    margin-top: 12px;
-  }
-  .api-key-group .control-label { color: var(--warning); }
-  .api-key-input {
-    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-standard);
-    border-radius: var(--radius-comfortable); color: var(--text-primary); font-family: var(--ff-mono);
-    font-size: 11px; padding: 6px 8px; cursor: pointer; appearance: none;
-    margin-top: 4px;
-  }
-
   /* ---------- Center: plot + prediction ---------- */
   .center { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
   .plot-wrap {
@@ -310,10 +286,6 @@
           <label class="control-label">material</label>
           <div class="select-wrap"><select id="material"></select></div>
         </div>
-        <div class="api-key-group">
-          <label class="control-label">API key (X-API-Key)</label>
-          <input type="password" id="apiKeyInput" class="api-key-input" placeholder="Enter API key" autocomplete="off">
-        </div>
         <button class="retry-btn" id="retryBtn" style="display:none;">retry prediction</button>
         <p style="font-size:10px;color:var(--text-tertiary);margin-top:12px;">change a slider to re-predict</p>
       </div>
@@ -375,6 +347,7 @@
 
 <script>
   const API = 'http://127.0.0.1:8000';
+  const API_KEY = 'test-key-12345';
   const materials = { sibal: 'sibal cotton-fiberglass fabric', pmma: 'pmma (acrylic)', nomex: 'nomex aramid fabric' };
   const materialSel = document.getElementById('material');
   Object.entries(materials).forEach(([k, v]) => {
@@ -396,7 +369,6 @@
     predCard: document.getElementById('predCard'),
     themeToggle: document.getElementById('themeToggle'),
     html: document.documentElement,
-    apiKeyInput: document.getElementById('apiKeyInput'),
   };
 
   let plotlyReady = false;
@@ -430,20 +402,9 @@
     applyTheme(isLight ? 'dark' : 'light');
   });
 
-  /* ---------- API key ---------- */
-  function getApiKey() {
-    return els.apiKeyInput.value || localStorage.getItem('flameatlas-api-key') || '';
-  }
-  els.apiKeyInput.addEventListener('input', () => {
-    localStorage.setItem('flameatlas-api-key', els.apiKeyInput.value);
-  });
-  // Restore saved key
-  const savedKey = localStorage.getItem('flameatlas-api-key');
-  if (savedKey) els.apiKeyInput.value = savedKey;
-
+  /* ---------- API ---------- */
   function authHeaders() {
-    const key = getApiKey();
-    return key ? { 'X-API-Key': key, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+    return { 'Content-Type': 'application/json', 'X-API-Key': API_KEY };
   }
 
   function setApiStatus(ok) {
@@ -540,7 +501,7 @@
     const pressure = parseFloat(els.pressure.value);
     try {
       const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`, {
-        headers: authHeaders(),
+        headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
       });
       if (!r.ok) throw new Error('boundary HTTP ' + r.status);
       const b = await r.json();
