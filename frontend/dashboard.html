@@ -8,7 +8,6 @@
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>
   :root {
-    /* Linear design system tokens */
     --bg-marketing: #08090a;
     --bg-panel: #0f1011;
     --bg-surface: #191a1b;
@@ -29,9 +28,7 @@
     --radius-comfortable: 6px;
     --radius-card: 8px;
     --radius-panel: 12px;
-    --shadow-subtle: rgba(0,0,0,0.03) 0px 1.2px 0px 0px;
     --shadow-surface: rgba(255,255,255,0.05) 0px 0px 0px 1px, rgba(0,0,0,0.2) 0px 0px 12px 0px inset;
-    --shadow-elevated: rgba(0,0,0,0.4) 0px 2px 4px;
     --ff-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --ff-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     --font-features: 'cv01', 'ss03';
@@ -102,8 +99,13 @@
   .plot-wrap {
     flex: 1; background: rgba(255,255,255,0.01); border: 1px solid var(--border-standard);
     border-radius: var(--radius-card); overflow: hidden; position: relative; min-height: 420px;
+    display: flex; align-items: center; justify-content: center;
   }
   #boundary-plot { width: 100%; height: 100%; }
+  .plot-placeholder {
+    color: var(--text-tertiary); font-size: 12px; text-align: center; padding: 40px;
+    font-family: var(--ff-mono);
+  }
   .status-row { display: flex; gap: 14px; align-items: stretch; min-height: 150px; }
   .status-card { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid var(--border-standard); border-radius: var(--radius-card); box-shadow: var(--shadow-surface); padding: 18px; display: flex; flex-direction: column; justify-content: center; }
   .status-badge { font-size: 17px; font-weight: 590; letter-spacing: -0.24px; margin-bottom: 6px; }
@@ -155,10 +157,21 @@
   }
   .guard.show { display: flex; }
   .guard .guard-title { font-weight: 590; color: var(--warning); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .guard .guard-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--warning); box-shadow: 0 0 6px var(--warning); }
   .guard p { font-size: 12px; line-height: 1.5; }
   .guard .range { font-family: var(--ff-mono); font-size: 11px; color: var(--text-tertiary); }
 
   .disclaimer { margin-top: 24px; font-size: 10px; color: var(--text-tertiary); line-height: 1.5; border-top: 1px solid var(--border-subtle); padding-top: 10px; }
+
+  /* Retry button */
+  .retry-btn {
+    background: var(--brand-accent); color: #ffffff; border: none;
+    border-radius: var(--radius-comfortable); padding: 6px 14px;
+    font-size: 11px; font-weight: 510; font-family: var(--ff-sans);
+    cursor: pointer; margin-top: 10px;
+  }
+  .retry-btn:hover { background: var(--brand-hover); }
+  .retry-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -168,8 +181,8 @@
       <div class="brand-dot"></div>
       <div>FlameAtlas</div>
     </div>
-    <div class="tagline">Microgravity fire-safety explorer · NASA Space Apps 2026 · “Flame in Freefall”</div>
-    <div class="api-status" id="apiStatus"><div class="dot off"></div><span id="apiStatusText">offline</span></div>
+    <div class="tagline">Microgravity fire-safety explorer · NASA Space Apps 2026 · "Flame in Freefall"</div>
+    <div class="api-status" id="apiStatus"><div class="dot off"></div><span id="apiStatusText">checking...</span></div>
   </header>
 
   <main>
@@ -196,13 +209,17 @@
           <label class="control-label">material</label>
           <div class="select-wrap"><select id="material"></select></div>
         </div>
+        <button class="retry-btn" id="retryBtn" style="display:none;">retry prediction</button>
         <p style="font-size:10px;color:var(--text-tertiary);margin-top:12px;">change a slider to re-predict</p>
       </div>
     </aside>
 
     <!-- Center: plot + prediction -->
     <div class="center">
-      <div class="plot-wrap" id="plotWrap"><div id="boundary-plot"></div></div>
+      <div class="plot-wrap" id="plotWrap">
+        <div id="boundary-plot"></div>
+        <div class="plot-placeholder" id="plotPlaceholder">loading boundary plot...</div>
+      </div>
       <div class="status-row">
         <div class="status-card" id="predCard">
           <div class="status-badge st-outrange" id="predBadge">—</div>
@@ -235,7 +252,7 @@
       <div class="panel-head"><span class="panel-title">nearest experiments</span></div>
       <div class="panel-body">
         <div class="guard" id="guard">
-          <div class="guard-title"><span class="dot" style="background:var(--warning);box-shadow:none;"></span>outside the published experimental envelope</div>
+          <div class="guard-title"><div class="guard-dot"></div>outside the published experimental envelope</div>
           <p id="guardMsg">no prediction returned; extrapolating a fire-safety answer beyond tested data is unsafe.</p>
           <div class="range" id="guardRange"></div>
         </div>
@@ -269,10 +286,14 @@
     guard: document.getElementById('guard'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
     apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
     metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
+    retryBtn: document.getElementById('retryBtn'),
+    plotPlaceholder: document.getElementById('plotPlaceholder'),
+    predCard: document.getElementById('predCard'),
   };
 
   let plotlyReady = false;
   let debounceTimer;
+  let plotlyLoadFailed = false;
 
   function setApiStatus(ok) {
     const dot = els.apiStatus.querySelector('.dot');
@@ -289,7 +310,20 @@
 
   function outcomeClass(c) { return c === 'spread' ? 'spread' : c === 'no_spread' ? 'no-spread' : 'marginal_spread'; }
 
+  function clearErrorState() {
+    els.retryBtn.style.display = 'none';
+  }
+
+  function showErrorState(msg) {
+    els.retryBtn.style.display = 'inline-block';
+    els.apiStatusText.textContent = 'error';
+    els.apiStatus.querySelector('.dot').className = 'dot off';
+  }
+
   function renderPrediction(p) {
+    clearErrorState();
+    setApiStatus(true);
+
     const metaLine = p.model ? `${p.model.type} · n_train ${p.model.n_train} · cv ${(p.model.cv_accuracy*100).toFixed(1)}%` : '';
     els.metaN.textContent = p.model ? p.model.n_train : '—';
     els.metaAcc.textContent = p.model ? (p.model.cv_accuracy*100).toFixed(1) : '—';
@@ -301,9 +335,13 @@
       els.predMeta.textContent = '';
       [els.fillNo, els.fillMarg, els.fillSpread].forEach(f => f.style.width = '0%');
       [els.valNo, els.valMarg, els.valSpread].forEach(v => v.textContent = '0.00');
-      els.guardRange.textContent = `envelope: o2 ${p.model?.feature_range?.oxygen_pct?.min}-${p.model?.feature_range?.oxygen_pct?.max}%, pressure ${p.model?.feature_range?.pressure_kpa?.min}-${p.model?.feature_range?.pressure_kpa?.max} kpa, flow ${p.model?.feature_range?.flow_cm_s?.min}-${p.model?.feature_range?.flow_cm_s?.max} cm/s`;
+      if (p.model && p.model.feature_range) {
+        const fr = p.model.feature_range;
+        els.guardRange.textContent = `envelope: o2 ${fr.oxygen_pct.min}-${fr.oxygen_pct.max}%, pressure ${fr.pressure_kpa.min}-${fr.pressure_kpa.max} kpa, flow ${fr.flow_cm_s.min}-${fr.flow_cm_s.max} cm/s`;
+      }
       els.guard.classList.add('show');
       els.predCard.style.borderColor = 'transparent';
+      els.plotPlaceholder.style.display = 'block';
       return;
     }
 
@@ -325,7 +363,8 @@
     });
 
     renderNearest(p.nearest_experiments || []);
-    renderBoundary(p);
+    els.plotPlaceholder.style.display = 'none';
+    fetchBoundary();
   }
 
   function renderNearest(list) {
@@ -345,9 +384,93 @@
     });
   }
 
-  function renderBoundary(p) {
-    // Boundary is fetched separately via /boundary; this is a placeholder hook.
+  async function fetchBoundary() {
+    const material = materialSel.value;
+    const pressure = parseFloat(els.pressure.value);
+    try {
+      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`);
+      if (!r.ok) throw new Error('boundary HTTP ' + r.status);
+      const b = await r.json();
+      drawBoundary(b);
+    } catch (e) {
+      console.warn('boundary fetch failed:', e);
+      els.plotPlaceholder.style.display = 'block';
+      els.plotPlaceholder.textContent = 'boundary plot unavailable';
+    }
   }
+
+  function drawBoundary(b) {
+    try {
+      const flows = b.flows;
+      const o2s = b.o2s;
+      const P = b.P_spread;
+      const inside = b.inside;
+
+      const z = P.map((row, i) => row.map((v, j) => inside[i][j] ? (v === null ? null : v) : null));
+      const heat = {
+        x: flows, y: o2s, z, zmin: 0, zmax: 1,
+        colorscale: [[0, 'rgba(255,255,255,0)'], [1, 'rgba(213,94,0,0.12)']],
+        showscale: false, hoverinfo: 'skip', name: 'spread region',
+      };
+      const untested = {
+        x: flows, y: o2s,
+        z: inside.map(row => row.map(v => v ? null : 1)),
+        colorscale: [[0, 'rgba(71,84,103,0.18)'], [1, 'rgba(71,84,103,0.18)']],
+        showscale: false, hoverinfo: 'skip', name: 'untested',
+        hovertemplate: 'no nasa tests here<extra></extra>',
+      };
+      const contour = {
+        x: flows, y: o2s, z: P,
+        contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
+        line: { color: '#101828', width: 2 },
+        showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
+      };
+      const exp = b.experiments || [];
+      const byOutcome = {};
+      exp.forEach(e => { (byOutcome[e.outcome] = byOutcome[e.outcome] || []).push(e); });
+      const traces = [];
+      const styles = { spread: { color: '#f43f5e', symbol: 'circle' }, 'no_spread': { color: '#10b981', symbol: 'square' }, marginal_spread: { color: '#f59e0b', symbol: 'diamond' } };
+      Object.entries(byOutcome).forEach(([outcome, pts]) => {
+        const s = styles[outcome] || styles.marginal_spread;
+        traces.push({
+          x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
+          marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
+          customdata: pts.map(p => [p.report_id, p.source_url]),
+          hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br><a href="%{customdata[1]}" target="_blank">ntrs report</a><extra></extra>',
+        });
+      });
+      traces.push({
+        x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
+        marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
+        hovertemplate: 'your habitat<br>o2 %{y}% · flow %{x} cm/s<extra></extra>',
+      });
+
+      Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
+        margin: { l: 40, r: 20, t: 10, b: 40 },
+        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+        font: { family: 'Inter, sans-serif', size: 11, color: '#8a8f98' },
+        xaxis: { type: 'log', title: 'airflow (cm/s, log)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', tickvals: [0.5,1,2,5,10,20,50], range: [Math.log10(Math.min(...flows)), Math.log10(Math.max(...flows))] },
+        yaxis: { title: 'oxygen (%)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', range: [Math.min(...o2s), Math.max(...o2s)], dtick: 5 },
+        legend: { orientation: 'h', y: -0.12, x: 0.5, xanchor: 'center', font: { size: 10, color: '#8a8f98' }, bgcolor: 'rgba(0,0,0,0)' },
+        hovermode: 'closest',
+      }, { responsive: true });
+      plotlyReady = true;
+      els.plotPlaceholder.style.display = 'none';
+    } catch (e) {
+      console.error('Plotly draw failed:', e);
+      els.plotPlaceholder.style.display = 'block';
+      els.plotPlaceholder.textContent = 'plot rendering failed';
+    }
+  }
+
+  // Plotly CDN fallback
+  window.addEventListener('error', (e) => {
+    if (e.message && e.message.includes('Plotly')) {
+      plotlyLoadFailed = true;
+      els.plotPlaceholder.style.display = 'block';
+      els.plotPlaceholder.textContent = 'plotly library failed to load';
+    }
+  }, true);
 
   async function predict() {
     const o2 = parseFloat(els.o2.value);
@@ -367,88 +490,22 @@
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const p = await r.json();
       renderPrediction(p);
-      fetchBoundary(material, pressure);
     } catch (e) {
-      setApiStatus(false);
+      console.error('predict failed:', e);
+      showErrorState(e.message);
       els.predBadge.textContent = 'api unreachable';
       els.predBadge.className = 'status-badge st-outrange';
       els.guard.classList.remove('show');
+      els.plotPlaceholder.style.display = 'block';
+      els.plotPlaceholder.textContent = 'api unreachable';
     }
-  }
-
-  async function fetchBoundary(material, pressure) {
-    try {
-      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`);
-      if (!r.ok) return;
-      const b = await r.json();
-      drawBoundary(b);
-    } catch (e) { /* boundary optional */ }
-  }
-
-  function drawBoundary(b) {
-    const flows = b.flows;
-    const o2s = b.o2s;
-    const P = b.P_spread;
-    const inside = b.inside;
-
-    // Heatmap of P(spread), masked outside envelope
-    const z = P.map((row, i) => row.map((v, j) => inside[i][j] ? (v === null ? null : v) : null));
-    const heat = {
-      x: flows, y: o2s, z, zmin: 0, zmax: 1, colorscale: [[0, 'rgba(255,255,255,0)'], [1, 'rgba(213,94,0,0.12)']],
-      showscale: false, hoverinfo: 'skip', name: 'spread region',
-    };
-    const untested = {
-      x: flows, y: o2s,
-      z: inside.map(row => row.map(v => v ? null : 1)),
-      colorscale: [[0, 'rgba(71,84,103,0.18)'], [1, 'rgba(71,84,103,0.18)']],
-      showscale: false, hoverinfo: 'skip', name: 'untested',
-      hovertemplate: 'no nasa tests here<extra></extra>',
-    };
-    // Contour at P = 0.5
-    const contour = {
-      x: flows, y: o2s, z: P,
-      contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
-      line: { color: '#101828', width: 2 },
-      showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
-    };
-    // Experiments overlaid
-    const exp = b.experiments || [];
-    const byOutcome = {};
-    exp.forEach(e => { (byOutcome[e.outcome] = byOutcome[e.outcome] || []).push(e); });
-    const traces = [];
-    const styles = { spread: { color: '#f43f5e', symbol: 'circle' }, 'no_spread': { color: '#10b981', symbol: 'square' }, marginal_spread: { color: '#f59e0b', symbol: 'diamond' } };
-    Object.entries(byOutcome).forEach(([outcome, pts]) => {
-      const s = styles[outcome] || styles.marginal_spread;
-      traces.push({
-        x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
-        marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
-        customdata: pts.map(p => [p.report_id, p.source_url]),
-        hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br><a href="%{customdata[1]}" target="_blank">ntrs report</a><extra></extra>',
-      });
-    });
-    // Habitat star
-    traces.push({
-      x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
-      marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
-      hovertemplate: 'your habitat<br>o2 %{y}% · flow %{x} cm/s<extra></extra>',
-    });
-
-    Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
-      margin: { l: 40, r: 20, t: 10, b: 40 },
-      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
-      font: { family: 'Inter, sans-serif', size: 11, color: '#8a8f98' },
-      xaxis: { type: 'log', title: 'airflow (cm/s, log)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', tickvals: [0.5,1,2,5,10,20,50], range: [Math.log10(Math.min(...flows)), Math.log10(Math.max(...flows))] },
-      yaxis: { title: 'oxygen (%)', showgrid: true, gridcolor: 'rgba(255,255,255,0.06)', range: [Math.min(...o2s), Math.max(...o2s)], dtick: 5 },
-      legend: { orientation: 'h', y: -0.12, x: 0.5, xanchor: 'center', font: { size: 10, color: '#8a8f98' }, bgcolor: 'rgba(0,0,0,0)' },
-      hovermode: 'closest',
-    }, { responsive: true });
-    plotlyReady = true;
   }
 
   // Wire inputs
   [els.o2, els.pressure, els.flow, materialSel].forEach(el => {
     el.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(predict, 150); });
   });
+  els.retryBtn.addEventListener('click', predict);
 
   // Init
   checkApi();
