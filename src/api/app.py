@@ -34,17 +34,11 @@ except ImportError:
 
 app = FastAPI(title="FlameAtlas Fire-Safety Explorer", version="2.0.0")
 
-# ---------------------------------------------------------------------------
-# CORS: no wildcard with credentials. Only localhost origins allowed.
-# The dashboard runs file:// (origin "null"), which browsers cannot list in
-# CORS; for local dev we allow localhost origins. For production deployment
-# behind a reverse proxy, restrict this list further.
-# ---------------------------------------------------------------------------
-ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
-
+# CORS: allow all origins for local dev (file:// origin sends "null").
+# Security is enforced by X-API-Key header, not CORS origin.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["content-type", "x-api-key"],
