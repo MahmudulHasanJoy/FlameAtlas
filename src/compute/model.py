@@ -43,6 +43,11 @@ CLASS_ORDER = ["no_spread", "marginal_spread", "spread"]
 # outright instead of being silently passed through the unknown-category path.
 KNOWN_MATERIALS = {"sibal", "pmma", "nomex"}
 
+# A material needs at least this many training rows with a recorded outcome
+# before the model will predict for it. Below that, predict() returns a
+# research-gap response instead of a number the data cannot support.
+MIN_ROWS_FOR_PREDICTION = 10
+
 # Thresholds that turn P(spread) into the 3-class prediction, mirroring the
 # prototype's MARGINAL band (core.py classify_habitat).
 SPREAD_THRESHOLD = 0.60
@@ -228,6 +233,21 @@ class FlameAtlasModel:
         self.classes = list(self.meta["classes"])
         # Known materials from metadata, intersected with what the encoder saw.
         self.known_materials = set(self.meta.get("known_materials", KNOWN_MATERIALS))
+        # Materials with enough outcome rows to predict for (data-driven, so a
+        # new material only needs data, not a code change).
+        counts = self.df["material"].value_counts()
+        self.materials_with_data = {
+            m for m in self.known_materials if counts.get(m, 0) >= MIN_ROWS_FOR_PREDICTION
+        }
+
+    def _model_summary(self) -> dict[str, Any]:
+        return {
+            "type": self.meta["type"],
+            "n_train": self.meta["n_train"],
+            "cv_accuracy": self.meta["cv_accuracy"],
+            "features": self.meta["features"],
+            "feature_range": self.meta["feature_range"],
+        }
 
     def validate_inputs(
         self, oxygen_pct: float, pressure_kpa: float, flow_cm_s: float, material: str
@@ -336,19 +356,32 @@ class FlameAtlasModel:
             "material": material,
         }
 
+        if material not in self.materials_with_data:
+            return {
+                "inputs": inputs,
+                "in_training_range": False,
+                "data_status": "no_outcome_data",
+                "prediction": None,
+                "probabilities": None,
+                "model": self._model_summary(),
+                "nearest_experiments": [],
+                "explanation": (
+                    f"NASA has tested {material}, but burn outcomes for those tests "
+                    "are reported in the papers, not in the PSI data tables, and have "
+                    "not been entered into the FlameAtlas dataset yet. No prediction "
+                    "is returned for a material without outcome data."
+                ),
+            }
+
         if not in_range:
             fr = self.meta["feature_range"]
             return {
                 "inputs": inputs,
                 "in_training_range": False,
+                "data_status": "out_of_range",
                 "prediction": None,
                 "probabilities": None,
-                "model": {
-                    "type": self.meta["type"],
-                    "n_train": self.meta["n_train"],
-                    "cv_accuracy": self.meta["cv_accuracy"],
-                    "features": self.meta["features"],
-                },
+                "model": self._model_summary(),
                 "nearest_experiments": self.nearest_experiments(
                     oxygen_pct, pressure_kpa, flow_cm_s
                 ),
@@ -369,14 +402,10 @@ class FlameAtlasModel:
         return {
             "inputs": inputs,
             "in_training_range": True,
+            "data_status": "ok",
             "prediction": prediction,
             "probabilities": proba,
-            "model": {
-                "type": self.meta["type"],
-                "n_train": self.meta["n_train"],
-                "cv_accuracy": self.meta["cv_accuracy"],
-                "features": self.meta["features"],
-            },
+            "model": self._model_summary(),
             "nearest_experiments": nearest,
         }
 

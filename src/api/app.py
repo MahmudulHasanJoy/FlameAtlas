@@ -1,28 +1,37 @@
-"""FastAPI server: POST /predict for the microgravity fire-safety explorer.
+"""FastAPI server for the microgravity fire-safety explorer.
+
+Serves the dashboard at / and the JSON API at /predict, /boundary, /health.
 
 Deterministic science lives in src/compute/model.py. This layer only
 serializes inputs, calls predict(), and returns the competition object.
 Never extrapolates: out-of-range requests return no prediction.
 
 Security controls:
-  - CORS restricted to localhost origins (no wildcard with credentials).
-  - API key required on every endpoint (X-API-Key header).
-  - Per-IP rate limiting (60 requests/minute).
+  - API key (X-API-Key header, from FLAMEATLAS_API_KEY) required for direct
+    API calls. The key is never sent to the browser: the dashboard served from
+    this same origin is let through by the browser-set Sec-Fetch-Site header.
+    This stops casual cross-site and scripted use; it is not strong auth, since
+    the dashboard itself is public by design.
+  - Per-IP rate limiting (300 requests/minute; run uvicorn with
+    --proxy-headers behind a proxy so the real client IP is used).
   - Security headers: CSP, X-Frame-Options, X-Content-Type-Options, etc.
   - Input bounds enforced in Pydantic model and re-checked in compute layer.
 """
 from __future__ import annotations
 
+import logging
 import os
+import secrets
 import time
 from collections import defaultdict
+from pathlib import Path
 from typing import Callable
 
 import numpy as np
 import pandas as pd
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 try:
@@ -32,10 +41,22 @@ except ImportError:
     # Run from repo root
     from src.compute.model import FlameAtlasModel, ModelNotTrainedError, ModelTamperError
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()  # local .env; real environment variables take precedence
+except ImportError:
+    pass
+
+log = logging.getLogger("flameatlas")
+
+REPO = Path(__file__).resolve().parent.parent.parent
+DASHBOARD = REPO / "frontend" / "dashboard.html"
+
 app = FastAPI(title="FlameAtlas Fire-Safety Explorer", version="2.0.0")
 
-# CORS: allow all origins for local dev (file:// origin sends "null").
-# Security is enforced by X-API-Key header, not CORS origin.
+# CORS: open so other tools can call the API with a key. Access control is
+# the X-API-Key check, not the origin.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -45,17 +66,22 @@ app.add_middleware(
 )
 
 # ---------------------------------------------------------------------------
-# API key: set via FLAMEATLAS_API_KEY env var. Default is a dev placeholder
-# that MUST be changed before any non-local deployment.
+# API key: set via FLAMEATLAS_API_KEY (env var or .env). If unset, a random
+# key is generated per process so there is never a guessable default.
 # ---------------------------------------------------------------------------
-API_KEY = os.getenv("FLAMEATLAS_API_KEY", "dev-key-change-me-in-production")
+API_KEY = os.getenv("FLAMEATLAS_API_KEY") or ""
+if not API_KEY:
+    API_KEY = secrets.token_urlsafe(32)
+    log.warning("FLAMEATLAS_API_KEY not set; using a random key for this process.")
 
 # ---------------------------------------------------------------------------
-# Rate limiting: simple in-memory sliding window (60 requests / 60 s per IP).
+# Rate limiting: simple in-memory sliding window (300 requests / 60 s per IP).
+# The dashboard sends about 2 requests per slider pause plus a health check
+# every 10 s, so 60/min was too tight for normal use.
 # Not distributed; for single-instance deployment. Add Redis for multi-node.
 # ---------------------------------------------------------------------------
 _REQUEST_WINDOWS: defaultdict[str, list[float]] = defaultdict(list)
-RATE_LIMIT = 60
+RATE_LIMIT = 300
 RATE_WINDOW_SECONDS = 60
 
 
@@ -65,8 +91,14 @@ def _clean_window(timestamps: list[float], now: float) -> None:
         timestamps.pop(0)
 
 
-def verify_api_key(x_api_key: str | None = Header(None)) -> str:
-    if x_api_key is None or x_api_key != API_KEY:
+def verify_api_key(
+    request: Request, x_api_key: str | None = Header(None)
+) -> str | None:
+    # The dashboard served from this origin needs no key; browsers set
+    # Sec-Fetch-Site themselves and page scripts cannot change it.
+    if request.headers.get("sec-fetch-site") == "same-origin":
+        return None
+    if x_api_key is None or not secrets.compare_digest(x_api_key, API_KEY):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing X-API-Key header",
@@ -109,7 +141,15 @@ async def security_and_rate_limit(request: Request, call_next: Callable):
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
     response.headers[
         "Content-Security-Policy"
-    ] = "default-src 'self'; script-src 'self' https://cdn.plot.ly https://fonts.googleapis.com; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://127.0.0.1:8000;"
+    ] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' https://cdn.plot.ly; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com; "
+        "img-src 'self' data: blob:; "
+        "connect-src 'self'; "
+        "frame-ancestors 'none';"
+    )
     return response
 
 
@@ -160,9 +200,14 @@ class PredictRequest(BaseModel):
     }
 
 
-@app.get("/")
-def root():
-    return {"name": "FlameAtlas", "endpoint": "POST /predict", "version": "2.0.0"}
+@app.get("/", include_in_schema=False)
+def dashboard():
+    return FileResponse(DASHBOARD, media_type="text/html")
+
+
+@app.get("/health")
+def health():
+    return {"name": "FlameAtlas", "status": "ok", "version": "2.0.0"}
 
 
 @app.post("/predict", dependencies=[Depends(verify_api_key)])
@@ -197,6 +242,11 @@ def boundary(
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Unknown material '{material}'. Known: {sorted(model.known_materials)}",
+        )
+    if material not in model.materials_with_data:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No outcome data for '{material}'; no boundary can be drawn.",
         )
     fr = model.meta["feature_range"]
 
@@ -253,4 +303,4 @@ def boundary(
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=int(os.getenv("PORT", "8000")))

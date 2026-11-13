@@ -12,51 +12,63 @@ Set oxygen concentration, pressure, flow velocity, and material, and a gradient-
 
 | Part | State |
 |---|---|
-| `src/api/app.py` | FastAPI `POST /predict` + `GET /boundary` — gradient-boosting classifier, honest cross-validation, training-range guard, nearest-experiment retrieval |
+| `src/api/app.py` | FastAPI app: dashboard at `/`, `POST /predict`, `GET /boundary`, `GET /health` — gradient-boosting classifier, honest cross-validation, training-range guard, nearest-experiment retrieval |
 | `src/compute/model.py` | Training pipeline: gradient-boosting on `cache/experiments.parquet`, stratified CV, model artifact + metadata |
-| `cache/experiments.parquet` | 620 curated test rows from PSI experimental tables + BASS-II (O₂, pressure, flow, material, outcome, report_id, source_url) |
+| `cache/experiments.parquet` | 620 rows parsed (54 with oxygen, flow and outcome are used for training; 38 are SIBAL) from PSI experimental tables + BASS-II (O₂, pressure, flow, material, outcome, report_id, source_url) |
 | `scripts/build_experiments_parquet.py` | Column-mapping parser for all 22 PSI experimental-table CSVs (BASS-II, SAFFIRE-1/2, FLEX, FLEX-2, CFI, CFI-G, ACME BRE, Flame Design) |
 | `scripts/fetch_ntrs.py` | Downloads all 43 NTRS papers (PDF + citation JSON) |
-| `frontend/dashboard.html` | Self-contained dark/light-mode slider UI with Plotly decision-boundary plot, probability bar, nearest-experiment citations |
+| `frontend/dashboard.html` | Served at `/`; self-contained dark/light-mode slider UI with Plotly decision-boundary plot, probability bar, nearest-experiment citations |
 | `docs/` | 12 spec documents: PRD, TRD, SDD, DRD, data spec, AI/RAG spec, test plan, project plan, risk register, decision log, glossary, Glenn resources |
 | `demo_fixtures/` | Offline demo fixtures (sample predictions, Glenn imagery) |
 | `LICENSE` | Apache-2.0 |
 
 ## Quick start
 
-**1. Start the API server** (terminal 1):
+The FastAPI app serves both the dashboard and the API from one address.
 
-```powershell
-cd C:\Users\mhjjo\FlameAtlas
-$env:PYTHONPATH="src"
-C:\Python314\python.exe -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+```bash
+pip install -r requirements.txt
+cp .env.example .env            # then fill in FLAMEATLAS_API_KEY
+uvicorn src.api.app:app --port 8000
 ```
 
-**2. Open the frontend** (terminal 2, or double-click in File Explorer):
+Open http://127.0.0.1:8000. The dashboard needs no key; the server accepts
+same-origin requests from it. Direct API calls need the `X-API-Key` header:
 
-```powershell
-Start-Process "C:\Users\mhjjo\FlameAtlas\frontend\dashboard.html"
+```bash
+curl -X POST http://127.0.0.1:8000/predict \
+  -H "Content-Type: application/json" -H "X-API-Key: $FLAMEATLAS_API_KEY" \
+  -d '{"oxygen_pct": 21, "pressure_kpa": 101.3, "flow_cm_s": 10, "material": "sibal"}'
 ```
 
-The dashboard opens at `file:///.../frontend/dashboard.html` and calls `http://127.0.0.1:8000`.
+Run the tests with `pytest tests` (API) and `cd prototype && pytest` (prototype).
 
-**3. Train the model** (if you need to retrain):
+**Retrain the model** (optional):
 
-```powershell
-C:\Python314\python.exe scripts/build_experiments_parquet.py
-C:\Python314\python.exe src/compute/model.py
+```bash
+python scripts/build_experiments_parquet.py
+python src/compute/model.py
 ```
 
-**4. Fetch raw NASA data** (optional — raw downloads are git-ignored, ~440 MB):
+**Fetch raw NASA data** (optional, git-ignored, about 440 MB):
 
-```powershell
-python scripts/fetch_ntrs.py        # 43 NTRS papers, 0 failures
-python scripts/build_experiments_parquet.py   # builds cache/experiments.parquet from PSI tables
+```bash
+python scripts/fetch_psi.py
+python scripts/fetch_ntrs.py
 ```
+
+## Deploy (Render)
+
+`render.yaml` defines one free web service. In Render choose **New > Blueprint**,
+pick this repository, and set `FLAMEATLAS_API_KEY` when asked. Render installs
+`requirements.txt`, starts uvicorn, and checks `/health`. Pushes to `main`
+redeploy automatically. The free tier sleeps when idle, so the first visit can
+take about a minute.
 
 ## Features
 
 - **Flame-spread prediction** — gradient-boosting classifier with honest stratified cross-validation (CV accuracy reported, not invented)
+- **Research-gap response** — materials NASA tested but whose outcomes are not in the dataset yet (PMMA, Nomex) return no prediction and say why
 - **Out-of-range guard** — if requested conditions fall outside the training envelope, returns no prediction and an explanation; never extrapolates silently
 - **Nearest experiments** — each prediction links to the 3 closest real NASA tests by feature distance, with report IDs and clickable NTRS citations
 - **Decision-boundary plot** — P(spread) heatmap over O₂ × airflow with the P = 0.5 contour and real experiment points overlaid

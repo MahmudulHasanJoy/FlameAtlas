@@ -329,7 +329,7 @@
       <div class="panel-head"><span class="panel-title">nearest experiments</span></div>
       <div class="panel-body">
         <div class="guard" id="guard">
-          <div class="guard-title"><div class="guard-dot"></div>outside the published experimental envelope</div>
+          <div class="guard-title"><div class="guard-dot"></div><span id="guardTitle">outside the published experimental envelope</span></div>
           <p id="guardMsg">no prediction returned; extrapolating a fire-safety answer beyond tested data is unsafe.</p>
           <div class="range" id="guardRange"></div>
         </div>
@@ -346,9 +346,10 @@
 </div>
 
 <script>
-  const API = 'http://127.0.0.1:8000';
-  const API_KEY = '***';
-  const materials = { sibal: 'sibal cotton-fiberglass fabric', pmma: 'pmma (acrylic)', nomex: 'nomex aramid fabric' };
+  // Served by the FastAPI app, so the API is on the same origin. No API key
+  // lives in the page: the server accepts same-origin requests from it.
+  const API = '';
+  const materials = { sibal: 'sibal cotton-fiberglass fabric', pmma: 'pmma (acrylic) - no outcome data yet', nomex: 'nomex aramid fabric - no outcome data yet' };
   const materialSel = document.getElementById('material');
   Object.entries(materials).forEach(([k, v]) => {
     const o = document.createElement('option'); o.value = k; o.textContent = v; materialSel.appendChild(o);
@@ -361,7 +362,7 @@
     fillNo: document.getElementById('fillNo'), fillMarg: document.getElementById('fillMarg'), fillSpread: document.getElementById('fillSpread'),
     valNo: document.getElementById('valNo'), valMarg: document.getElementById('valMarg'), valSpread: document.getElementById('valSpread'),
     nearestList: document.getElementById('nearestList'), emptyList: document.getElementById('emptyList'),
-    guard: document.getElementById('guard'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
+    guard: document.getElementById('guard'), guardTitle: document.getElementById('guardTitle'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
     apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
     metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
     retryBtn: document.getElementById('retryBtn'),
@@ -404,7 +405,7 @@
 
   /* ---------- API ---------- */
   function authHeaders() {
-    return { 'Content-Type': 'application/json', 'X-API-Key': API_KEY };
+    return { 'Content-Type': 'application/json' };
   }
 
   function setApiStatus(ok) {
@@ -415,8 +416,8 @@
 
   async function checkApi() {
     try {
-      await fetch(API + '/', { method: 'GET', cache: 'no-store', headers: authHeaders() });
-      setApiStatus(true);
+      const r = await fetch(API + '/health', { method: 'GET', cache: 'no-store' });
+      setApiStatus(r.ok);
     } catch (e) { setApiStatus(false); }
   }
 
@@ -441,19 +442,28 @@
     els.metaAcc.textContent = p.model ? (p.model.cv_accuracy*100).toFixed(1) : '—';
 
     if (!p.in_training_range) {
+      const noData = p.data_status === 'no_outcome_data';
       els.predBadge.className = 'status-badge st-outrange';
-      els.predBadge.textContent = 'no prediction — out of range';
+      els.predBadge.textContent = noData ? 'no prediction — no nasa outcome data' : 'no prediction — out of range';
+      els.guardTitle.textContent = noData ? 'research gap: no outcome data for this material' : 'outside the published experimental envelope';
+      els.guardMsg.textContent = p.explanation || '';
+      els.guardRange.textContent = '';
+      renderNearest(p.nearest_experiments || []);
       els.predProb.textContent = '';
       els.predMeta.textContent = '';
       [els.fillNo, els.fillMarg, els.fillSpread].forEach(f => f.style.width = '0%');
       [els.valNo, els.valMarg, els.valSpread].forEach(v => v.textContent = '0.00');
-      if (p.model && p.model.feature_range) {
+      if (!noData && p.model && p.model.feature_range) {
         const fr = p.model.feature_range;
         els.guardRange.textContent = `envelope: o2 ${fr.oxygen_pct.min}-${fr.oxygen_pct.max}%, pressure ${fr.pressure_kpa.min}-${fr.pressure_kpa.max} kpa, flow ${fr.flow_cm_s.min}-${fr.flow_cm_s.max} cm/s`;
       }
       els.guard.classList.add('show');
       els.predCard.style.borderColor = 'transparent';
       els.plotPlaceholder.style.display = 'block';
+      if (noData) {
+        if (plotlyReady) { Plotly.purge('boundary-plot'); plotlyReady = false; }
+        els.plotPlaceholder.textContent = 'no boundary: no nasa outcome data for this material';
+      }
       return;
     }
 
@@ -500,9 +510,7 @@
     const material = materialSel.value;
     const pressure = parseFloat(els.pressure.value);
     try {
-      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`, {
-        headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
-      });
+      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`);
       if (!r.ok) throw new Error('boundary HTTP ' + r.status);
       const b = await r.json();
       drawBoundary(b);
