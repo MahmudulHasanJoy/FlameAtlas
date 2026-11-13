@@ -68,6 +68,7 @@ take about a minute.
 ## Features
 
 - **Flame-spread prediction** — gradient-boosting classifier with honest stratified cross-validation (CV accuracy reported, not invented)
+- **Evidence cards** — 10 NASA studies (BASS, BASS-II, Saffire I/II/IV/V, FM2, exploration atmospheres) summarized as cards with conditions, key finding, safety takeaway and the exact source quotes; open one from the evidence section, a map point, or a nearest experiment
 - **Research-gap response** — materials NASA tested but whose outcomes are not in the dataset yet (PMMA, Nomex) return no prediction and say why
 - **Out-of-range guard** — if requested conditions fall outside the training envelope, returns no prediction and an explanation; never extrapolates silently
 - **Nearest experiments** — each prediction links to the 3 closest real NASA tests by feature distance, with report IDs and clickable NTRS citations
@@ -75,6 +76,21 @@ take about a minute.
 - **Light/dark mode** — toggle in the header, persists in localStorage, respects OS preference
 - **Mobile responsive** — single-column stack on phones, two-column on tablets, three-column on desktop
 - **Offline demo** — `demo_fixtures/` contains sample predictions so the UI can run without live data
+
+## Evidence cards
+
+Cards live in `data/processed/cards.json`. Each card lists the exact quotes its
+summary is based on, with the PDF page or PSI table row. Check every quote word
+for word against the downloaded sources with:
+
+```bash
+python scripts/verify_cards.py   # needs pdftotext and the fetched NTRS/PSI files
+```
+
+The result (with source file SHA-256 hashes) is written to
+`data/processed/cards_verification.json` and shown in the app. Takeaways marked
+"FlameAtlas interpretation" are written from the quotes and have not yet been
+reviewed by a domain expert.
 
 ## Data sources
 

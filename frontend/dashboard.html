@@ -244,6 +244,73 @@
   }
   .retry-btn:hover { background: var(--brand-hover); }
   .retry-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ---------- Evidence cards ---------- */
+  .evidence-panel { grid-column: 1 / -1; }
+  @media (min-width: 600px) and (max-width: 899px) {
+    main { grid-template-areas: "left center" "right right" "evidence evidence"; }
+    .evidence-panel { grid-area: evidence; }
+  }
+  @media (max-width: 599px) {
+    main { grid-template-areas: "left" "center" "right" "evidence"; }
+    .evidence-panel { grid-area: evidence; }
+  }
+  .evidence-sub { font-size: 11px; color: var(--text-tertiary); font-family: var(--ff-mono); margin-left: auto; text-align: right; }
+  .evidence-sub .ok { color: var(--success); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .chip {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border-standard); color: var(--text-secondary);
+    border-radius: 999px; padding: 4px 11px; font-size: 11px; font-family: var(--ff-sans); cursor: pointer;
+  }
+  .chip:hover { color: var(--text-primary); border-color: var(--brand-accent); }
+  .chip[aria-pressed="true"] { background: var(--brand-bg); border-color: var(--brand-bg); color: #ffffff; }
+  .card-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .ev-card {
+    text-align: left; background: rgba(255,255,255,0.02); border: 1px solid var(--border-standard);
+    border-radius: var(--radius-card); padding: 14px; cursor: pointer; color: inherit; font-family: inherit;
+    display: flex; flex-direction: column; gap: 8px; transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .ev-card:hover, .ev-card:focus-visible { border-color: var(--brand-accent); background: rgba(113,112,255,0.06); outline: none; }
+  .ev-card .ev-exp { font-size: 10px; font-family: var(--ff-mono); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ev-card .ev-title { font-size: 13px; font-weight: 590; color: var(--text-primary); line-height: 1.35; }
+  .ev-card .ev-finding { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .ev-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
+  .ev-tag { font-size: 9px; font-weight: 590; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+  .ev-tag.src { background: rgba(113,112,255,0.14); color: var(--brand-accent); }
+  .ev-link { background: none; border: 1px solid var(--border-standard); color: var(--brand-accent); border-radius: 999px; font-size: 9px; font-weight: 590; padding: 1px 7px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--ff-sans); }
+  .ev-link:hover { border-color: var(--brand-accent); }
+
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; z-index: 50; overflow-y: auto; }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--bg-panel); border: 1px solid var(--border-standard); border-radius: var(--radius-panel);
+    width: 100%; max-width: 760px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); color: var(--text-primary);
+  }
+  .modal-head { display: flex; gap: 12px; align-items: flex-start; padding: 18px 22px; border-bottom: 1px solid var(--border-subtle); }
+  .modal-head h2 { font-size: 17px; font-weight: 590; letter-spacing: -0.2px; line-height: 1.35; }
+  .modal-head .ev-exp { font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); margin-bottom: 6px; }
+  .modal-close { margin-left: auto; flex-shrink: 0; background: rgba(255,255,255,0.05); border: 1px solid var(--border-standard); color: var(--text-secondary); border-radius: var(--radius-comfortable); width: 30px; height: 30px; cursor: pointer; font-size: 16px; line-height: 1; }
+  .modal-close:hover { color: var(--text-primary); }
+  .modal-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 18px; }
+  .m-section h3 { font-size: 11px; font-weight: 590; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .m-section p { font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+  .m-section.finding p { color: var(--text-primary); font-size: 14px; font-weight: 510; }
+  .interp { font-size: 9px; font-weight: 590; padding: 1px 7px; border-radius: 999px; background: rgba(245,158,11,0.15); color: var(--warning); text-transform: none; letter-spacing: 0; }
+  .cond-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .cond { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-comfortable); padding: 8px 10px; }
+  .cond .k { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .cond .v { font-size: 13px; font-family: var(--ff-mono); color: var(--text-primary); margin-top: 2px; }
+  .cond-note { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
+  .quote { border-left: 2px solid var(--brand-accent); padding: 6px 0 6px 12px; margin-bottom: 10px; }
+  .quote q { font-size: 13px; line-height: 1.55; color: var(--text-primary); quotes: "\201C" "\201D"; }
+  .quote .q-ctx { display: block; font-size: 11px; color: var(--text-tertiary); margin-bottom: 3px; }
+  .quote .q-loc { display: block; font-size: 10px; font-family: var(--ff-mono); color: var(--text-tertiary); margin-top: 4px; }
+  .quote .q-loc .ok { color: var(--success); }
+  .src-item { font-size: 12px; line-height: 1.5; color: var(--text-secondary); margin-bottom: 6px; }
+  .src-item a, .rel a { color: var(--brand-accent); text-decoration: none; }
+  .src-item a:hover, .rel a:hover { text-decoration: underline; }
+  .rel { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; line-height: 1.5; color: var(--text-tertiary); }
+  .verify-note { font-size: 11px; color: var(--text-tertiary); border-top: 1px solid var(--border-subtle); padding-top: 12px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -337,12 +404,37 @@
         <div class="empty" id="emptyList">no experiments</div>
       </div>
     </aside>
+    <!-- Bottom: evidence cards -->
+    <section class="panel evidence-panel" aria-labelledby="evidenceTitle">
+      <div class="panel-head">
+        <span class="panel-title" id="evidenceTitle">evidence cards</span>
+        <span class="evidence-sub" id="evidenceSub">loading...</span>
+      </div>
+      <div class="panel-body">
+        <div class="chips" id="cardChips" role="group" aria-label="Filter cards by material"></div>
+        <div class="card-grid" id="cardGrid"></div>
+        <div class="empty" id="cardEmpty" style="display:none;">no cards for this material yet</div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     flameatlas summarizes published nasa research for exploration and education · does not certify materials · does not replace nasa-std-6001 testing ·
     data: nasa psi / ntrs · model: gradient-boosting · n_train <span id="metaN">—</span> · cv accuracy <span id="metaAcc">—</span>
   </footer>
+</div>
+
+<div class="modal-backdrop" id="cardModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <div>
+        <div class="ev-exp" id="mExp"></div>
+        <h2 id="mTitle"></h2>
+      </div>
+      <button class="modal-close" id="mClose" aria-label="Close card">&times;</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
 </div>
 
 <script>
@@ -418,6 +510,8 @@
     try {
       const r = await fetch(API + '/health', { method: 'GET', cache: 'no-store' });
       setApiStatus(r.ok);
+      // Retry cards if they failed to load (for example during a cold start).
+      if (r.ok && !cardState.cards.length) loadCards();
     } catch (e) { setApiStatus(false); }
   }
 
@@ -490,6 +584,7 @@
   }
 
   function renderNearest(list) {
+    window._lastNearest = list;
     els.nearestList.innerHTML = '';
     els.emptyList.style.display = list.length ? 'none' : 'block';
     list.forEach(e => {
@@ -502,6 +597,14 @@
         </div>
         <div class="meta">${e.oxygen_pct.toFixed(1)}% o2 · ${e.flow_cm_s.toFixed(1)} cm/s · ${e.material}<span class="dist"> · dist ${e.distance.toFixed(2)}</span></div>
       `;
+      const cid = cardForReport(e.report_id);
+      if (cid) {
+        const btn = el('button', 'ev-link', 'evidence card');
+        btn.type = 'button';
+        btn.addEventListener('click', () => openCard(cid));
+        div.querySelector('.meta').append(' ');
+        div.querySelector('.meta').appendChild(btn);
+      }
       els.nearestList.appendChild(div);
     });
   }
@@ -557,8 +660,8 @@
         traces.push({
           x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
           marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
-          customdata: pts.map(p => [p.report_id, p.source_url]),
-          hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br><a href="%{customdata[1]}" target="_blank">ntrs report</a><extra></extra>',
+          customdata: pts.map(p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet']),
+          hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
         });
       });
       traces.push({
@@ -580,6 +683,13 @@
       }, { responsive: true });
       plotlyReady = true;
       els.plotPlaceholder.style.display = 'none';
+      const gd = document.getElementById('boundary-plot');
+      if (gd.removeAllListeners) gd.removeAllListeners('plotly_click');
+      gd.on('plotly_click', ev => {
+        const pt = ev.points && ev.points[0];
+        const cid = pt && pt.customdata ? cardForReport(pt.customdata[0]) : null;
+        if (cid) openCard(cid);
+      });
     } catch (e) {
       console.error('Plotly draw failed:', e);
       els.plotPlaceholder.style.display = 'block';
@@ -625,6 +735,204 @@
     }
   }
 
+  /* ---------- Evidence cards ---------- */
+  const cardState = { cards: [], sources: {}, verification: null, byReport: {}, filter: 'all' };
+  const cardEls = {
+    grid: document.getElementById('cardGrid'), chips: document.getElementById('cardChips'),
+    empty: document.getElementById('cardEmpty'), sub: document.getElementById('evidenceSub'),
+    modal: document.getElementById('cardModal'), mTitle: document.getElementById('mTitle'),
+    mExp: document.getElementById('mExp'), mBody: document.getElementById('mBody'), mClose: document.getElementById('mClose'),
+  };
+  const MATERIAL_NAMES = { sibal: 'SIBAL fabric', pmma: 'PMMA', nomex: 'Nomex', silicone: 'Silicone', cotton: 'Cotton' };
+  let lastFocus = null;
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  function fmtRange(r, unit) {
+    if (!r) return 'not stated';
+    return (r[0] === r[1] ? `${r[0]}` : `${r[0]} to ${r[1]}`) + (unit ? ' ' + unit : '');
+  }
+
+  async function loadCards() {
+    try {
+      const r = await fetch(API + '/cards');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      cardState.cards = j.cards;
+      cardState.sources = j.sources;
+      cardState.verification = j.verification;
+      cardState.byReport = {};
+      j.cards.forEach(c => c.linked_report_ids.forEach(rid => {
+        (cardState.byReport[rid] = cardState.byReport[rid] || []).push(c.card_id);
+      }));
+      const v = j.verification;
+      cardEls.sub.textContent = '';
+      cardEls.sub.append(`${j.cards.length} nasa studies · `);
+      const ok = el('span', v && v.all_passed ? 'ok' : '', v ? `${v.quotes_verified}/${v.quotes} quotes checked word for word against the source` : 'quotes not checked');
+      cardEls.sub.append(ok);
+      renderChips();
+      renderCardGrid();
+      // Map points and nearest tests rendered before cards arrived can now link.
+      if (window._lastNearest) renderNearest(window._lastNearest);
+    } catch (e) {
+      console.warn('cards failed:', e);
+      cardEls.sub.textContent = 'evidence cards unavailable';
+    }
+  }
+
+  function renderChips() {
+    const counts = {};
+    cardState.cards.forEach(c => c.material_ids.forEach(m => counts[m] = (counts[m] || 0) + 1));
+    const order = ['all', 'sibal', 'pmma', 'nomex', 'silicone', ...Object.keys(counts).filter(m => !(m in MATERIAL_NAMES) || m === 'cotton')];
+    const seen = new Set();
+    cardEls.chips.innerHTML = '';
+    order.forEach(m => {
+      if (seen.has(m) || (m !== 'all' && !counts[m])) return;
+      seen.add(m);
+      const label = m === 'all' ? `all (${cardState.cards.length})` : `${MATERIAL_NAMES[m] || m} (${counts[m]})`;
+      const b = el('button', 'chip', label);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(cardState.filter === m));
+      b.addEventListener('click', () => { cardState.filter = m; renderChips(); renderCardGrid(); });
+      cardEls.chips.appendChild(b);
+    });
+  }
+
+  function renderCardGrid() {
+    const f = cardState.filter;
+    const list = cardState.cards.filter(c => f === 'all' || c.material_ids.includes(f));
+    cardEls.grid.innerHTML = '';
+    cardEls.empty.style.display = list.length ? 'none' : 'block';
+    list.forEach(c => {
+      const b = el('button', 'ev-card');
+      b.type = 'button';
+      const src = cardState.sources[c.source_ids[0]];
+      b.appendChild(el('div', 'ev-exp', c.experiment));
+      b.appendChild(el('div', 'ev-title', c.title));
+      b.appendChild(el('div', 'ev-finding', c.key_finding));
+      const tags = el('div', 'ev-tags');
+      tags.appendChild(el('span', 'ev-tag src', `${c.source_ids[0].replace('-', ' ')}${src && src.year ? ' · ' + src.year : ''}`));
+      c.material_ids.forEach(m => tags.appendChild(el('span', 'ev-tag', MATERIAL_NAMES[m] || m)));
+      b.appendChild(tags);
+      b.addEventListener('click', () => openCard(c.card_id));
+      cardEls.grid.appendChild(b);
+    });
+  }
+
+  function section(title, extra) {
+    const sec = el('div', 'm-section');
+    const h = el('h3', null, title);
+    if (extra) h.appendChild(extra);
+    sec.appendChild(h);
+    return sec;
+  }
+
+  function openCard(cardId) {
+    const c = cardState.cards.find(x => x.card_id === cardId);
+    if (!c) return;
+    lastFocus = document.activeElement;
+    cardEls.mExp.textContent = c.experiment;
+    cardEls.mTitle.textContent = c.title;
+    const body = cardEls.mBody;
+    body.innerHTML = '';
+
+    const kf = section('key finding'); kf.classList.add('finding'); kf.appendChild(el('p', null, c.key_finding)); body.appendChild(kf);
+    const os = section('what happened'); os.appendChild(el('p', null, c.outcome_summary)); body.appendChild(os);
+    const st = section('safety takeaway', c.takeaway_is_interpretation ? el('span', 'interp', 'flameatlas interpretation') : el('span', 'interp', 'quoted from source'));
+    st.appendChild(el('p', null, c.safety_takeaway)); body.appendChild(st);
+
+    const cd = section('test conditions');
+    const g = el('div', 'cond-grid');
+    const k = c.conditions;
+    [['oxygen', fmtRange(k.o2_pct, '% O2')], ['airflow', fmtRange(k.flow_cm_s, 'cm/s')], ['pressure', fmtRange(k.pressure_kpa, 'kPa')],
+     ['gravity', k.gravity], ['flow direction', (k.flow_direction || []).join(', ') || 'not stated']].forEach(([key, val]) => {
+      const box = el('div', 'cond'); box.appendChild(el('div', 'k', key)); box.appendChild(el('div', 'v', val)); g.appendChild(box);
+    });
+    cd.appendChild(g);
+    if (k.note) cd.appendChild(el('p', 'cond-note', k.note));
+    body.appendChild(cd);
+
+    const qs = section(`evidence from the source (${c.quotes.length} quotes)`);
+    c.quotes.forEach(q => {
+      const box = el('div', 'quote');
+      if (q.context) box.appendChild(el('span', 'q-ctx', q.context));
+      box.appendChild(el('q', null, q.text));
+      const loc = el('span', 'q-loc', `${q.source_id}${q.page ? ' · pdf page ' + q.page : ''}`);
+      if (cardState.verification && cardState.verification.all_passed) {
+        loc.append(' · ');
+        loc.appendChild(el('span', 'ok', 'matches source'));
+      }
+      box.appendChild(loc);
+      qs.appendChild(box);
+    });
+    qs.appendChild(el('p', 'cond-note', 'Locator: ' + c.locator));
+    body.appendChild(qs);
+
+    const ss = section('source');
+    c.source_ids.forEach(sid => {
+      const s = cardState.sources[sid];
+      if (!s) return;
+      const item = el('div', 'src-item');
+      const a = el('a', null, s.title);
+      a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+      item.appendChild(a);
+      item.append(` · ${s.authors}${s.year ? ' (' + s.year + ')' : ''} · ${s.doc_type}`);
+      ss.appendChild(item);
+    });
+    body.appendChild(ss);
+
+    if (c.related_card_ids.length) {
+      const rs = section('related cards');
+      const rel = el('div', 'rel');
+      c.related_card_ids.forEach(rid => {
+        const rc = cardState.cards.find(x => x.card_id === rid);
+        if (!rc) return;
+        const a = el('a', null, rc.title);
+        a.href = '#';
+        a.addEventListener('click', ev => { ev.preventDefault(); openCard(rid); });
+        rel.appendChild(a);
+        rel.appendChild(el('span', null, ' · '));
+      });
+      if (rel.lastChild) rel.removeChild(rel.lastChild);
+      rs.appendChild(rel);
+      body.appendChild(rs);
+    }
+
+    const v = cardState.verification;
+    body.appendChild(el('p', 'verify-note',
+      v ? `Every quote on this card was checked word for word against the NASA source on ${v.checked_on} (scripts/verify_cards.py). Summaries and takeaways are written by FlameAtlas from those quotes and have not yet been reviewed by a domain expert.`
+        : 'Quotes have not been checked against the source yet.'));
+
+    cardEls.modal.classList.add('show');
+    cardEls.modal.scrollTop = 0;
+    cardEls.modal.setAttribute('aria-hidden', 'false');
+    cardEls.mClose.focus();
+  }
+
+  function closeCard() {
+    cardEls.modal.classList.remove('show');
+    cardEls.modal.setAttribute('aria-hidden', 'true');
+    if (lastFocus) lastFocus.focus();
+  }
+  cardEls.mClose.addEventListener('click', closeCard);
+  cardEls.modal.addEventListener('click', e => { if (e.target === cardEls.modal) closeCard(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && cardEls.modal.classList.contains('show')) closeCard(); });
+
+  function cardForReport(reportId) {
+    const ids = cardState.byReport[reportId];
+    return ids && ids.length ? ids[0] : null;
+  }
+
+  materialSel.addEventListener('change', () => {
+    const m = materialSel.value;
+    if (cardState.cards.some(c => c.material_ids.includes(m))) { cardState.filter = m; renderChips(); renderCardGrid(); }
+  });
+
   // Wire inputs
   [els.o2, els.pressure, els.flow, materialSel].forEach(el => {
     el.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(predict, 150); });
@@ -635,6 +943,7 @@
   initTheme();
   checkApi();
   setInterval(checkApi, 10000);
+  loadCards();
   predict();
 </script>
 </body>

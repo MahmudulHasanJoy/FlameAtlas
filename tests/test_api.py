@@ -59,3 +59,29 @@ def test_out_of_range_returns_no_prediction():
 def test_boundary_for_sibal():
     j = client.get("/boundary?material=sibal&n=20", headers=KEY).json()
     assert len(j["P_spread"]) == 20 and j["experiments"]
+
+
+def test_cards_listed_with_sources_and_verification():
+    j = client.get("/cards", headers=KEY).json()
+    assert len(j["cards"]) >= 10
+    assert j["verification"]["all_passed"] is True
+    for c in j["cards"]:
+        assert c["quotes"], c["card_id"]
+        for sid in c["source_ids"]:
+            assert j["sources"][sid]["url"].startswith("https://")
+            assert "file" not in j["sources"][sid]
+
+
+def test_cards_filter_and_lookup():
+    sibal = client.get("/cards?material=sibal", headers=KEY).json()["cards"]
+    assert sibal and all("sibal" in c["material_ids"] for c in sibal)
+    assert client.get("/cards/CARD-BASS2-SIBAL", headers=SAME_ORIGIN).json()["card"]["card_id"] == "CARD-BASS2-SIBAL"
+    assert client.get("/cards/NOPE", headers=KEY).status_code == 404
+    assert client.get("/cards").status_code == 401
+
+
+def test_every_map_report_with_a_card_resolves():
+    # Each card link must point at a report id that exists in the experiment data.
+    exp_ids = {e["report_id"] for e in client.get("/boundary?material=sibal&n=10", headers=KEY).json()["experiments"]}
+    linked = {r for c in client.get("/cards", headers=KEY).json()["cards"] for r in c["linked_report_ids"]}
+    assert "NTRS-20210011385" in linked & exp_ids

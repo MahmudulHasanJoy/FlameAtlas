@@ -19,6 +19,7 @@ Security controls:
 """
 from __future__ import annotations
 
+import json
 import logging
 import os
 import secrets
@@ -52,6 +53,8 @@ log = logging.getLogger("flameatlas")
 
 REPO = Path(__file__).resolve().parent.parent.parent
 DASHBOARD = REPO / "frontend" / "dashboard.html"
+CARDS_FILE = REPO / "data" / "processed" / "cards.json"
+CARDS_VERIFICATION_FILE = REPO / "data" / "processed" / "cards_verification.json"
 
 app = FastAPI(title="FlameAtlas Fire-Safety Explorer", version="2.0.0")
 
@@ -298,6 +301,57 @@ def boundary(
         "inside": inside.tolist(),
         "experiments": experiments,
     }
+
+
+_cards: dict | None = None
+
+
+def load_cards() -> dict:
+    """Evidence cards plus the stored result of scripts/verify_cards.py."""
+    global _cards
+    if _cards is None:
+        data = json.loads(CARDS_FILE.read_text(encoding="utf-8"))
+        verification = None
+        if CARDS_VERIFICATION_FILE.exists():
+            v = json.loads(CARDS_VERIFICATION_FILE.read_text(encoding="utf-8"))
+            verification = {
+                k: v[k] for k in ("checked_on", "method", "quotes", "quotes_verified", "all_passed")
+            }
+        _cards = {
+            "sources": data["sources"],
+            "cards": data["cards"],
+            "verification": verification,
+        }
+    return _cards
+
+
+def _public_sources(sources: dict) -> dict:
+    # The local file path is a build detail, not part of the API.
+    return {k: {f: v for f, v in s.items() if f != "file"} for k, s in sources.items()}
+
+
+@app.get("/cards", dependencies=[Depends(verify_api_key)])
+def list_cards(material: str | None = Query(None, max_length=40)):
+    """All evidence cards, optionally filtered by material id."""
+    data = load_cards()
+    cards = data["cards"]
+    if material:
+        cards = [c for c in cards if material in c["material_ids"]]
+    return {
+        "cards": cards,
+        "sources": _public_sources(data["sources"]),
+        "verification": data["verification"],
+    }
+
+
+@app.get("/cards/{card_id}", dependencies=[Depends(verify_api_key)])
+def get_card(card_id: str):
+    data = load_cards()
+    for c in data["cards"]:
+        if c["card_id"] == card_id:
+            sources = {sid: data["sources"][sid] for sid in c["source_ids"]}
+            return {"card": c, "sources": _public_sources(sources), "verification": data["verification"]}
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"No card '{card_id}'")
 
 
 if __name__ == "__main__":

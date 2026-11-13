@@ -1,0 +1,426 @@
+{
+  "checked_on": "2026-11-13",
+  "method": "Each quote matched word for word against the source page text (pdftotext layout and reading order) or PSI CSV, ignoring whitespace, quote/dash styles and private-use symbol glyphs.",
+  "cards": 10,
+  "quotes": 64,
+  "quotes_verified": 64,
+  "all_passed": true,
+  "source_sha256": {
+    "NTRS-20210011385": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+    "NTRS-20210011521": "d25b394f43774ee79a3223b53e90571be299c8996d1cff2512c76e3308e107f5",
+    "NTRS-20170000230": "34c6a5a3a2f3dcca7eec796596dee842a59d029635416cbf5b4916516bd7218c",
+    "NTRS-20150022421": "0033f7cbed1d4affdc2d96e0fa581b608f76024d64e421475f038dd37f8604b8",
+    "NTRS-20260003925": "1d207280909ff46bf54b6b7e6805aa3c1b99d0824d96b37762c12b9b60b9d6f8",
+    "NTRS-20080034883": "bb3dd1a5b3a0a6f85e42b5b285f7b191772b72317fe8ba36756d112cba774be2",
+    "NTRS-20240015307": "eb86f426ee83c3edb3eda8053f33382248394f5bcb6aa6be171b59ddab5c3e47",
+    "NTRS-20250010975": "0481647076339686df059467f529fe2cd661b926655f04a0842ec0eb33d551b7",
+    "PSI-98": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d",
+    "PSI-99": "3c24390b9ef86f3d1ebaab911a1a3cc95a8759aebf42062371370e6d4b31b8ac"
+  },
+  "results": {
+    "CARD-BASS2-SIBAL": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 103,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20210011385",
+        "page": 103,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20210011385",
+        "page": 104,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20210011385",
+        "page": 104,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20210011385",
+        "page": 104,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20210011385",
+        "page": 104,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20210011385",
+        "page": 109,
+        "ok": true
+      },
+      {
+        "quote": 7,
+        "source_id": "NTRS-20210011385",
+        "page": 109,
+        "ok": true
+      }
+    ],
+    "CARD-BASS2-PMMA-RODS": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 97,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20210011385",
+        "page": 84,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20210011385",
+        "page": 84,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20210011385",
+        "page": 84,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20210011385",
+        "page": 97,
+        "ok": true
+      }
+    ],
+    "CARD-SAFFIRE2": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 7,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "CARD-SAFFIRE1": [
+      {
+        "quote": 0,
+        "source_id": "PSI-98",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "PSI-98",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20170000230",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20170000230",
+        "page": 2,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20170000230",
+        "page": 2,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20170000230",
+        "page": 4,
+        "ok": true
+      }
+    ],
+    "CARD-SAFFIRE-4-5": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011521",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20210011521",
+        "page": 2,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20210011521",
+        "page": 11,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20210011521",
+        "page": 11,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20210011521",
+        "page": 11,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20210011521",
+        "page": 11,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20210011521",
+        "page": 11,
+        "ok": true
+      }
+    ],
+    "CARD-SILICONE-1G": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20150022421",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20150022421",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20150022421",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20150022421",
+        "page": 10,
+        "ok": true
+      }
+    ],
+    "CARD-ECLSS-EXPLORATION": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20260003925",
+        "page": 13,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20260003925",
+        "page": 13,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20260003925",
+        "page": 13,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
+        "ok": true
+      }
+    ],
+    "CARD-EXPLORATION-0G-LIMITS": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20080034883",
+        "page": 5,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20080034883",
+        "page": 11,
+        "ok": true
+      },
+      {
+        "quote": 7,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      }
+    ],
+    "CARD-FM2-MOON": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      }
+    ],
+    "CARD-NOMEX-FM2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 7,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      }
+    ]
+  }
+}
