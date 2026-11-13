@@ -453,7 +453,7 @@
 
   <footer class="footer">
     flameatlas summarizes published nasa research for exploration and education · does not certify materials · does not replace nasa-std-6001 testing ·
-    data: nasa psi / ntrs · model: u-shaped logistic boundary (sibal) · <span id="metaN">—</span> measured tests · held-out accuracy <span id="metaAcc">—</span>% (always-burns baseline <span id="metaBase">—</span>%)
+    data: nasa psi / ntrs · model: logistic quenching boundary (sibal) · <span id="metaN">—</span> measured tests · held-out accuracy <span id="metaAcc">—</span>% (always-burns baseline <span id="metaBase">—</span>%)
   </footer>
 </div>
 
@@ -721,9 +721,11 @@
 
       const c = getComputedStyle(els.html);
       const bm = b.model || {};
+      const sf = bm.safety || {};
       const note = bm.n_train
-        ? `boundary fitted to ${bm.n_train} measured tests · held-out accuracy ${(bm.cv_accuracy*100).toFixed(0)}% vs ${(bm.baseline_accuracy*100).toFixed(0)}% always-burns baseline` +
-          (bm.blowoff_side_in_tested_range === false ? ' · shows the low-flow (quenching) side of the U; the blowoff side lies beyond tested airflows' : '')
+        ? `fitted to ${bm.n_train} measured tests · in held-out testing: AUC ${bm.auc.toFixed(2)}, ` +
+          `${sf.burned_called_no_spread} of ${sf.burned_cases} burning cases called "no spread", ` +
+          `${Math.round(100 * sf.extinctions_flagged / sf.extinction_cases)}% of extinctions flagged · quenching side only (one blowoff test)`
         : '';
       Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
         title: { text: note, font: { size: 10, color: c.getPropertyValue('--plot-text').trim() }, x: 0.01, xanchor: 'left' },

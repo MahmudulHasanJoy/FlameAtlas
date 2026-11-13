@@ -5,7 +5,7 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | ADR-0001 to ADR-0014 recorded |
-| 1.1 | 2026-11-13 | ADR-0015 to ADR-0022 recorded from the build; superseded records marked in the index |
+| 1.1 | 2026-11-13 | ADR-0015 to ADR-0023 recorded from the build; superseded records marked in the index |
 
 ## Index
 
@@ -32,7 +32,8 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | [0019](#adr-0019-dark-and-light-themes) | Dark and light themes | Accepted | 2026-11-13 |
 | [0020](#adr-0020-render-single-service-deployment) | Render single-service deployment | Accepted | 2026-11-13 |
 | [0021](#adr-0021-evidence-only-materials) | Evidence-only materials | Accepted | 2026-11-13 |
-| [0022](#adr-0022-u-shaped-logistic-boundary-on-measured-tests-only) | U-shaped logistic boundary on measured tests only | Accepted | 2026-11-13 |
+| [0022](#adr-0022-u-shaped-logistic-boundary-on-measured-tests-only) | U-shaped logistic boundary on measured tests only | Amended by 0023 | 2026-11-13 |
+| [0023](#adr-0023-drop-the-squared-term-and-widen-the-marginal-band) | Drop the squared term and widen the MARGINAL band | Accepted | 2026-11-13 |
 
 ---
 
@@ -241,4 +242,24 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 **Decision.** Fit the logistic form of ADR-0006 (O2, log flow, log flow²) to measured SIBAL microgravity outcomes only: 42 usable rows of Table 7.1 plus 5 concurrent-flow Saffire tests (NTRS 20210011521, Table 2, quote-checked), 47 in total. Report held-out accuracy next to the always-burns baseline and a gradient-boosting comparison, in the API and on the dashboard.
 
 **Consequences.** Held-out accuracy is 81.5% against a 78.7% baseline (gradient boosting on the same data: 78.7%); the model rarely predicts extinction correctly (2 of 10 held out), because extinctions are scarce. The fitted peak is near 1,050 cm/s, far above the tested 2 to 53 cm/s, so within the tested range the plot shows only the quenching side of the U, and says so. The boundary is smooth and drawn only inside the tested range. Pressure is not a model input (every SIBAL test ran near 1 atm); predictions are accepted within 15 kPa of the tested pressure. Supersedes ADR-0016.
+
+## ADR-0023: Drop the squared term and widen the MARGINAL band
+
+**Context.** Under ADR-0022 the model caught only about a quarter of extinctions at a 50% cutoff. No further tabulated SIBAL extinction data exist in the downloaded NASA sources (the PSI logs record conditions only; extra quench points appear only in a plotted figure, which cannot be quote-checked; Confined Combustion extinctions are caused by baffle spacing, a different variable). So the options were tested on the 47 measured tests, with 5-fold cross-validation repeated 20 times and, for automatic selection, an inner cross-validation loop:
+
+| Option | Accuracy | Extinction recall (50% cutoff) | AUC |
+|---|---|---|---|
+| Always burns | 0.787 | 0 | 0.50 |
+| O2, log flow, log flow² (ADR-0022) | 0.815 | 0.23 | 0.85 |
+| O2, log flow | 0.820 | 0.25 | 0.86 |
+| + log sample width | 0.817 | 0.22 | 0.85 |
+| + O2 × log flow | 0.826 | 0.30 | 0.86 |
+| O2, log flow, class-weighted | 0.719 | 0.81 | 0.86 |
+| Nested automatic selection | 0.795 | 0.22 | 0.85 |
+
+Scored with the app's three-way output, class weighting called 28% of burning tests NO SPREAD, the dangerous error for a fire-safety tool, so it was rejected. The unweighted O2 + log-flow model never did.
+
+**Decision.** Use logistic regression on O2 and log flow (the squared term's fitted peak lay near 1,000 cm/s and added nothing), and report SPREAD at P ≥ 0.7, NO SPREAD at P ≤ 0.3 and MARGINAL between. The band was chosen from 0.4-0.6, 0.3-0.7 and 0.2-0.8 after seeing held-out results, a small selection effect. Report AUC and safety counts with accuracy.
+
+**Consequences.** Held-out: AUC 0.86, 0 of 740 burning cases called NO SPREAD, 159 of 200 extinctions flagged MARGINAL or NO SPREAD, accuracy 0.820. Gradient boosting on the same folds: AUC 0.82, 83 burning cases called NO SPREAD. The model almost never says NO SPREAD; near the boundary it says MARGINAL, which is the honest answer for 10 recorded extinctions. Catching extinctions more precisely needs more NASA extinction data, not a different model.
 

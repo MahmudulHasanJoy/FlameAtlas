@@ -295,8 +295,8 @@ def boundary(
 
     meta = model.meta
     return {
-        "model": {k: meta.get(k) for k in ("type", "n_train", "cv_accuracy", "baseline_accuracy",
-                                           "peak_flow_cm_s", "blowoff_side_in_tested_range")},
+        "model": {k: meta.get(k) for k in ("type", "n_train", "cv_accuracy", "baseline_accuracy", "auc", "safety",
+                                           "spread_threshold", "no_spread_threshold")},
         "flows": flows.tolist(),
         "o2s": o2s.tolist(),
         "P_spread": P.tolist(),

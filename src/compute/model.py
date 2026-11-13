@@ -24,8 +24,8 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import RepeatedStratifiedKFold, StratifiedKFold, cross_val_predict
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -38,7 +38,7 @@ MODEL_META = REPO / "cache" / "model_meta.json"
 TABLE71 = REPO / "prototype" / "data" / "sibal_bass_table71.csv"
 ADDED_TESTS = REPO / "data" / "processed" / "sibal_added_tests.json"
 
-MODEL_FEATURES = ["oxygen_pct", "log_flow", "log_flow_sq"]
+MODEL_FEATURES = ["oxygen_pct", "log_flow"]
 TARGET = "outcome_class"
 TRAINED_MATERIALS = ["sibal"]
 # All SIBAL tests ran near 1 atm. Pressures within this margin of the tested
@@ -59,10 +59,12 @@ KNOWN_MATERIALS = {"sibal", "pmma", "nomex", "silicone"}
 # research-gap response instead of a number the data cannot support.
 MIN_ROWS_FOR_PREDICTION = 10
 
-# Thresholds that turn P(spread) into the 3-class prediction, mirroring the
-# prototype's MARGINAL band (core.py classify_habitat).
-SPREAD_THRESHOLD = 0.60
-NO_SPREAD_THRESHOLD = 0.40
+# Thresholds that turn P(spread) into SPREAD / MARGINAL / NO SPREAD. Chosen
+# from 0.4-0.6, 0.3-0.7 and 0.2-0.8 by held-out testing (ADR-0023): 0.3-0.7
+# flags most extinctions as MARGINAL without ever calling a burning test
+# NO SPREAD.
+SPREAD_THRESHOLD = 0.70
+NO_SPREAD_THRESHOLD = 0.30
 
 # Physical input bounds (defense in depth beyond the envelope guard).
 O2_MIN, O2_MAX = 10.0, 40.0
@@ -114,10 +116,14 @@ def _write_checksum(path: Path) -> None:
 
 
 def u_features(oxygen_pct, flow_cm_s) -> np.ndarray:
-    """Model inputs: O2, log(flow) and log(flow)^2 (flow floored at 0.5 cm/s)."""
+    """Model inputs: O2 and log(flow) (flow floored at 0.5 cm/s).
+
+    A log(flow)^2 term (the full U of ADR-0006) was tested and dropped: its
+    fitted peak lay near 1,000 cm/s, far outside the tested 2 to 53 cm/s, and
+    it did not improve held-out results (ADR-0023)."""
     o2 = np.asarray(oxygen_pct, dtype=float).ravel()
     lf = np.log(np.clip(np.asarray(flow_cm_s, dtype=float).ravel(), 0.5, None))
-    return np.c_[o2, lf, lf**2]
+    return np.c_[o2, lf]
 
 
 def load_training() -> pd.DataFrame:
@@ -184,63 +190,70 @@ def _u_pipeline() -> Pipeline:
     return Pipeline([("scale", StandardScaler()), ("clf", LogisticRegression(C=1.0, max_iter=1000))])
 
 
+def _three_way(p: np.ndarray) -> np.ndarray:
+    return np.where(p >= SPREAD_THRESHOLD, 2, np.where(p <= NO_SPREAD_THRESHOLD, 0, 1))
+
+
 def train() -> dict[str, Any]:
-    """Fit the U-shaped boundary, report honest repeated cross-validation
-    (with the always-burns baseline and a gradient-boosting comparison), and
-    save the model artifact, checksum and metadata to cache/."""
+    """Fit the quenching boundary and report honest held-out metrics.
+
+    Every metric comes from 5-fold stratified cross-validation repeated 20
+    times, scoring only tests the model did not see. Besides accuracy (and
+    the always-burns baseline) it reports AUC, and the fire-safety view of the
+    app's three-way output: how many burning tests were called NO SPREAD (the
+    dangerous error) and how many extinctions were flagged MARGINAL or NO
+    SPREAD. Gradient boosting is scored on the same folds for comparison."""
     df = load_training()
     X = u_features(df["oxygen_pct"], df["flow_cm_s"])
     y = (df[TARGET] == "spread").astype(int).to_numpy()
-
     rcv = RepeatedStratifiedKFold(n_splits=5, n_repeats=20, random_state=0)
 
-    def cv_acc(make_model, feats) -> float:
-        hits = []
+    def held_out(make_model, feats) -> dict[str, float]:
+        acc, auc = [], []
+        burned_as_no_spread = burned_n = out_flagged = out_n = 0
         for tr, te in rcv.split(feats, y):
-            m = make_model().fit(feats[tr], y[tr])
-            hits.append((m.predict(feats[te]) == y[te]).mean())
-        return float(np.mean(hits))
+            p = make_model().fit(feats[tr], y[tr]).predict_proba(feats[te])[:, 1]
+            yt, cls = y[te], _three_way(p)
+            acc.append(((p >= 0.5).astype(int) == yt).mean())
+            auc.append(roc_auc_score(yt, p))
+            burned_as_no_spread += int(((cls == 0) & (yt == 1)).sum()); burned_n += int((yt == 1).sum())
+            out_flagged += int(((cls <= 1) & (yt == 0)).sum()); out_n += int((yt == 0).sum())
+        return {
+            "accuracy": round(float(np.mean(acc)), 4),
+            "auc": round(float(np.mean(auc)), 4),
+            "burned_called_no_spread": burned_as_no_spread, "burned_cases": burned_n,
+            "extinctions_flagged": out_flagged, "extinction_cases": out_n,
+        }
 
-    cv_accuracy = cv_acc(_u_pipeline, X)
-    gb_accuracy = cv_acc(lambda: GradientBoostingClassifier(random_state=42),
-                         np.c_[df["oxygen_pct"], df["flow_cm_s"]])
+    main = held_out(_u_pipeline, X)
+    gb = held_out(lambda: GradientBoostingClassifier(random_state=42), np.c_[df["oxygen_pct"], df["flow_cm_s"]])
     baseline = float(max(y.mean(), 1 - y.mean()))
-
-    # Held-out confusion matrix (each test predicted while left out).
-    y_cv = cross_val_predict(_u_pipeline(), X, y, cv=StratifiedKFold(5, shuffle=True, random_state=0))
-    cm = confusion_matrix(y, y_cv, labels=[0, 1])
 
     pipe = _u_pipeline().fit(X, y)
     coef = pipe.named_steps["clf"].coef_[0]
-    # Flow where P(spread) peaks: d(logit)/d(log flow) = 0 in unscaled units.
-    sc = pipe.named_steps["scale"]
-    b1, b2 = coef[1] / sc.scale_[1], coef[2] / sc.scale_[2]
-    peak_flow = float(np.exp(-b1 / (2 * b2))) if b2 < 0 else None
-
     feature_range = {
         f: {"min": float(df[f].min()), "max": float(df[f].max())}
         for f in ["oxygen_pct", "pressure_kpa", "flow_cm_s"]
     }
     meta = {
-        "type": "logistic_u_shape",
-        "description": "Logistic regression on O2, log(flow), log(flow)^2 for SIBAL fabric (microgravity, concurrent flow)",
+        "type": "logistic_quench_boundary",
+        "description": "Logistic regression on O2 and log(flow) for SIBAL fabric (microgravity, concurrent flow); "
+                       "describes the low-flow quenching side of NASA's flammability boundary",
         "n_train": int(len(df)),
         "n_spread": int(y.sum()),
         "n_no_spread": int(len(y) - y.sum()),
-        "cv_method": "5-fold stratified, repeated 20 times; accuracy on held-out tests",
-        "cv_accuracy": round(cv_accuracy, 4),
+        "cv_method": "5-fold stratified, repeated 20 times; held-out tests only",
+        "cv_accuracy": main["accuracy"],
         "baseline_accuracy": round(baseline, 4),
-        "comparison": {"gradient_boosting_cv_accuracy": round(gb_accuracy, 4)},
+        "auc": main["auc"],
+        "safety": {k: main[k] for k in ("burned_called_no_spread", "burned_cases", "extinctions_flagged", "extinction_cases")},
+        "comparison": {"gradient_boosting": gb},
         "features": MODEL_FEATURES,
         "coefficients_standardized": dict(zip(MODEL_FEATURES, [round(float(c), 4) for c in coef])),
-        "u_shape": bool(coef[2] < 0),
-        "peak_flow_cm_s": round(peak_flow, 1) if peak_flow else None,
-        "blowoff_side_in_tested_range": bool(peak_flow is not None and peak_flow < float(df["flow_cm_s"].max())),
         "classes": ["no_spread", "spread"],
         "class_order": CLASS_ORDER,
         "feature_range": feature_range,
         "pressure_tolerance_kpa": PRESSURE_TOLERANCE_KPA,
-        "confusion_matrix": {"labels": ["no_spread", "spread"], "matrix": cm.tolist(), "method": "held-out, 5-fold"},
         "spread_threshold": SPREAD_THRESHOLD,
         "no_spread_threshold": NO_SPREAD_THRESHOLD,
         "known_materials": sorted(KNOWN_MATERIALS),
@@ -258,11 +271,13 @@ def train() -> dict[str, Any]:
     os.replace(tmp_meta, MODEL_META)
     MODEL_META.chmod(0o444)
 
-    print(f"Trained U-shaped logistic boundary on {len(df)} SIBAL tests ({int(y.sum())} burned)")
-    print(f"  CV accuracy {cv_accuracy:.3f} | always-burns baseline {baseline:.3f} | gradient boosting {gb_accuracy:.3f}")
-    print(f"  standardized coefficients {meta['coefficients_standardized']} (U shape: {meta['u_shape']}, "
-          f"peak at {meta['peak_flow_cm_s']} cm/s, blowoff side within tested flows: {meta['blowoff_side_in_tested_range']})")
-    print(f"  held-out confusion matrix [no_spread, spread]: {cm.tolist()}")
+    sf = meta["safety"]
+    print(f"Trained quenching boundary on {len(df)} SIBAL tests ({int(y.sum())} burned, {len(y) - int(y.sum())} went out)")
+    print(f"  held-out accuracy {main['accuracy']:.3f} (always-burns {baseline:.3f}) | AUC {main['auc']:.3f}")
+    print(f"  burning tests called NO SPREAD: {sf['burned_called_no_spread']}/{sf['burned_cases']} | "
+          f"extinctions flagged: {sf['extinctions_flagged']}/{sf['extinction_cases']}")
+    print(f"  gradient boosting, same folds: {gb}")
+    print(f"  standardized coefficients {meta['coefficients_standardized']}")
     return meta
 
 
@@ -318,6 +333,8 @@ class FlameAtlasModel:
             "n_train": self.meta["n_train"],
             "cv_accuracy": self.meta["cv_accuracy"],
             "baseline_accuracy": self.meta.get("baseline_accuracy"),
+            "auc": self.meta.get("auc"),
+            "safety": self.meta.get("safety"),
             "features": self.meta["features"],
             "feature_range": self.meta["feature_range"],
         }

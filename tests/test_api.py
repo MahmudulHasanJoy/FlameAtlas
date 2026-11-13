@@ -133,13 +133,14 @@ def test_sibal_map_and_nearest_use_only_measured_sibal_tests():
     assert near and all(n["material"] == "sibal" for n in near)
 
 
-def test_model_is_u_shaped_and_beats_baseline_honestly():
+def test_model_metrics_are_honest_and_safe():
     m = client.post("/predict", json=body(), headers=KEY).json()["model"]
-    assert m["type"] == "logistic_u_shape" and m["n_train"] == 47
-    assert m["cv_accuracy"] > m["baseline_accuracy"]
-    # Quenching side of the U: burning gets less likely as flow drops.
-    p = lambda f: client.post("/predict", json=body(o2=18.0, flow=f), headers=KEY).json()["probabilities"]["spread"]
-    assert p(10.0) > p(2.0)
-    # More oxygen means burning is more likely.
-    q = lambda o2: client.post("/predict", json=body(o2=o2, flow=5.0), headers=KEY).json()["probabilities"]["spread"]
-    assert q(21.0) > q(17.0)
+    assert m["type"] == "logistic_quench_boundary" and m["n_train"] == 47
+    assert m["cv_accuracy"] > m["baseline_accuracy"] and m["auc"] > 0.8
+    # The dangerous error for a fire-safety tool: a burning case called NO SPREAD.
+    assert m["safety"]["burned_called_no_spread"] == 0
+    assert m["safety"]["extinctions_flagged"] / m["safety"]["extinction_cases"] > 0.7
+    # Quenching side: burning gets less likely as flow drops; more O2 burns more.
+    p = lambda o2, f: client.post("/predict", json=body(o2=o2, flow=f), headers=KEY).json()["probabilities"]["spread"]
+    assert p(18.0, 10.0) > p(18.0, 2.0)
+    assert p(21.0, 5.0) > p(17.0, 5.0)

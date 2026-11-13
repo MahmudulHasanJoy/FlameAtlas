@@ -271,7 +271,7 @@ The 30-second video and the live pitch follow the same path. Every step must wor
 
 | Seconds | Action | What the viewer sees |
 |---|---|---|
-| 0 to 4 | App opens on Map, material SIBAL, preset "ISS cabin" | Dots, U-shaped boundary, star in burn region, badge `DANGER` |
+| 0 to 4 | App opens on Map, material SIBAL, preset "ISS cabin" | Dots, quenching boundary, star in burn region, badge `SPREAD` (as built) |
 | 4 to 10 | Lower oxygen to 17% and airflow to about 2 cm/s | Star crosses the boundary near NASA's quenched tests; badge changes to `SELF-EXTINGUISHES` |
 | 10 to 15 | Choose preset "Exploration 8.2 psia / 34% O2" | Star jumps into the hatched area; badge `UNTESTED`; pressure warning |
 | 15 to 20 | Click a dot | Evidence card with NASA source and page |

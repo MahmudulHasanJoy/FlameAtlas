@@ -1,28 +1,37 @@
 {
-  "type": "logistic_u_shape",
-  "description": "Logistic regression on O2, log(flow), log(flow)^2 for SIBAL fabric (microgravity, concurrent flow)",
+  "type": "logistic_quench_boundary",
+  "description": "Logistic regression on O2 and log(flow) for SIBAL fabric (microgravity, concurrent flow); describes the low-flow quenching side of NASA's flammability boundary",
   "n_train": 47,
   "n_spread": 37,
   "n_no_spread": 10,
-  "cv_method": "5-fold stratified, repeated 20 times; accuracy on held-out tests",
-  "cv_accuracy": 0.8146,
+  "cv_method": "5-fold stratified, repeated 20 times; held-out tests only",
+  "cv_accuracy": 0.82,
   "baseline_accuracy": 0.7872,
+  "auc": 0.8579,
+  "safety": {
+    "burned_called_no_spread": 0,
+    "burned_cases": 740,
+    "extinctions_flagged": 159,
+    "extinction_cases": 200
+  },
   "comparison": {
-    "gradient_boosting_cv_accuracy": 0.7873
+    "gradient_boosting": {
+      "accuracy": 0.7873,
+      "auc": 0.8164,
+      "burned_called_no_spread": 83,
+      "burned_cases": 740,
+      "extinctions_flagged": 97,
+      "extinction_cases": 200
+    }
   },
   "features": [
     "oxygen_pct",
-    "log_flow",
-    "log_flow_sq"
+    "log_flow"
   ],
   "coefficients_standardized": {
-    "oxygen_pct": 1.5733,
-    "log_flow": 0.7458,
-    "log_flow_sq": -0.2344
+    "oxygen_pct": 1.5689,
+    "log_flow": 0.5579
   },
-  "u_shape": true,
-  "peak_flow_cm_s": 1053.5,
-  "blowoff_side_in_tested_range": false,
   "classes": [
     "no_spread",
     "spread"
@@ -47,25 +56,8 @@
     }
   },
   "pressure_tolerance_kpa": 15.0,
-  "confusion_matrix": {
-    "labels": [
-      "no_spread",
-      "spread"
-    ],
-    "matrix": [
-      [
-        2,
-        8
-      ],
-      [
-        3,
-        34
-      ]
-    ],
-    "method": "held-out, 5-fold"
-  },
-  "spread_threshold": 0.6,
-  "no_spread_threshold": 0.4,
+  "spread_threshold": 0.7,
+  "no_spread_threshold": 0.3,
   "known_materials": [
     "nomex",
     "pmma",

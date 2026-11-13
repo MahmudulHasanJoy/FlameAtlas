@@ -21,9 +21,10 @@ Used by the team, with the team directing each step, to:
   the API key from the browser, add the Render configuration, pinned
   requirements and API tests.
 - Add a research-gap response for materials without enough outcome data.
-- Replace the gradient-boosting model with the U-shaped logistic boundary the
-  team's own spec described (ADR-0006), retrained on measured outcomes only, with
-  honest repeated cross-validation against a baseline (ADR-0022).
+- Replace the gradient-boosting model with the logistic boundary the team's own
+  spec described (ADR-0006), retrained on measured outcomes only. Every model
+  choice (features, class weighting, decision band) was tested with repeated
+  held-out cross-validation before it was adopted (ADR-0022, ADR-0023).
 - Draft the evidence cards (`data/processed/cards.json`), evidence points
   (`evidence_points.json`) and material profiles (`materials.json`) from the
   downloaded NASA PDFs and PSI tables.
