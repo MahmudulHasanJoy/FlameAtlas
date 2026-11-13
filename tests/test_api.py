@@ -109,22 +109,37 @@ def test_evidence_points_for_gap_materials():
 def test_boundary_grid_matches_predict():
     # Guards the grid orientation: P_spread is indexed [flow][o2].
     b = client.get("/boundary?material=sibal&n=60", headers=KEY).json()
-    for i in (25, 40, 55):  # flows above the 0.5 cm/s input minimum
-        for j in (5, 30, 55):
+    for i in (15, 30, 45):
+        for j in (20, 30, 40):
+            if not b["inside"][i][j]:
+                continue  # outside the tested range /predict returns no prediction
             pr = client.post("/predict", json={"oxygen_pct": b["o2s"][j], "pressure_kpa": 101.3,
                                                "flow_cm_s": b["flows"][i], "material": "sibal"}, headers=KEY).json()
             assert abs(pr["probabilities"]["spread"] - b["P_spread"][i][j]) < 0.01
 
 
-def test_sibal_map_and_nearest_use_only_recorded_sibal_tests():
+def test_sibal_map_and_nearest_use_only_measured_sibal_tests():
     exps = client.get("/boundary?material=sibal&n=10", headers=KEY).json()["experiments"]
-    shown = [e for e in exps if e["same_material"] and e["outcome_recorded"]]
-    assert len(shown) >= 38
-    assert all(e["outcome"] in ("spread", "no_spread") for e in shown)
-    names = {e["material"] for e in exps if e["same_material"]}
-    assert {"sibal", "SIBAL Fabric", "Cotton-Fiberglass (SIBAL)"} <= names
-    assert not any(e["same_material"] for e in exps if "Heptane" in e["material"] or e["material"] == "PMMA & Nomex")
-    # Near Saffire-II conditions the nearest list must still be SIBAL only.
+    train = [e for e in exps if e["in_training"]]
+    assert len(train) == 47
+    assert all(e["material"] == "sibal" and e["outcome"] in ("spread", "no_spread") for e in train)
+    # Table 7.1 rows flagged in the source stay visible, labeled, but are not trained on.
+    excluded = [e for e in exps if not e["in_training"] and e["note"].startswith("excluded from the model")]
+    assert len(excluded) == 6
+    # PSI duplicates of the Saffire tests are gone; unnamed sample 2-9 (not SIBAL) is kept.
+    assert not any(e["material"] in ("SIBAL Fabric", "Cotton-Fiberglass (SIBAL)") for e in exps)
+    assert sum(e["material"] == "unnamed sample" for e in exps) == 1
     near = client.post("/predict", json=body(o2=22.0, flow=20.0), headers=KEY).json()["nearest_experiments"]
-    assert near and all("sibal" in n["material"].lower() for n in near)
-    assert all(n["outcome"] != "marginal_spread" for n in near)
+    assert near and all(n["material"] == "sibal" for n in near)
+
+
+def test_model_is_u_shaped_and_beats_baseline_honestly():
+    m = client.post("/predict", json=body(), headers=KEY).json()["model"]
+    assert m["type"] == "logistic_u_shape" and m["n_train"] == 47
+    assert m["cv_accuracy"] > m["baseline_accuracy"]
+    # Quenching side of the U: burning gets less likely as flow drops.
+    p = lambda f: client.post("/predict", json=body(o2=18.0, flow=f), headers=KEY).json()["probabilities"]["spread"]
+    assert p(10.0) > p(2.0)
+    # More oxygen means burning is more likely.
+    q = lambda o2: client.post("/predict", json=body(o2=o2, flow=5.0), headers=KEY).json()["probabilities"]["spread"]
+    assert q(21.0) > q(17.0)

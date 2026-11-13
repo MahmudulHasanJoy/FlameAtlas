@@ -7,7 +7,7 @@
       "name": "SIBAL fabric",
       "full_name": "SIBAL cotton-fiberglass fabric",
       "data_status": "model",
-      "data_status_text": "Prediction model available: 38 microgravity tests with burn and no-burn outcomes (BASS and BASS-II).",
+      "data_status_text": "Prediction model available: 47 measured microgravity tests with burn and no-burn outcomes (BASS, BASS-II and Saffire I-IV).",
       "summary": "A custom woven fabric made for NASA's SIBAL project and later used as a fabric fuel in BASS, Saffire and FM2.",
       "facts": [
         {

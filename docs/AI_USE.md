@@ -3,7 +3,7 @@
 ## Summary
 
 FlameAtlas runs **no AI model at runtime**. Predictions come from a deterministic
-gradient-boosting classifier trained on published NASA data. An AI coding
+logistic-regression boundary fitted to measured NASA microgravity tests. An AI coding
 assistant was used during development, as described below.
 
 ## Science layer (team)
@@ -21,6 +21,9 @@ Used by the team, with the team directing each step, to:
   the API key from the browser, add the Render configuration, pinned
   requirements and API tests.
 - Add a research-gap response for materials without enough outcome data.
+- Replace the gradient-boosting model with the U-shaped logistic boundary the
+  team's own spec described (ADR-0006), retrained on measured outcomes only, with
+  honest repeated cross-validation against a baseline (ADR-0022).
 - Draft the evidence cards (`data/processed/cards.json`), evidence points
   (`evidence_points.json`) and material profiles (`materials.json`) from the
   downloaded NASA PDFs and PSI tables.

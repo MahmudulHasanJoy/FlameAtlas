@@ -133,6 +133,8 @@ def main() -> int:
     quote_sets += [
         (f"material:{m['material_id']}:{f['label']}", f["quotes"]) for m in materials for f in m["facts"]
     ]
+    added = json.loads((REPO / "data" / "processed" / "sibal_added_tests.json").read_text(encoding="utf-8"))
+    quote_sets.append(("training:sibal_added_tests", added["quotes"]))
     for key, qs in quote_sets:
         for q in qs:
             if q["source_id"] not in sources:

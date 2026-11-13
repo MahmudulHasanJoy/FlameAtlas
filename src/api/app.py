@@ -260,32 +260,17 @@ def boundary(
             detail=f"No outcome data for '{material}'; no boundary can be drawn.",
         )
     fr = model.meta["feature_range"]
-
     o2_min, o2_max = fr["oxygen_pct"]["min"], fr["oxygen_pct"]["max"]
     flow_min, flow_max = fr["flow_cm_s"]["min"], fr["flow_cm_s"]["max"]
 
-    o2s = np.linspace(o2_min, o2_max, n)
-    flows = np.logspace(np.log10(flow_min), np.log10(flow_max), n)
+    # The grid covers more than the tested range so the untested area is
+    # visible; "inside" marks the tested envelope. The model has no pressure
+    # term (every SIBAL test ran near 1 atm), so pressure_kpa does not change
+    # the grid; /predict applies the pressure guard instead.
+    o2s = np.linspace(min(14.0, o2_min), max(24.0, o2_max), n)
+    flows = np.logspace(np.log10(0.5), np.log10(60.0), n)
     O, F = np.meshgrid(o2s, flows)
-
-    X = pd.DataFrame(
-        {
-            "oxygen_pct": O.ravel(),
-            "pressure_kpa": pressure_kpa,
-            "flow_cm_s": F.ravel(),
-            "material": material,
-        }
-    )
-    proba = model.pipe.predict_proba(X)
-    try:
-        spread_idx = list(model.pipe.classes_).index("spread")
-    except ValueError:
-        spread_idx = None
-    if spread_idx is None:
-        P = np.zeros(O.ravel().shape)
-    else:
-        P = proba[:, spread_idx]
-    P = P.reshape(O.shape)
+    P = model.prob_spread(O.ravel(), F.ravel()).reshape(O.shape)
 
     inside = (O >= o2_min) & (O <= o2_max) & (F >= flow_min) & (F <= flow_max)
 
@@ -303,10 +288,15 @@ def boundary(
                 # available behind a "show other tests" toggle, labeled.
                 "same_material": matches_material(r["material"], material),
                 "outcome_recorded": r["outcome_class"] != UNRECORDED_OUTCOME,
+                "in_training": bool(r["in_training"]),
+                "note": r["note"] or "",
             }
         )
 
+    meta = model.meta
     return {
+        "model": {k: meta.get(k) for k in ("type", "n_train", "cv_accuracy", "baseline_accuracy",
+                                           "peak_flow_cm_s", "blowoff_side_in_tested_range")},
         "flows": flows.tolist(),
         "o2s": o2s.tolist(),
         "P_spread": P.tolist(),

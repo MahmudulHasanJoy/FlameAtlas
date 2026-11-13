@@ -24,7 +24,7 @@ flowchart LR
     browser(["User browser"])
     subgraph render["Render web service (one container)"]
         api["FastAPI app<br/>src/api/app.py"]
-        model["Compute layer<br/>src/compute/model.py<br/>gradient boosting + range guard"]
+        model["Compute layer<br/>src/compute/model.py<br/>U-shaped logistic boundary + range guard"]
         page["frontend/dashboard.html"]
         files[("Bundled data<br/>experiments.parquet, model.joblib,<br/>cards.json, evidence_points.json,<br/>materials.json")]
     end

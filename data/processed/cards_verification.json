@@ -4,8 +4,8 @@
   "cards": 11,
   "evidence_points": 51,
   "materials": 4,
-  "quotes": 164,
-  "quotes_verified": 164,
+  "quotes": 171,
+  "quotes_verified": 171,
   "all_passed": true,
   "source_sha256": {
     "NTRS-20210011385": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
@@ -1174,6 +1174,50 @@
         "quote": 0,
         "source_id": "NTRS-20260003925",
         "page": 33,
+        "ok": true
+      }
+    ],
+    "training:sibal_added_tests": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20210011521",
+        "page": 8,
         "ok": true
       }
     ]

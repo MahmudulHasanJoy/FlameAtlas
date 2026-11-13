@@ -32,7 +32,7 @@ This folder is the single source of truth for what FlameAtlas is, how it is buil
 | 10 | [Decision Log](10-decisions.md) | Why we chose each tool and rule (architecture decision records) | Whole team |
 | 11 | [Glossary](11-glossary.md) | Combustion, NASA and AI terms in plain language | Aurin Subah, Farhan Alam Chowdhury |
 
-**What changed in the build.** FlameAtlas ships as one FastAPI service with an HTML dashboard: a gradient-boosting flame-spread model for SIBAL fabric, evidence-only maps for PMMA, Nomex and silicone, 11 evidence cards and 4 material profiles whose every quote is checked against the NASA source. Ask FlameAtlas is deferred. See [PRD Section 0](01-PRD.md#0-implementation-status-as-built-2026-11-13) and ADR-0015 to ADR-0021 in the [decision log](10-decisions.md).
+**What changed in the build.** FlameAtlas ships as one FastAPI service with an HTML dashboard: a U-shaped logistic flame-spread boundary for SIBAL fabric fitted to 47 measured tests, evidence-only maps for PMMA, Nomex and silicone, 11 evidence cards and 4 material profiles whose every quote is checked against the NASA source. Ask FlameAtlas is deferred. See [PRD Section 0](01-PRD.md#0-implementation-status-as-built-2026-11-13) and ADR-0015 to ADR-0021 in the [decision log](10-decisions.md).
 
 New to the project? Read the PRD summary, then the SDD context diagram, then the glossary. Building a specific part? Go straight to its spec and the matching rows of the traceability matrix in the test plan.
 

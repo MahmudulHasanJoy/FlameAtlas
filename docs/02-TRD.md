@@ -40,7 +40,7 @@ The PRD says **what** FlameAtlas does. This document fixes the **technical const
 | Language | Python 3.14 (3.11+ works) | |
 | Web service | FastAPI + uvicorn | Serves the dashboard at `/` and the JSON API (ADR-0015) |
 | Frontend | One static HTML page with Plotly 2.35 from the CDN | `frontend/dashboard.html`; dark and light themes |
-| Model | scikit-learn 1.9.0 `GradientBoostingClassifier` | Saved in `cache/model.joblib` with a SHA-256 integrity check; the version is pinned because pickled models only load reliably on the same version (ADR-0016) |
+| Model | scikit-learn 1.9.0 `LogisticRegression` on O2, log(flow), log(flow)² | Saved in `cache/model.joblib` with a SHA-256 integrity check; the version is pinned because pickled models only load reliably on the same version (ADR-0022) |
 | Data | `cache/experiments.parquet`; `data/processed/cards.json`, `evidence_points.json`, `materials.json` | All bundled in the repository |
 | Source check | `scripts/verify_cards.py` with poppler `pdftotext` | Development time only; needs the raw NASA files |
 | Language model | None at runtime | Ask is deferred (ADR-0017) |

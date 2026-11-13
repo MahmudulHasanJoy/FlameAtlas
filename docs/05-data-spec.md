@@ -232,10 +232,11 @@ Card text fields have length limits enforced by the schema: `key_finding` at mos
 
 | File | Contents | Key fields |
 |---|---|---|
-| `cache/experiments.parquet` | 620 rows parsed from 22 PSI tables plus BASS-II Table 7.1; 54 have oxygen, flow and outcome and are used for training | `oxygen_pct`, `pressure_kpa`, `flow_cm_s`, `material`, `outcome_class`, `report_id`, `source_url` |
+| `cache/experiments.parquet` | 620 rows parsed from 22 PSI tables plus BASS-II Table 7.1. Used for context on the map, not for training | `oxygen_pct`, `pressure_kpa`, `flow_cm_s`, `material`, `outcome_class`, `report_id`, `source_url` |
 | `data/processed/cards.json` | 11 evidence cards and the shared source list (15 NASA sources) | Card: `card_id`, `title`, `experiment`, `source_ids`, `linked_report_ids`, `material_ids`, `conditions`, `outcome_summary` (≤ 300 chars), `key_finding` (≤ 200), `safety_takeaway` (≤ 300), `takeaway_is_interpretation`, `locator`, `quotes[]`, `related_card_ids` |
 | `data/processed/evidence_points.json` | 51 individual test results for materials without a prediction model (43 PMMA, 4 Nomex, 4 silicone) | `point_id`, `material_id`, `variant`, `flow_cm_s`, `o2_pct_range` [low, high], `pressure_kpa`, `gravity`, `flow_direction`, `outcome` (`burned`, `extinguished`, `no_ignition`, `minimal_burn`), `outcome_detail`, `card_id`, `quotes[]` |
 | `data/processed/materials.json` | 4 material profiles | `material_id`, `name`, `data_status` (`model` or `evidence_only`), `data_status_text`, `summary`, `facts[]` (`label`, `value`, `quotes[]`), `card_ids` |
+| Model training set | 47 measured SIBAL microgravity tests: 42 rows of `prototype/data/sibal_bass_table71.csv` (6 rows the table flags as unreliable are excluded and shown greyed with the reason) plus 5 Saffire tests from `data/processed/sibal_added_tests.json` (NTRS 20210011521, Table 2), which replace duplicate PSI-98/PSI-99 rows | `oxygen_pct`, `pressure_kpa`, `flow_cm_s`, `outcome_class`, `report_id`, `note` |
 | `data/processed/cards_verification.json` | Result of the quote check | Per-quote pass/fail, SHA-256 of every source file, date |
 
 **Quote objects.** `{source_id, page, text, context}`. `page` is the PDF page index (not the printed number) for NTRS sources and absent for PSI tables. `text` must appear in the source.
@@ -244,7 +245,7 @@ Card text fields have length limits enforced by the schema: `key_finding` at mos
 
 **Oxygen ranges.** In BASS-II Table 5.1 the oxygen fell during each test, and the table gives only initial and final values. Each flow step is therefore stored with the full initial-to-final range rather than a single invented value.
 
-**Known data issue.** `scripts/build_experiments_parquet.py` labels any row without an explicit outcome as `marginal_spread`. For example, Saffire-II sample 2-5 (SIBAL, burned its full 29 cm) is labeled `marginal_spread`. This affects the training data, not the cards, points or profiles; fixing it needs a retrain.
+**Known data issue.** `scripts/build_experiments_parquet.py` labels any row without an explicit outcome as `marginal_spread`. For example, Saffire-II sample 2-5 (SIBAL, burned its full 29 cm) is labeled `marginal_spread`. Since ADR-0022 the model no longer trains on the parquet file, so this no longer affects predictions; on the map such rows are labeled "no outcome recorded".
 
 ## 5. Outcome rules
 

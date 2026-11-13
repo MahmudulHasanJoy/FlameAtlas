@@ -453,7 +453,7 @@
 
   <footer class="footer">
     flameatlas summarizes published nasa research for exploration and education · does not certify materials · does not replace nasa-std-6001 testing ·
-    data: nasa psi / ntrs · model: gradient-boosting · n_train <span id="metaN">—</span> · cv accuracy <span id="metaAcc">—</span>
+    data: nasa psi / ntrs · model: u-shaped logistic boundary (sibal) · <span id="metaN">—</span> measured tests · held-out accuracy <span id="metaAcc">—</span>% (always-burns baseline <span id="metaBase">—</span>%)
   </footer>
 </div>
 
@@ -490,7 +490,7 @@
     nearestList: document.getElementById('nearestList'), emptyList: document.getElementById('emptyList'),
     guard: document.getElementById('guard'), guardTitle: document.getElementById('guardTitle'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
     apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
-    metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
+    metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'), metaBase: document.getElementById('metaBase'),
     retryBtn: document.getElementById('retryBtn'),
     showOthers: document.getElementById('showOthers'),
     plotPlaceholder: document.getElementById('plotPlaceholder'),
@@ -569,6 +569,7 @@
     const metaLine = p.model ? `${p.model.type} · n_train ${p.model.n_train} · cv ${(p.model.cv_accuracy*100).toFixed(1)}%` : '';
     els.metaN.textContent = p.model ? p.model.n_train : '—';
     els.metaAcc.textContent = p.model ? (p.model.cv_accuracy*100).toFixed(1) : '—';
+    els.metaBase.textContent = p.model && p.model.baseline_accuracy ? (p.model.baseline_accuracy*100).toFixed(1) : '—';
 
     if (!p.in_training_range) {
       const noData = p.data_status === 'no_outcome_data';
@@ -681,18 +682,18 @@
         hovertemplate: 'no nasa tests here<extra></extra>',
       };
       const contour = {
-        type: 'contour', x: flows, y: o2s, z: P,
+        type: 'contour', x: flows, y: o2s, z,
         contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
         line: { color: '#101828', width: 2 },
         showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
       };
       const exp = b.experiments || [];
       const matName = (profileState.byId[materialSel.value] || {}).name || materialSel.value;
-      const own = exp.filter(e => e.same_material && e.outcome_recorded);
-      const others = exp.filter(e => !(e.same_material && e.outcome_recorded));
+      const own = exp.filter(e => e.in_training);
+      const others = exp.filter(e => !e.in_training);
       const traces = [];
       const styles = { spread: { color: '#f43f5e', symbol: 'circle', label: 'burned (spread)' }, no_spread: { color: '#10b981', symbol: 'square', label: 'went out / no spread' } };
-      const tip = p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet', p.material];
+      const tip = p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet', p.material, p.note || ''];
       ['spread', 'no_spread'].forEach(outcome => {
         const pts = own.filter(p => p.outcome === outcome);
         if (!pts.length) return;
@@ -701,15 +702,15 @@
           x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: `${matName} test: ${st.label}`,
           marker: { symbol: st.symbol, color: st.color, size: 8, line: { width: 1, color: 'white' } },
           customdata: pts.map(tip),
-          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>' + st.label + '<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
+          hovertemplate: '<b>%{customdata[4]}</b><br>' + st.label + ' · %{customdata[0]}<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
         });
       });
       if (els.showOthers.checked && others.length) {
         traces.push({
           x: others.map(p => p.x), y: others.map(p => p.y), mode: 'markers', name: 'other materials / no recorded outcome',
           marker: { symbol: 'x-thin-open', color: '#8a8f98', size: 8, line: { width: 1.5, color: '#8a8f98' } },
-          customdata: others.map(p => [...tip(p), p.same_material ? 'same material' : 'different material', p.outcome_recorded ? p.outcome.replace('_', ' ') : 'no outcome recorded in the dataset']),
-          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>%{customdata[4]} · %{customdata[5]}<br>o2 %{y}% · flow %{x} cm/s<br>shown for context, not part of this material\'s evidence<extra></extra>',
+          customdata: others.map(p => [...tip(p), p.same_material ? 'same material' : 'different material', p.outcome_recorded ? p.outcome.replace('_', ' ') : 'no outcome recorded in the dataset', p.note || 'not used to fit this boundary']),
+          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>%{customdata[4]} · %{customdata[5]}<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[6]}<extra></extra>',
         });
       }
       traces.push({
@@ -719,8 +720,14 @@
       });
 
       const c = getComputedStyle(els.html);
+      const bm = b.model || {};
+      const note = bm.n_train
+        ? `boundary fitted to ${bm.n_train} measured tests · held-out accuracy ${(bm.cv_accuracy*100).toFixed(0)}% vs ${(bm.baseline_accuracy*100).toFixed(0)}% always-burns baseline` +
+          (bm.blowoff_side_in_tested_range === false ? ' · shows the low-flow (quenching) side of the U; the blowoff side lies beyond tested airflows' : '')
+        : '';
       Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
-        margin: { l: 40, r: 20, t: 10, b: 40 },
+        title: { text: note, font: { size: 10, color: c.getPropertyValue('--plot-text').trim() }, x: 0.01, xanchor: 'left' },
+        margin: { l: 40, r: 20, t: 30, b: 40 },
         paper_bgcolor: c.getPropertyValue('--plot-bg').trim(),
         plot_bgcolor: c.getPropertyValue('--plot-bg').trim(),
         font: { family: 'Inter, sans-serif', size: 11, color: c.getPropertyValue('--plot-text').trim() },

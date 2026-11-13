@@ -1,22 +1,29 @@
 {
-  "type": "gradient_boosting",
-  "n_train": 54,
-  "cv_accuracy": 0.7964,
-  "cv_scores": [
-    0.8182,
-    0.8182,
-    0.9091,
-    0.6364,
-    0.8
-  ],
+  "type": "logistic_u_shape",
+  "description": "Logistic regression on O2, log(flow), log(flow)^2 for SIBAL fabric (microgravity, concurrent flow)",
+  "n_train": 47,
+  "n_spread": 37,
+  "n_no_spread": 10,
+  "cv_method": "5-fold stratified, repeated 20 times; accuracy on held-out tests",
+  "cv_accuracy": 0.8146,
+  "baseline_accuracy": 0.7872,
+  "comparison": {
+    "gradient_boosting_cv_accuracy": 0.7873
+  },
   "features": [
     "oxygen_pct",
-    "pressure_kpa",
-    "flow_cm_s",
-    "material"
+    "log_flow",
+    "log_flow_sq"
   ],
+  "coefficients_standardized": {
+    "oxygen_pct": 1.5733,
+    "log_flow": 0.7458,
+    "log_flow_sq": -0.2344
+  },
+  "u_shape": true,
+  "peak_flow_cm_s": 1053.5,
+  "blowoff_side_in_tested_range": false,
   "classes": [
-    "marginal_spread",
     "no_spread",
     "spread"
   ],
@@ -28,46 +35,44 @@
   "feature_range": {
     "oxygen_pct": {
       "min": 16.4,
-      "max": 22.1
+      "max": 22.0
     },
     "pressure_kpa": {
-      "min": 50.663,
+      "min": 100.0,
       "max": 101.3
     },
     "flow_cm_s": {
-      "min": 0.1,
+      "min": 2.0,
       "max": 53.0
     }
   },
+  "pressure_tolerance_kpa": 15.0,
   "confusion_matrix": {
     "labels": [
-      "marginal_spread",
       "no_spread",
       "spread"
     ],
     "matrix": [
       [
-        13,
-        0,
-        0
+        2,
+        8
       ],
       [
-        0,
-        13,
-        0
-      ],
-      [
-        0,
-        0,
-        28
+        3,
+        34
       ]
-    ]
+    ],
+    "method": "held-out, 5-fold"
   },
   "spread_threshold": 0.6,
   "no_spread_threshold": 0.4,
   "known_materials": [
     "nomex",
     "pmma",
+    "sibal",
+    "silicone"
+  ],
+  "trained_materials": [
     "sibal"
   ]
 }

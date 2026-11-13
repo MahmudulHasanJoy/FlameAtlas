@@ -5,7 +5,7 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | ADR-0001 to ADR-0014 recorded |
-| 1.1 | 2026-11-13 | ADR-0015 to ADR-0021 recorded from the build; superseded records marked in the index |
+| 1.1 | 2026-11-13 | ADR-0015 to ADR-0022 recorded from the build; superseded records marked in the index |
 
 ## Index
 
@@ -26,12 +26,13 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | [0013](#adr-0013-local-embeddings) | Local embeddings | Deferred (0017) | 2026-10-24 |
 | [0014](#adr-0014-light-theme-only) | Light theme only | Superseded by 0019 | 2026-10-24 |
 | [0015](#adr-0015-fastapi-service-with-a-static-dashboard) | FastAPI service with a static dashboard | Accepted | 2026-11-13 |
-| [0016](#adr-0016-gradient-boosting-classifier-for-the-boundary) | Gradient-boosting classifier for the boundary | Accepted | 2026-11-13 |
+| [0016](#adr-0016-gradient-boosting-classifier-for-the-boundary) | Gradient-boosting classifier for the boundary | Superseded by 0022 | 2026-11-13 |
 | [0017](#adr-0017-defer-ask-flameatlas) | Defer Ask FlameAtlas | Accepted | 2026-11-13 |
 | [0018](#adr-0018-machine-checked-quotes-for-cards-and-profiles) | Machine-checked quotes for cards and profiles | Accepted | 2026-11-13 |
 | [0019](#adr-0019-dark-and-light-themes) | Dark and light themes | Accepted | 2026-11-13 |
 | [0020](#adr-0020-render-single-service-deployment) | Render single-service deployment | Accepted | 2026-11-13 |
 | [0021](#adr-0021-evidence-only-materials) | Evidence-only materials | Accepted | 2026-11-13 |
+| [0022](#adr-0022-u-shaped-logistic-boundary-on-measured-tests-only) | U-shaped logistic boundary on measured tests only | Accepted | 2026-11-13 |
 
 ---
 
@@ -232,4 +233,12 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 **Decision.** Mark these materials *evidence only*. The map plots their individual NASA results (oxygen as a range where it drifted during the test) with no boundary and no prediction, and `/predict` returns a research-gap message.
 
 **Consequences.** The app shows real NASA data for four materials without inventing predictions, which supports PRD goal G-4. Adding a material to the model needs at least 10 rows with both burning and non-burning outcomes.
+
+## ADR-0022: U-shaped logistic boundary on measured tests only
+
+**Context.** Re-evaluating ADR-0016 on held-out SIBAL tests only (5-fold, repeated 20 times) showed the gradient-boosting model scored 63%, below the 72% of always guessing "burns". Its reported 79.6% cross-validation accuracy was inflated by 13 rows whose `marginal_spread` label is the parser's default for a missing outcome. It also trained on 6 Table 7.1 rows the table itself flags as unreliable, and its step-shaped boundary did not resemble NASA's published boundaries.
+
+**Decision.** Fit the logistic form of ADR-0006 (O2, log flow, log flow²) to measured SIBAL microgravity outcomes only: 42 usable rows of Table 7.1 plus 5 concurrent-flow Saffire tests (NTRS 20210011521, Table 2, quote-checked), 47 in total. Report held-out accuracy next to the always-burns baseline and a gradient-boosting comparison, in the API and on the dashboard.
+
+**Consequences.** Held-out accuracy is 81.5% against a 78.7% baseline (gradient boosting on the same data: 78.7%); the model rarely predicts extinction correctly (2 of 10 held out), because extinctions are scarce. The fitted peak is near 1,050 cm/s, far above the tested 2 to 53 cm/s, so within the tested range the plot shows only the quenching side of the U, and says so. The boundary is smooth and drawn only inside the tested range. Pressure is not a model input (every SIBAL test ran near 1 atm); predictions are accepted within 15 kPa of the tested pressure. Supersedes ADR-0016.
 

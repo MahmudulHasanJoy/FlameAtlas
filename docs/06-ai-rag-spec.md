@@ -11,7 +11,7 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
-| 1.1 | 2026-11-13 | Added an as-built status note: no language model at runtime, Ask deferred, gradient-boosting boundary model, cards drafted with AI assistance and checked against sources by script |
+| 1.1 | 2026-11-13 | Added an as-built status note: no language model at runtime, Ask deferred, boundary model (now the logistic form of Section 5, ADR-0022), cards drafted with AI assistance and checked against sources by script |
 
 ---
 
@@ -20,7 +20,7 @@
 **As-built status (2026-11-13).**
 
 - **No language model runs in the app.** Ask FlameAtlas (Sections 2, 3, 6 and 7 on retrieval, confidence and prompts) is deferred because the team has no model API key for this release (ADR-0017).
-- **Boundary model.** A scikit-learn gradient-boosting classifier on oxygen, pressure, flow and material replaces the logistic regression of Section 5 (ADR-0016). It reports stratified 5-fold cross-validation accuracy (0.796 on 54 rows) and refuses to predict outside the training range or for materials with fewer than 10 outcome rows.
+- **Boundary model.** The logistic regression of Section 5 (O2, log flow, log flow²), fitted to 47 measured SIBAL microgravity tests: BASS-II Table 7.1 (rows the table flags as unreliable excluded) and Saffire I-IV. Held-out accuracy is 81.5% (5-fold, repeated 20 times) against a 78.7% always-burns baseline; the gradient-boosting model it replaced scored 78.7% on the same data (ADR-0022). The fitted peak lies far above tested airflows, so within the tested range the model shows only the quenching side of the U. It refuses to predict outside the tested range or for materials with fewer than 10 measured tests.
 - **Evidence cards and material profiles** were drafted with an AI coding assistant (Claude Code) from the downloaded NASA papers, as Section 4 intended, but with a different safeguard: instead of a person checking each field, every card carries the exact quotes behind it and `scripts/verify_cards.py` confirms each quote word for word against the source (ADR-0018). Summaries and takeaways are labeled when they are interpretation and still need expert review.
 
 ## 1. Where AI is used, and where it is not
