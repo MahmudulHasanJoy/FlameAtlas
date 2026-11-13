@@ -38,7 +38,7 @@ MODEL_META = REPO / "cache" / "model_meta.json"
 TABLE71 = REPO / "prototype" / "data" / "sibal_bass_table71.csv"
 ADDED_TESTS = REPO / "data" / "processed" / "sibal_added_tests.json"
 
-MODEL_FEATURES = ["oxygen_pct", "log_flow"]
+MODEL_FEATURES = ["oxygen_pct", "inv_flow"]
 TARGET = "outcome_class"
 TRAINED_MATERIALS = ["sibal"]
 # All SIBAL tests ran near 1 atm. Pressures within this margin of the tested
@@ -116,14 +116,16 @@ def _write_checksum(path: Path) -> None:
 
 
 def u_features(oxygen_pct, flow_cm_s) -> np.ndarray:
-    """Model inputs: O2 and log(flow) (flow floored at 0.5 cm/s).
+    """Model inputs: O2 and 1/flow (flow floored at 0.5 cm/s).
 
-    A log(flow)^2 term (the full U of ADR-0006) was tested and dropped: its
-    fitted peak lay near 1,000 cm/s, far outside the tested 2 to 53 cm/s, and
-    it did not improve held-out results (ADR-0023)."""
+    1/flow grows sharply as airflow approaches zero, which lets the boundary
+    bend steeply on the quenching side, as NASA's SIBAL data and the authors'
+    quenching line do (NTRS 20150008962, Fig. 7). It beat log(flow),
+    log(flow)^2 and sample-width variants in held-out testing (ADR-0023,
+    ADR-0024; scripts/model_experiments.py)."""
     o2 = np.asarray(oxygen_pct, dtype=float).ravel()
-    lf = np.log(np.clip(np.asarray(flow_cm_s, dtype=float).ravel(), 0.5, None))
-    return np.c_[o2, lf]
+    u = np.clip(np.asarray(flow_cm_s, dtype=float).ravel(), 0.5, None)
+    return np.c_[o2, 1.0 / u]
 
 
 def load_training() -> pd.DataFrame:
@@ -237,7 +239,7 @@ def train() -> dict[str, Any]:
     }
     meta = {
         "type": "logistic_quench_boundary",
-        "description": "Logistic regression on O2 and log(flow) for SIBAL fabric (microgravity, concurrent flow); "
+        "description": "Logistic regression on O2 and 1/flow for SIBAL fabric (microgravity, concurrent flow); "
                        "describes the low-flow quenching side of NASA's flammability boundary",
         "n_train": int(len(df)),
         "n_spread": int(y.sum()),

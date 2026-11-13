@@ -6,7 +6,7 @@ FlameAtlas is a microgravity fire-safety explorer — your entry for the **NASA 
 
 It answers one question for spacecraft and habitat designers: **"Will this material burn up there?"**
 
-Set oxygen concentration, pressure, flow velocity, and material, and a logistic quenching boundary (oxygen and log airflow) fitted to 47 measured SIBAL microgravity tests predicts the flame-spread regime (`no_spread` / `marginal_spread` / `spread`), with class probabilities, an out-of-range guard, and an explanation layer that cites the nearest real experiments by report ID and NTRS URL.
+Set oxygen concentration, pressure, flow velocity, and material, and a logistic quenching boundary (oxygen and 1/airflow) fitted to 47 measured SIBAL microgravity tests predicts the flame-spread regime (`no_spread` / `marginal_spread` / `spread`), with class probabilities, an out-of-range guard, and an explanation layer that cites the nearest real experiments by report ID and NTRS URL.
 
 ## What's in the repo
 
@@ -69,7 +69,7 @@ take about a minute.
 
 ## Features
 
-- **Flame-spread prediction** — a logistic quenching boundary (oxygen and log airflow) fitted to 47 measured SIBAL microgravity tests; in held-out testing (5-fold, repeated 20 times) it ranks burning above extinguishing conditions with AUC 0.86, never called a burning case NO SPREAD (0 of 740), and flagged 80% of extinctions as MARGINAL or NO SPREAD; accuracy 82.0% vs a 78.7% always-burns baseline. Gradient boosting on the same folds: AUC 0.82 and 83 burning cases called NO SPREAD. NASA's SIBAL tests cover the low-flow (quenching) side of the flammability boundary only, and the plot says so
+- **Flame-spread prediction** — a logistic quenching boundary (oxygen and 1/airflow) fitted to 47 measured SIBAL microgravity tests; in held-out testing (5-fold, repeated 20 times) it ranks burning above extinguishing conditions with AUC 0.90, never called a burning case NO SPREAD (0 of 740), and flagged 82% of extinctions as MARGINAL or NO SPREAD; accuracy 87.0% vs a 78.7% always-burns baseline (85.7% when the shape choice itself is cross-validated). Gradient boosting on the same folds: AUC 0.82 and 83 burning cases called NO SPREAD. NASA's SIBAL tests cover the low-flow (quenching) side of the flammability boundary only, and the plot says so
 - **Evidence cards** — 10 NASA studies (BASS, BASS-II, Saffire I/II/IV/V, FM2, exploration atmospheres) summarized as cards with conditions, key finding, safety takeaway and the exact source quotes; open one from the evidence section, a map point, or a nearest experiment
 - **Material profiles** — SIBAL, PMMA, Nomex and silicone: what each is, Earth and microgravity limits, spacecraft use and data status, every fact linked to its NASA quote
 - **Evidence-only maps** — for PMMA, Nomex and silicone the map plots the individual NASA test results instead of a prediction

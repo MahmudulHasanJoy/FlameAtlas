@@ -24,7 +24,7 @@ Used by the team, with the team directing each step, to:
 - Replace the gradient-boosting model with the logistic boundary the team's own
   spec described (ADR-0006), retrained on measured outcomes only. Every model
   choice (features, class weighting, decision band) was tested with repeated
-  held-out cross-validation before it was adopted (ADR-0022, ADR-0023).
+  held-out cross-validation before it was adopted (ADR-0022 to ADR-0024).
 - Draft the evidence cards (`data/processed/cards.json`), evidence points
   (`evidence_points.json`) and material profiles (`materials.json`) from the
   downloaded NASA PDFs and PSI tables.

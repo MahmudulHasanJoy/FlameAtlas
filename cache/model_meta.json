@@ -1,17 +1,17 @@
 {
   "type": "logistic_quench_boundary",
-  "description": "Logistic regression on O2 and log(flow) for SIBAL fabric (microgravity, concurrent flow); describes the low-flow quenching side of NASA's flammability boundary",
+  "description": "Logistic regression on O2 and 1/flow for SIBAL fabric (microgravity, concurrent flow); describes the low-flow quenching side of NASA's flammability boundary",
   "n_train": 47,
   "n_spread": 37,
   "n_no_spread": 10,
   "cv_method": "5-fold stratified, repeated 20 times; held-out tests only",
-  "cv_accuracy": 0.82,
+  "cv_accuracy": 0.8701,
   "baseline_accuracy": 0.7872,
-  "auc": 0.8579,
+  "auc": 0.8963,
   "safety": {
     "burned_called_no_spread": 0,
     "burned_cases": 740,
-    "extinctions_flagged": 159,
+    "extinctions_flagged": 163,
     "extinction_cases": 200
   },
   "comparison": {
@@ -26,11 +26,11 @@
   },
   "features": [
     "oxygen_pct",
-    "log_flow"
+    "inv_flow"
   ],
   "coefficients_standardized": {
-    "oxygen_pct": 1.5689,
-    "log_flow": 0.5579
+    "oxygen_pct": 1.7298,
+    "inv_flow": -0.8135
   },
   "classes": [
     "no_spread",

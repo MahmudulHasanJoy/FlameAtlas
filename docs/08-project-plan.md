@@ -140,5 +140,5 @@ Sleep rule: each person takes at least one 4-hour block off between H18 and H34,
 | Working app at a public URL | Syed | Deploy-ready on Render (`render.yaml`); live URL pending |
 | 30-second demo video with English subtitles (or up to 7 slides) | Farhan | Hackathon |
 | Project page on spaceappschallenge.org | Farhan | Hackathon |
-| Results numbers (extraction accuracy, record counts) | Aurin | Measured: 47 SIBAL training tests, held-out AUC 0.86, 0/740 burning cases called NO SPREAD, 80% of extinctions flagged; 11 cards, 51 evidence points, 4 profiles; 164/164 quotes source-checked |
+| Results numbers (extraction accuracy, record counts) | Aurin | Measured: 47 SIBAL training tests, held-out AUC 0.90, accuracy 0.870, 0/740 burning cases called NO SPREAD, 82% of extinctions flagged; 11 cards, 51 evidence points, 4 profiles; 164/164 quotes source-checked |
 | AI use statement on the project page | Mahmudul | Drafted in `docs/AI_USE.md` |

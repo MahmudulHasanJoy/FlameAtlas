@@ -5,7 +5,7 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | ADR-0001 to ADR-0014 recorded |
-| 1.1 | 2026-11-13 | ADR-0015 to ADR-0023 recorded from the build; superseded records marked in the index |
+| 1.1 | 2026-11-13 | ADR-0015 to ADR-0024 recorded from the build; superseded records marked in the index |
 
 ## Index
 
@@ -33,7 +33,8 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | [0020](#adr-0020-render-single-service-deployment) | Render single-service deployment | Accepted | 2026-11-13 |
 | [0021](#adr-0021-evidence-only-materials) | Evidence-only materials | Accepted | 2026-11-13 |
 | [0022](#adr-0022-u-shaped-logistic-boundary-on-measured-tests-only) | U-shaped logistic boundary on measured tests only | Amended by 0023 | 2026-11-13 |
-| [0023](#adr-0023-drop-the-squared-term-and-widen-the-marginal-band) | Drop the squared term and widen the MARGINAL band | Accepted | 2026-11-13 |
+| [0023](#adr-0023-drop-the-squared-term-and-widen-the-marginal-band) | Drop the squared term and widen the MARGINAL band | Amended by 0024 | 2026-11-13 |
+| [0024](#adr-0024-use-1flow-so-the-quenching-boundary-can-bend) | Use 1/flow so the quenching boundary can bend | Accepted | 2026-11-13 |
 
 ---
 
@@ -262,4 +263,22 @@ Scored with the app's three-way output, class weighting called 28% of burning te
 **Decision.** Use logistic regression on O2 and log flow (the squared term's fitted peak lay near 1,000 cm/s and added nothing), and report SPREAD at P ≥ 0.7, NO SPREAD at P ≤ 0.3 and MARGINAL between. The band was chosen from 0.4-0.6, 0.3-0.7 and 0.2-0.8 after seeing held-out results, a small selection effect. Report AUC and safety counts with accuracy.
 
 **Consequences.** Held-out: AUC 0.86, 0 of 740 burning cases called NO SPREAD, 159 of 200 extinctions flagged MARGINAL or NO SPREAD, accuracy 0.820. Gradient boosting on the same folds: AUC 0.82, 83 burning cases called NO SPREAD. The model almost never says NO SPREAD; near the boundary it says MARGINAL, which is the honest answer for 10 recorded extinctions. Catching extinctions more precisely needs more NASA extinction data, not a different model.
+
+## ADR-0024: Use 1/flow so the quenching boundary can bend
+
+**Context.** Compared with the quenching line the BASS-II authors drew for 2.2 cm SIBAL (NTRS 20150008962, Fig. 7), the ADR-0023 boundary was too shallow at low airflow: about 1.5 O2 points lower at 2.2 cm/s. Fig. 7 plots the same tests as Table 7.1 (its text reports the same six quenching cases), so it adds no new data. The cause was the model's shape: with O2 and log(flow) the boundary is a straight line on the log-flow axis, but NASA's tests quench at 17.4 to 18.7% O2 near 2.2 to 2.6 cm/s while burning at 17.6% at 3 cm/s.
+
+**Decision.** Use O2 and 1/flow. 1/flow grows sharply as airflow falls, consistent with heat losses dominating near the quenching limit. Six shapes were compared with 5-fold CV repeated 20 times (`scripts/model_shape_experiments.py`):
+
+| Shape | Accuracy | AUC | Burning called NO SPREAD | Extinctions flagged |
+|---|---|---|---|---|
+| O2, log U (ADR-0023) | 0.820 | 0.858 | 0/740 | 159/200 |
+| **O2, 1/U** | **0.870** | **0.896** | **0/740** | **163/200** |
+| O2, log U, 1/U | 0.860 | 0.881 | 0/740 | 164/200 |
+| O2, log U, log U² | 0.815 | 0.847 | 0/740 | 160/200 |
+| O2, 1/U, log width | 0.860 | 0.895 | 0/740 | 159/200 |
+
+With the shape choice itself cross-validated (nested), accuracy is 0.857 and AUC 0.888; 1/U was the most frequent pick.
+
+**Consequences.** The mean distance between the fitted P = 0.5 boundary and the authors' line (read from the figure, about ±0.1) falls from 0.67 to 0.40 O2 points; from 2.7 cm/s upward they agree within about 0.3. The model still sits 0.6 to 0.8 points below the authors' line at 2.2 to 2.5 cm/s, where only one test (18.7% O2) exists and the authors drew through it by hand. Thresholds stay at 0.3 and 0.7. Amends ADR-0023.
 
