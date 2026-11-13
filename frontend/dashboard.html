@@ -244,6 +244,95 @@
   }
   .retry-btn:hover { background: var(--brand-hover); }
   .retry-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ---------- Evidence cards ---------- */
+  .evidence-panel { grid-column: 1 / -1; }
+  .presets { display: flex; flex-direction: column; gap: 6px; }
+  .presets .chip { text-align: left; border-radius: var(--radius-comfortable); }
+  .preset-note { font-size: 10px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.4; }
+  .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-tertiary); margin-top: -6px; cursor: pointer; }
+  .toggle-row input { accent-color: var(--brand-accent); }
+  @media (min-width: 600px) and (max-width: 899px) {
+    main { grid-template-areas: "left center" "right right" "evidence evidence"; }
+    .evidence-panel { grid-area: evidence; }
+  }
+  @media (max-width: 599px) {
+    main { grid-template-areas: "left" "center" "right" "evidence"; }
+    .evidence-panel { grid-area: evidence; }
+  }
+  .evidence-sub { font-size: 11px; color: var(--text-tertiary); font-family: var(--ff-mono); margin-left: auto; text-align: right; }
+  .evidence-sub .ok { color: var(--success); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .chip {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border-standard); color: var(--text-secondary);
+    border-radius: 999px; padding: 4px 11px; font-size: 11px; font-family: var(--ff-sans); cursor: pointer;
+  }
+  .chip:hover { color: var(--text-primary); border-color: var(--brand-accent); }
+  .chip[aria-pressed="true"] { background: var(--brand-bg); border-color: var(--brand-bg); color: #ffffff; }
+  .card-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .ev-card {
+    text-align: left; background: rgba(255,255,255,0.02); border: 1px solid var(--border-standard);
+    border-radius: var(--radius-card); padding: 14px; cursor: pointer; color: inherit; font-family: inherit;
+    display: flex; flex-direction: column; gap: 8px; transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .ev-card:hover, .ev-card:focus-visible { border-color: var(--brand-accent); background: rgba(113,112,255,0.06); outline: none; }
+  .ev-card .ev-exp { font-size: 10px; font-family: var(--ff-mono); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ev-card .ev-title { font-size: 13px; font-weight: 590; color: var(--text-primary); line-height: 1.35; }
+  .ev-card .ev-finding { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .ev-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
+  .ev-tag { font-size: 9px; font-weight: 590; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+  .ev-tag.src { background: rgba(113,112,255,0.14); color: var(--brand-accent); }
+  .ev-link { background: none; border: 1px solid var(--border-standard); color: var(--brand-accent); border-radius: 999px; font-size: 9px; font-weight: 590; padding: 1px 7px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--ff-sans); }
+  .ev-link:hover { border-color: var(--brand-accent); }
+
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; z-index: 50; overflow-y: auto; }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--bg-panel); border: 1px solid var(--border-standard); border-radius: var(--radius-panel);
+    width: 100%; max-width: 760px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); color: var(--text-primary);
+  }
+  .modal-head { display: flex; gap: 12px; align-items: flex-start; padding: 18px 22px; border-bottom: 1px solid var(--border-subtle); }
+  .modal-head h2 { font-size: 17px; font-weight: 590; letter-spacing: -0.2px; line-height: 1.35; }
+  .modal-head .ev-exp { font-size: 11px; font-family: var(--ff-mono); color: var(--text-tertiary); margin-bottom: 6px; }
+  .modal-close { margin-left: auto; flex-shrink: 0; background: rgba(255,255,255,0.05); border: 1px solid var(--border-standard); color: var(--text-secondary); border-radius: var(--radius-comfortable); width: 30px; height: 30px; cursor: pointer; font-size: 16px; line-height: 1; }
+  .modal-close:hover { color: var(--text-primary); }
+  .modal-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 18px; }
+  .m-section h3 { font-size: 11px; font-weight: 590; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .m-section p { font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+  .m-section.finding p { color: var(--text-primary); font-size: 14px; font-weight: 510; }
+  .interp { font-size: 9px; font-weight: 590; padding: 1px 7px; border-radius: 999px; background: rgba(245,158,11,0.15); color: var(--warning); text-transform: none; letter-spacing: 0; }
+  .cond-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .cond { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-comfortable); padding: 8px 10px; }
+  .cond .k { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .cond .v { font-size: 13px; font-family: var(--ff-mono); color: var(--text-primary); margin-top: 2px; }
+  .cond-note { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
+  .quote { border-left: 2px solid var(--brand-accent); padding: 6px 0 6px 12px; margin-bottom: 10px; }
+  .quote q { font-size: 13px; line-height: 1.55; color: var(--text-primary); quotes: "\201C" "\201D"; }
+  .quote .q-ctx { display: block; font-size: 11px; color: var(--text-tertiary); margin-bottom: 3px; }
+  .quote .q-loc { display: block; font-size: 10px; font-family: var(--ff-mono); color: var(--text-tertiary); margin-top: 4px; }
+  .quote .q-loc .ok { color: var(--success); }
+  .src-item { font-size: 12px; line-height: 1.5; color: var(--text-secondary); margin-bottom: 6px; }
+  .src-item a, .rel a { color: var(--brand-accent); text-decoration: none; }
+  .src-item a:hover, .rel a:hover { text-decoration: underline; }
+  .rel { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; line-height: 1.5; color: var(--text-tertiary); }
+  /* ---------- Material profile ---------- */
+  .profile { margin-top: 18px; border-top: 1px solid var(--border-subtle); padding-top: 14px; }
+  .profile-name { font-size: 14px; font-weight: 590; color: var(--text-primary); margin-bottom: 6px; }
+  .status-pill { display: inline-block; font-size: 9px; font-weight: 590; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .status-pill.model { background: rgba(16,185,129,0.15); color: var(--success); }
+  .status-pill.evidence_only { background: rgba(245,158,11,0.15); color: var(--warning); }
+  .profile-summary { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+  .profile-status { font-size: 11px; color: var(--text-tertiary); line-height: 1.5; margin-bottom: 10px; }
+  .fact { padding: 7px 0; border-top: 1px solid var(--border-subtle); }
+  .fact .k { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .fact .v { font-size: 12px; color: var(--text-primary); margin-top: 2px; line-height: 1.4; }
+  .fact details { margin-top: 4px; }
+  .fact summary { font-size: 10px; color: var(--brand-accent); cursor: pointer; font-family: var(--ff-mono); }
+  .fact .fq { font-size: 11px; color: var(--text-secondary); line-height: 1.5; border-left: 2px solid var(--brand-accent); padding-left: 8px; margin-top: 6px; }
+  .fact .fq .src { display: block; font-family: var(--ff-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+  .fact .fq .src a { color: var(--brand-accent); text-decoration: none; }
+  .profile-cards { margin-top: 10px; }
+  .verify-note { font-size: 11px; color: var(--text-tertiary); border-top: 1px solid var(--border-subtle); padding-top: 12px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -268,6 +357,15 @@
       <div class="panel-head"><span class="panel-title">habitat conditions</span></div>
       <div class="panel-body">
         <div class="control-group">
+          <span class="control-label">habitat presets</span>
+          <div class="presets" id="presets">
+            <button type="button" class="chip" data-o2="21" data-p="101.3" title="Sea-level air">ISS cabin · 21% O2, 101.3 kPa</button>
+            <button type="button" class="chip" data-o2="26.5" data-p="70.3" title="10.2 psia exploration atmosphere (NASA/TM-20260003925)">Exploration · 26.5% O2, 70.3 kPa</button>
+            <button type="button" class="chip" data-o2="34" data-p="56.5" title="8.2 psia exploration atmosphere (NASA/TM-20260003925)">Lunar lander · 34% O2, 56.5 kPa</button>
+          </div>
+          <p class="preset-note">Exploration atmospheres from NASA/TM-20260003925. Airflow set to 10 cm/s.</p>
+        </div>
+        <div class="control-group">
           <label class="control-label">oxygen (% by volume)</label>
           <input type="range" id="o2" min="10" max="40" step="0.1" value="21">
           <span class="control-value" id="o2Val">21.0%</span>
@@ -288,6 +386,7 @@
         </div>
         <button class="retry-btn" id="retryBtn" style="display:none;">retry prediction</button>
         <p style="font-size:10px;color:var(--text-tertiary);margin-top:12px;">change a slider to re-predict</p>
+        <div class="profile" id="profile" aria-live="polite"></div>
       </div>
     </aside>
 
@@ -297,6 +396,7 @@
         <div id="boundary-plot"></div>
         <div class="plot-placeholder" id="plotPlaceholder">loading boundary plot...</div>
       </div>
+      <label class="toggle-row"><input type="checkbox" id="showOthers"> show other materials' tests and tests with no recorded outcome (grey)</label>
       <div class="status-row">
         <div class="status-card" id="predCard">
           <div class="status-badge st-outrange" id="predBadge">—</div>
@@ -329,7 +429,7 @@
       <div class="panel-head"><span class="panel-title">nearest experiments</span></div>
       <div class="panel-body">
         <div class="guard" id="guard">
-          <div class="guard-title"><div class="guard-dot"></div>outside the published experimental envelope</div>
+          <div class="guard-title"><div class="guard-dot"></div><span id="guardTitle">outside the published experimental envelope</span></div>
           <p id="guardMsg">no prediction returned; extrapolating a fire-safety answer beyond tested data is unsafe.</p>
           <div class="range" id="guardRange"></div>
         </div>
@@ -337,18 +437,45 @@
         <div class="empty" id="emptyList">no experiments</div>
       </div>
     </aside>
+    <!-- Bottom: evidence cards -->
+    <section class="panel evidence-panel" aria-labelledby="evidenceTitle">
+      <div class="panel-head">
+        <span class="panel-title" id="evidenceTitle">evidence cards</span>
+        <span class="evidence-sub" id="evidenceSub">loading...</span>
+      </div>
+      <div class="panel-body">
+        <div class="chips" id="cardChips" role="group" aria-label="Filter cards by material"></div>
+        <div class="card-grid" id="cardGrid"></div>
+        <div class="empty" id="cardEmpty" style="display:none;">no cards for this material yet</div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     flameatlas summarizes published nasa research for exploration and education · does not certify materials · does not replace nasa-std-6001 testing ·
-    data: nasa psi / ntrs · model: gradient-boosting · n_train <span id="metaN">—</span> · cv accuracy <span id="metaAcc">—</span>
+    data: nasa psi / ntrs · model: logistic quenching boundary (sibal) · <span id="metaN">—</span> measured tests · held-out accuracy <span id="metaAcc">—</span>% (always-burns baseline <span id="metaBase">—</span>%)
   </footer>
 </div>
 
+<div class="modal-backdrop" id="cardModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <div>
+        <div class="ev-exp" id="mExp"></div>
+        <h2 id="mTitle"></h2>
+      </div>
+      <button class="modal-close" id="mClose" aria-label="Close card">&times;</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
 <script>
-  const API = 'http://127.0.0.1:8000';
-  const API_KEY = '***';
-  const materials = { sibal: 'sibal cotton-fiberglass fabric', pmma: 'pmma (acrylic)', nomex: 'nomex aramid fabric' };
+  // Served by the FastAPI app, so the API is on the same origin. No API key
+  // lives in the page: the server accepts same-origin requests from it.
+  const API = '';
+  // Fallback labels; replaced by the material profiles from /materials once loaded.
+  const materials = { sibal: 'SIBAL cotton-fiberglass fabric', pmma: 'PMMA (acrylic) · evidence only', nomex: 'Nomex fabric · evidence only', silicone: 'Silicone rubber · evidence only' };
   const materialSel = document.getElementById('material');
   Object.entries(materials).forEach(([k, v]) => {
     const o = document.createElement('option'); o.value = k; o.textContent = v; materialSel.appendChild(o);
@@ -361,10 +488,11 @@
     fillNo: document.getElementById('fillNo'), fillMarg: document.getElementById('fillMarg'), fillSpread: document.getElementById('fillSpread'),
     valNo: document.getElementById('valNo'), valMarg: document.getElementById('valMarg'), valSpread: document.getElementById('valSpread'),
     nearestList: document.getElementById('nearestList'), emptyList: document.getElementById('emptyList'),
-    guard: document.getElementById('guard'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
+    guard: document.getElementById('guard'), guardTitle: document.getElementById('guardTitle'), guardMsg: document.getElementById('guardMsg'), guardRange: document.getElementById('guardRange'),
     apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
-    metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
+    metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'), metaBase: document.getElementById('metaBase'),
     retryBtn: document.getElementById('retryBtn'),
+    showOthers: document.getElementById('showOthers'),
     plotPlaceholder: document.getElementById('plotPlaceholder'),
     predCard: document.getElementById('predCard'),
     themeToggle: document.getElementById('themeToggle'),
@@ -404,7 +532,7 @@
 
   /* ---------- API ---------- */
   function authHeaders() {
-    return { 'Content-Type': 'application/json', 'X-API-Key': API_KEY };
+    return { 'Content-Type': 'application/json' };
   }
 
   function setApiStatus(ok) {
@@ -415,8 +543,10 @@
 
   async function checkApi() {
     try {
-      await fetch(API + '/', { method: 'GET', cache: 'no-store', headers: authHeaders() });
-      setApiStatus(true);
+      const r = await fetch(API + '/health', { method: 'GET', cache: 'no-store' });
+      setApiStatus(r.ok);
+      // Retry cards if they failed to load (for example during a cold start).
+      if (r.ok && !cardState.cards.length) loadCards();
     } catch (e) { setApiStatus(false); }
   }
 
@@ -439,21 +569,29 @@
     const metaLine = p.model ? `${p.model.type} · n_train ${p.model.n_train} · cv ${(p.model.cv_accuracy*100).toFixed(1)}%` : '';
     els.metaN.textContent = p.model ? p.model.n_train : '—';
     els.metaAcc.textContent = p.model ? (p.model.cv_accuracy*100).toFixed(1) : '—';
+    els.metaBase.textContent = p.model && p.model.baseline_accuracy ? (p.model.baseline_accuracy*100).toFixed(1) : '—';
 
     if (!p.in_training_range) {
+      const noData = p.data_status === 'no_outcome_data';
       els.predBadge.className = 'status-badge st-outrange';
-      els.predBadge.textContent = 'no prediction — out of range';
+      els.predBadge.textContent = noData ? 'no prediction — evidence only' : 'no prediction — out of range';
+      els.guardTitle.textContent = noData ? 'research gap: not enough data to predict' : 'outside the published experimental envelope';
+      els.guardMsg.textContent = p.explanation || '';
+      els.guardRange.textContent = '';
+      renderNearest(p.nearest_experiments || []);
       els.predProb.textContent = '';
       els.predMeta.textContent = '';
       [els.fillNo, els.fillMarg, els.fillSpread].forEach(f => f.style.width = '0%');
       [els.valNo, els.valMarg, els.valSpread].forEach(v => v.textContent = '0.00');
-      if (p.model && p.model.feature_range) {
+      if (!noData && p.model && p.model.feature_range) {
         const fr = p.model.feature_range;
         els.guardRange.textContent = `envelope: o2 ${fr.oxygen_pct.min}-${fr.oxygen_pct.max}%, pressure ${fr.pressure_kpa.min}-${fr.pressure_kpa.max} kpa, flow ${fr.flow_cm_s.min}-${fr.flow_cm_s.max} cm/s`;
       }
       els.guard.classList.add('show');
       els.predCard.style.borderColor = 'transparent';
       els.plotPlaceholder.style.display = 'block';
+      if (noData) drawEvidence(materialSel.value);
+      else els.plotPlaceholder.textContent = 'your habitat is outside the oxygen, pressure or airflow range nasa tested, so no boundary is shown for it';
       return;
     }
 
@@ -480,6 +618,7 @@
   }
 
   function renderNearest(list) {
+    window._lastNearest = list;
     els.nearestList.innerHTML = '';
     els.emptyList.style.display = list.length ? 'none' : 'block';
     list.forEach(e => {
@@ -492,6 +631,14 @@
         </div>
         <div class="meta">${e.oxygen_pct.toFixed(1)}% o2 · ${e.flow_cm_s.toFixed(1)} cm/s · ${e.material}<span class="dist"> · dist ${e.distance.toFixed(2)}</span></div>
       `;
+      const cid = cardForReport(e.report_id);
+      if (cid) {
+        const btn = el('button', 'ev-link', 'evidence card');
+        btn.type = 'button';
+        btn.addEventListener('click', () => openCard(cid));
+        div.querySelector('.meta').append(' ');
+        div.querySelector('.meta').appendChild(btn);
+      }
       els.nearestList.appendChild(div);
     });
   }
@@ -500,9 +647,7 @@
     const material = materialSel.value;
     const pressure = parseFloat(els.pressure.value);
     try {
-      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`, {
-        headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
-      });
+      const r = await fetch(API + `/boundary?material=${encodeURIComponent(material)}&pressure_kpa=${pressure}&n=160`);
       if (!r.ok) throw new Error('boundary HTTP ' + r.status);
       const b = await r.json();
       drawBoundary(b);
@@ -514,45 +659,60 @@
   }
 
   function drawBoundary(b) {
+    window._lastBoundary = b;
     try {
       const flows = b.flows;
       const o2s = b.o2s;
-      const P = b.P_spread;
-      const inside = b.inside;
+      // The API grid is indexed [flow][o2]; Plotly expects z[y][x] = [o2][flow].
+      const T = g => o2s.map((_, j) => flows.map((_, i) => g[i][j]));
+      const P = T(b.P_spread);
+      const inside = T(b.inside);
 
       const z = P.map((row, i) => row.map((v, j) => inside[i][j] ? (v === null ? null : v) : null));
       const heat = {
-        x: flows, y: o2s, z, zmin: 0, zmax: 1,
+        type: 'heatmap', x: flows, y: o2s, z, zmin: 0, zmax: 1,
         colorscale: [[0, 'rgba(255,255,255,0)'], [1, 'rgba(213,94,0,0.12)']],
         showscale: false, hoverinfo: 'skip', name: 'spread region',
       };
       const untested = {
-        x: flows, y: o2s,
+        type: 'heatmap', x: flows, y: o2s,
         z: inside.map(row => row.map(v => v ? null : 1)),
         colorscale: [[0, 'rgba(71,84,103,0.18)'], [1, 'rgba(71,84,103,0.18)']],
         showscale: false, hoverinfo: 'skip', name: 'untested',
         hovertemplate: 'no nasa tests here<extra></extra>',
       };
       const contour = {
-        x: flows, y: o2s, z: P,
+        type: 'contour', x: flows, y: o2s, z,
         contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
         line: { color: '#101828', width: 2 },
         showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
       };
       const exp = b.experiments || [];
-      const byOutcome = {};
-      exp.forEach(e => { (byOutcome[e.outcome] = byOutcome[e.outcome] || []).push(e); });
+      const matName = (profileState.byId[materialSel.value] || {}).name || materialSel.value;
+      const own = exp.filter(e => e.in_training);
+      const others = exp.filter(e => !e.in_training);
       const traces = [];
-      const styles = { spread: { color: '#f43f5e', symbol: 'circle' }, 'no_spread': { color: '#10b981', symbol: 'square' }, marginal_spread: { color: '#f59e0b', symbol: 'diamond' } };
-      Object.entries(byOutcome).forEach(([outcome, pts]) => {
-        const s = styles[outcome] || styles.marginal_spread;
+      const styles = { spread: { color: '#f43f5e', symbol: 'circle', label: 'burned (spread)' }, no_spread: { color: '#10b981', symbol: 'square', label: 'went out / no spread' } };
+      const tip = p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet', p.material, p.note || ''];
+      ['spread', 'no_spread'].forEach(outcome => {
+        const pts = own.filter(p => p.outcome === outcome);
+        if (!pts.length) return;
+        const st = styles[outcome];
         traces.push({
-          x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
-          marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
-          customdata: pts.map(p => [p.report_id, p.source_url]),
-          hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br><a href="%{customdata[1]}" target="_blank">ntrs report</a><extra></extra>',
+          x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: `${matName} test: ${st.label}`,
+          marker: { symbol: st.symbol, color: st.color, size: 8, line: { width: 1, color: 'white' } },
+          customdata: pts.map(tip),
+          hovertemplate: '<b>%{customdata[4]}</b><br>' + st.label + ' · %{customdata[0]}<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
         });
       });
+      if (els.showOthers.checked && others.length) {
+        traces.push({
+          x: others.map(p => p.x), y: others.map(p => p.y), mode: 'markers', name: 'other materials / no recorded outcome',
+          marker: { symbol: 'x-thin-open', color: '#8a8f98', size: 8, line: { width: 1.5, color: '#8a8f98' } },
+          customdata: others.map(p => [...tip(p), p.same_material ? 'same material' : 'different material', p.outcome_recorded ? p.outcome.replace('_', ' ') : 'no outcome recorded in the dataset', p.note || 'not used to fit this boundary']),
+          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>%{customdata[4]} · %{customdata[5]}<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[6]}<extra></extra>',
+        });
+      }
       traces.push({
         x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
         marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
@@ -560,8 +720,16 @@
       });
 
       const c = getComputedStyle(els.html);
+      const bm = b.model || {};
+      const sf = bm.safety || {};
+      const note = bm.n_train
+        ? `fitted to ${bm.n_train} measured tests · in held-out testing: AUC ${bm.auc.toFixed(2)}, ` +
+          `${sf.burned_called_no_spread} of ${sf.burned_cases} burning cases called "no spread", ` +
+          `${Math.round(100 * sf.extinctions_flagged / sf.extinction_cases)}% of extinctions flagged · quenching side only (one blowoff test)`
+        : '';
       Plotly.newPlot('boundary-plot', [heat, untested, contour, ...traces], {
-        margin: { l: 40, r: 20, t: 10, b: 40 },
+        title: { text: note, font: { size: 10, color: c.getPropertyValue('--plot-text').trim() }, x: 0.01, xanchor: 'left' },
+        margin: { l: 40, r: 20, t: 30, b: 40 },
         paper_bgcolor: c.getPropertyValue('--plot-bg').trim(),
         plot_bgcolor: c.getPropertyValue('--plot-bg').trim(),
         font: { family: 'Inter, sans-serif', size: 11, color: c.getPropertyValue('--plot-text').trim() },
@@ -572,6 +740,13 @@
       }, { responsive: true });
       plotlyReady = true;
       els.plotPlaceholder.style.display = 'none';
+      const gd = document.getElementById('boundary-plot');
+      if (gd.removeAllListeners) gd.removeAllListeners('plotly_click');
+      gd.on('plotly_click', ev => {
+        const pt = ev.points && ev.points[0];
+        const cid = pt && pt.customdata ? cardForReport(pt.customdata[0]) : null;
+        if (cid) openCard(cid);
+      });
     } catch (e) {
       console.error('Plotly draw failed:', e);
       els.plotPlaceholder.style.display = 'block';
@@ -617,6 +792,337 @@
     }
   }
 
+  /* ---------- Evidence cards ---------- */
+  const cardState = { cards: [], sources: {}, verification: null, byReport: {}, filter: 'all' };
+  const cardEls = {
+    grid: document.getElementById('cardGrid'), chips: document.getElementById('cardChips'),
+    empty: document.getElementById('cardEmpty'), sub: document.getElementById('evidenceSub'),
+    modal: document.getElementById('cardModal'), mTitle: document.getElementById('mTitle'),
+    mExp: document.getElementById('mExp'), mBody: document.getElementById('mBody'), mClose: document.getElementById('mClose'),
+  };
+  const MATERIAL_NAMES = { sibal: 'SIBAL fabric', pmma: 'PMMA', nomex: 'Nomex', silicone: 'Silicone', cotton: 'Cotton' };
+  let lastFocus = null;
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  function fmtRange(r, unit) {
+    if (!r) return 'not stated';
+    return (r[0] === r[1] ? `${r[0]}` : `${r[0]} to ${r[1]}`) + (unit ? ' ' + unit : '');
+  }
+
+  async function loadCards() {
+    try {
+      const r = await fetch(API + '/cards');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      cardState.cards = j.cards;
+      cardState.sources = j.sources;
+      cardState.verification = j.verification;
+      cardState.byReport = {};
+      j.cards.forEach(c => c.linked_report_ids.forEach(rid => {
+        (cardState.byReport[rid] = cardState.byReport[rid] || []).push(c.card_id);
+      }));
+      const v = j.verification;
+      cardEls.sub.textContent = '';
+      cardEls.sub.append(`${j.cards.length} nasa studies · `);
+      const ok = el('span', v && v.all_passed ? 'ok' : '', v ? `${v.quotes_verified}/${v.quotes} quotes checked word for word against the source` : 'quotes not checked');
+      cardEls.sub.append(ok);
+      renderChips();
+      renderCardGrid();
+      // Map points and nearest tests rendered before cards arrived can now link.
+      if (window._lastNearest) renderNearest(window._lastNearest);
+    } catch (e) {
+      console.warn('cards failed:', e);
+      cardEls.sub.textContent = 'evidence cards unavailable';
+    }
+  }
+
+  function renderChips() {
+    const counts = {};
+    cardState.cards.forEach(c => c.material_ids.forEach(m => counts[m] = (counts[m] || 0) + 1));
+    const order = ['all', 'sibal', 'pmma', 'nomex', 'silicone', ...Object.keys(counts).filter(m => !(m in MATERIAL_NAMES) || m === 'cotton')];
+    const seen = new Set();
+    cardEls.chips.innerHTML = '';
+    order.forEach(m => {
+      if (seen.has(m) || (m !== 'all' && !counts[m])) return;
+      seen.add(m);
+      const label = m === 'all' ? `all (${cardState.cards.length})` : `${MATERIAL_NAMES[m] || m} (${counts[m]})`;
+      const b = el('button', 'chip', label);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(cardState.filter === m));
+      b.addEventListener('click', () => { cardState.filter = m; renderChips(); renderCardGrid(); });
+      cardEls.chips.appendChild(b);
+    });
+  }
+
+  function renderCardGrid() {
+    const f = cardState.filter;
+    const list = cardState.cards.filter(c => f === 'all' || c.material_ids.includes(f));
+    cardEls.grid.innerHTML = '';
+    cardEls.empty.style.display = list.length ? 'none' : 'block';
+    list.forEach(c => {
+      const b = el('button', 'ev-card');
+      b.type = 'button';
+      const src = cardState.sources[c.source_ids[0]];
+      b.appendChild(el('div', 'ev-exp', c.experiment));
+      b.appendChild(el('div', 'ev-title', c.title));
+      b.appendChild(el('div', 'ev-finding', c.key_finding));
+      const tags = el('div', 'ev-tags');
+      tags.appendChild(el('span', 'ev-tag src', `${c.source_ids[0].replace('-', ' ')}${src && src.year ? ' · ' + src.year : ''}`));
+      c.material_ids.forEach(m => tags.appendChild(el('span', 'ev-tag', MATERIAL_NAMES[m] || m)));
+      b.appendChild(tags);
+      b.addEventListener('click', () => openCard(c.card_id));
+      cardEls.grid.appendChild(b);
+    });
+  }
+
+  function section(title, extra) {
+    const sec = el('div', 'm-section');
+    const h = el('h3', null, title);
+    if (extra) h.appendChild(extra);
+    sec.appendChild(h);
+    return sec;
+  }
+
+  function openCard(cardId) {
+    const c = cardState.cards.find(x => x.card_id === cardId);
+    if (!c) return;
+    lastFocus = document.activeElement;
+    cardEls.mExp.textContent = c.experiment;
+    cardEls.mTitle.textContent = c.title;
+    const body = cardEls.mBody;
+    body.innerHTML = '';
+
+    const kf = section('key finding'); kf.classList.add('finding'); kf.appendChild(el('p', null, c.key_finding)); body.appendChild(kf);
+    const os = section('what happened'); os.appendChild(el('p', null, c.outcome_summary)); body.appendChild(os);
+    const st = section('safety takeaway', c.takeaway_is_interpretation ? el('span', 'interp', 'flameatlas interpretation') : el('span', 'interp', 'quoted from source'));
+    st.appendChild(el('p', null, c.safety_takeaway)); body.appendChild(st);
+
+    const cd = section('test conditions');
+    const g = el('div', 'cond-grid');
+    const k = c.conditions;
+    [['oxygen', fmtRange(k.o2_pct, '% O2')], ['airflow', fmtRange(k.flow_cm_s, 'cm/s')], ['pressure', fmtRange(k.pressure_kpa, 'kPa')],
+     ['gravity', k.gravity], ['flow direction', (k.flow_direction || []).join(', ') || 'not stated']].forEach(([key, val]) => {
+      const box = el('div', 'cond'); box.appendChild(el('div', 'k', key)); box.appendChild(el('div', 'v', val)); g.appendChild(box);
+    });
+    cd.appendChild(g);
+    if (k.note) cd.appendChild(el('p', 'cond-note', k.note));
+    body.appendChild(cd);
+
+    const qs = section(`evidence from the source (${c.quotes.length} quotes)`);
+    c.quotes.forEach(q => {
+      const box = el('div', 'quote');
+      if (q.context) box.appendChild(el('span', 'q-ctx', q.context));
+      box.appendChild(el('q', null, q.text));
+      const loc = el('span', 'q-loc', `${q.source_id}${q.page ? ' · pdf page ' + q.page : ''}`);
+      if (cardState.verification && cardState.verification.all_passed) {
+        loc.append(' · ');
+        loc.appendChild(el('span', 'ok', 'matches source'));
+      }
+      box.appendChild(loc);
+      qs.appendChild(box);
+    });
+    qs.appendChild(el('p', 'cond-note', 'Locator: ' + c.locator));
+    body.appendChild(qs);
+
+    const ss = section('source');
+    c.source_ids.forEach(sid => {
+      const s = cardState.sources[sid];
+      if (!s) return;
+      const item = el('div', 'src-item');
+      const a = el('a', null, s.title);
+      a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+      item.appendChild(a);
+      item.append(` · ${s.authors}${s.year ? ' (' + s.year + ')' : ''} · ${s.doc_type}`);
+      ss.appendChild(item);
+    });
+    body.appendChild(ss);
+
+    if (c.related_card_ids.length) {
+      const rs = section('related cards');
+      const rel = el('div', 'rel');
+      c.related_card_ids.forEach(rid => {
+        const rc = cardState.cards.find(x => x.card_id === rid);
+        if (!rc) return;
+        const a = el('a', null, rc.title);
+        a.href = '#';
+        a.addEventListener('click', ev => { ev.preventDefault(); openCard(rid); });
+        rel.appendChild(a);
+        rel.appendChild(el('span', null, ' · '));
+      });
+      if (rel.lastChild) rel.removeChild(rel.lastChild);
+      rs.appendChild(rel);
+      body.appendChild(rs);
+    }
+
+    const v = cardState.verification;
+    body.appendChild(el('p', 'verify-note',
+      v ? `Every quote on this card was checked word for word against the NASA source on ${v.checked_on} (scripts/verify_cards.py). Summaries and takeaways are written by FlameAtlas from those quotes and have not yet been reviewed by a domain expert.`
+        : 'Quotes have not been checked against the source yet.'));
+
+    cardEls.modal.classList.add('show');
+    cardEls.modal.scrollTop = 0;
+    cardEls.modal.setAttribute('aria-hidden', 'false');
+    cardEls.mClose.focus();
+  }
+
+  function closeCard() {
+    cardEls.modal.classList.remove('show');
+    cardEls.modal.setAttribute('aria-hidden', 'true');
+    if (lastFocus) lastFocus.focus();
+  }
+  cardEls.mClose.addEventListener('click', closeCard);
+  cardEls.modal.addEventListener('click', e => { if (e.target === cardEls.modal) closeCard(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && cardEls.modal.classList.contains('show')) closeCard(); });
+
+  function cardForReport(reportId) {
+    const ids = cardState.byReport[reportId];
+    return ids && ids.length ? ids[0] : null;
+  }
+
+  materialSel.addEventListener('change', () => {
+    const m = materialSel.value;
+    if (cardState.cards.some(c => c.material_ids.includes(m))) { cardState.filter = m; renderChips(); renderCardGrid(); }
+  });
+
+  /* ---------- Material profiles and evidence-only map ---------- */
+  const profileState = { byId: {}, sources: {} };
+  const OUTCOME_STYLE = {
+    burned: { name: 'burned', color: '#f43f5e', symbol: 'circle' },
+    extinguished: { name: 'went out', color: '#10b981', symbol: 'square' },
+    no_ignition: { name: 'did not ignite', color: '#10b981', symbol: 'square-open' },
+    minimal_burn: { name: 'barely burned (~0 length)', color: '#10b981', symbol: 'diamond' },
+  };
+
+  async function loadMaterials() {
+    try {
+      const r = await fetch(API + '/materials');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      profileState.sources = j.sources;
+      const current = materialSel.value;
+      materialSel.innerHTML = '';
+      j.materials.forEach(m => {
+        profileState.byId[m.material_id] = m;
+        const o = document.createElement('option');
+        o.value = m.material_id;
+        o.textContent = m.full_name + (m.data_status === 'model' ? '' : ' · evidence only');
+        materialSel.appendChild(o);
+      });
+      if (profileState.byId[current]) materialSel.value = current;
+      renderProfile();
+    } catch (e) { console.warn('materials failed:', e); }
+  }
+
+  function renderProfile() {
+    const box = document.getElementById('profile');
+    const m = profileState.byId[materialSel.value];
+    box.innerHTML = '';
+    if (!m) return;
+    box.appendChild(el('div', 'profile-name', m.name));
+    box.appendChild(el('span', 'status-pill ' + m.data_status, m.data_status === 'model' ? 'prediction model' : 'evidence only'));
+    box.appendChild(el('p', 'profile-summary', m.summary));
+    box.appendChild(el('p', 'profile-status', m.data_status_text));
+    m.facts.forEach(f => {
+      const fact = el('div', 'fact');
+      fact.appendChild(el('div', 'k', f.label));
+      fact.appendChild(el('div', 'v', f.value));
+      const det = el('details');
+      det.appendChild(el('summary', null, `source${f.quotes.length > 1 ? 's' : ''} (${f.quotes.length})`));
+      f.quotes.forEach(q => {
+        const fq = el('div', 'fq');
+        if (q.context) fq.appendChild(el('span', 'src', q.context));
+        fq.appendChild(el('q', null, q.text));
+        const srcLine = el('span', 'src');
+        const s = profileState.sources[q.source_id];
+        const a = el('a', null, q.source_id + (q.page ? ' · pdf p.' + q.page : ''));
+        a.href = s ? s.url : '#'; a.target = '_blank'; a.rel = 'noopener';
+        if (s) a.title = s.title;
+        srcLine.appendChild(a);
+        fq.appendChild(srcLine);
+        det.appendChild(fq);
+      });
+      fact.appendChild(det);
+      box.appendChild(fact);
+    });
+    const btn = el('button', 'ev-link profile-cards', `${m.card_ids.length} evidence cards`);
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      cardState.filter = m.material_id; renderChips(); renderCardGrid();
+      document.querySelector('.evidence-panel').scrollIntoView({ behavior: 'smooth' });
+    });
+    box.appendChild(btn);
+  }
+
+  async function drawEvidence(material) {
+    try {
+      const r = await fetch(API + '/evidence?material=' + encodeURIComponent(material));
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      if (materialSel.value !== material) return;  // user switched meanwhile
+      if (!j.points.length) {
+        if (plotlyReady) { Plotly.purge('boundary-plot'); plotlyReady = false; }
+        els.plotPlaceholder.textContent = 'no nasa test results for this material yet';
+        return;
+      }
+      const groups = {};
+      j.points.forEach(p => (groups[p.outcome] = groups[p.outcome] || []).push(p));
+      const traces = Object.entries(groups).map(([outcome, pts]) => {
+        const st = OUTCOME_STYLE[outcome] || OUTCOME_STYLE.burned;
+        return {
+          x: pts.map(p => p.flow_cm_s),
+          y: pts.map(p => (p.o2_pct_range[0] + p.o2_pct_range[1]) / 2),
+          error_y: { type: 'data', symmetric: false, array: pts.map(p => (p.o2_pct_range[1] - p.o2_pct_range[0]) / 2), arrayminus: pts.map(p => (p.o2_pct_range[1] - p.o2_pct_range[0]) / 2), color: st.color, thickness: 1, width: 3 },
+          mode: 'markers', name: st.name,
+          marker: { symbol: st.symbol, color: st.color, size: 9, line: { width: 1, color: 'white' } },
+          customdata: pts.map(p => [p.card_id || '', p.variant, p.outcome_detail, p.o2_pct_range[0] === p.o2_pct_range[1] ? `${p.o2_pct_range[0]}%` : `${p.o2_pct_range[0]} to ${p.o2_pct_range[1]}%`, p.flow_direction, p.gravity, p.quotes[0].source_id]),
+          hovertemplate: '<b>%{customdata[1]}</b><br>%{customdata[2]}<br>o2 %{customdata[3]} · flow %{x} cm/s (%{customdata[4]})<br>%{customdata[5]} · %{customdata[6]}<extra></extra>',
+        };
+      });
+      traces.push({
+        x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
+        marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
+        hovertemplate: 'your habitat<br>o2 %{y}% · flow %{x} cm/s<extra></extra>',
+      });
+      const c = getComputedStyle(els.html);
+      Plotly.newPlot('boundary-plot', traces, {
+        margin: { l: 40, r: 20, t: 34, b: 40 },
+        title: { text: 'nasa test results · evidence only, no prediction model', font: { size: 12, color: c.getPropertyValue('--plot-text').trim() }, x: 0.02 },
+        paper_bgcolor: c.getPropertyValue('--plot-bg').trim(), plot_bgcolor: c.getPropertyValue('--plot-bg').trim(),
+        font: { family: 'Inter, sans-serif', size: 11, color: c.getPropertyValue('--plot-text').trim() },
+        xaxis: { type: 'log', title: 'airflow (cm/s, log)', range: [Math.log10(0.5), Math.log10(60)], tickvals: [0.5,1,2,5,10,20,50], gridcolor: 'rgba(128,128,128,0.15)' },
+        yaxis: { title: 'oxygen (%)', range: [Math.min(12, parseFloat(els.o2.value) - 1), Math.max(27, parseFloat(els.o2.value) + 1)], dtick: 2, gridcolor: 'rgba(128,128,128,0.15)' },
+        legend: { orientation: 'h', y: -0.15, x: 0.5, xanchor: 'center', font: { size: 10, color: c.getPropertyValue('--plot-text').trim() }, bgcolor: 'rgba(0,0,0,0)' },
+        hovermode: 'closest',
+      }, { responsive: true });
+      plotlyReady = true;
+      els.plotPlaceholder.style.display = 'none';
+      const gd = document.getElementById('boundary-plot');
+      if (gd.removeAllListeners) gd.removeAllListeners('plotly_click');
+      gd.on('plotly_click', ev => {
+        const pt = ev.points && ev.points[0];
+        if (pt && pt.customdata && pt.customdata[0]) openCard(pt.customdata[0]);
+      });
+    } catch (e) {
+      console.warn('evidence failed:', e);
+      els.plotPlaceholder.style.display = 'block';
+      els.plotPlaceholder.textContent = 'evidence plot unavailable';
+    }
+  }
+
+  materialSel.addEventListener('change', renderProfile);
+
+  els.showOthers.addEventListener('change', () => { if (window._lastBoundary) drawBoundary(window._lastBoundary); });
+  document.querySelectorAll('#presets .chip').forEach(b => b.addEventListener('click', () => {
+    els.o2.value = b.dataset.o2; els.pressure.value = b.dataset.p; els.flow.value = 10;
+    clearTimeout(debounceTimer); predict();
+  }));
+
   // Wire inputs
   [els.o2, els.pressure, els.flow, materialSel].forEach(el => {
     el.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(predict, 150); });
@@ -627,6 +1133,8 @@
   initTheme();
   checkApi();
   setInterval(checkApi, 10000);
+  loadCards();
+  loadMaterials();
   predict();
 </script>
 </body>

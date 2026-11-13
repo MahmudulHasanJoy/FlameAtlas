@@ -1,41 +1,73 @@
-"""FastAPI server: POST /predict for the microgravity fire-safety explorer.
+"""FastAPI server for the microgravity fire-safety explorer.
+
+Serves the dashboard at / and the JSON API at /predict, /boundary, /health.
 
 Deterministic science lives in src/compute/model.py. This layer only
 serializes inputs, calls predict(), and returns the competition object.
 Never extrapolates: out-of-range requests return no prediction.
 
 Security controls:
-  - CORS restricted to localhost origins (no wildcard with credentials).
-  - API key required on every endpoint (X-API-Key header).
-  - Per-IP rate limiting (60 requests/minute).
+  - API key (X-API-Key header, from FLAMEATLAS_API_KEY) required for direct
+    API calls. The key is never sent to the browser: the dashboard served from
+    this same origin is let through by the browser-set Sec-Fetch-Site header.
+    This stops casual cross-site and scripted use; it is not strong auth, since
+    the dashboard itself is public by design.
+  - Per-IP rate limiting (300 requests/minute; run uvicorn with
+    --proxy-headers behind a proxy so the real client IP is used).
   - Security headers: CSP, X-Frame-Options, X-Content-Type-Options, etc.
   - Input bounds enforced in Pydantic model and re-checked in compute layer.
 """
 from __future__ import annotations
 
+import json
+import logging
 import os
+import secrets
 import time
 from collections import defaultdict
+from pathlib import Path
 from typing import Callable
 
 import numpy as np
 import pandas as pd
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 try:
     # Run as: python -m src.api.app  (src on sys.path)
-    from compute.model import FlameAtlasModel, ModelNotTrainedError, ModelTamperError
+    from compute.model import (
+        UNRECORDED_OUTCOME, FlameAtlasModel, ModelNotTrainedError, ModelTamperError,
+        display_material, matches_material,
+    )
 except ImportError:
     # Run from repo root
-    from src.compute.model import FlameAtlasModel, ModelNotTrainedError, ModelTamperError
+    from src.compute.model import (
+        UNRECORDED_OUTCOME, FlameAtlasModel, ModelNotTrainedError, ModelTamperError,
+        display_material, matches_material,
+    )
+
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()  # local .env; real environment variables take precedence
+except ImportError:
+    pass
+
+log = logging.getLogger("flameatlas")
+
+REPO = Path(__file__).resolve().parent.parent.parent
+DASHBOARD = REPO / "frontend" / "dashboard.html"
+CARDS_FILE = REPO / "data" / "processed" / "cards.json"
+CARDS_VERIFICATION_FILE = REPO / "data" / "processed" / "cards_verification.json"
+POINTS_FILE = REPO / "data" / "processed" / "evidence_points.json"
+MATERIALS_FILE = REPO / "data" / "processed" / "materials.json"
 
 app = FastAPI(title="FlameAtlas Fire-Safety Explorer", version="2.0.0")
 
-# CORS: allow all origins for local dev (file:// origin sends "null").
-# Security is enforced by X-API-Key header, not CORS origin.
+# CORS: open so other tools can call the API with a key. Access control is
+# the X-API-Key check, not the origin.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -45,17 +77,22 @@ app.add_middleware(
 )
 
 # ---------------------------------------------------------------------------
-# API key: set via FLAMEATLAS_API_KEY env var. Default is a dev placeholder
-# that MUST be changed before any non-local deployment.
+# API key: set via FLAMEATLAS_API_KEY (env var or .env). If unset, a random
+# key is generated per process so there is never a guessable default.
 # ---------------------------------------------------------------------------
-API_KEY = os.getenv("FLAMEATLAS_API_KEY", "dev-key-change-me-in-production")
+API_KEY = os.getenv("FLAMEATLAS_API_KEY") or ""
+if not API_KEY:
+    API_KEY = secrets.token_urlsafe(32)
+    log.warning("FLAMEATLAS_API_KEY not set; using a random key for this process.")
 
 # ---------------------------------------------------------------------------
-# Rate limiting: simple in-memory sliding window (60 requests / 60 s per IP).
+# Rate limiting: simple in-memory sliding window (300 requests / 60 s per IP).
+# The dashboard sends about 2 requests per slider pause plus a health check
+# every 10 s, so 60/min was too tight for normal use.
 # Not distributed; for single-instance deployment. Add Redis for multi-node.
 # ---------------------------------------------------------------------------
 _REQUEST_WINDOWS: defaultdict[str, list[float]] = defaultdict(list)
-RATE_LIMIT = 60
+RATE_LIMIT = 300
 RATE_WINDOW_SECONDS = 60
 
 
@@ -65,8 +102,14 @@ def _clean_window(timestamps: list[float], now: float) -> None:
         timestamps.pop(0)
 
 
-def verify_api_key(x_api_key: str | None = Header(None)) -> str:
-    if x_api_key is None or x_api_key != API_KEY:
+def verify_api_key(
+    request: Request, x_api_key: str | None = Header(None)
+) -> str | None:
+    # The dashboard served from this origin needs no key; browsers set
+    # Sec-Fetch-Site themselves and page scripts cannot change it.
+    if request.headers.get("sec-fetch-site") == "same-origin":
+        return None
+    if x_api_key is None or not secrets.compare_digest(x_api_key, API_KEY):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing X-API-Key header",
@@ -109,7 +152,15 @@ async def security_and_rate_limit(request: Request, call_next: Callable):
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
     response.headers[
         "Content-Security-Policy"
-    ] = "default-src 'self'; script-src 'self' https://cdn.plot.ly https://fonts.googleapis.com; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://127.0.0.1:8000;"
+    ] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' https://cdn.plot.ly; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com; "
+        "img-src 'self' data: blob:; "
+        "connect-src 'self'; "
+        "frame-ancestors 'none';"
+    )
     return response
 
 
@@ -160,9 +211,14 @@ class PredictRequest(BaseModel):
     }
 
 
-@app.get("/")
-def root():
-    return {"name": "FlameAtlas", "endpoint": "POST /predict", "version": "2.0.0"}
+@app.get("/", include_in_schema=False)
+def dashboard():
+    return FileResponse(DASHBOARD, media_type="text/html")
+
+
+@app.get("/health")
+def health():
+    return {"name": "FlameAtlas", "status": "ok", "version": "2.0.0"}
 
 
 @app.post("/predict", dependencies=[Depends(verify_api_key)])
@@ -198,33 +254,23 @@ def boundary(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Unknown material '{material}'. Known: {sorted(model.known_materials)}",
         )
+    if material not in model.materials_with_data:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No outcome data for '{material}'; no boundary can be drawn.",
+        )
     fr = model.meta["feature_range"]
-
     o2_min, o2_max = fr["oxygen_pct"]["min"], fr["oxygen_pct"]["max"]
     flow_min, flow_max = fr["flow_cm_s"]["min"], fr["flow_cm_s"]["max"]
 
-    o2s = np.linspace(o2_min, o2_max, n)
-    flows = np.logspace(np.log10(flow_min), np.log10(flow_max), n)
+    # The grid covers more than the tested range so the untested area is
+    # visible; "inside" marks the tested envelope. The model has no pressure
+    # term (every SIBAL test ran near 1 atm), so pressure_kpa does not change
+    # the grid; /predict applies the pressure guard instead.
+    o2s = np.linspace(min(14.0, o2_min), max(24.0, o2_max), n)
+    flows = np.logspace(np.log10(0.5), np.log10(60.0), n)
     O, F = np.meshgrid(o2s, flows)
-
-    X = pd.DataFrame(
-        {
-            "oxygen_pct": O.ravel(),
-            "pressure_kpa": pressure_kpa,
-            "flow_cm_s": F.ravel(),
-            "material": material,
-        }
-    )
-    proba = model.pipe.predict_proba(X)
-    try:
-        spread_idx = list(model.pipe.classes_).index("spread")
-    except ValueError:
-        spread_idx = None
-    if spread_idx is None:
-        P = np.zeros(O.ravel().shape)
-    else:
-        P = proba[:, spread_idx]
-    P = P.reshape(O.shape)
+    P = model.prob_spread(O.ravel(), F.ravel()).reshape(O.shape)
 
     inside = (O >= o2_min) & (O <= o2_max) & (F >= flow_min) & (F <= flow_max)
 
@@ -237,11 +283,20 @@ def boundary(
                 "outcome": r["outcome_class"],
                 "report_id": r["report_id"],
                 "source_url": r["source_url"],
-                "material": r["material"],
+                "material": display_material(r["material"]),
+                # The dashboard shows these by default; everything else is
+                # available behind a "show other tests" toggle, labeled.
+                "same_material": matches_material(r["material"], material),
+                "outcome_recorded": r["outcome_class"] != UNRECORDED_OUTCOME,
+                "in_training": bool(r["in_training"]),
+                "note": r["note"] or "",
             }
         )
 
+    meta = model.meta
     return {
+        "model": {k: meta.get(k) for k in ("type", "n_train", "cv_accuracy", "baseline_accuracy", "auc", "safety",
+                                           "spread_threshold", "no_spread_threshold")},
         "flows": flows.tolist(),
         "o2s": o2s.tolist(),
         "P_spread": P.tolist(),
@@ -250,7 +305,95 @@ def boundary(
     }
 
 
+_cards: dict | None = None
+
+
+def load_cards() -> dict:
+    """Evidence cards plus the stored result of scripts/verify_cards.py."""
+    global _cards
+    if _cards is None:
+        data = json.loads(CARDS_FILE.read_text(encoding="utf-8"))
+        verification = None
+        if CARDS_VERIFICATION_FILE.exists():
+            v = json.loads(CARDS_VERIFICATION_FILE.read_text(encoding="utf-8"))
+            verification = {
+                k: v[k] for k in ("checked_on", "method", "quotes", "quotes_verified", "all_passed")
+            }
+        _cards = {
+            "sources": data["sources"],
+            "cards": data["cards"],
+            "verification": verification,
+        }
+    return _cards
+
+
+def _public_sources(sources: dict) -> dict:
+    # The local file path is a build detail, not part of the API.
+    return {k: {f: v for f, v in s.items() if f != "file"} for k, s in sources.items()}
+
+
+@app.get("/cards", dependencies=[Depends(verify_api_key)])
+def list_cards(material: str | None = Query(None, max_length=40)):
+    """All evidence cards, optionally filtered by material id."""
+    data = load_cards()
+    cards = data["cards"]
+    if material:
+        cards = [c for c in cards if material in c["material_ids"]]
+    return {
+        "cards": cards,
+        "sources": _public_sources(data["sources"]),
+        "verification": data["verification"],
+    }
+
+
+_extra: dict | None = None
+
+
+def load_points_and_materials() -> dict:
+    global _extra
+    if _extra is None:
+        _extra = {
+            "points": json.loads(POINTS_FILE.read_text(encoding="utf-8"))["points"],
+            "materials": json.loads(MATERIALS_FILE.read_text(encoding="utf-8"))["materials"],
+        }
+    return _extra
+
+
+def _sources_for(quote_lists) -> dict:
+    sources = load_cards()["sources"]
+    ids = {q["source_id"] for qs in quote_lists for q in qs}
+    return _public_sources({sid: sources[sid] for sid in sorted(ids) if sid in sources})
+
+
+@app.get("/materials", dependencies=[Depends(verify_api_key)])
+def list_materials():
+    """Material profiles: what each material is and what NASA found, with quotes."""
+    mats = load_points_and_materials()["materials"]
+    return {
+        "materials": mats,
+        "sources": _sources_for(f["quotes"] for m in mats for f in m["facts"]),
+        "verification": load_cards()["verification"],
+    }
+
+
+@app.get("/evidence", dependencies=[Depends(verify_api_key)])
+def evidence_points(material: str = Query(..., max_length=40)):
+    """Individual NASA test results for a material, for the evidence-only map."""
+    pts = [p for p in load_points_and_materials()["points"] if p["material_id"] == material]
+    return {"material": material, "points": pts, "sources": _sources_for(p["quotes"] for p in pts)}
+
+
+@app.get("/cards/{card_id}", dependencies=[Depends(verify_api_key)])
+def get_card(card_id: str):
+    data = load_cards()
+    for c in data["cards"]:
+        if c["card_id"] == card_id:
+            sources = {sid: data["sources"][sid] for sid in c["source_ids"]}
+            return {"card": c, "sources": _public_sources(sources), "verification": data["verification"]}
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"No card '{card_id}'")
+
+
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=int(os.getenv("PORT", "8000")))

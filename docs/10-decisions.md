@@ -5,25 +5,36 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | ADR-0001 to ADR-0014 recorded |
+| 1.1 | 2026-11-13 | ADR-0015 to ADR-0024 recorded from the build; superseded records marked in the index |
 
 ## Index
 
 | ADR | Decision | Status | Date |
 |---|---|---|---|
-| [0001](#adr-0001-python-and-streamlit-for-the-whole-app) | Python and Streamlit for the whole app | Accepted | 2026-10-24 |
+| [0001](#adr-0001-python-and-streamlit-for-the-whole-app) | Python and Streamlit for the whole app | Superseded by 0015 | 2026-10-24 |
 | [0002](#adr-0002-plotly-for-the-flammability-map) | Plotly for the flammability map | Accepted | 2026-10-24 |
-| [0003](#adr-0003-rag-with-a-local-chromadb-index-no-mcp) | RAG with a local ChromaDB index, no MCP | Accepted | 2026-10-24 |
-| [0004](#adr-0004-claude-as-the-language-model) | Claude as the language model | Accepted | 2026-10-24 |
+| [0003](#adr-0003-rag-with-a-local-chromadb-index-no-mcp) | RAG with a local ChromaDB index, no MCP | Deferred (0017) | 2026-10-24 |
+| [0004](#adr-0004-claude-as-the-language-model) | Claude as the language model | Deferred (0017) | 2026-10-24 |
 | [0005](#adr-0005-a-person-verifies-every-map-record) | A person verifies every map record | Accepted | 2026-10-24 |
-| [0006](#adr-0006-logistic-regression-boundary-with-a-tested-envelope) | Logistic regression boundary with a tested envelope | Accepted | 2026-10-24 |
+| [0006](#adr-0006-logistic-regression-boundary-with-a-tested-envelope) | Logistic regression boundary with a tested envelope | Superseded by 0016 | 2026-10-24 |
 | [0007](#adr-0007-four-habitat-states-and-no-safe-label) | Four habitat states and no "Safe" label | Accepted | 2026-10-24 |
 | [0008](#adr-0008-confidence-is-computed-by-a-rule-not-by-the-model) | Confidence is computed by a rule, not by the model | Accepted | 2026-10-24 |
 | [0009](#adr-0009-send-page-tagged-text-not-pdfs-for-extraction) | Send page-tagged text, not PDFs, for extraction | Accepted | 2026-10-24 |
 | [0010](#adr-0010-flow-sweeps-become-one-record-per-stated-flow) | Flow sweeps become one record per stated flow | Accepted | 2026-10-24 |
 | [0011](#adr-0011-no-ignition-counts-as-not-burning) | "No ignition" counts as not burning | Accepted | 2026-10-24 |
 | [0012](#adr-0012-raw-data-out-of-git-processed-data-in-git) | Raw data out of git, processed data in git | Accepted | 2026-10-24 |
-| [0013](#adr-0013-local-embeddings) | Local embeddings | Accepted | 2026-10-24 |
-| [0014](#adr-0014-light-theme-only) | Light theme only | Accepted | 2026-10-24 |
+| [0013](#adr-0013-local-embeddings) | Local embeddings | Deferred (0017) | 2026-10-24 |
+| [0014](#adr-0014-light-theme-only) | Light theme only | Superseded by 0019 | 2026-10-24 |
+| [0015](#adr-0015-fastapi-service-with-a-static-dashboard) | FastAPI service with a static dashboard | Accepted | 2026-11-13 |
+| [0016](#adr-0016-gradient-boosting-classifier-for-the-boundary) | Gradient-boosting classifier for the boundary | Superseded by 0022 | 2026-11-13 |
+| [0017](#adr-0017-defer-ask-flameatlas) | Defer Ask FlameAtlas | Accepted | 2026-11-13 |
+| [0018](#adr-0018-machine-checked-quotes-for-cards-and-profiles) | Machine-checked quotes for cards and profiles | Accepted | 2026-11-13 |
+| [0019](#adr-0019-dark-and-light-themes) | Dark and light themes | Accepted | 2026-11-13 |
+| [0020](#adr-0020-render-single-service-deployment) | Render single-service deployment | Accepted | 2026-11-13 |
+| [0021](#adr-0021-evidence-only-materials) | Evidence-only materials | Accepted | 2026-11-13 |
+| [0022](#adr-0022-u-shaped-logistic-boundary-on-measured-tests-only) | U-shaped logistic boundary on measured tests only | Amended by 0023 | 2026-11-13 |
+| [0023](#adr-0023-drop-the-squared-term-and-widen-the-marginal-band) | Drop the squared term and widen the MARGINAL band | Amended by 0024 | 2026-11-13 |
+| [0024](#adr-0024-use-1flow-so-the-quenching-boundary-can-bend) | Use 1/flow so the quenching boundary can bend | Accepted | 2026-11-13 |
 
 ---
 
@@ -168,3 +179,106 @@ Architecture decision records (ADRs) for FlameAtlas. Each record states the cont
 **Decision.** Lock the app to Streamlit's light theme in `.streamlit/config.toml`.
 
 **Consequences.** All colors meet WCAG 2.1 AA in the only theme offered ([DRD](04-DRD.md#10-accessibility-checklist)).
+
+## ADR-0015: FastAPI service with a static dashboard
+
+**Context.** The team built the map as a FastAPI prediction API and a self-contained HTML dashboard rather than in Streamlit (ADR-0001). The first version served the page from `file://`, called `http://127.0.0.1:8000` and embedded the API key in the page, so it could not be deployed and the key was visible to anyone.
+
+**Decision.** One FastAPI app serves the dashboard at `/` and the JSON API on the same origin. Direct API calls need `X-API-Key`; requests from the served dashboard are recognized by the browser-set `Sec-Fetch-Site: same-origin` header and need no key.
+
+**Consequences.** One deployable service and no secret in the browser. Because the dashboard is public by design, the key only stops scripted and cross-site use; rate limiting (300 requests per minute per IP) protects the service. Supersedes ADR-0001.
+
+## ADR-0016: Gradient-boosting classifier for the boundary
+
+**Context.** ADR-0006 chose logistic regression per material. The build trained one scikit-learn gradient-boosting classifier on oxygen, pressure, flow and material over 54 rows with outcomes, reporting stratified 5-fold cross-validation accuracy (0.796).
+
+**Decision.** Keep the gradient-boosting model, with a training-range guard (no prediction outside 16.4 to 22.1% O2, 50.7 to 101.3 kPa, 0.1 to 53 cm/s) and no prediction for materials with fewer than 10 outcome rows.
+
+**Consequences.** Only SIBAL has enough data. The boundary is the P(spread) = 0.5 contour of the model rather than a published-style curve, so it can look irregular. scikit-learn is pinned to 1.9.0 because the saved model is a pickle. Supersedes ADR-0006.
+
+## ADR-0017: Defer Ask FlameAtlas
+
+**Context.** Ask needs a language-model API with credit (ADR-0003, ADR-0004, ADR-0013). The team has no API key for this release, and the deadline is 2026-11-13.
+
+**Decision.** Do not ship Ask. Put the effort into evidence cards and material profiles, which use the same sources without a runtime model.
+
+**Consequences.** FR-ASK requirements are deferred, not withdrawn. Research gaps are communicated by the map, profiles and cards instead of answer-level gap flags.
+
+## ADR-0018: Machine-checked quotes for cards and profiles
+
+**Context.** ADR-0005 requires a person to verify every record. On the deadline day no reviewer was available, and the team asked for the cards to be built without a human in the loop.
+
+**Decision.** Every card, evidence point and profile fact carries the exact source quotes it is based on, with the PDF page or PSI row. `scripts/verify_cards.py` checks every quote word for word against the source and stores the result and the source file hashes. Interpretive takeaways are labeled as such in the app.
+
+**Consequences.** Any reader can confirm the evidence in seconds, and a single changed digit fails the check. The check proves the quotes, not the wording around them: summaries still need expert review (risk R-20). Amends ADR-0005 for cards and profiles; map records from Table 7.1 keep their original status.
+
+## ADR-0019: Dark and light themes
+
+**Context.** ADR-0014 locked a light theme because some marker colors failed contrast on Streamlit's dark background. The as-built dashboard has its own palette.
+
+**Decision.** Default to the viewer's system preference with a manual toggle; outcomes are encoded by marker shape as well as color.
+
+**Consequences.** Contrast must be checked in both themes before release. Supersedes ADR-0014.
+
+## ADR-0020: Render single-service deployment
+
+**Context.** Streamlit Community Cloud fits Streamlit apps, not a FastAPI service.
+
+**Decision.** Deploy to a Render free web service defined in `render.yaml`, auto-deploying from `main`, with `FLAMEATLAS_API_KEY` set in Render and uvicorn run with proxy headers so rate limits see real client IPs.
+
+**Consequences.** One public URL for page and API. The free tier sleeps when idle, so the first request can take about a minute (risk R-23).
+
+## ADR-0021: Evidence-only materials
+
+**Context.** NASA has tested PMMA, Nomex and silicone, but the results cannot support a model: all 20 BASS-II PMMA slabs burned (one class only), the PMMA rod boundary is reported against stretch rate rather than flow, and Nomex and silicone each have about four results from different setups that sometimes disagree.
+
+**Decision.** Mark these materials *evidence only*. The map plots their individual NASA results (oxygen as a range where it drifted during the test) with no boundary and no prediction, and `/predict` returns a research-gap message.
+
+**Consequences.** The app shows real NASA data for four materials without inventing predictions, which supports PRD goal G-4. Adding a material to the model needs at least 10 rows with both burning and non-burning outcomes.
+
+## ADR-0022: U-shaped logistic boundary on measured tests only
+
+**Context.** Re-evaluating ADR-0016 on held-out SIBAL tests only (5-fold, repeated 20 times) showed the gradient-boosting model scored 63%, below the 72% of always guessing "burns". Its reported 79.6% cross-validation accuracy was inflated by 13 rows whose `marginal_spread` label is the parser's default for a missing outcome. It also trained on 6 Table 7.1 rows the table itself flags as unreliable, and its step-shaped boundary did not resemble NASA's published boundaries.
+
+**Decision.** Fit the logistic form of ADR-0006 (O2, log flow, log flow²) to measured SIBAL microgravity outcomes only: 42 usable rows of Table 7.1 plus 5 concurrent-flow Saffire tests (NTRS 20210011521, Table 2, quote-checked), 47 in total. Report held-out accuracy next to the always-burns baseline and a gradient-boosting comparison, in the API and on the dashboard.
+
+**Consequences.** Held-out accuracy is 81.5% against a 78.7% baseline (gradient boosting on the same data: 78.7%); the model rarely predicts extinction correctly (2 of 10 held out), because extinctions are scarce. The fitted peak is near 1,050 cm/s, far above the tested 2 to 53 cm/s, so within the tested range the plot shows only the quenching side of the U, and says so. The boundary is smooth and drawn only inside the tested range. Pressure is not a model input (every SIBAL test ran near 1 atm); predictions are accepted within 15 kPa of the tested pressure. Supersedes ADR-0016.
+
+## ADR-0023: Drop the squared term and widen the MARGINAL band
+
+**Context.** Under ADR-0022 the model caught only about a quarter of extinctions at a 50% cutoff. No further tabulated SIBAL extinction data exist in the downloaded NASA sources (the PSI logs record conditions only; extra quench points appear only in a plotted figure, which cannot be quote-checked; Confined Combustion extinctions are caused by baffle spacing, a different variable). So the options were tested on the 47 measured tests, with 5-fold cross-validation repeated 20 times and, for automatic selection, an inner cross-validation loop:
+
+| Option | Accuracy | Extinction recall (50% cutoff) | AUC |
+|---|---|---|---|
+| Always burns | 0.787 | 0 | 0.50 |
+| O2, log flow, log flow² (ADR-0022) | 0.815 | 0.23 | 0.85 |
+| O2, log flow | 0.820 | 0.25 | 0.86 |
+| + log sample width | 0.817 | 0.22 | 0.85 |
+| + O2 × log flow | 0.826 | 0.30 | 0.86 |
+| O2, log flow, class-weighted | 0.719 | 0.81 | 0.86 |
+| Nested automatic selection | 0.795 | 0.22 | 0.85 |
+
+Scored with the app's three-way output, class weighting called 28% of burning tests NO SPREAD, the dangerous error for a fire-safety tool, so it was rejected. The unweighted O2 + log-flow model never did.
+
+**Decision.** Use logistic regression on O2 and log flow (the squared term's fitted peak lay near 1,000 cm/s and added nothing), and report SPREAD at P ≥ 0.7, NO SPREAD at P ≤ 0.3 and MARGINAL between. The band was chosen from 0.4-0.6, 0.3-0.7 and 0.2-0.8 after seeing held-out results, a small selection effect. Report AUC and safety counts with accuracy.
+
+**Consequences.** Held-out: AUC 0.86, 0 of 740 burning cases called NO SPREAD, 159 of 200 extinctions flagged MARGINAL or NO SPREAD, accuracy 0.820. Gradient boosting on the same folds: AUC 0.82, 83 burning cases called NO SPREAD. The model almost never says NO SPREAD; near the boundary it says MARGINAL, which is the honest answer for 10 recorded extinctions. Catching extinctions more precisely needs more NASA extinction data, not a different model.
+
+## ADR-0024: Use 1/flow so the quenching boundary can bend
+
+**Context.** Compared with the quenching line the BASS-II authors drew for 2.2 cm SIBAL (NTRS 20150008962, Fig. 7), the ADR-0023 boundary was too shallow at low airflow: about 1.5 O2 points lower at 2.2 cm/s. Fig. 7 plots the same tests as Table 7.1 (its text reports the same six quenching cases), so it adds no new data. The cause was the model's shape: with O2 and log(flow) the boundary is a straight line on the log-flow axis, but NASA's tests quench at 17.4 to 18.7% O2 near 2.2 to 2.6 cm/s while burning at 17.6% at 3 cm/s.
+
+**Decision.** Use O2 and 1/flow. 1/flow grows sharply as airflow falls, consistent with heat losses dominating near the quenching limit. Six shapes were compared with 5-fold CV repeated 20 times (`scripts/model_shape_experiments.py`):
+
+| Shape | Accuracy | AUC | Burning called NO SPREAD | Extinctions flagged |
+|---|---|---|---|---|
+| O2, log U (ADR-0023) | 0.820 | 0.858 | 0/740 | 159/200 |
+| **O2, 1/U** | **0.870** | **0.896** | **0/740** | **163/200** |
+| O2, log U, 1/U | 0.860 | 0.881 | 0/740 | 164/200 |
+| O2, log U, log U² | 0.815 | 0.847 | 0/740 | 160/200 |
+| O2, 1/U, log width | 0.860 | 0.895 | 0/740 | 159/200 |
+
+With the shape choice itself cross-validated (nested), accuracy is 0.857 and AUC 0.888; 1/U was the most frequent pick.
+
+**Consequences.** The mean distance between the fitted P = 0.5 boundary and the authors' line (read from the figure, about ±0.1) falls from 0.67 to 0.40 O2 points; from 2.7 cm/s upward they agree within about 0.3. The model still sits 0.6 to 0.8 points below the authors' line at 2.2 to 2.5 cm/s, where only one test (18.7% O2) exists and the authors drew through it by hand. Thresholds stay at 0.3 and 0.7. Amends ADR-0023.
+

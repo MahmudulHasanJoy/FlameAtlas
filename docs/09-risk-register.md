@@ -10,6 +10,7 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline; R-02 and R-16 updated with findings from the data download |
+| 1.1 | 2026-11-13 | Added R-20 to R-24 from the build |
 
 ---
 
@@ -71,9 +72,15 @@ quadrantChart
 | R-16 | NASA source files missing from PSI storage. **Realized:** 9 of 154 files return `NoSuchKey`, including the BASS final report | 3 | 1 | 3 | Documented in the manifest; BASS covered by NTRS 20140011099 and the BASS-II summary report | None needed | Syed | Closed |
 | R-17 | 2026 judging criteria or submission rules differ from past years | 1 | 2 | 2 | Criteria mapping kept in one table (PRD Section 11) | Update wording when the guide is published (TBD Nov 13) | Farhan | Open |
 | R-18 | Boundary fit misleads (for example extrapolating into untested areas) | 2 | 3 | 6 | Envelope check before probability; data-sufficiency rule; O2 coefficient sign check; TC-14 sanity check against NASA's published boundary | Show points only for the affected material | Aurin | Open |
+| R-20 | Card summaries or takeaways misstate a source even though every quote matches | 2 | 3 | 6 | Each claim written only from its quotes; interpretations labeled; second read-through fixed 5 overstatements | Correct the card; the quote check still guarantees the underlying evidence | Aurin | Open: expert review pending |
+| R-21 | Default `marginal_spread` label for rows without an outcome skews the model | 3 | 2 | 6 | Model now trains only on measured SIBAL outcomes (ADR-0022); such rows are labeled "no outcome recorded" on the map | Fix the parser | Aurin | Mitigated |
+| R-22 | NASA sources disagree (Nomex 1g limit 23.5 vs 25.4%; opposite 0g trends) | 3 | 1 | 3 | Show both values with sources; no prediction for Nomex | Treat as a research gap in the pitch | Aurin | Accepted |
+| R-23 | Render free tier sleeps; first visit takes about a minute | 3 | 1 | 3 | Dashboard retries cards and status after a cold start | Open the URL before judging to wake it | Syed | Open |
+| R-24 | Pickled model fails to load on a different scikit-learn version | 2 | 3 | 6 | Version pinned to 1.9.0 in `requirements.txt`; SHA-256 integrity check | Retrain with `python src/compute/model.py` | Syed | Mitigated |
 
 ## 4. Review log
 
 | Date | Change |
 |---|---|
 | 2026-10-24 | Register created. R-02 confirmed in part by inspecting PSI tables. R-16 realized and closed. R-09 and R-10 assigned actions. |
+| 2026-11-13 | R-02 realized for PMMA, Nomex and silicone: handled with evidence-only maps (ADR-0021). R-20 to R-24 added. |

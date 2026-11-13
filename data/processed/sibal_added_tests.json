@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "description": "SIBAL microgravity tests added to the model's training data from Saffire flights I to IV (NTRS 20210011521, Table 2). They replace the duplicate PSI-98 and PSI-99 SIBAL rows, one of which had no recorded outcome. Quotes are checked by scripts/verify_cards.py.",
+  "replaces": [
+    {
+      "report_id": "PSI PSI-98",
+      "material": "SIBAL Fabric",
+      "reason": "same test as Saffire I-1"
+    },
+    {
+      "report_id": "PSI PSI-99",
+      "material": "Cotton-Fiberglass (SIBAL)",
+      "reason": "same test as Saffire II-5; PSI row had no recorded outcome"
+    },
+    {
+      "report_id": "PSI PSI-99",
+      "material": "nan",
+      "oxygen_pct": 22.1,
+      "reason": "unnamed PSI-99 sample 2-6 (Saffire II-6); no recorded outcome. Unnamed sample 2-9 at 22.0% O2 is a different sample and is kept"
+    }
+  ],
+  "discrepancies": "PSI-99 lists samples 2-5 and 2-6 at 20 cm/s and about 22.1% O2, and PSI-98 lists Saffire-I at 21.5 to 21.7% O2; the paper's Table 2 gives 20 and 25 cm/s at 21% O2. The paper's values are used here.",
+  "quotes": [
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Flight-Sample I-1 II-5 II-6 III-1 IV-1 V-2",
+      "context": "Table 2, Test Conditions and flame size for thin samples: column headings"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Air flow (cm/s) 20 20 25 25 20 20",
+      "context": "Table 2, Test Conditions and flame size for thin samples"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Oxygen concentration (%) 21 21 21 21 22 26.2",
+      "context": "Table 2, Test Conditions and flame size for thin samples"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Pressure (kPa) 100 100 100 100 100 70.7",
+      "context": "Table 2, Test Conditions and flame size for thin samples"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Material SIBAL SIBAL SIBAL SIBAL SIBAL Cotton jersey",
+      "context": "Table 2, Test Conditions and flame size for thin samples"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "Steady state size (cm) 4 4 5 5 8.5 10.0",
+      "context": "Table 2, Test Conditions and flame size for thin samples: every SIBAL flame reached a steady size, i.e. it kept burning"
+    },
+    {
+      "source_id": "NTRS-20210011521",
+      "page": 8,
+      "text": "these results are significant because they demonstrate that under a variety of conditions, concurrent flames spreading over thin fuels will achieve a limiting size."
+    }
+  ],
+  "records": [
+    {
+      "test_label": "Saffire I-1",
+      "material": "sibal",
+      "flow_cm_s": 20.0,
+      "oxygen_pct": 21.0,
+      "pressure_kpa": 100.0,
+      "flow_direction": "concurrent",
+      "gravity": "micro",
+      "outcome_class": "spread",
+      "note": "concurrent flame reached a steady size of 4 cm (kept burning)",
+      "report_id": "NTRS-20210011521",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011521"
+    },
+    {
+      "test_label": "Saffire II-5",
+      "material": "sibal",
+      "flow_cm_s": 20.0,
+      "oxygen_pct": 21.0,
+      "pressure_kpa": 100.0,
+      "flow_direction": "concurrent",
+      "gravity": "micro",
+      "outcome_class": "spread",
+      "note": "concurrent flame reached a steady size of 4 cm (kept burning)",
+      "report_id": "NTRS-20210011521",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011521"
+    },
+    {
+      "test_label": "Saffire II-6",
+      "material": "sibal",
+      "flow_cm_s": 25.0,
+      "oxygen_pct": 21.0,
+      "pressure_kpa": 100.0,
+      "flow_direction": "concurrent",
+      "gravity": "micro",
+      "outcome_class": "spread",
+      "note": "concurrent flame reached a steady size of 5 cm (kept burning)",
+      "report_id": "NTRS-20210011521",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011521"
+    },
+    {
+      "test_label": "Saffire III-1",
+      "material": "sibal",
+      "flow_cm_s": 25.0,
+      "oxygen_pct": 21.0,
+      "pressure_kpa": 100.0,
+      "flow_direction": "concurrent",
+      "gravity": "micro",
+      "outcome_class": "spread",
+      "note": "concurrent flame reached a steady size of 5 cm (kept burning)",
+      "report_id": "NTRS-20210011521",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011521"
+    },
+    {
+      "test_label": "Saffire IV-1",
+      "material": "sibal",
+      "flow_cm_s": 20.0,
+      "oxygen_pct": 22.0,
+      "pressure_kpa": 100.0,
+      "flow_direction": "concurrent",
+      "gravity": "micro",
+      "outcome_class": "spread",
+      "note": "concurrent flame reached a steady size of 8.5 cm (kept burning)",
+      "report_id": "NTRS-20210011521",
+      "source_url": "https://ntrs.nasa.gov/citations/20210011521"
+    }
+  ]
+}

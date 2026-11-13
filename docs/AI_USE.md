@@ -1,21 +1,46 @@
 # Use of AI in this project
 
-## Tools
-- None at build time for the science layer. All statistics and the gradient-boosting
-  classifier in `src/compute/` are written and unit-tested by the team.
-- The explanation layer (planned) will use an LLM to write plain-language captions
-  from the prediction object only; it will never predict or state a number absent
-  from the object.
+## Summary
 
-## What the AI did
-- Nothing in `src/compute/model.py` or `cache/experiments.parquet`. These are
-  deterministic, trained on published NASA data, and cross-validated honestly.
+FlameAtlas runs **no AI model at runtime**. Predictions come from a deterministic
+logistic-regression boundary fitted to measured NASA microgravity tests. An AI coding
+assistant was used during development, as described below.
 
-## What the AI did not do
-- Did not train the model, choose features, or set the cross-validation splits.
-- Did not select the NASA datasets; those come from the PSI / NTRS source lists.
-- Did not write the prediction object contract or the out-of-range guard.
+## Science layer (team)
+
+- `src/compute/model.py` and `cache/experiments.parquet` were built by the team.
+  The classifier, its features, the cross-validation splits, the prediction
+  object contract and the out-of-range guard were not chosen by an AI.
+- The NASA datasets come from the PSI and NTRS source lists in `data/sources/`.
+
+## Development assistant: Claude Code (Anthropic), 2026-11-13
+
+Used by the team, with the team directing each step, to:
+
+- Make the app deployable: serve the dashboard from the FastAPI service, remove
+  the API key from the browser, add the Render configuration, pinned
+  requirements and API tests.
+- Add a research-gap response for materials without enough outcome data.
+- Replace the gradient-boosting model with the logistic boundary the team's own
+  spec described (ADR-0006), retrained on measured outcomes only. Every model
+  choice (features, class weighting, decision band) was tested with repeated
+  held-out cross-validation before it was adopted (ADR-0022 to ADR-0024).
+- Draft the evidence cards (`data/processed/cards.json`), evidence points
+  (`evidence_points.json`) and material profiles (`materials.json`) from the
+  downloaded NASA PDFs and PSI tables.
+- Write `scripts/verify_cards.py` and update the documentation to the as-built app.
+
+## Safeguards on AI-drafted content
+
+- Every card, evidence point and profile fact lists the exact quotes it is based
+  on, with the PDF page or table row. `scripts/verify_cards.py` checks every quote
+  word for word against the source (164 of 164 pass); the result is stored in
+  `data/processed/cards_verification.json` with SHA-256 hashes of the sources.
+- Card takeaways that are interpretation rather than quotation are labeled
+  "FlameAtlas interpretation" in the app.
+- Card summaries and takeaways have not yet been reviewed by a combustion expert.
 
 ## Prompts
-None yet. If an LLM is added for the explanation layer, full prompt texts will be
-recorded in `docs/prompts_used.md`.
+
+No language-model prompts are used by the app. If Ask FlameAtlas is built later,
+its prompts will be recorded in `docs/prompts_used.md`.

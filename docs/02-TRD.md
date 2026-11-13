@@ -5,12 +5,13 @@
 | Product | FlameAtlas |
 | Document owner | Syed Mehedi Hussain (Integration and QA) |
 | Contributors | Md. Mahmudul Hasan (AI), Opi Mojumdar (dashboard), Aurin Subah (data) |
-| Status | Baseline v1.0 |
+| Status | v1.1, updated to the as-built stack |
 | Related | [PRD](01-PRD.md), [SDD](03-SDD.md), [Decision log](10-decisions.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added as-built stack, interfaces and deployment (Sections 3.0 and 7.0) |
 
 ---
 
@@ -31,6 +32,24 @@ The PRD says **what** FlameAtlas does. This document fixes the **technical const
 | C-7 | The demo must still work if the hackathon venue's internet is slow: data, index and model files are bundled with the app. | Venue risk |
 
 ## 3. Technology stack
+
+### 3.0 As built (2026-11-13)
+
+| Layer | Choice | Notes |
+|---|---|---|
+| Language | Python 3.14 (3.11+ works) | |
+| Web service | FastAPI + uvicorn | Serves the dashboard at `/` and the JSON API (ADR-0015) |
+| Frontend | One static HTML page with Plotly 2.35 from the CDN | `frontend/dashboard.html`; dark and light themes |
+| Model | scikit-learn 1.9.0 `LogisticRegression` on O2 and 1/flow | Saved in `cache/model.joblib` with a SHA-256 integrity check; the version is pinned because pickled models only load reliably on the same version (ADR-0022 to ADR-0024) |
+| Data | `cache/experiments.parquet`; `data/processed/cards.json`, `evidence_points.json`, `materials.json` | All bundled in the repository |
+| Source check | `scripts/verify_cards.py` with poppler `pdftotext` | Development time only; needs the raw NASA files |
+| Language model | None at runtime | Ask is deferred (ADR-0017) |
+| Hosting | Render free web service from `render.yaml` | ADR-0020 |
+
+**API (as built).** `GET /` dashboard · `GET /health` · `POST /predict` · `GET /boundary` · `GET /cards`, `GET /cards/{id}` · `GET /materials` · `GET /evidence?material=`. Direct calls need the `X-API-Key` header (`FLAMEATLAS_API_KEY`); the dashboard served from the same origin does not, so no key is ever sent to the browser. Requests are rate-limited to 300 per minute per client IP.
+
+The original stack below (Streamlit, ChromaDB, Claude) is kept for reference.
+
 
 | Layer | Choice | Version floor | Why (decision) |
 |---|---|---|---|
@@ -214,6 +233,14 @@ def answer_question(text: str) -> Answer:
 The app never calls NASA servers at runtime; it links to them.
 
 ## 7. Environments and deployment
+
+### 7.0 As built (2026-11-13)
+
+| Environment | How | Secrets |
+|---|---|---|
+| Local | `pip install -r requirements.txt`, then `uvicorn src.api.app:app --port 8000`; open http://127.0.0.1:8000 | `.env` (git-ignored), loaded with python-dotenv |
+| Render | `render.yaml` blueprint: build `pip install -r requirements.txt`, start uvicorn with `--proxy-headers`, health check `/health`, auto-deploy from `main` | `FLAMEATLAS_API_KEY` set in the Render dashboard |
+
 
 | Environment | Where | Purpose | Data |
 |---|---|---|---|

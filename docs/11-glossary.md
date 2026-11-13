@@ -5,6 +5,7 @@ Plain-language definitions of the terms used in FlameAtlas and its documents. Ow
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added as-built FlameAtlas terms |
 
 ## Fire science
 
@@ -70,6 +71,10 @@ Plain-language definitions of the terms used in FlameAtlas and its documents. Ow
 | **Habitat status** | The label for the conditions set with the sliders: `DANGER`, `MARGINAL`, `SELF-EXTINGUISHES`, `UNTESTED` or `NOT ENOUGH DATA`. |
 | **Confidence level** | `HIGH`, `MEDIUM` or `LOW`, computed from how many verified tests match a question and how close they are. |
 | **Research gap** | A combination of material and conditions that NASA has not tested, shown with a ⚑ flag. |
+| **Evidence only** | A material with NASA test results but not enough consistent burn and no-burn outcomes to fit a model. The map shows its individual tests and no prediction. |
+| **Evidence point** | One NASA test result shown on an evidence-only map, with oxygen as a range when it changed during the test. |
+| **Material profile** | A short sourced summary of a material: what it is, how it burns on Earth and in microgravity, and its data status. |
+| **Quote check** | The script that confirms every quote on cards, points and profiles appears word for word in its NASA source. |
 
 ## AI and software terms
 

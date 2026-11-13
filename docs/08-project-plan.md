@@ -10,6 +10,7 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Deliverables checklist updated with the as-built status |
 
 ---
 
@@ -136,8 +137,8 @@ Sleep rule: each person takes at least one 4-hour block off between H18 and H34,
 | 240-second qualification video | Farhan | Done |
 | Documentation set (`docs/`) | Whole team | Baseline done 2026-10-24 |
 | Data fetch scripts and source lists | Syed | Done 2026-10-24 |
-| Working app at a public URL | Syed | Hackathon |
+| Working app at a public URL | Syed | Deploy-ready on Render (`render.yaml`); live URL pending |
 | 30-second demo video with English subtitles (or up to 7 slides) | Farhan | Hackathon |
 | Project page on spaceappschallenge.org | Farhan | Hackathon |
-| Results numbers (extraction accuracy, record counts) | Aurin | Hackathon |
-| AI use statement on the project page | Mahmudul | Hackathon |
+| Results numbers (extraction accuracy, record counts) | Aurin | Measured: 47 SIBAL training tests, held-out AUC 0.90, accuracy 0.870, 0/740 burning cases called NO SPREAD, 82% of extinctions flagged; 11 cards, 51 evidence points, 4 profiles; 164/164 quotes source-checked |
+| AI use statement on the project page | Mahmudul | Drafted in `docs/AI_USE.md` |

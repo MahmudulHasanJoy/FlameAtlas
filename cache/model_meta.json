@@ -1,22 +1,38 @@
 {
-  "type": "gradient_boosting",
-  "n_train": 54,
-  "cv_accuracy": 0.7964,
-  "cv_scores": [
-    0.8182,
-    0.8182,
-    0.9091,
-    0.6364,
-    0.8
-  ],
+  "type": "logistic_quench_boundary",
+  "description": "Logistic regression on O2 and 1/flow for SIBAL fabric (microgravity, concurrent flow); describes the low-flow quenching side of NASA's flammability boundary",
+  "n_train": 47,
+  "n_spread": 37,
+  "n_no_spread": 10,
+  "cv_method": "5-fold stratified, repeated 20 times; held-out tests only",
+  "cv_accuracy": 0.8701,
+  "baseline_accuracy": 0.7872,
+  "auc": 0.8963,
+  "safety": {
+    "burned_called_no_spread": 0,
+    "burned_cases": 740,
+    "extinctions_flagged": 163,
+    "extinction_cases": 200
+  },
+  "comparison": {
+    "gradient_boosting": {
+      "accuracy": 0.7873,
+      "auc": 0.8164,
+      "burned_called_no_spread": 83,
+      "burned_cases": 740,
+      "extinctions_flagged": 97,
+      "extinction_cases": 200
+    }
+  },
   "features": [
     "oxygen_pct",
-    "pressure_kpa",
-    "flow_cm_s",
-    "material"
+    "inv_flow"
   ],
+  "coefficients_standardized": {
+    "oxygen_pct": 1.7298,
+    "inv_flow": -0.8135
+  },
   "classes": [
-    "marginal_spread",
     "no_spread",
     "spread"
   ],
@@ -28,46 +44,27 @@
   "feature_range": {
     "oxygen_pct": {
       "min": 16.4,
-      "max": 22.1
+      "max": 22.0
     },
     "pressure_kpa": {
-      "min": 50.663,
+      "min": 100.0,
       "max": 101.3
     },
     "flow_cm_s": {
-      "min": 0.1,
+      "min": 2.0,
       "max": 53.0
     }
   },
-  "confusion_matrix": {
-    "labels": [
-      "marginal_spread",
-      "no_spread",
-      "spread"
-    ],
-    "matrix": [
-      [
-        13,
-        0,
-        0
-      ],
-      [
-        0,
-        13,
-        0
-      ],
-      [
-        0,
-        0,
-        28
-      ]
-    ]
-  },
-  "spread_threshold": 0.6,
-  "no_spread_threshold": 0.4,
+  "pressure_tolerance_kpa": 15.0,
+  "spread_threshold": 0.7,
+  "no_spread_threshold": 0.3,
   "known_materials": [
     "nomex",
     "pmma",
+    "sibal",
+    "silicone"
+  ],
+  "trained_materials": [
     "sibal"
   ]
 }

@@ -5,14 +5,23 @@
 | Product | FlameAtlas |
 | Document owner | Md. Mahmudul Hasan (Team Lead, AI and RAG) |
 | Contributors | Aurin Subah (boundary science), Syed Mehedi Hussain (evaluation tooling) |
-| Status | Baseline v1.0 |
+| Status | v1.1, as-built status added |
 | Related | [Data spec](05-data-spec.md), [SDD](03-SDD.md), [Decision log](10-decisions.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added an as-built status note: no language model at runtime, Ask deferred, boundary model (logistic regression, ADR-0022 to ADR-0024), cards drafted with AI assistance and checked against sources by script |
 
 ---
+
+> **As built, 2026-11-13.** This document was baselined on 2026-10-24, before the build. Sections marked *as built* describe what FlameAtlas actually ships; the original text is kept below them for traceability. The [decision log](10-decisions.md) (ADR-0015 to ADR-0021) records why the build changed.
+
+**As-built status (2026-11-13).**
+
+- **No language model runs in the app.** Ask FlameAtlas (Sections 2, 3, 6 and 7 on retrieval, confidence and prompts) is deferred because the team has no model API key for this release (ADR-0017).
+- **Boundary model.** Logistic regression on O2 and 1/flow (in place of Section 5's log flow terms; 1/flow lets the boundary bend steeply on the quenching side), fitted to 47 measured SIBAL microgravity tests: BASS-II Table 7.1 (rows the table flags as unreliable excluded) and Saffire I-IV; in held-out testing (5-fold, repeated 20 times) it ranks burning above extinguishing conditions with AUC 0.90, never called a burning case NO SPREAD (0 of 740), and flagged 82% of extinctions as MARGINAL or NO SPREAD; accuracy 87.0% vs a 78.7% always-burns baseline (85.7% when the shape choice itself is cross-validated). Gradient boosting on the same folds: AUC 0.82 and 83 burning cases called NO SPREAD (ADR-0022 to ADR-0024). SPREAD needs P(spread) ≥ 0.7 and NO SPREAD ≤ 0.3; between them the answer is MARGINAL. The model describes the quenching side of the boundary only. It refuses to predict outside the tested range or for materials with fewer than 10 measured tests.
+- **Evidence cards and material profiles** were drafted with an AI coding assistant (Claude Code) from the downloaded NASA papers, as Section 4 intended, but with a different safeguard: instead of a person checking each field, every card carries the exact quotes behind it and `scripts/verify_cards.py` confirms each quote word for word against the source (ADR-0018). Summaries and takeaways are labeled when they are interpretation and still need expert review.
 
 ## 1. Where AI is used, and where it is not
 

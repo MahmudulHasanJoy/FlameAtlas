@@ -5,14 +5,29 @@
 | Product | FlameAtlas |
 | Document owner | Md. Mahmudul Hasan (Team Lead, AI and RAG) |
 | Contributors | Aurin Subah (science), Opi Mojumdar (dashboard), Syed Mehedi Hussain (integration and QA), Farhan Alam Chowdhury (story) |
-| Status | Baseline v1.0 |
+| Status | v1.1, updated to the as-built product |
 | Related | [TRD](02-TRD.md), [DRD](04-DRD.md), [Test plan](07-test-plan.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline, written from the project brief, the pitch deck, and the NASA data downloaded on 2026-10-24 |
+| 1.1 | 2026-11-13 | Added Section 0 (implementation status). Corrected the PMMA rod minimum in Section 2.1: it is reported against stretch rate, not flow. |
 
 ---
+
+> **As built, 2026-11-13.** This document was baselined on 2026-10-24, before the build. Sections marked *as built* describe what FlameAtlas actually ships; the original text is kept below them for traceability. The [decision log](10-decisions.md) (ADR-0015 to ADR-0021) records why the build changed.
+
+## 0. Implementation status (as built, 2026-11-13)
+
+| Feature | Status | What ships |
+|---|---|---|
+| 1. Flammability Map | Shipped, changed | Oxygen, pressure and airflow sliders; a logistic quenching boundary (oxygen and 1/airflow) fitted to 47 measured SIBAL microgravity tests (ADR-0022 to ADR-0024) predicts `no_spread` / `marginal_spread` / `spread` for **SIBAL fabric**, with its held-out test results (AUC 0.90; no burning case called NO SPREAD), a P = 0.5 boundary plot, a training-range guard and the three nearest NASA tests. **PMMA, Nomex and silicone** are *evidence only*: the map shows their individual NASA test results (51 points) and returns a research-gap message instead of a prediction (ADR-0021). |
+| 2. AI Evidence Cards | Shipped | 11 cards covering BASS, BASS-II, Saffire I, II, IV and V, silicone ground tests, the 2026 exploration-atmosphere assessment, 2008 0g/1g limits and FM2. Every card lists the exact source quotes behind it, and a script checks each quote word for word against the NASA PDF page or PSI table (ADR-0018). |
+| Material profiles (new) | Shipped | One profile per material: what it is, Earth and microgravity limits, spacecraft use, data status. Every fact links to its quotes. |
+| 3. Ask FlameAtlas | Not built | Needs a language-model API key, which the team does not have for this release (ADR-0017). Research gaps are shown on the map, in profiles and on cards instead. |
+| Public URL | Ready to deploy | One FastAPI service on Render serves the dashboard and the API (ADR-0015, ADR-0020). |
+
+Requirements that depend on Ask (FR-ASK-01 to FR-ASK-09, NFR-PERF-02, NFR-COST-01) are deferred, not withdrawn. FR-DATA-05 ("verified by a named reviewer") is met for map records through the original Table 7.1 transcription and for cards through automated quote checks; expert review of card wording is still open.
 
 ## 1. Summary
 
@@ -36,7 +51,7 @@ On Earth, hot combustion gases rise and pull fresh air into a flame (buoyant con
 - **Too much airflow** blows the flame off the material (blowoff extinction).
 - Between the two lies a band of gentle airflow in which a material burns at **lower oxygen levels than it would on Earth**.
 
-NASA's BASS-II experiment on the International Space Station measured this directly. For PMMA (acrylic) rods, flames survived down to about **13.5% O2** in a narrow band of low flow, well below the **15.4% O2** limit for upward burning on Earth. The authors call this a "Goldilocks" zone and note that it is "unfortunately typical of spacecraft ventilation flows near surfaces" (NTRS 20210011385, Section 6.1.4.4). When plotted with airflow on a log axis, the boundary has the classic **U shape**.
+NASA's BASS-II experiment on the International Space Station measured this directly. For PMMA (acrylic) rods, flames survived down to about **13.5% O2** at a low stretch rate (8 to 12 s⁻¹, the measure NASA uses for rods), well below the **15.4% O2** limit for upward burning on Earth. The authors call this a "Goldilocks" zone and note that it is "unfortunately typical of spacecraft ventilation flows near surfaces" (NTRS 20210011385, Section 6.1.4.4). When plotted with airflow on a log axis, the boundary has the classic **U shape**.
 
 ### 2.2 Earth tests can mislead in both directions
 

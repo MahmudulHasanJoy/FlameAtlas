@@ -5,12 +5,13 @@
 | Product | FlameAtlas |
 | Document owner | Opi Mojumdar (Dashboard) |
 | Contributors | Farhan Alam Chowdhury (copy and story), Aurin Subah (science wording) |
-| Status | Baseline v1.0 |
+| Status | v1.1, updated to the as-built dashboard |
 | Related | [PRD](01-PRD.md), [SDD](03-SDD.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | As built: three-column dashboard (controls and material profile, map and prediction, nearest tests) above a full-width Evidence Cards section with material filters and a card detail dialog. Dark theme by default with a light-mode toggle (ADR-0019). Evidence-only materials show NASA test points with oxygen ranges and a "research gap" notice. Clicking a map point or a nearest test opens its card; Escape closes the dialog. |
 | 1.1 | 2026-10-24 | Demo path updated from the prototype run on BASS-II Table 7.1 data |
 
 ---
@@ -270,7 +271,7 @@ The 30-second video and the live pitch follow the same path. Every step must wor
 
 | Seconds | Action | What the viewer sees |
 |---|---|---|
-| 0 to 4 | App opens on Map, material SIBAL, preset "ISS cabin" | Dots, U-shaped boundary, star in burn region, badge `DANGER` |
+| 0 to 4 | App opens on Map, material SIBAL, preset "ISS cabin" | Dots, quenching boundary, star in burn region, badge `SPREAD` (as built) |
 | 4 to 10 | Lower oxygen to 17% and airflow to about 2 cm/s | Star crosses the boundary near NASA's quenched tests; badge changes to `SELF-EXTINGUISHES` |
 | 10 to 15 | Choose preset "Exploration 8.2 psia / 34% O2" | Star jumps into the hatched area; badge `UNTESTED`; pressure warning |
 | 15 to 20 | Click a dot | Evidence card with NASA source and page |

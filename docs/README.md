@@ -14,7 +14,7 @@ This folder is the single source of truth for what FlameAtlas is, how it is buil
 | Challenge | Flame in Freefall (AI dashboard for microgravity combustion research) |
 | Local event | Dhaka, Bangladesh |
 | Repository | https://github.com/MahmudulHasanJoy/FlameAtlas |
-| Documentation status | Baseline v1.0, 2026-10-24 (before the official challenge datasets are released on 2026-10-28) |
+| Documentation status | v1.1, 2026-11-13: updated to the as-built app. Baseline v1.0 was written on 2026-10-24, before the build. |
 
 ## Reading order
 
@@ -31,6 +31,8 @@ This folder is the single source of truth for what FlameAtlas is, how it is buil
 | 09 | [Risk Register](09-risk-register.md) | What can go wrong and what we do about it | Md. Mahmudul Hasan |
 | 10 | [Decision Log](10-decisions.md) | Why we chose each tool and rule (architecture decision records) | Whole team |
 | 11 | [Glossary](11-glossary.md) | Combustion, NASA and AI terms in plain language | Aurin Subah, Farhan Alam Chowdhury |
+
+**What changed in the build.** FlameAtlas ships as one FastAPI service with an HTML dashboard: a logistic flame-spread (quenching) boundary for SIBAL fabric fitted to 47 measured tests, evidence-only maps for PMMA, Nomex and silicone, 11 evidence cards and 4 material profiles whose every quote is checked against the NASA source. Ask FlameAtlas is deferred. See [PRD Section 0](01-PRD.md#0-implementation-status-as-built-2026-11-13) and ADR-0015 to ADR-0021 in the [decision log](10-decisions.md).
 
 New to the project? Read the PRD summary, then the SDD context diagram, then the glossary. Building a specific part? Go straight to its spec and the matching rows of the traceability matrix in the test plan.
 
@@ -89,7 +91,7 @@ The raw NASA data is not stored in git (about 440 MB). Recreate it with:
 
 ```bash
 python scripts/fetch_psi.py    # NASA Physical Sciences Informatics: 24 combustion investigations
-python scripts/fetch_ntrs.py   # 43 curated NASA Technical Reports Server papers
+python scripts/fetch_ntrs.py   # 44 curated NASA Technical Reports Server papers
 ```
 
 Both scripts use only the Python standard library and skip files that are already present.

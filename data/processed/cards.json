@@ -1,0 +1,979 @@
+{
+  "schema_version": 1,
+  "description": "FlameAtlas evidence cards. One card per NASA study. Every card field is supported by the exact quotes listed under 'quotes'; scripts/verify_cards.py checks each quote word for word against the source PDF or PSI table. 'safety_takeaway' is a FlameAtlas interpretation unless it is itself a quote.",
+  "sources": {
+    "NTRS-20210011385": {
+      "type": "ntrs",
+      "title": "Burning and Suppression of Solids-II (BASS-II) Summary Report",
+      "authors": "Olson, S.L.; Ferkul, P.V.; Bhattacharjee, S.; et al.",
+      "year": 2021,
+      "doc_type": "NASA Technical Memorandum (NASA/TM-20210011385)",
+      "url": "https://ntrs.nasa.gov/citations/20210011385",
+      "file": "data/raw/ntrs/20210011385.pdf"
+    },
+    "NTRS-20210011521": {
+      "type": "ntrs",
+      "title": "Fire Safety Implications of Preliminary Results from Saffire IV and V Experiments on Large Scale Spacecraft Fires",
+      "authors": "Urban, D.L.; Ruff, G.A.; Ferkul, P.; et al.",
+      "year": 2021,
+      "doc_type": "Conference paper (ICES-2021-266)",
+      "url": "https://ntrs.nasa.gov/citations/20210011521",
+      "file": "data/raw/ntrs/20210011521.pdf"
+    },
+    "NTRS-20170000230": {
+      "type": "ntrs",
+      "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire)",
+      "authors": "Ruff, G.A.; Urban, D.L.",
+      "year": 2016,
+      "doc_type": "Conference paper (46th ICES)",
+      "url": "https://ntrs.nasa.gov/citations/20170000230",
+      "file": "data/raw/ntrs/20170000230.pdf"
+    },
+    "NTRS-20150022421": {
+      "type": "ntrs",
+      "title": "Buoyant Effects on the Flammability of Silicone Samples Planned for the Spacecraft Fire Experiment (Saffire)",
+      "authors": "Niehaus, J.E.; Ferkul, P.V.; Gokoglu, S.A.; Ruff, G.A.",
+      "year": 2015,
+      "doc_type": "Conference paper (ICES-2015-293)",
+      "url": "https://ntrs.nasa.gov/citations/20150022421",
+      "file": "data/raw/ntrs/20150022421.pdf"
+    },
+    "NTRS-20260003925": {
+      "type": "ntrs",
+      "title": "Impacts of Reduced Pressure Atmospheres on Environmental Control and Life Support Systems (ECLSS) Architectures",
+      "authors": "Abney, M.B.; Bagdigian, R.M.; Hopkins, C.; et al.",
+      "year": 2026,
+      "doc_type": "NASA Technical Memorandum (NASA/TM-20260003925, NESC-RP-20-01610)",
+      "url": "https://ntrs.nasa.gov/citations/20260003925",
+      "file": "data/raw/ntrs/20260003925.pdf"
+    },
+    "NTRS-20080034883": {
+      "type": "ntrs",
+      "title": "Microgravity Flame Spread in Exploration Atmospheres: Pressure, Oxygen, and Velocity Effects on Opposed and Concurrent Flame Spread",
+      "authors": "Olson, S.L.; Ruff, G.A.; Miller, F.J.",
+      "year": 2008,
+      "doc_type": "NASA Technical Memorandum (NASA/TM-2008-215260)",
+      "url": "https://ntrs.nasa.gov/citations/20080034883",
+      "file": "data/raw/ntrs/20080034883.pdf"
+    },
+    "NTRS-20240015307": {
+      "type": "ntrs",
+      "title": "Flammability of Materials on the Moon",
+      "authors": "Zayac, J.; Johnston, M.; Ruff, G.; Ferkul, P.",
+      "year": 2024,
+      "doc_type": "Poster",
+      "url": "https://ntrs.nasa.gov/citations/20240015307",
+      "file": "data/raw/ntrs/20240015307.pdf"
+    },
+    "NTRS-20250010975": {
+      "type": "ntrs",
+      "title": "Characterizing the Flammability of Nomex Fabric for the Preparation of FM2",
+      "authors": "Schechter, J.; Zayac, J.; Ferkul, P.; Dietrich, D.; Liao, Y.-T.",
+      "year": 2025,
+      "doc_type": "Poster",
+      "url": "https://ntrs.nasa.gov/citations/20250010975",
+      "file": "data/raw/ntrs/20250010975.pdf"
+    },
+    "PSI-98": {
+      "type": "psi",
+      "title": "Saffire-I experimental table (NASA Physical Sciences Informatics)",
+      "authors": "NASA PSI",
+      "year": null,
+      "doc_type": "PSI experimental data table",
+      "url": "https://psi.nasa.gov/studies/PSI-98",
+      "file": "cache/psi_raw/PSI-98_Experimental table_SAFFIRE-1.csv"
+    },
+    "PSI-99": {
+      "type": "psi",
+      "title": "Saffire-II experimental table (NASA Physical Sciences Informatics)",
+      "authors": "NASA PSI",
+      "year": null,
+      "doc_type": "PSI experimental data table",
+      "url": "https://psi.nasa.gov/studies/PSI-99",
+      "file": "cache/psi_raw/PSI-99_Experimental table_SAFFIRE-2.csv"
+    },
+    "NTRS-20140011099": {
+      "type": "ntrs",
+      "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment",
+      "authors": "Ferkul, P.V.; Olson, S.L.; Takahashi, F.; et al.",
+      "year": 2013,
+      "doc_type": "Presentation (ASGSR 2013 Annual Meeting)",
+      "url": "https://ntrs.nasa.gov/citations/20140011099",
+      "file": "data/raw/ntrs/20140011099.pdf"
+    },
+    "NTRS-20170008805": {
+      "type": "ntrs",
+      "title": "Results of Large-Scale Spacecraft Flammability Tests",
+      "authors": "Ferkul, P.; Olson, S.; Urban, D.L.; Ruff, G.A.; et al.",
+      "year": 2017,
+      "doc_type": "Presentation",
+      "url": "https://ntrs.nasa.gov/citations/20170008805",
+      "file": "data/raw/ntrs/20170008805.pdf"
+    },
+    "NTRS-20150008962": {
+      "type": "ntrs",
+      "title": "Concurrent Flame Growth, Spread and Extinction over Composite Fabric Samples in Low Speed Purely Forced Flow in Microgravity",
+      "authors": "Zhao, X.; T'ien, J.S.; Ferkul, P.V.; Olson, S.L.",
+      "year": 2015,
+      "doc_type": "Conference paper (9th U.S. National Combustion Meeting)",
+      "url": "https://ntrs.nasa.gov/citations/20150008962",
+      "file": "data/raw/ntrs/20150008962.pdf"
+    },
+    "NTRS-20170001636": {
+      "type": "ntrs",
+      "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+      "authors": "Schoren, W.; Ruff, G.A.; Urban, D.L.",
+      "year": 2016,
+      "doc_type": "Conference paper (8th IAASS)",
+      "url": "https://ntrs.nasa.gov/citations/20170001636",
+      "file": "data/raw/ntrs/20170001636.pdf"
+    },
+    "NTRS-20090001157": {
+      "type": "ntrs",
+      "title": "Effect of Oxygen Concentration on Autogenous Ignition Temperature and Pneumatic Impact Ignitability of Nonmetallic Materials",
+      "authors": "Smith, S.",
+      "year": 2009,
+      "doc_type": "Journal article (Journal of ASTM International), NASA WSTF",
+      "url": "https://ntrs.nasa.gov/citations/20090001157",
+      "file": "data/raw/ntrs/20090001157.pdf"
+    }
+  },
+  "cards": [
+    {
+      "card_id": "CARD-BASS2-SIBAL",
+      "title": "SIBAL fabric: quenching limits in gentle concurrent flow",
+      "experiment": "BASS and BASS-II (International Space Station)",
+      "source_ids": [
+        "NTRS-20210011385"
+      ],
+      "linked_report_ids": [
+        "NTRS-20210011385",
+        "PSI PSI-25"
+      ],
+      "material_ids": [
+        "sibal"
+      ],
+      "conditions": {
+        "o2_pct": [
+          16.4,
+          21.0
+        ],
+        "flow_cm_s": [
+          2.0,
+          53.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent"
+        ],
+        "note": "Flat cotton-fiberglass (SIBAL) strips 1.2 and 2.2 cm wide. Many tests swept the flow between two speeds. Pressure is not stated in Table 7.1."
+      },
+      "outcome_summary": "BASS-II ran 27 fabric tests, including six quenching tests, three non-ignited tests and one blowoff test; four 21% O2 tests from BASS were added. Tests at 16.4% O2 did not ignite, and flows up to 53 cm/s produced no blowoff on the 2.2 cm sample.",
+      "key_finding": "The fabric flame only quenched once airflow dropped to between 1 and 5 cm/s.",
+      "safety_takeaway": "A cabin-type fabric can keep burning in airflow of just a few cm/s in microgravity, so slowing ventilation is not on its own a reliable way to starve a fabric fire.",
+      "takeaway_is_interpretation": true,
+      "locator": "Section 7.1, Table 7.1 and Section 7.1.5 (PDF pp. 103-104, 109; printed pp. 95-96, 101)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 103,
+          "text": "A total of 27 tests were carried out for the fabric samples in BASS–II, including six quenching tests, three nonignited tests, and one blowoff test."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 103,
+          "text": "These four tests are all 21 percent O2 cases at a fixed flow velocity during each test."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 104,
+          "text": "GMT175-T9 2.2 10 16.4 No ignition",
+          "context": "Table 7.1 row: test, sample width (cm), flow (cm/s), O2 (vol%), comment"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 104,
+          "text": "GMT178-T17 2.2 6 to 53 16.9 No blowoff",
+          "context": "Table 7.1 row: test, sample width (cm), flow (cm/s), O2 (vol%), comment"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 104,
+          "text": "GMT190-T21 1.2 11 to 47 17.2 Blow-off",
+          "context": "Table 7.1 row: test, sample width (cm), flow (cm/s), O2 (vol%), comment"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 104,
+          "text": "GMT216-T27 1.2 5 to 2 20.7 Reused, ignited",
+          "context": "Table 7.1 row: test, sample width (cm), flow (cm/s), O2 (vol%), comment"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 109,
+          "text": "The quenching velocities are small (between 1 and 5 cm/s), and an accurate determination is necessary to resolve the slope of the quenching boundary."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 109,
+          "text": "The flame image sequence at quenching shows the flame shrinks both in length and width and the flame goes out in a three-dimensional manner."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-BASS2-PMMA-RODS",
+        "CARD-FM2-MOON"
+      ]
+    },
+    {
+      "card_id": "CARD-BASS2-PMMA-RODS",
+      "title": "PMMA rods: a U-shaped flammability boundary and the 'Goldilocks' zone",
+      "experiment": "BASS-II (International Space Station)",
+      "source_ids": [
+        "NTRS-20210011385"
+      ],
+      "linked_report_ids": [
+        "NTRS-20210011385",
+        "PSI PSI-25"
+      ],
+      "material_ids": [
+        "pmma"
+      ],
+      "conditions": {
+        "o2_pct": null,
+        "flow_cm_s": [
+          0.0,
+          55.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent"
+        ],
+        "note": "Clear and black acrylic (PMMA) rods in three sizes. The boundary is reported against stretch rate a (s⁻¹), not flow speed, so it is not drawn on the FlameAtlas oxygen-airflow map."
+      },
+      "outcome_summary": "Concurrent-flow tests on clear and black PMMA rods traced a U-shaped flammability boundary: a quenching branch at low stretch and a blowoff branch at high stretch.",
+      "key_finding": "The lowest oxygen that supported burning was 13.5% O2, at a stretch rate of 8 to 12 s⁻¹, well below the 15.4% O2 upward-burning limit measured in normal gravity.",
+      "safety_takeaway": "The weak flow in which acrylic burns at its lowest oxygen is, in the authors' words, typical of spacecraft ventilation near surfaces, so Earth-based tests can understate how flammable a material is in orbit.",
+      "takeaway_is_interpretation": true,
+      "locator": "Section 6.1, Figure 6.10 and Section 6.1.6 (PDF pp. 84, 97; printed pp. 76, 89)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 97,
+          "text": "For the first time, a series of concurrent rod flammability tests were conducted in microgravity aboard the International Space Station (ISS). A small flow duct was used to create 0- to 55-cm/s flows past the three sizes of clear and black PMMA rods."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 84,
+          "text": "Note that the classic U-shaped flammability boundary is evident when a logarithmic x-axis is used."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 84,
+          "text": "The minimum O2 concentration of 13.5 percent O2 at a of 8 to 12 s–1 is significantly lower than the observed upward flame spread limit of 15.4 percent O2 (in normal gravity with an additional 4-cm/s forced flow (Ref. 23)), indicating the material remains flammable under the weak ventilation only obtainable in microgravity."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 84,
+          "text": "This “Goldilocks” zone of flow is unfortunately typical of spacecraft ventilation flows near surfaces. Earthbound flammability tests need a reliable method to account for this extension of flammability in microgravity environments."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 97,
+          "text": "The ignition delay time can be up to almost 10 times longer than the NASA STD–6001 standard igniter on time."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-BASS2-PMMA-SLABS",
+        "CARD-BASS2-SIBAL",
+        "CARD-EXPLORATION-0G-LIMITS"
+      ]
+    },
+    {
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "title": "PMMA slabs: all 20 flat samples burned in opposed flow on the ISS",
+      "experiment": "BASS-II (International Space Station)",
+      "source_ids": [
+        "NTRS-20210011385"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "pmma"
+      ],
+      "conditions": {
+        "o2_pct": [
+          16.8,
+          22.2
+        ],
+        "flow_cm_s": [
+          2.0,
+          21.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "opposed"
+        ],
+        "note": "Flat acrylic samples 1 to 5 mm thick, 1.2 or 2.2 cm wide, burning on one or two sides. Oxygen fell during each test as the flame used it up; Table 5.1 gives the initial and final values."
+      },
+      "outcome_summary": "All 20 flat PMMA samples burned. Spread rates ranged from 0.012 to 0.144 mm/s across opposed flows of 2 to 21 cm/s, with initial oxygen of 17.9 to 22.2%.",
+      "key_finding": "Thicker acrylic spread more slowly, and two-sided burns generally spread faster than one-sided burns.",
+      "safety_takeaway": "Acrylic kept burning at every flow and oxygen level tested here. Because no test found a no-burn condition, these results show where PMMA burns but cannot locate its burn boundary.",
+      "takeaway_is_interpretation": true,
+      "locator": "Section 5.3, Table 5.1 and Section 5.7 (PDF pp. 64-65, 71; printed pp. 56-57, 63)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 64,
+          "text": "A total of 20 PMMA flat samples were burnt during the BASS–II experimentation (Table 5.1). The sample thickness varied from 1 to 5 mm thick."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 64,
+          "text": "The airflow was always opposed."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+          "context": "Table 5.1 row (fastest spread, lowest flow): test, thickness (mm), width (cm), sides, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2, final O2"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M20 5 2.2 2 10 0.012 16.5 18 17.4",
+          "context": "Table 5.1 row (slowest spread)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+          "context": "Table 5.1 row (highest flow)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8",
+          "context": "Table 5.1 row (lowest oxygen)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M1 1 2.2 1 9 0.071 6.4 22.2 21.9",
+          "context": "Table 5.1 row (highest initial oxygen)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 71,
+          "text": "In general, the flames spread faster for two-sided burns compared to one-sided burns. The greater the thickness of the fuel, the greater is the time taken for the flame to spread and so the lower is the spread rate."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-BASS2-PMMA-RODS",
+        "CARD-SAFFIRE-4-5"
+      ]
+    },
+    {
+      "card_id": "CARD-SAFFIRE2",
+      "title": "Saffire-II: silicone barely burned in orbit despite burning completely on Earth",
+      "experiment": "Saffire-II (uncrewed Cygnus spacecraft)",
+      "source_ids": [
+        "PSI-99",
+        "NTRS-20170008805"
+      ],
+      "linked_report_ids": [
+        "PSI PSI-99"
+      ],
+      "material_ids": [
+        "silicone",
+        "sibal",
+        "nomex",
+        "pmma"
+      ],
+      "conditions": {
+        "o2_pct": [
+          21.5,
+          22.1
+        ],
+        "flow_cm_s": [
+          20.0,
+          20.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent",
+          "opposed"
+        ],
+        "note": "Samples 29 cm long and 5 cm wide in 20 cm/s air flow. Oxygen is approximate, derived from measured CO2 production. In the table, '?-g' is the microgravity column (the symbol did not survive export)."
+      },
+      "outcome_summary": "All four silicone samples had a microgravity burn length of about zero; two of them (2-1 and 2-4) burned completely in the matching 1-g test. The SIBAL fabric sample 2-5 burned its full 29 cm. In sample 2-7 the PMMA portion was consumed but the Nomex did not ignite.",
+      "key_finding": "Silicone that burned completely in normal gravity barely burned in microgravity at 20 cm/s flow.",
+      "safety_takeaway": "Normal-gravity tests do not always err on the safe side or the unsafe side: for this silicone the 1-g test overstated flammability, while for other materials (see the BASS-II cards) it understates it. Each material needs its own low-gravity evidence.",
+      "takeaway_is_interpretation": true,
+      "locator": "PSI-99 experimental table, samples 2-1 to 2-7 and Note 2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "Sample Number,Material,Samle Thickness ,Sample Length ,Sample Width (cm),Air Flow (cm/s),Percent O2 (Note 1),Ignition Power (W),Ignition Time (s),Burn Time (s),Flow Direction,?-g Burn Length,?-g Spread Length,1-g Burn Length,1-g Spread Rate",
+          "context": "Table header"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "2-1,Silicone,0.27 mm,29 cm,5 cm,20 cm/s,~ 21.5,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,Complete,Acceleratory",
+          "context": "Sample 2-1"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "2-2,Silicone,0.61 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,7.6 cm,1.2 mm/s",
+          "context": "Sample 2-2"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "2-3,Silicone,1.03 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,~ 0,n/a",
+          "context": "Sample 2-3"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "2-4,Silicone,037 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Opposed,~ 0,n/a,Complete,0.6 mm/s",
+          "context": "Sample 2-4"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "2-5,Cotton-Fiberglass (SIBAL),037 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,145 s,Concurrent,29 cm,2.1 mm/s,Complete,Acceleratory",
+          "context": "Sample 2-5"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "Note 2 The PMMA portion was completely consumed but the Nomex was not ignited.",
+          "context": "Table note for sample 2-7 (PMMA & Nomex)"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "Note 1 Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
+          "context": "Table note for the Percent O2 column"
+        },
+        {
+          "source_id": "NTRS-20170008805",
+          "page": 24,
+          "text": "The material is a meta-aramid fabric commonly used on the ISS called Nomex® HT90-40. On Earth, it will only burn if the oxygen concentration is increased to around 24 to 25%."
+        },
+        {
+          "source_id": "NTRS-20170008805",
+          "page": 25,
+          "text": "The average flame power from the PMMA (assuming complete conversion of the fuel) was 460 + 50 W. Despite this significant heating load, the fabric was not ignited."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-SILICONE-1G",
+        "CARD-SAFFIRE1"
+      ]
+    },
+    {
+      "card_id": "CARD-SAFFIRE1",
+      "title": "Saffire-I: a spacecraft-scale fabric fire in orbit",
+      "experiment": "Saffire-I (uncrewed Cygnus spacecraft)",
+      "source_ids": [
+        "PSI-98",
+        "NTRS-20170000230"
+      ],
+      "linked_report_ids": [
+        "PSI PSI-98"
+      ],
+      "material_ids": [
+        "sibal"
+      ],
+      "conditions": {
+        "o2_pct": [
+          21.5,
+          21.7
+        ],
+        "flow_cm_s": [
+          20.0,
+          20.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent",
+          "opposed"
+        ],
+        "note": "The sample was about 0.94 m long and 0.4 m wide (NTRS 20170000230). The PSI table lists 40.6 and 94 cm under its length and width columns."
+      },
+      "outcome_summary": "The SIBAL fabric burned for 420 s in 20 cm/s concurrent flow (run S1) and for 70 s in opposed flow (run S2).",
+      "key_finding": "Saffire-I set out to study how flames spread and grow in low gravity, on a SIBAL fabric sample about 0.94 m long and 0.4 m wide.",
+      "safety_takeaway": "Saffire was designed to test fires at length scales realistic for a spacecraft, rather than the small samples of earlier low-gravity experiments.",
+      "takeaway_is_interpretation": true,
+      "locator": "PSI-98 experimental table, runs S1-S2; NTRS 20170000230 PDF pp. 1-2, 4",
+      "quotes": [
+        {
+          "source_id": "PSI-98",
+          "text": "S1,SIBAL Fabric,0.37,40.6,94,20,21.5 - 21.7,182,8,420,Concurrent",
+          "context": "Columns: sample, material, thickness (cm), length (cm), width (cm), air flow (cm/s), percent O2, ignition power (W), ignition time (s), burn time (s), flow direction"
+        },
+        {
+          "source_id": "PSI-98",
+          "text": "S2,SIBAL Fabric,0.37,40.6,94,20,~ 21.5,182,8,70,Opposed",
+          "context": "Same columns as above"
+        },
+        {
+          "source_id": "NTRS-20170000230",
+          "page": 1,
+          "text": "The Spacecraft Fire Experiments (Saffire-I, -II, and -III) are material flammability tests at length scales that are realistic for a spacecraft fire in low-gravity."
+        },
+        {
+          "source_id": "NTRS-20170000230",
+          "page": 2,
+          "text": "This sample material (Saffire-I and III) is approximately 0.94 meters long and 0.4 meters wide."
+        },
+        {
+          "source_id": "NTRS-20170000230",
+          "page": 2,
+          "text": "As previously stated, this will be at least an order of magnitude larger in both dimensions than any prior low-g flame spread experiment."
+        },
+        {
+          "source_id": "NTRS-20170000230",
+          "page": 4,
+          "text": "The objective of the Saffire-I experiment is to investigate flame spread and growth in low-gravity."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-SAFFIRE2",
+        "CARD-SAFFIRE-4-5"
+      ]
+    },
+    {
+      "card_id": "CARD-SAFFIRE-4-5",
+      "title": "Saffire IV and V: large fires inside a spacecraft",
+      "experiment": "Saffire-IV and Saffire-V (uncrewed Cygnus spacecraft)",
+      "source_ids": [
+        "NTRS-20210011521"
+      ],
+      "linked_report_ids": [
+        "NTRS-20210011521"
+      ],
+      "material_ids": [
+        "pmma",
+        "sibal",
+        "cotton"
+      ],
+      "conditions": {
+        "o2_pct": null,
+        "flow_cm_s": null,
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent",
+          "opposed"
+        ],
+        "note": "Samples 40 cm wide, 18 cm long (PMMA) to 50 cm long (fabrics), burned inside Cygnus after it left the ISS."
+      },
+      "outcome_summary": "PMMA, cotton and cotton/fiberglass samples burned with heat release rates up to 10 kW. Vehicle pressure, temperature and CO2 changed measurably, but the average vehicle conditions did not rise to unacceptable levels.",
+      "key_finding": "Flames grew to nearly steady lengths in every configuration, unlike upward flames in normal gravity, which usually keep growing.",
+      "safety_takeaway": "Extinguishment of thin charring fuels at increased oxygen cannot be assumed to occur rapidly in quiescent conditions.",
+      "takeaway_is_interpretation": false,
+      "locator": "Abstract and Section IV, Summary of Results (PDF pp. 1-2, 11)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 1,
+          "text": "The ignited materials consisted of poly-methyl methacrylate (PMMA), cotton fabric and a cotton/fiberglass fabric blend. The samples were all 40 cm wide and with various lengths ranging from 18 cm for the PMMA samples to 50 cm for the fabrics."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 2,
+          "text": "The fire events had a measurable impact on the vehicle pressure, temperature, and carbon dioxide concentration. However, despite having heat release rates up to 10 kW, the average vehicle conditions did not rise to unacceptable levels."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 11,
+          "text": "Flames were seen to develop to nearly steady lengths in all configurations."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 11,
+          "text": "This contrasts with upward spread in normal gravity which usually shows continued growth."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 11,
+          "text": "Extinguishment of thin charring fuels at increased oxygen cannot be assumed to occur rapidly in quiescent conditions."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 11,
+          "text": "Thick fuel flame growth was found to be dissimilar from that seen in NASA STD 6001 Test 1."
+        },
+        {
+          "source_id": "NTRS-20210011521",
+          "page": 11,
+          "text": "In one case, a flame was seen to jump a 4.5 cm gap to ignite a previously warmed PMMA surface."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-SAFFIRE1",
+        "CARD-SAFFIRE2"
+      ]
+    },
+    {
+      "card_id": "CARD-SILICONE-1G",
+      "title": "Silicone: burns better downward than upward in normal gravity",
+      "experiment": "Ground tests for Saffire-II (NASA Glenn)",
+      "source_ids": [
+        "NTRS-20150022421"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "silicone"
+      ],
+      "conditions": {
+        "o2_pct": null,
+        "flow_cm_s": null,
+        "pressure_kpa": null,
+        "gravity": "normal",
+        "flow_direction": [
+          "upward",
+          "downward"
+        ],
+        "note": "Silicone sheets 0.25, 0.36, 0.61 and 1.00 mm thick, 5 cm wide by 30 cm tall (NASA-STD-6001 Test 1 geometry). Some tests varied oxygen concentration."
+      },
+      "outcome_summary": "Upward flames generally did not burn the whole sample, and the thickest sample could not be ignited. Downward, the two thinnest samples burned completely; the two thicker ones could not be ignited.",
+      "key_finding": "Silicone was more flammable spreading downward than upward, which is uncommon; the authors attribute this to a silica layer deposited on the unburned fuel in upward burning.",
+      "safety_takeaway": "For silicone, the standard upward test is not the worst case: downward, horizontal and forced-flow configurations burned more, so the flame direction and flow matter.",
+      "takeaway_is_interpretation": true,
+      "locator": "Abstract and Section V, Summary and Conclusions (PDF pp. 1, 10)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20150022421",
+          "page": 1,
+          "text": "In the upward buoyant flame spread tests, the flame generally did not burn the entire sample. As thickness was increased, the flame spread distance decreased before flame extinguishment. For the thickest sample, ignition could not be achieved."
+        },
+        {
+          "source_id": "NTRS-20150022421",
+          "page": 1,
+          "text": "In the downward tests, the two thinnest samples permitted the flame to burn the entire sample, but the spread rate was lower compared to the corresponding upward values. The other two thicknesses could not be ignited in the downward configuration. The increased flammability for downward spreading flames relative to upward ones is uncommon."
+        },
+        {
+          "source_id": "NTRS-20150022421",
+          "page": 1,
+          "text": "The two thinnest samples also burned completely in the horizontal configuration, as well as at angles up to 75 degrees from the horizontal. Upward tests in air with an added forced flow were more flammable."
+        },
+        {
+          "source_id": "NTRS-20150022421",
+          "page": 10,
+          "text": "The reason for the increased flammability in the downward direction compared to upward is attributed to the deposition of a silica layer onto the fresh fuel in the upward case."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-SAFFIRE2"
+      ]
+    },
+    {
+      "card_id": "CARD-ECLSS-EXPLORATION",
+      "title": "Exploration atmospheres: most heritage materials need replacing at 8.2 psia / 34% O2",
+      "experiment": "NASA Engineering and Safety Center assessment of ISS life-support hardware",
+      "source_ids": [
+        "NTRS-20260003925"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "nomex",
+        "silicone"
+      ],
+      "conditions": {
+        "o2_pct": [
+          26.5,
+          40.0
+        ],
+        "flow_cm_s": null,
+        "pressure_kpa": [
+          56.5,
+          70.3
+        ],
+        "gravity": "not applicable (hardware assessment)",
+        "flow_direction": [],
+        "note": "Exploration atmospheres of 10.2 psia (70.3 kPa) with 26.5% O2 and 8.2 psia (56.5 kPa) with 34% O2; up to 40% O2 was considered at 8.2 psia for flammability."
+      },
+      "outcome_summary": "Of 33 life-support subsystems, nine were acceptable at 10.2 psia / 26.5% O2 with no modifications, and only three at 8.2 psia / 34 to 40% O2. Materials must change in 21% of assessed subsystems at 10.2 psia and 70% at 8.2 psia.",
+      "key_finding": "NASA has flammability data for many materials at 30% O2 but limited data above it, and many common ISS materials, Nomex among them, are unlikely to meet requirements at higher oxygen.",
+      "safety_takeaway": "In the majority of cases for the 8.2 psia/ 34% O2 environment, alternate materials will need to be developed.",
+      "takeaway_is_interpretation": false,
+      "locator": "Executive Summary and Section 7.1.3.2, Flammability (PDF pp. 13, 33)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 13,
+          "text": "Of the 33 subsystems evaluated (see Table 2), nine were acceptable for use in the 10.2 psia/26.5% O2 environment with no modifications. Only three of the subsystems examined were acceptable for use in an 8.2 psia/34 to 40% O2 environment with no modifications"
+        },
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 13,
+          "text": "NASA has data for many materials in a 30% O2 environment, but limited material flammability data above this O2 limit. Further, many commonly used ISS materials are flammable above 30% O2. This results in a required change of materials in 21% of the assessed sub-systems for the 10.2 psia/26.5% O2 environment and 70% of the assessed subsystems for the 8.2 psia/34% O2 environment."
+        },
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 13,
+          "text": "However, in the majority of cases for the 8.2 psia/ 34% O2 environment, alternate materials will need to be developed."
+        },
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 33,
+          "text": "Many ISS materials have been shown to meet flammability requirements at 10.2 psia and 30% O2, but are unlikely to meet the requirements at higher O2 concentrations."
+        },
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 33,
+          "text": "silicone-fiberglass insulations, flammable paint on metallic substrates, Nomex, and polyethylene covered in aluminum foil tape.",
+          "context": "End of the list of materials in that category"
+        },
+        {
+          "source_id": "NTRS-20260003925",
+          "page": 33,
+          "text": "However, limited data exists that suggest materials will be more flammable in partial gravity environments, because the gas flow velocities from natural buoyancy are greater than the flow velocities for worst-case combustion"
+        }
+      ],
+      "related_card_ids": [
+        "CARD-EXPLORATION-0G-LIMITS",
+        "CARD-FM2-MOON",
+        "CARD-NOMEX-FM2"
+      ]
+    },
+    {
+      "card_id": "CARD-EXPLORATION-0G-LIMITS",
+      "title": "Thin spacecraft materials burn at lower oxygen in 0g than in the standard 1g test",
+      "experiment": "5.18 s drop tests, NASA Glenn Zero Gravity Research Facility",
+      "source_ids": [
+        "NTRS-20080034883"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "nomex"
+      ],
+      "conditions": {
+        "o2_pct": [
+          22.0,
+          25.4
+        ],
+        "flow_cm_s": [
+          30.0,
+          30.0
+        ],
+        "pressure_kpa": [
+          101.3,
+          101.3
+        ],
+        "gravity": "micro",
+        "flow_direction": [
+          "concurrent"
+        ],
+        "note": "Values shown are for Nomex HT90-40 at 14.7 psia (101.3 kPa). The 0g limits come from short (5.18 s) drop-tower tests at 30 cm/s concurrent flow; the 1g limits are WSTF data. Table 1 also lists Ultem 1000 and Mylar G."
+      },
+      "outcome_summary": "Nomex HT90-40 fabric burned in 0g at 23% O2 and extinguished at 22% O2 (14.7 psia, 30 cm/s), against a 1g upward limiting oxygen index of 25.4% O2.",
+      "key_finding": "The 1g limiting oxygen values were higher than the 0g limits by up to 4% oxygen: the fuels burned in 0g at lower oxygen than in the NASA-STD-6001 Test 1 protocol.",
+      "safety_takeaway": "The standard upward 1g test can overstate the oxygen safety margin for thin materials in microgravity.",
+      "takeaway_is_interpretation": true,
+      "locator": "Abstract, Table 1 and Figure 3 caption (PDF pp. 5, 7)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 5,
+          "text": "The 1g Upward Limiting Oxygen Index (ULOI) and 1g Maximum Oxygen Concentration (MOC) are found to be greater than those in 0g, by up to 4% oxygen mole fraction, meaning that the fuels burned in 0g at lower oxygen concentrations than they did using the NASA Standard 6001 Test 1 protocol."
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "Fuel 1g 1g 0g 0g",
+          "context": "Table 1 header: Fuel, 1g ULOI, 1g MOC, 0g ULOI (burns), 0g MOC (extinguishes)"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "25.4% O2 22% O2, 23% O2, 22% O2,",
+          "context": "Table 1, Nomex HT90-40 fabric row (14.7 psia; 0g values at 30 cm/s)"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "(±0.6), 14.7 psia* 14.7 psia, 14.7 psia,",
+          "context": "Table 1, Nomex HT90-40 fabric row, pressure line"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "*WSTF data (ref. 8)",
+          "context": "Table 1 footnote for the starred (1g) values"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "The concurrent forced flow velocity was 30 cm/s."
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 11,
+          "text": "performed in a low-speed flow tunnel mounted on a 5.18 sec NASA drop vehicle."
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "When exposed to a heat source, the Nomex fibers swell and seal the spaces between the fibers, stopping air movement through the fabric and thus inhibiting heat transfer through the fabric."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-NOMEX-FM2",
+        "CARD-BASS2-PMMA-RODS"
+      ]
+    },
+    {
+      "card_id": "CARD-FM2-MOON",
+      "title": "Flammability of Materials on the Moon (FM2): SIBAL only burns downward in lunar gravity",
+      "experiment": "FM2 (planned lunar-surface experiment; ground, centrifuge and parabolic-flight tests)",
+      "source_ids": [
+        "NTRS-20240015307"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "sibal",
+        "pmma"
+      ],
+      "conditions": {
+        "o2_pct": [
+          21.0,
+          34.0
+        ],
+        "flow_cm_s": null,
+        "pressure_kpa": [
+          56.5,
+          101.3
+        ],
+        "gravity": "lunar",
+        "flow_direction": [
+          "upward",
+          "downward"
+        ],
+        "note": "FM2 is designed to burn samples at 21% O2 / 14.7 psia and 34% O2 / 8.2 psia, the atmospheres of interest to the Human Lander System."
+      },
+      "outcome_summary": "FM2 is a robotic combustion chamber to be flown to the lunar surface. It will burn two SIBAL fabric samples in air and two acrylic rods in exploration atmospheres, one of each upward and downward.",
+      "key_finding": "SIBAL fabric has been found to burn only downward in air in lunar gravity, while in Earth gravity it goes out immediately after ignition.",
+      "safety_takeaway": "Lunar gravity has been found to increase the limits of flammability for some materials compared to Earth gravity.",
+      "takeaway_is_interpretation": false,
+      "locator": "Poster, Introduction section (PDF p. 1)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20240015307",
+          "page": 1,
+          "text": "Lunar gravity has been found to increase the limits of flammability for some materials compared to Earth gravity, presenting a goldilocks zone of reduced convective heat loss, while generating enough buoyant flow to replenish fresh oxygen into the flame zone."
+        },
+        {
+          "source_id": "NTRS-20240015307",
+          "page": 1,
+          "text": "specifically 21% oxygen at 14.7 psia, and 34% oxygen at 8.2 psia, which are of immediate interest to the Human Lander System (HLS) and Lunar Rover."
+        },
+        {
+          "source_id": "NTRS-20240015307",
+          "page": 1,
+          "text": "two SIBAL fabrics (cotton/fiberglass blend) which will be burned in air and two acrylic rods which will be burned in Normoxic Space Exploration Atmospheres (SEA). One of each fuel will be burned upward and downward."
+        },
+        {
+          "source_id": "NTRS-20240015307",
+          "page": 1,
+          "text": "SIBAL fabric has been found to only burn downward in air in lunar gravity (via Lunar gravity centrifuge and parabolic flight) where on Earth’s gravity it extinguishes immediately after ignition."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-BASS2-SIBAL",
+        "CARD-NOMEX-FM2",
+        "CARD-ECLSS-EXPLORATION"
+      ]
+    },
+    {
+      "card_id": "CARD-NOMEX-FM2",
+      "title": "Nomex HT90-40: needs more oxygen to burn as gravity drops (8.2 psi tests)",
+      "experiment": "Ground flow tunnel, lunar-gravity centrifuge and 5.2 s drop tower (FM2 preparation)",
+      "source_ids": [
+        "NTRS-20250010975"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "nomex"
+      ],
+      "conditions": {
+        "o2_pct": [
+          22.0,
+          38.0
+        ],
+        "flow_cm_s": [
+          5.0,
+          30.0
+        ],
+        "pressure_kpa": [
+          56.5,
+          56.5
+        ],
+        "gravity": "multiple (1g, lunar, 0g)",
+        "flow_direction": [
+          "concurrent"
+        ],
+        "note": "Pressure held at 8.2 psi (56.5 kPa). Values on the poster are approximate (~)."
+      },
+      "outcome_summary": "Limiting oxygen concentration for Nomex HT90-40 was about 23% in 1G, about 29% in lunar gravity and about 38% in 0G.",
+      "key_finding": "In these tests Nomex became harder to burn as gravity decreased, and the authors note it behaves differently from other materials.",
+      "safety_takeaway": "This trend runs opposite to the 2008 drop-tower results, where Nomex burned in 0g at lower oxygen than in 1g (different pressure and test setup). Nomex's low-gravity flammability is not settled; treat it as a research gap.",
+      "takeaway_is_interpretation": true,
+      "locator": "Poster, Results and Conclusion (PDF p. 1)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "(pressure is constant at 8.2 psi)."
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "Oxygen: 22% to 38%",
+          "context": "Ground testing"
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "Flow speed: 5 cm/s to 30 cm/s",
+          "context": "Ground testing"
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "1G ~23% Oxygen",
+          "context": "Limiting oxygen concentrations (LOC)"
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "Lunar-G ~29% Oxygen",
+          "context": "Limiting oxygen concentrations (LOC)"
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "0G ~38% Oxygen",
+          "context": "Limiting oxygen concentrations (LOC)"
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "Gravity has significant effects on the material’s flammability."
+        },
+        {
+          "source_id": "NTRS-20250010975",
+          "page": 1,
+          "text": "Nomex HT90-40® behaves differently than other materials when burned."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-EXPLORATION-0G-LIMITS",
+        "CARD-SAFFIRE2",
+        "CARD-FM2-MOON"
+      ]
+    }
+  ]
+}

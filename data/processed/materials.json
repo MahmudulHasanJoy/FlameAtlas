@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "description": "Material profiles. Every fact lists the exact source quotes behind it; scripts/verify_cards.py checks them against the NASA PDFs and PSI tables.",
+  "materials": [
+    {
+      "material_id": "sibal",
+      "name": "SIBAL fabric",
+      "full_name": "SIBAL cotton-fiberglass fabric",
+      "data_status": "model",
+      "data_status_text": "Prediction model available: 47 measured microgravity tests with burn and no-burn outcomes (BASS, BASS-II and Saffire I-IV).",
+      "summary": "A custom woven fabric made for NASA's SIBAL project and later used as a fabric fuel in BASS, Saffire and FM2.",
+      "facts": [
+        {
+          "label": "Made of",
+          "value": "75% cotton, 25% fiberglass by weight",
+          "quotes": [
+            {
+              "source_id": "NTRS-20170001636",
+              "page": 2,
+              "text": "a composite fabric consisting of cotton on a fiberglass substrate (75% cotton, 25% fiberglass by weight)."
+            }
+          ]
+        },
+        {
+          "label": "Thickness and weight",
+          "value": "about 0.32 mm; 18.2 mg/cm²",
+          "quotes": [
+            {
+              "source_id": "NTRS-20150008962",
+              "page": 2,
+              "text": "The thickness of the sample is about 0.32 mm with an area density 18.2 mg/cm2."
+            },
+            {
+              "source_id": "NTRS-20150008962",
+              "page": 2,
+              "text": "The fabric is custom-made for a previous project SIBAL"
+            }
+          ]
+        },
+        {
+          "label": "On Earth (1 g, air)",
+          "value": "goes out right after ignition",
+          "quotes": [
+            {
+              "source_id": "NTRS-20240015307",
+              "page": 1,
+              "text": "where on Earth’s gravity it extinguishes immediately after ignition."
+            }
+          ]
+        },
+        {
+          "label": "In microgravity",
+          "value": "burned in gentle flow; quenched only at 1 to 5 cm/s",
+          "quotes": [
+            {
+              "source_id": "NTRS-20210011385",
+              "page": 109,
+              "text": "The quenching velocities are small (between 1 and 5 cm/s)"
+            }
+          ]
+        },
+        {
+          "label": "In lunar gravity",
+          "value": "burns downward in air",
+          "quotes": [
+            {
+              "source_id": "NTRS-20240015307",
+              "page": 1,
+              "text": "SIBAL fabric has been found to only burn downward in air in lunar gravity"
+            }
+          ]
+        }
+      ],
+      "card_ids": [
+        "CARD-BASS2-SIBAL",
+        "CARD-SAFFIRE1",
+        "CARD-SAFFIRE2",
+        "CARD-SAFFIRE-4-5",
+        "CARD-FM2-MOON"
+      ]
+    },
+    {
+      "material_id": "pmma",
+      "name": "PMMA (acrylic)",
+      "full_name": "Polymethylmethacrylate (acrylic)",
+      "data_status": "evidence_only",
+      "data_status_text": "Evidence only: 43 burn results from 20 flat-slab tests, all of which burned, so no burn boundary can be fitted. The rod boundary is reported against stretch rate, not airflow.",
+      "summary": "The clear plastic known as acrylic. NASA has burned it as slabs and rods on the ISS (BASS-II), in Saffire and in FM2 ground tests.",
+      "facts": [
+        {
+          "label": "What it is",
+          "value": "polymethylmethacrylate, known as acrylic",
+          "quotes": [
+            {
+              "source_id": "NTRS-20210011385",
+              "page": 10,
+              "text": "PMMA polymethylmethacrylate (acrylic)",
+              "context": "Report nomenclature list"
+            }
+          ]
+        },
+        {
+          "label": "On Earth (1 g, upward)",
+          "value": "15.4% O2 limit (with 4 cm/s added flow)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20210011385",
+              "page": 84,
+              "text": "the observed upward flame spread limit of 15.4 percent O2 (in normal gravity with an additional 4-cm/s forced flow (Ref. 23))"
+            }
+          ]
+        },
+        {
+          "label": "In microgravity",
+          "value": "rods burned down to 13.5% O2",
+          "quotes": [
+            {
+              "source_id": "NTRS-20210011385",
+              "page": 84,
+              "text": "The minimum O2 concentration of 13.5 percent O2 at a of 8 to 12 s–1"
+            }
+          ]
+        },
+        {
+          "label": "Flat slabs on the ISS",
+          "value": "all 20 burned (opposed flow 2 to 21 cm/s)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20210011385",
+              "page": 64,
+              "text": "A total of 20 PMMA flat samples were burnt during the BASS–II experimentation (Table 5.1)."
+            }
+          ]
+        },
+        {
+          "label": "Exploration habitats",
+          "value": "an acrylic equipment case was judged unacceptable",
+          "quotes": [
+            {
+              "source_id": "NTRS-20260003925",
+              "page": 70,
+              "text": "The MinION has a clear PMMA (i.e., acrylic) case, which will not be acceptable for Exploration environments due to flammability concerns."
+            }
+          ]
+        }
+      ],
+      "card_ids": [
+        "CARD-BASS2-PMMA-RODS",
+        "CARD-BASS2-PMMA-SLABS",
+        "CARD-SAFFIRE-4-5",
+        "CARD-FM2-MOON"
+      ]
+    },
+    {
+      "material_id": "nomex",
+      "name": "Nomex",
+      "full_name": "Nomex meta-aramid fabric (HT90-40, Nomex III)",
+      "data_status": "evidence_only",
+      "data_status_text": "Evidence only: 4 microgravity results from three different test setups, and the sources disagree, so no prediction is made.",
+      "summary": "A fire-retardant meta-aramid fabric commonly used on the ISS. It does not melt or drip, and its fibers swell to seal the weave when heated.",
+      "facts": [
+        {
+          "label": "What it is",
+          "value": "meta-aramid fabric commonly used on the ISS",
+          "quotes": [
+            {
+              "source_id": "NTRS-20170008805",
+              "page": 24,
+              "text": "The material is a meta-aramid fabric commonly used on the ISS called Nomex® HT90-40."
+            },
+            {
+              "source_id": "NTRS-20080034883",
+              "page": 7,
+              "text": "Nomex HT90-40 is a 12 mil thick fire retarded aromatic nylon fabric which does not melt or drip as it burns."
+            }
+          ]
+        },
+        {
+          "label": "On Earth (1 g, upward)",
+          "value": "about 23.5 to 25.4% O2 (sources differ)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20170008805",
+              "page": 24,
+              "text": "On Earth, it will only burn if the oxygen concentration is increased to around 24 to 25%."
+            },
+            {
+              "source_id": "NTRS-20080034883",
+              "page": 7,
+              "text": "25.4% O2 22% O2, 23% O2, 22% O2,",
+              "context": "2008 Table 1, Nomex HT90-40 row; the first value is the 1g ULOI (WSTF data)"
+            },
+            {
+              "source_id": "NTRS-20140011099",
+              "page": 24,
+              "text": "ULOI: 23.5% O2",
+              "context": "BASS 2013 slides, listed under Nomex HT90-40"
+            }
+          ]
+        },
+        {
+          "label": "In microgravity (drop tower)",
+          "value": "burned at 23%, went out at 22% O2 (30 cm/s)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20080034883",
+              "page": 7,
+              "text": "25.4% O2 22% O2, 23% O2, 22% O2,",
+              "context": "Third and fourth values: 0g ULOI (burns) and 0g MOC (extinguishes)"
+            }
+          ]
+        },
+        {
+          "label": "In microgravity (Saffire-II)",
+          "value": "not ignited by a 460 W acrylic flame",
+          "quotes": [
+            {
+              "source_id": "NTRS-20170008805",
+              "page": 25,
+              "text": "Despite this significant heating load, the fabric was not ignited."
+            }
+          ]
+        },
+        {
+          "label": "At 8.2 psi (2025 poster)",
+          "value": "limit about 23% in 1G, 29% lunar, 38% in 0G",
+          "quotes": [
+            {
+              "source_id": "NTRS-20250010975",
+              "page": 1,
+              "text": "1G ~23% Oxygen"
+            },
+            {
+              "source_id": "NTRS-20250010975",
+              "page": 1,
+              "text": "Lunar-G ~29% Oxygen"
+            },
+            {
+              "source_id": "NTRS-20250010975",
+              "page": 1,
+              "text": "0G ~38% Oxygen"
+            }
+          ]
+        },
+        {
+          "label": "Exploration habitats",
+          "value": "unlikely to meet requirements above 30% O2",
+          "quotes": [
+            {
+              "source_id": "NTRS-20260003925",
+              "page": 33,
+              "text": "Many ISS materials have been shown to meet flammability requirements at 10.2 psia and 30% O2, but are unlikely to meet the requirements at higher O2 concentrations."
+            },
+            {
+              "source_id": "NTRS-20260003925",
+              "page": 33,
+              "text": "silicone-fiberglass insulations, flammable paint on metallic substrates, Nomex, and polyethylene covered in aluminum foil tape.",
+              "context": "End of the list of materials in that category"
+            }
+          ]
+        }
+      ],
+      "card_ids": [
+        "CARD-EXPLORATION-0G-LIMITS",
+        "CARD-NOMEX-FM2",
+        "CARD-SAFFIRE2",
+        "CARD-ECLSS-EXPLORATION"
+      ]
+    },
+    {
+      "material_id": "silicone",
+      "name": "Silicone",
+      "full_name": "Silicone rubber sheet",
+      "data_status": "evidence_only",
+      "data_status_text": "Evidence only: 4 Saffire-II samples, all of which barely burned in microgravity, so no burn boundary can be fitted.",
+      "summary": "Silicone rubber. In upward burning it deposits a silica layer on the fresh fuel that acts as a thermal barrier and can stop the flame spreading.",
+      "facts": [
+        {
+          "label": "On Earth (oxygen index)",
+          "value": "21% (lowest value listed in ASTM Manual 36)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20090001157",
+              "page": 5,
+              "text": "Silicone Rubber, R5789 21",
+              "context": "Table 1: material, batch number, limiting oxygen index (%)"
+            },
+            {
+              "source_id": "NTRS-20090001157",
+              "page": 5,
+              "text": "Data shown are lowest values listed in ASTM Manual 36, 2nd Edition, Table 3-12."
+            }
+          ]
+        },
+        {
+          "label": "On Earth (NASA Test 1)",
+          "value": "upward limit 19.7% (0.25 mm) to 23.4% O2 (1.00 mm)",
+          "quotes": [
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 3,
+              "text": "1.00 mm 22 23.4",
+              "context": "Table I: thickness, MOC, ULOI"
+            },
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 3,
+              "text": "0.25 mm 18 19.7",
+              "context": "Table I: thickness, MOC, ULOI"
+            },
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 3,
+              "text": "The ULOI is the Upward Limiting Oxygen Index for which 50% of the repeat samples pass and 50% fail Test 1."
+            }
+          ]
+        },
+        {
+          "label": "Burn direction",
+          "value": "burned better downward than upward",
+          "quotes": [
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 1,
+              "text": "The increased flammability for downward spreading flames relative to upward ones is uncommon."
+            }
+          ]
+        },
+        {
+          "label": "Why",
+          "value": "a silica layer insulates the fresh fuel",
+          "quotes": [
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 10,
+              "text": "The reason for the increased flammability in the downward direction compared to upward is attributed to the deposition of a silica layer onto the fresh fuel in the upward case."
+            },
+            {
+              "source_id": "NTRS-20150022421",
+              "page": 10,
+              "text": "It has been shown that this layer acts as a thermal barrier, which prohibits the fuel from reaching the pyrolysis temperature fast enough to sustain flame spread."
+            }
+          ]
+        },
+        {
+          "label": "In microgravity (Saffire-II)",
+          "value": "burn length about zero at 20 cm/s",
+          "quotes": [
+            {
+              "source_id": "PSI-99",
+              "text": "2-1,Silicone,0.27 mm,29 cm,5 cm,20 cm/s,~ 21.5,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,Complete,Acceleratory",
+              "context": "Sample 2-1: microgravity burn length ~0, 1-g burn length Complete"
+            }
+          ]
+        },
+        {
+          "label": "In spacecraft",
+          "value": "silicone-fiberglass insulation is among materials of concern",
+          "quotes": [
+            {
+              "source_id": "NTRS-20260003925",
+              "page": 33,
+              "text": "silicone-fiberglass insulations, flammable paint on metallic substrates, Nomex, and polyethylene covered in aluminum foil tape.",
+              "context": "End of the list of materials unlikely to meet requirements above 30% O2"
+            }
+          ]
+        }
+      ],
+      "card_ids": [
+        "CARD-SAFFIRE2",
+        "CARD-SILICONE-1G",
+        "CARD-ECLSS-EXPLORATION"
+      ]
+    }
+  ]
+}
