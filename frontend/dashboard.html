@@ -644,24 +644,26 @@
     try {
       const flows = b.flows;
       const o2s = b.o2s;
-      const P = b.P_spread;
-      const inside = b.inside;
+      // The API grid is indexed [flow][o2]; Plotly expects z[y][x] = [o2][flow].
+      const T = g => o2s.map((_, j) => flows.map((_, i) => g[i][j]));
+      const P = T(b.P_spread);
+      const inside = T(b.inside);
 
       const z = P.map((row, i) => row.map((v, j) => inside[i][j] ? (v === null ? null : v) : null));
       const heat = {
-        x: flows, y: o2s, z, zmin: 0, zmax: 1,
+        type: 'heatmap', x: flows, y: o2s, z, zmin: 0, zmax: 1,
         colorscale: [[0, 'rgba(255,255,255,0)'], [1, 'rgba(213,94,0,0.12)']],
         showscale: false, hoverinfo: 'skip', name: 'spread region',
       };
       const untested = {
-        x: flows, y: o2s,
+        type: 'heatmap', x: flows, y: o2s,
         z: inside.map(row => row.map(v => v ? null : 1)),
         colorscale: [[0, 'rgba(71,84,103,0.18)'], [1, 'rgba(71,84,103,0.18)']],
         showscale: false, hoverinfo: 'skip', name: 'untested',
         hovertemplate: 'no nasa tests here<extra></extra>',
       };
       const contour = {
-        x: flows, y: o2s, z: P,
+        type: 'contour', x: flows, y: o2s, z: P,
         contours: { start: 0.5, end: 0.5, size: 1, coloring: 'lines' },
         line: { color: '#101828', width: 2 },
         showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',

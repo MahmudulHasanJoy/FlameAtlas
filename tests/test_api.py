@@ -104,3 +104,13 @@ def test_evidence_points_for_gap_materials():
         assert all(p["material_id"] == m and p["quotes"] for p in pts)
     j = client.post("/predict", json=body(material="silicone"), headers=KEY).json()
     assert j["data_status"] == "no_outcome_data"
+
+
+def test_boundary_grid_matches_predict():
+    # Guards the grid orientation: P_spread is indexed [flow][o2].
+    b = client.get("/boundary?material=sibal&n=60", headers=KEY).json()
+    for i in (25, 40, 55):  # flows above the 0.5 cm/s input minimum
+        for j in (5, 30, 55):
+            pr = client.post("/predict", json={"oxygen_pct": b["o2s"][j], "pressure_kpa": 101.3,
+                                               "flow_cm_s": b["flows"][i], "material": "sibal"}, headers=KEY).json()
+            assert abs(pr["probabilities"]["spread"] - b["P_spread"][i][j]) < 0.01
