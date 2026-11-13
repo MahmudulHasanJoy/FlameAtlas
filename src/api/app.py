@@ -37,10 +37,16 @@ from pydantic import BaseModel, Field
 
 try:
     # Run as: python -m src.api.app  (src on sys.path)
-    from compute.model import FlameAtlasModel, ModelNotTrainedError, ModelTamperError
+    from compute.model import (
+        UNRECORDED_OUTCOME, FlameAtlasModel, ModelNotTrainedError, ModelTamperError,
+        display_material, matches_material,
+    )
 except ImportError:
     # Run from repo root
-    from src.compute.model import FlameAtlasModel, ModelNotTrainedError, ModelTamperError
+    from src.compute.model import (
+        UNRECORDED_OUTCOME, FlameAtlasModel, ModelNotTrainedError, ModelTamperError,
+        display_material, matches_material,
+    )
 
 try:
     from dotenv import load_dotenv
@@ -292,7 +298,11 @@ def boundary(
                 "outcome": r["outcome_class"],
                 "report_id": r["report_id"],
                 "source_url": r["source_url"],
-                "material": r["material"],
+                "material": display_material(r["material"]),
+                # The dashboard shows these by default; everything else is
+                # available behind a "show other tests" toggle, labeled.
+                "same_material": matches_material(r["material"], material),
+                "outcome_recorded": r["outcome_class"] != UNRECORDED_OUTCOME,
             }
         )
 

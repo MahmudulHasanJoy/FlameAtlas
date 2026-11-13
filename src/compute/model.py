@@ -59,6 +59,28 @@ PRESSURE_MIN, PRESSURE_MAX = 30.0, 110.0
 FLOW_MIN, FLOW_MAX = 0.5, 60.0
 
 
+# scripts/build_experiments_parquet.py stores rows whose source gives no
+# outcome as "marginal_spread" (see docs/05-data-spec.md, 4.8). Every
+# marginal_spread row in the current data is such a default, so it is treated
+# as "no outcome recorded" wherever results are shown to people.
+UNRECORDED_OUTCOME = "marginal_spread"
+
+
+def matches_material(name: Any, material_id: str) -> bool:
+    """True if a dataset material name refers to the given material id.
+
+    The PSI tables name the same fabric "sibal", "SIBAL Fabric" and
+    "Cotton-Fiberglass (SIBAL)", so this matches on the id as a word.
+    """
+    n = str(name).lower()
+    return n == material_id or material_id in n.replace("(", " ").replace(")", " ").split()
+
+
+def display_material(name: Any) -> str:
+    n = str(name)
+    return "unnamed sample" if n.lower() in ("nan", "none", "", "unknown") else n
+
+
 class ModelNotTrainedError(RuntimeError):
     pass
 
@@ -307,10 +329,22 @@ class FlameAtlasModel:
         return "marginal_spread"
 
     def nearest_experiments(
-        self, oxygen_pct: float, pressure_kpa: float, flow_cm_s: float, k: int = 3
+        self,
+        oxygen_pct: float,
+        pressure_kpa: float,
+        flow_cm_s: float,
+        k: int = 3,
+        material: str | None = None,
     ) -> list[dict[str, Any]]:
-        """The k closest real experiments by normalized feature distance."""
+        """The k closest real experiments by normalized feature distance.
+
+        With a material, only that material's tests with a recorded outcome
+        are considered, so a different material is never shown as "nearest".
+        """
         df = self.df.copy()
+        if material is not None:
+            same = df["material"].map(lambda n: matches_material(n, material))
+            df = df[same & (df["outcome_class"] != UNRECORDED_OUTCOME)]
         # Normalized distance: O2 (per 2 pts), pressure (per 20 kPa), flow (log2).
         d_o2 = (df["oxygen_pct"] - oxygen_pct).abs() / 2.0
         d_press = (df["pressure_kpa"] - pressure_kpa).abs() / 20.0
@@ -329,7 +363,7 @@ class FlameAtlasModel:
                     "pressure_kpa": round(float(r["pressure_kpa"]), 2),
                     "flow_cm_s": round(float(r["flow_cm_s"]), 2),
                     "outcome": r["outcome_class"],
-                    "material": r["material"],
+                    "material": display_material(r["material"]),
                     "source_url": r["source_url"],
                     "distance": round(float(r["distance"]), 4),
                 }
@@ -383,7 +417,7 @@ class FlameAtlasModel:
                 "probabilities": None,
                 "model": self._model_summary(),
                 "nearest_experiments": self.nearest_experiments(
-                    oxygen_pct, pressure_kpa, flow_cm_s
+                    oxygen_pct, pressure_kpa, flow_cm_s, material=material
                 ),
                 "explanation": (
                     "Requested conditions are outside the published experimental "
@@ -397,7 +431,7 @@ class FlameAtlasModel:
 
         proba = self._class_probabilities(oxygen_pct, pressure_kpa, flow_cm_s, material)
         prediction = self._predict_class(proba)
-        nearest = self.nearest_experiments(oxygen_pct, pressure_kpa, flow_cm_s)
+        nearest = self.nearest_experiments(oxygen_pct, pressure_kpa, flow_cm_s, material=material)
 
         return {
             "inputs": inputs,

@@ -114,3 +114,17 @@ def test_boundary_grid_matches_predict():
             pr = client.post("/predict", json={"oxygen_pct": b["o2s"][j], "pressure_kpa": 101.3,
                                                "flow_cm_s": b["flows"][i], "material": "sibal"}, headers=KEY).json()
             assert abs(pr["probabilities"]["spread"] - b["P_spread"][i][j]) < 0.01
+
+
+def test_sibal_map_and_nearest_use_only_recorded_sibal_tests():
+    exps = client.get("/boundary?material=sibal&n=10", headers=KEY).json()["experiments"]
+    shown = [e for e in exps if e["same_material"] and e["outcome_recorded"]]
+    assert len(shown) >= 38
+    assert all(e["outcome"] in ("spread", "no_spread") for e in shown)
+    names = {e["material"] for e in exps if e["same_material"]}
+    assert {"sibal", "SIBAL Fabric", "Cotton-Fiberglass (SIBAL)"} <= names
+    assert not any(e["same_material"] for e in exps if "Heptane" in e["material"] or e["material"] == "PMMA & Nomex")
+    # Near Saffire-II conditions the nearest list must still be SIBAL only.
+    near = client.post("/predict", json=body(o2=22.0, flow=20.0), headers=KEY).json()["nearest_experiments"]
+    assert near and all("sibal" in n["material"].lower() for n in near)
+    assert all(n["outcome"] != "marginal_spread" for n in near)

@@ -247,6 +247,11 @@
 
   /* ---------- Evidence cards ---------- */
   .evidence-panel { grid-column: 1 / -1; }
+  .presets { display: flex; flex-direction: column; gap: 6px; }
+  .presets .chip { text-align: left; border-radius: var(--radius-comfortable); }
+  .preset-note { font-size: 10px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.4; }
+  .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-tertiary); margin-top: -6px; cursor: pointer; }
+  .toggle-row input { accent-color: var(--brand-accent); }
   @media (min-width: 600px) and (max-width: 899px) {
     main { grid-template-areas: "left center" "right right" "evidence evidence"; }
     .evidence-panel { grid-area: evidence; }
@@ -352,6 +357,15 @@
       <div class="panel-head"><span class="panel-title">habitat conditions</span></div>
       <div class="panel-body">
         <div class="control-group">
+          <span class="control-label">habitat presets</span>
+          <div class="presets" id="presets">
+            <button type="button" class="chip" data-o2="21" data-p="101.3" title="Sea-level air">ISS cabin · 21% O2, 101.3 kPa</button>
+            <button type="button" class="chip" data-o2="26.5" data-p="70.3" title="10.2 psia exploration atmosphere (NASA/TM-20260003925)">Exploration · 26.5% O2, 70.3 kPa</button>
+            <button type="button" class="chip" data-o2="34" data-p="56.5" title="8.2 psia exploration atmosphere (NASA/TM-20260003925)">Lunar lander · 34% O2, 56.5 kPa</button>
+          </div>
+          <p class="preset-note">Exploration atmospheres from NASA/TM-20260003925. Airflow set to 10 cm/s.</p>
+        </div>
+        <div class="control-group">
           <label class="control-label">oxygen (% by volume)</label>
           <input type="range" id="o2" min="10" max="40" step="0.1" value="21">
           <span class="control-value" id="o2Val">21.0%</span>
@@ -382,6 +396,7 @@
         <div id="boundary-plot"></div>
         <div class="plot-placeholder" id="plotPlaceholder">loading boundary plot...</div>
       </div>
+      <label class="toggle-row"><input type="checkbox" id="showOthers"> show other materials' tests and tests with no recorded outcome (grey)</label>
       <div class="status-row">
         <div class="status-card" id="predCard">
           <div class="status-badge st-outrange" id="predBadge">—</div>
@@ -477,6 +492,7 @@
     apiStatus: document.getElementById('apiStatus'), apiStatusText: document.getElementById('apiStatusText'),
     metaN: document.getElementById('metaN'), metaAcc: document.getElementById('metaAcc'),
     retryBtn: document.getElementById('retryBtn'),
+    showOthers: document.getElementById('showOthers'),
     plotPlaceholder: document.getElementById('plotPlaceholder'),
     predCard: document.getElementById('predCard'),
     themeToggle: document.getElementById('themeToggle'),
@@ -574,6 +590,7 @@
       els.predCard.style.borderColor = 'transparent';
       els.plotPlaceholder.style.display = 'block';
       if (noData) drawEvidence(materialSel.value);
+      else els.plotPlaceholder.textContent = 'your habitat is outside the oxygen, pressure or airflow range nasa tested, so no boundary is shown for it';
       return;
     }
 
@@ -641,6 +658,7 @@
   }
 
   function drawBoundary(b) {
+    window._lastBoundary = b;
     try {
       const flows = b.flows;
       const o2s = b.o2s;
@@ -669,19 +687,31 @@
         showscale: false, hoverinfo: 'skip', name: 'boundary (p = 0.5)',
       };
       const exp = b.experiments || [];
-      const byOutcome = {};
-      exp.forEach(e => { (byOutcome[e.outcome] = byOutcome[e.outcome] || []).push(e); });
+      const matName = (profileState.byId[materialSel.value] || {}).name || materialSel.value;
+      const own = exp.filter(e => e.same_material && e.outcome_recorded);
+      const others = exp.filter(e => !(e.same_material && e.outcome_recorded));
       const traces = [];
-      const styles = { spread: { color: '#f43f5e', symbol: 'circle' }, 'no_spread': { color: '#10b981', symbol: 'square' }, marginal_spread: { color: '#f59e0b', symbol: 'diamond' } };
-      Object.entries(byOutcome).forEach(([outcome, pts]) => {
-        const s = styles[outcome] || styles.marginal_spread;
+      const styles = { spread: { color: '#f43f5e', symbol: 'circle', label: 'burned (spread)' }, no_spread: { color: '#10b981', symbol: 'square', label: 'went out / no spread' } };
+      const tip = p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet', p.material];
+      ['spread', 'no_spread'].forEach(outcome => {
+        const pts = own.filter(p => p.outcome === outcome);
+        if (!pts.length) return;
+        const st = styles[outcome];
         traces.push({
-          x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: outcome.replace('_', ' '),
-          marker: { symbol: s.symbol, color: s.color, size: 8, line: { width: 1, color: 'white' } },
-          customdata: pts.map(p => [p.report_id, p.source_url, cardForReport(p.report_id) ? 'click for evidence card' : 'no evidence card yet']),
-          hovertemplate: '<b>%{customdata[0]}</b><br>' + outcome.replace('_', ' ') + '<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
+          x: pts.map(p => p.x), y: pts.map(p => p.y), mode: 'markers', name: `${matName} test: ${st.label}`,
+          marker: { symbol: st.symbol, color: st.color, size: 8, line: { width: 1, color: 'white' } },
+          customdata: pts.map(tip),
+          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>' + st.label + '<br>o2 %{y}% · flow %{x} cm/s<br>%{customdata[2]}<extra></extra>',
         });
       });
+      if (els.showOthers.checked && others.length) {
+        traces.push({
+          x: others.map(p => p.x), y: others.map(p => p.y), mode: 'markers', name: 'other materials / no recorded outcome',
+          marker: { symbol: 'x-thin-open', color: '#8a8f98', size: 8, line: { width: 1.5, color: '#8a8f98' } },
+          customdata: others.map(p => [...tip(p), p.same_material ? 'same material' : 'different material', p.outcome_recorded ? p.outcome.replace('_', ' ') : 'no outcome recorded in the dataset']),
+          hovertemplate: '<b>%{customdata[3]}</b> · %{customdata[0]}<br>%{customdata[4]} · %{customdata[5]}<br>o2 %{y}% · flow %{x} cm/s<br>shown for context, not part of this material\'s evidence<extra></extra>',
+        });
+      }
       traces.push({
         x: [parseFloat(els.flow.value)], y: [parseFloat(els.o2.value)], mode: 'markers', name: 'your habitat',
         marker: { symbol: 'star', size: 18, color: '#101828', line: { width: 1.5, color: 'white' } },
@@ -1077,6 +1107,12 @@
   }
 
   materialSel.addEventListener('change', renderProfile);
+
+  els.showOthers.addEventListener('change', () => { if (window._lastBoundary) drawBoundary(window._lastBoundary); });
+  document.querySelectorAll('#presets .chip').forEach(b => b.addEventListener('click', () => {
+    els.o2.value = b.dataset.o2; els.pressure.value = b.dataset.p; els.flow.value = 10;
+    clearTimeout(debounceTimer); predict();
+  }));
 
   // Wire inputs
   [els.o2, els.pressure, els.flow, materialSel].forEach(el => {

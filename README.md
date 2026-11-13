@@ -76,6 +76,8 @@ take about a minute.
 - **Research-gap response** — materials NASA tested but whose outcomes are not in the dataset yet (PMMA, Nomex) return no prediction and say why
 - **Out-of-range guard** — if requested conditions fall outside the training envelope, returns no prediction and an explanation; never extrapolates silently
 - **Nearest experiments** — each prediction links to the 3 closest real NASA tests by feature distance, with report IDs and clickable NTRS citations
+- **Habitat presets** — ISS cabin (21% O₂, 101.3 kPa) and the two exploration atmospheres from NASA/TM-20260003925 (26.5% O₂ at 70.3 kPa, 34% O₂ at 56.5 kPa)
+- **Labeled test points** — the map shows only the selected material's tests with recorded outcomes; a toggle adds other materials' tests and tests with no recorded outcome in grey, each labeled
 - **Decision-boundary plot** — P(spread) heatmap over O₂ × airflow with the P = 0.5 contour and real experiment points overlaid
 - **Light/dark mode** — toggle in the header, persists in localStorage, respects OS preference
 - **Mobile responsive** — single-column stack on phones, two-column on tablets, three-column on desktop
