@@ -1,0 +1,1255 @@
+{
+  "schema_version": 1,
+  "description": "Individual NASA test results shown on the map for materials without a prediction model. Each point carries the exact source quotes it was taken from; scripts/verify_cards.py checks them. Oxygen is a range when it changed during the test.",
+  "points": [
+    {
+      "point_id": "BASS2-T5.1-M1-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 9.0,
+      "o2_pct_range": [
+        21.9,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.071 mm/s; O2 fell from 22.2 to 21.9% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M1 1 2.2 1 9 0.071 6.4 22.2 21.9",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M2-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        21.2,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.052 mm/s; O2 fell from 22.2 to 21.2% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M2 3 2.2 1 20 and 15 0.052 and 0.033 22.9 22.2 21.2",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M2-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 15.0,
+      "o2_pct_range": [
+        21.2,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.033 mm/s; O2 fell from 22.2 to 21.2% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M2 3 2.2 1 20 and 15 0.052 and 0.033 22.9 22.2 21.2",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M3-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        19.7,
+        20.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.029 mm/s; O2 fell from 20.8 to 19.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M3 5 2.2 1 10 and 20 0.029 and 0.024 20.1 20.8 19.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M3-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        19.7,
+        20.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.024 mm/s; O2 fell from 20.8 to 19.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M3 5 2.2 1 10 and 20 0.029 and 0.024 20.1 20.8 19.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M4-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        19.8,
+        21.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.045 mm/s; O2 fell from 21.8 to 19.8% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M4 5 2.2 2 5 and 3 0.045 and 0.033 19.8 21.8 19.8",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M4-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 3.0,
+      "o2_pct_range": [
+        19.8,
+        21.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.033 mm/s; O2 fell from 21.8 to 19.8% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M4 5 2.2 2 5 and 3 0.045 and 0.033 19.8 21.8 19.8",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M5-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        19.0,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.071 mm/s; O2 fell from 22.2 to 19% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M5 3 2.2 2 10 0.071 27.2 22.2 19",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M6-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        20.7,
+        21.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "burned; spread rate not tracked; O2 fell from 21.8 to 20.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M6 1 2.2 2 10 and 8 Not tracked 16.8 21.8 20.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M6-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 8.0,
+      "o2_pct_range": [
+        20.7,
+        21.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "burned; spread rate not tracked; O2 fell from 21.8 to 20.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M6 1 2.2 2 10 and 8 Not tracked 16.8 21.8 20.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M7-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        18.4,
+        18.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.106 mm/s; O2 fell from 18.9 to 18.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M7-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 6.0,
+      "o2_pct_range": [
+        18.4,
+        18.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.099 mm/s; O2 fell from 18.9 to 18.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M7-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        18.4,
+        18.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.083 mm/s; O2 fell from 18.9 to 18.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M7-4",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 3.0,
+      "o2_pct_range": [
+        18.4,
+        18.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.07 mm/s; O2 fell from 18.9 to 18.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M8-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        18.2,
+        19.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.057 mm/s; O2 fell from 19.1 to 18.2% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M8 2 1.2 2 10, 6, and 5 0.057, 0.056, and 0.04 25.2 19.1 18.2",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M8-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 6.0,
+      "o2_pct_range": [
+        18.2,
+        19.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.056 mm/s; O2 fell from 19.1 to 18.2% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M8 2 1.2 2 10, 6, and 5 0.057, 0.056, and 0.04 25.2 19.1 18.2",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M8-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        18.2,
+        19.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.04 mm/s; O2 fell from 19.1 to 18.2% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M8 2 1.2 2 10, 6, and 5 0.057, 0.056, and 0.04 25.2 19.1 18.2",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M9-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 14.0,
+      "o2_pct_range": [
+        17.6,
+        18.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.025 mm/s; O2 fell from 18 to 17.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M9 3 1.2 2 14 0.025 16.8 18 17.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M10-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 15.0,
+      "o2_pct_range": [
+        18.6,
+        20.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.0373 mm/s; O2 fell from 20.1 to 18.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M10 4 1.2 2 15 and 10 0.0373 and 0.03 30.5 20.1 18.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M10-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        18.6,
+        20.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.03 mm/s; O2 fell from 20.1 to 18.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M10 4 1.2 2 15 and 10 0.0373 and 0.03 30.5 20.1 18.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M11-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 21.0,
+      "o2_pct_range": [
+        18.5,
+        20.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.048 mm/s; O2 fell from 20 to 18.5% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M11-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 15.0,
+      "o2_pct_range": [
+        18.5,
+        20.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.028 mm/s; O2 fell from 20 to 18.5% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M11-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 1.2 cm wide, two sides burning",
+      "flow_cm_s": 13.0,
+      "o2_pct_range": [
+        18.5,
+        20.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.022 mm/s; O2 fell from 20 to 18.5% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M12-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 12.0,
+      "o2_pct_range": [
+        20.4,
+        21.7
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "burned; spread rate not tracked; O2 fell from 21.7 to 20.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M12 2 2.2 2 12 and 10 Not tracked 16.2 21.7 20.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M12-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        20.4,
+        21.7
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "burned; spread rate not tracked; O2 fell from 21.7 to 20.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M12 2 2.2 2 12 and 10 Not tracked 16.2 21.7 20.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M13-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 6.0,
+      "o2_pct_range": [
+        19.0,
+        20.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.047 mm/s; O2 fell from 20.8 to 19% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M13 4 2.2 2 6, 5, and 4 0.047, 0.035, and 0.033 20.5 20.8 19",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M13-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        19.0,
+        20.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.035 mm/s; O2 fell from 20.8 to 19% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M13 4 2.2 2 6, 5, and 4 0.047, 0.035, and 0.033 20.5 20.8 19",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M13-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 4.0,
+      "o2_pct_range": [
+        19.0,
+        20.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.033 mm/s; O2 fell from 20.8 to 19% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M13 4 2.2 2 6, 5, and 4 0.047, 0.035, and 0.033 20.5 20.8 19",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M14-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 15.0,
+      "o2_pct_range": [
+        21.6,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.0624 mm/s; O2 fell from 22.2 to 21.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M14 2 2.2 1 15, 14, and 10 0.0624, 0.055, and 0.0353 15.4 22.2 21.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M14-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 14.0,
+      "o2_pct_range": [
+        21.6,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.055 mm/s; O2 fell from 22.2 to 21.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M14 2 2.2 1 15, 14, and 10 0.0624, 0.055, and 0.0353 15.4 22.2 21.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M14-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        21.6,
+        22.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.0353 mm/s; O2 fell from 22.2 to 21.6% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M14 2 2.2 1 15, 14, and 10 0.0624, 0.055, and 0.0353 15.4 22.2 21.6",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M15-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, one side burning",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        20.0,
+        21.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.045 mm/s; O2 fell from 21 to 20% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M15 4 2.2 1 20 0.045 22.0 21 20",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M16-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        18.7,
+        19.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.144 mm/s; O2 fell from 19.2 to 18.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M16-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 3.0,
+      "o2_pct_range": [
+        18.7,
+        19.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.1309 mm/s; O2 fell from 19.2 to 18.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M16-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 1 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 2.0,
+      "o2_pct_range": [
+        18.7,
+        19.2
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.1062 mm/s; O2 fell from 19.2 to 18.7% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M17-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 5.0,
+      "o2_pct_range": [
+        17.1,
+        18.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.053 mm/s; O2 fell from 18.8 to 17.1% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M17 2 2.2 2 5, 4, and 3 0.053, 0.042, and 0.026 30.7 18.8 17.1",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M17-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 4.0,
+      "o2_pct_range": [
+        17.1,
+        18.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.042 mm/s; O2 fell from 18.8 to 17.1% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M17 2 2.2 2 5, 4, and 3 0.053, 0.042, and 0.026 30.7 18.8 17.1",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M17-3",
+      "material_id": "pmma",
+      "variant": "flat slab, 2 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 3.0,
+      "o2_pct_range": [
+        17.1,
+        18.8
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.026 mm/s; O2 fell from 18.8 to 17.1% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M17 2 2.2 2 5, 4, and 3 0.053, 0.042, and 0.026 30.7 18.8 17.1",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M18-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        16.8,
+        17.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.026 mm/s; O2 fell from 17.9 to 16.8% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M18-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 3 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 8.0,
+      "o2_pct_range": [
+        16.8,
+        17.9
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.013 mm/s; O2 fell from 17.9 to 16.8% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M19-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        17.4,
+        19.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.027 mm/s; O2 fell from 19 to 17.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M19 4 2.2 2 10 and 6 0.027 and 0.0159 25.7 19 17.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M19-2",
+      "material_id": "pmma",
+      "variant": "flat slab, 4 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 6.0,
+      "o2_pct_range": [
+        17.4,
+        19.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.0159 mm/s; O2 fell from 19 to 17.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M19 4 2.2 2 10 and 6 0.027 and 0.0159 25.7 19 17.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "BASS2-T5.1-M20-1",
+      "material_id": "pmma",
+      "variant": "flat slab, 5 mm thick, 2.2 cm wide, two sides burning",
+      "flow_cm_s": 10.0,
+      "o2_pct_range": [
+        17.4,
+        18.0
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro",
+      "flow_direction": "opposed",
+      "outcome": "burned",
+      "outcome_detail": "flame spread at 0.012 mm/s; O2 fell from 18 to 17.4% during the test",
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M20 5 2.2 2 10 0.012 16.5 18 17.4",
+          "context": "Table 5.1 row: test, thickness (mm), width (cm), sides burning, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2 (vol%), final O2 (vol%)"
+        }
+      ]
+    },
+    {
+      "point_id": "DROP-2008-NOMEX-BURN",
+      "material_id": "nomex",
+      "variant": "Nomex HT90-40 fabric",
+      "flow_cm_s": 30.0,
+      "o2_pct_range": [
+        23.0,
+        23.0
+      ],
+      "pressure_kpa": 101.3,
+      "gravity": "micro (5.18 s drop tower)",
+      "flow_direction": "concurrent",
+      "outcome": "burned",
+      "outcome_detail": "0g upward limiting oxygen index: the flame survived to the end of the 5.18 s drop",
+      "card_id": "CARD-EXPLORATION-0G-LIMITS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "25.4% O2 22% O2, 23% O2, 22% O2,",
+          "context": "Table 1, Nomex HT90-40 row: 1g ULOI, 1g MOC, 0g ULOI (burns), 0g MOC (extinguishes)"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "(±0.6), 14.7 psia* 14.7 psia, 14.7 psia,",
+          "context": "Same row, pressure line"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "The concurrent forced flow velocity was 30 cm/s."
+        }
+      ]
+    },
+    {
+      "point_id": "DROP-2008-NOMEX-EXT",
+      "material_id": "nomex",
+      "variant": "Nomex HT90-40 fabric",
+      "flow_cm_s": 30.0,
+      "o2_pct_range": [
+        22.0,
+        22.0
+      ],
+      "pressure_kpa": 101.3,
+      "gravity": "micro (5.18 s drop tower)",
+      "flow_direction": "concurrent",
+      "outcome": "extinguished",
+      "outcome_detail": "0g maximum oxygen concentration: the flame went out",
+      "card_id": "CARD-EXPLORATION-0G-LIMITS",
+      "quotes": [
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "25.4% O2 22% O2, 23% O2, 22% O2,",
+          "context": "Table 1, Nomex HT90-40 row: 1g ULOI, 1g MOC, 0g ULOI (burns), 0g MOC (extinguishes)"
+        },
+        {
+          "source_id": "NTRS-20080034883",
+          "page": 7,
+          "text": "The concurrent forced flow velocity was 30 cm/s."
+        }
+      ]
+    },
+    {
+      "point_id": "SAFFIRE2-2-7-NOMEX",
+      "material_id": "nomex",
+      "variant": "Nomex HT90-40 fabric ignited by a PMMA strip",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        22.1,
+        22.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro (Cygnus spacecraft)",
+      "flow_direction": "concurrent",
+      "outcome": "no_ignition",
+      "outcome_detail": "about two minutes of heating by a 460 W PMMA flame did not ignite the fabric; oxygen is approximate",
+      "card_id": "CARD-SAFFIRE2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "2-7,PMMA & Nomex,0.85 and 0.37 mm,5 and 24 cm,5 cm,20 cm/s,~ 22.1",
+          "context": "Sample 2-7: material, thickness, length, width, air flow, percent O2"
+        },
+        {
+          "source_id": "PSI-99",
+          "text": "Note 2 The PMMA portion was completely consumed but the Nomex was not ignited.",
+          "context": "Table note"
+        },
+        {
+          "source_id": "NTRS-20170008805",
+          "page": 25,
+          "text": "Despite this significant heating load, the fabric was not ignited."
+        }
+      ]
+    },
+    {
+      "point_id": "BASS-NOMEXIII",
+      "material_id": "nomex",
+      "variant": "Nomex III fabric, 2 cm wide",
+      "flow_cm_s": 14.0,
+      "o2_pct_range": [
+        22.0,
+        22.0
+      ],
+      "pressure_kpa": 101.3,
+      "gravity": "micro (ISS)",
+      "flow_direction": "concurrent",
+      "outcome": "burned",
+      "outcome_detail": "nearly complete propagation; the flame narrowed and went out within 1 cm of the end. The slide gives 14 cm/s in its heading and 15 cm/s in its text.",
+      "card_id": null,
+      "quotes": [
+        {
+          "source_id": "NTRS-20140011099",
+          "page": 27,
+          "text": "NOMEX – III, 22% O2, 1 atm 14 cm/s (0g)"
+        },
+        {
+          "source_id": "NTRS-20140011099",
+          "page": 27,
+          "text": "Nomex III sample residue after nearly complete concurrent propagation at 15 cm/s on ISS."
+        }
+      ]
+    },
+    {
+      "point_id": "SAFFIRE2-2-1-SILICONE",
+      "material_id": "silicone",
+      "variant": "silicone sheet, sample 2-1",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        21.5,
+        21.5
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro (Cygnus spacecraft)",
+      "flow_direction": "concurrent",
+      "outcome": "minimal_burn",
+      "outcome_detail": "microgravity burn length about zero (1-g burn length: complete); oxygen is approximate",
+      "card_id": "CARD-SAFFIRE2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "2-1,Silicone,0.27 mm,29 cm,5 cm,20 cm/s,~ 21.5,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,Complete,Acceleratory",
+          "context": "Sample 2-1: ... air flow, percent O2, ..., flow direction, microgravity burn length, spread length, 1-g burn length, 1-g spread rate"
+        }
+      ]
+    },
+    {
+      "point_id": "SAFFIRE2-2-2-SILICONE",
+      "material_id": "silicone",
+      "variant": "silicone sheet, sample 2-2",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        22.1,
+        22.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro (Cygnus spacecraft)",
+      "flow_direction": "concurrent",
+      "outcome": "minimal_burn",
+      "outcome_detail": "microgravity burn length about zero (1-g burn length: 7.6 cm); oxygen is approximate",
+      "card_id": "CARD-SAFFIRE2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "2-2,Silicone,0.61 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,7.6 cm,1.2 mm/s",
+          "context": "Sample 2-2: ... air flow, percent O2, ..., flow direction, microgravity burn length, spread length, 1-g burn length, 1-g spread rate"
+        }
+      ]
+    },
+    {
+      "point_id": "SAFFIRE2-2-3-SILICONE",
+      "material_id": "silicone",
+      "variant": "silicone sheet, sample 2-3",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        22.1,
+        22.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro (Cygnus spacecraft)",
+      "flow_direction": "concurrent",
+      "outcome": "minimal_burn",
+      "outcome_detail": "microgravity burn length about zero (1-g burn length: about zero); oxygen is approximate",
+      "card_id": "CARD-SAFFIRE2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "2-3,Silicone,1.03 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Concurrent,~ 0,n/a,~ 0,n/a",
+          "context": "Sample 2-3: ... air flow, percent O2, ..., flow direction, microgravity burn length, spread length, 1-g burn length, 1-g spread rate"
+        }
+      ]
+    },
+    {
+      "point_id": "SAFFIRE2-2-4-SILICONE",
+      "material_id": "silicone",
+      "variant": "silicone sheet, sample 2-4",
+      "flow_cm_s": 20.0,
+      "o2_pct_range": [
+        22.1,
+        22.1
+      ],
+      "pressure_kpa": null,
+      "gravity": "micro (Cygnus spacecraft)",
+      "flow_direction": "opposed",
+      "outcome": "minimal_burn",
+      "outcome_detail": "microgravity burn length about zero (1-g burn length: complete); oxygen is approximate",
+      "card_id": "CARD-SAFFIRE2",
+      "quotes": [
+        {
+          "source_id": "PSI-99",
+          "text": "2-4,Silicone,037 mm,29 cm,5 cm,20 cm/s,~ 22.1,80 W,9.2 s,Insignificant,Opposed,~ 0,n/a,Complete,0.6 mm/s",
+          "context": "Sample 2-4: ... air flow, percent O2, ..., flow direction, microgravity burn length, spread length, 1-g burn length, 1-g spread rate"
+        }
+      ]
+    }
+  ]
+}

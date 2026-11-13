@@ -91,6 +91,51 @@
       "doc_type": "PSI experimental data table",
       "url": "https://psi.nasa.gov/studies/PSI-99",
       "file": "cache/psi_raw/PSI-99_Experimental table_SAFFIRE-2.csv"
+    },
+    "NTRS-20140011099": {
+      "type": "ntrs",
+      "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment",
+      "authors": "Ferkul, P.V.; Olson, S.L.; Takahashi, F.; et al.",
+      "year": 2013,
+      "doc_type": "Presentation (ASGSR 2013 Annual Meeting)",
+      "url": "https://ntrs.nasa.gov/citations/20140011099",
+      "file": "data/raw/ntrs/20140011099.pdf"
+    },
+    "NTRS-20170008805": {
+      "type": "ntrs",
+      "title": "Results of Large-Scale Spacecraft Flammability Tests",
+      "authors": "Ferkul, P.; Olson, S.; Urban, D.L.; Ruff, G.A.; et al.",
+      "year": 2017,
+      "doc_type": "Presentation",
+      "url": "https://ntrs.nasa.gov/citations/20170008805",
+      "file": "data/raw/ntrs/20170008805.pdf"
+    },
+    "NTRS-20150008962": {
+      "type": "ntrs",
+      "title": "Concurrent Flame Growth, Spread and Extinction over Composite Fabric Samples in Low Speed Purely Forced Flow in Microgravity",
+      "authors": "Zhao, X.; T'ien, J.S.; Ferkul, P.V.; Olson, S.L.",
+      "year": 2015,
+      "doc_type": "Conference paper (9th U.S. National Combustion Meeting)",
+      "url": "https://ntrs.nasa.gov/citations/20150008962",
+      "file": "data/raw/ntrs/20150008962.pdf"
+    },
+    "NTRS-20170001636": {
+      "type": "ntrs",
+      "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status",
+      "authors": "Schoren, W.; Ruff, G.A.; Urban, D.L.",
+      "year": 2016,
+      "doc_type": "Conference paper (8th IAASS)",
+      "url": "https://ntrs.nasa.gov/citations/20170001636",
+      "file": "data/raw/ntrs/20170001636.pdf"
+    },
+    "NTRS-20090001157": {
+      "type": "ntrs",
+      "title": "Effect of Oxygen Concentration on Autogenous Ignition Temperature and Pneumatic Impact Ignitability of Nonmetallic Materials",
+      "authors": "Smith, S.",
+      "year": 2009,
+      "doc_type": "Journal article (Journal of ASTM International), NASA WSTF",
+      "url": "https://ntrs.nasa.gov/citations/20090001157",
+      "file": "data/raw/ntrs/20090001157.pdf"
     }
   },
   "cards": [
@@ -240,8 +285,93 @@
         }
       ],
       "related_card_ids": [
+        "CARD-BASS2-PMMA-SLABS",
         "CARD-BASS2-SIBAL",
         "CARD-EXPLORATION-0G-LIMITS"
+      ]
+    },
+    {
+      "card_id": "CARD-BASS2-PMMA-SLABS",
+      "title": "PMMA slabs: all 20 flat samples burned in opposed flow on the ISS",
+      "experiment": "BASS-II (International Space Station)",
+      "source_ids": [
+        "NTRS-20210011385"
+      ],
+      "linked_report_ids": [],
+      "material_ids": [
+        "pmma"
+      ],
+      "conditions": {
+        "o2_pct": [
+          16.8,
+          22.2
+        ],
+        "flow_cm_s": [
+          2.0,
+          21.0
+        ],
+        "pressure_kpa": null,
+        "gravity": "micro",
+        "flow_direction": [
+          "opposed"
+        ],
+        "note": "Flat acrylic samples 1 to 5 mm thick, 1.2 or 2.2 cm wide, burning on one or two sides. Oxygen fell during each test as the flame used it up; Table 5.1 gives the initial and final values."
+      },
+      "outcome_summary": "All 20 flat PMMA samples burned. Spread rates ranged from 0.012 to 0.144 mm/s across opposed flows of 2 to 21 cm/s, with initial oxygen of 17.9 to 22.2%.",
+      "key_finding": "Thicker acrylic spread more slowly, and two-sided burns generally spread faster than one-sided burns.",
+      "safety_takeaway": "Acrylic kept burning at every flow and oxygen level tested here. Because no test found a no-burn condition, these results show where PMMA burns but cannot locate its burn boundary.",
+      "takeaway_is_interpretation": true,
+      "locator": "Section 5.3, Table 5.1 and Section 5.7 (PDF pp. 64-65, 71; printed pp. 56-57, 63)",
+      "quotes": [
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 64,
+          "text": "A total of 20 PMMA flat samples were burnt during the BASS–II experimentation (Table 5.1). The sample thickness varied from 1 to 5 mm thick."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 64,
+          "text": "The airflow was always opposed."
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+          "context": "Table 5.1 row (fastest spread, lowest flow): test, thickness (mm), width (cm), sides, velocity (cm/s), spread rate (mm/s), burn time (min), initial O2, final O2"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M20 5 2.2 2 10 0.012 16.5 18 17.4",
+          "context": "Table 5.1 row (slowest spread)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+          "context": "Table 5.1 row (highest flow)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8",
+          "context": "Table 5.1 row (lowest oxygen)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 65,
+          "text": "M1 1 2.2 1 9 0.071 6.4 22.2 21.9",
+          "context": "Table 5.1 row (highest initial oxygen)"
+        },
+        {
+          "source_id": "NTRS-20210011385",
+          "page": 71,
+          "text": "In general, the flames spread faster for two-sided burns compared to one-sided burns. The greater the thickness of the fuel, the greater is the time taken for the flame to spread and so the lower is the spread rate."
+        }
+      ],
+      "related_card_ids": [
+        "CARD-BASS2-PMMA-RODS",
+        "CARD-SAFFIRE-4-5"
       ]
     },
     {
@@ -249,7 +379,8 @@
       "title": "Saffire-II: silicone barely burned in orbit despite burning completely on Earth",
       "experiment": "Saffire-II (uncrewed Cygnus spacecraft)",
       "source_ids": [
-        "PSI-99"
+        "PSI-99",
+        "NTRS-20170008805"
       ],
       "linked_report_ids": [
         "PSI PSI-99"
@@ -322,6 +453,16 @@
           "source_id": "PSI-99",
           "text": "Note 1 Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
           "context": "Table note for the Percent O2 column"
+        },
+        {
+          "source_id": "NTRS-20170008805",
+          "page": 24,
+          "text": "The material is a meta-aramid fabric commonly used on the ISS called Nomex® HT90-40. On Earth, it will only burn if the oxygen concentration is increased to around 24 to 25%."
+        },
+        {
+          "source_id": "NTRS-20170008805",
+          "page": 25,
+          "text": "The average flame power from the PMMA (assuming complete conversion of the fuel) was 460 + 50 W. Despite this significant heating load, the fabric was not ignited."
         }
       ],
       "related_card_ids": [

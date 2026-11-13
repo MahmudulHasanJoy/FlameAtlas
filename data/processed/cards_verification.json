@@ -1,9 +1,11 @@
 {
   "checked_on": "2026-11-13",
   "method": "Each quote matched word for word against the source page text (pdftotext layout and reading order) or PSI CSV, ignoring whitespace, quote/dash styles and private-use symbol glyphs.",
-  "cards": 10,
-  "quotes": 64,
-  "quotes_verified": 64,
+  "cards": 11,
+  "evidence_points": 51,
+  "materials": 4,
+  "quotes": 164,
+  "quotes_verified": 164,
   "all_passed": true,
   "source_sha256": {
     "NTRS-20210011385": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
@@ -15,7 +17,12 @@
     "NTRS-20240015307": "eb86f426ee83c3edb3eda8053f33382248394f5bcb6aa6be171b59ddab5c3e47",
     "NTRS-20250010975": "0481647076339686df059467f529fe2cd661b926655f04a0842ec0eb33d551b7",
     "PSI-98": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d",
-    "PSI-99": "3c24390b9ef86f3d1ebaab911a1a3cc95a8759aebf42062371370e6d4b31b8ac"
+    "PSI-99": "3c24390b9ef86f3d1ebaab911a1a3cc95a8759aebf42062371370e6d4b31b8ac",
+    "NTRS-20140011099": "fd5e89467bddd426e40081311f0b36541aac6a29236b2d3fc3758a901bc8c072",
+    "NTRS-20170008805": "e38ec36f54817aa97e0c01a05f12b212521d6320ce3f4cb7a38bb7c837cfea8d",
+    "NTRS-20150008962": "50590fd7e6619203eb75a46f49e83556e6798a53e67869cd52ea89961c692c30",
+    "NTRS-20170001636": "f0403bce265bc133faaa55b3235047c21b5b5cf73c7d50d22ac2eeabff802835",
+    "NTRS-20090001157": "8a12df9ee4446742cb9608d9f2d2ceb97b3bb0cf933ad6ea217b4446d1dde962"
   },
   "results": {
     "CARD-BASS2-SIBAL": [
@@ -100,6 +107,56 @@
         "ok": true
       }
     ],
+    "CARD-BASS2-PMMA-SLABS": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 64,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20210011385",
+        "page": 64,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      },
+      {
+        "quote": 3,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      },
+      {
+        "quote": 4,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      },
+      {
+        "quote": 5,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      },
+      {
+        "quote": 6,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      },
+      {
+        "quote": 7,
+        "source_id": "NTRS-20210011385",
+        "page": 71,
+        "ok": true
+      }
+    ],
     "CARD-SAFFIRE2": [
       {
         "quote": 0,
@@ -147,6 +204,18 @@
         "quote": 7,
         "source_id": "PSI-99",
         "page": null,
+        "ok": true
+      },
+      {
+        "quote": 8,
+        "source_id": "NTRS-20170008805",
+        "page": 24,
+        "ok": true
+      },
+      {
+        "quote": 9,
+        "source_id": "NTRS-20170008805",
+        "page": 25,
         "ok": true
       }
     ],
@@ -419,6 +488,692 @@
         "quote": 7,
         "source_id": "NTRS-20250010975",
         "page": 1,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M1-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M2-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M2-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M3-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M3-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M4-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M4-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M5-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M6-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M6-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M7-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M7-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M7-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M7-4": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M8-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M8-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M8-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M9-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M10-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M10-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M11-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M11-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M11-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M12-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M12-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M13-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M13-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M13-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M14-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M14-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M14-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M15-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M16-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M16-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M16-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M17-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M17-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M17-3": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M18-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M18-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M19-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M19-2": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:BASS2-T5.1-M20-1": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 65,
+        "ok": true
+      }
+    ],
+    "point:DROP-2008-NOMEX-BURN": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      }
+    ],
+    "point:DROP-2008-NOMEX-EXT": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      }
+    ],
+    "point:SAFFIRE2-2-7-NOMEX": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20170008805",
+        "page": 25,
+        "ok": true
+      }
+    ],
+    "point:BASS-NOMEXIII": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20140011099",
+        "page": 27,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20140011099",
+        "page": 27,
+        "ok": true
+      }
+    ],
+    "point:SAFFIRE2-2-1-SILICONE": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "point:SAFFIRE2-2-2-SILICONE": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "point:SAFFIRE2-2-3-SILICONE": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "point:SAFFIRE2-2-4-SILICONE": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "material:sibal:Made of": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20170001636",
+        "page": 2,
+        "ok": true
+      }
+    ],
+    "material:sibal:Thickness and weight": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20150008962",
+        "page": 2,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20150008962",
+        "page": 2,
+        "ok": true
+      }
+    ],
+    "material:sibal:On Earth (1 g, air)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      }
+    ],
+    "material:sibal:In microgravity": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 109,
+        "ok": true
+      }
+    ],
+    "material:sibal:In lunar gravity": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20240015307",
+        "page": 1,
+        "ok": true
+      }
+    ],
+    "material:pmma:What it is": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 10,
+        "ok": true
+      }
+    ],
+    "material:pmma:On Earth (1 g, upward)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 84,
+        "ok": true
+      }
+    ],
+    "material:pmma:In microgravity": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 84,
+        "ok": true
+      }
+    ],
+    "material:pmma:Flat slabs on the ISS": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20210011385",
+        "page": 64,
+        "ok": true
+      }
+    ],
+    "material:pmma:Exploration habitats": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20260003925",
+        "page": 70,
+        "ok": true
+      }
+    ],
+    "material:nomex:What it is": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20170008805",
+        "page": 24,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      }
+    ],
+    "material:nomex:On Earth (1 g, upward)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20170008805",
+        "page": 24,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20140011099",
+        "page": 24,
+        "ok": true
+      }
+    ],
+    "material:nomex:In microgravity (drop tower)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20080034883",
+        "page": 7,
+        "ok": true
+      }
+    ],
+    "material:nomex:In microgravity (Saffire-II)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20170008805",
+        "page": 25,
+        "ok": true
+      }
+    ],
+    "material:nomex:At 8.2 psi (2025 poster)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20250010975",
+        "page": 1,
+        "ok": true
+      }
+    ],
+    "material:nomex:Exploration habitats": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
+        "ok": true
+      }
+    ],
+    "material:silicone:On Earth (oxygen index)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20090001157",
+        "page": 5,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20090001157",
+        "page": 5,
+        "ok": true
+      }
+    ],
+    "material:silicone:On Earth (NASA Test 1)": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20150022421",
+        "page": 3,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20150022421",
+        "page": 3,
+        "ok": true
+      },
+      {
+        "quote": 2,
+        "source_id": "NTRS-20150022421",
+        "page": 3,
+        "ok": true
+      }
+    ],
+    "material:silicone:Burn direction": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20150022421",
+        "page": 1,
+        "ok": true
+      }
+    ],
+    "material:silicone:Why": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20150022421",
+        "page": 10,
+        "ok": true
+      },
+      {
+        "quote": 1,
+        "source_id": "NTRS-20150022421",
+        "page": 10,
+        "ok": true
+      }
+    ],
+    "material:silicone:In microgravity (Saffire-II)": [
+      {
+        "quote": 0,
+        "source_id": "PSI-99",
+        "page": null,
+        "ok": true
+      }
+    ],
+    "material:silicone:In spacecraft": [
+      {
+        "quote": 0,
+        "source_id": "NTRS-20260003925",
+        "page": 33,
         "ok": true
       }
     ]

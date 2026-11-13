@@ -55,6 +55,8 @@ REPO = Path(__file__).resolve().parent.parent.parent
 DASHBOARD = REPO / "frontend" / "dashboard.html"
 CARDS_FILE = REPO / "data" / "processed" / "cards.json"
 CARDS_VERIFICATION_FILE = REPO / "data" / "processed" / "cards_verification.json"
+POINTS_FILE = REPO / "data" / "processed" / "evidence_points.json"
+MATERIALS_FILE = REPO / "data" / "processed" / "materials.json"
 
 app = FastAPI(title="FlameAtlas Fire-Safety Explorer", version="2.0.0")
 
@@ -342,6 +344,43 @@ def list_cards(material: str | None = Query(None, max_length=40)):
         "sources": _public_sources(data["sources"]),
         "verification": data["verification"],
     }
+
+
+_extra: dict | None = None
+
+
+def load_points_and_materials() -> dict:
+    global _extra
+    if _extra is None:
+        _extra = {
+            "points": json.loads(POINTS_FILE.read_text(encoding="utf-8"))["points"],
+            "materials": json.loads(MATERIALS_FILE.read_text(encoding="utf-8"))["materials"],
+        }
+    return _extra
+
+
+def _sources_for(quote_lists) -> dict:
+    sources = load_cards()["sources"]
+    ids = {q["source_id"] for qs in quote_lists for q in qs}
+    return _public_sources({sid: sources[sid] for sid in sorted(ids) if sid in sources})
+
+
+@app.get("/materials", dependencies=[Depends(verify_api_key)])
+def list_materials():
+    """Material profiles: what each material is and what NASA found, with quotes."""
+    mats = load_points_and_materials()["materials"]
+    return {
+        "materials": mats,
+        "sources": _sources_for(f["quotes"] for m in mats for f in m["facts"]),
+        "verification": load_cards()["verification"],
+    }
+
+
+@app.get("/evidence", dependencies=[Depends(verify_api_key)])
+def evidence_points(material: str = Query(..., max_length=40)):
+    """Individual NASA test results for a material, for the evidence-only map."""
+    pts = [p for p in load_points_and_materials()["points"] if p["material_id"] == material]
+    return {"material": material, "points": pts, "sources": _sources_for(p["quotes"] for p in pts)}
 
 
 @app.get("/cards/{card_id}", dependencies=[Depends(verify_api_key)])

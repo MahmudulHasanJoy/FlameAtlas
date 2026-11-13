@@ -1,6 +1,8 @@
-"""Verify FlameAtlas evidence cards against their NASA sources.
+"""Verify FlameAtlas evidence cards, evidence points and material profiles
+against their NASA sources.
 
-Checks, for data/processed/cards.json:
+Checks data/processed/cards.json (cards and the shared source list),
+evidence_points.json and materials.json:
   1. Structure: required fields, text length limits (data spec 4.5), and that
      every source, related card and quote reference resolves.
   2. Quotes: each quote appears word for word in its source. NTRS quotes are
@@ -31,6 +33,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 CARDS = REPO / "data" / "processed" / "cards.json"
+POINTS = REPO / "data" / "processed" / "evidence_points.json"
+MATERIALS = REPO / "data" / "processed" / "materials.json"
 REPORT = REPO / "data" / "processed" / "cards_verification.json"
 
 REQUIRED = [
@@ -102,6 +106,38 @@ def main() -> int:
             if q["source_id"] not in c.get("source_ids", []):
                 errors.append(f"{cid}: quote source {q['source_id']} not in source_ids")
 
+    points = json.loads(POINTS.read_text(encoding="utf-8"))["points"]
+    materials = json.loads(MATERIALS.read_text(encoding="utf-8"))["materials"]
+    point_ids = [p["point_id"] for p in points]
+    if len(set(point_ids)) != len(point_ids):
+        errors.append("duplicate point_id")
+    for p in points:
+        if p.get("card_id") and p["card_id"] not in card_ids:
+            errors.append(f"{p['point_id']}: unknown card {p['card_id']}")
+        lo, hi = p["o2_pct_range"]
+        if not (0 < lo <= hi < 100) or not (0 < p["flow_cm_s"] < 100):
+            errors.append(f"{p['point_id']}: value out of range")
+        if not p.get("quotes"):
+            errors.append(f"{p['point_id']}: no quotes")
+    for m in materials:
+        for cid in m["card_ids"]:
+            if cid not in card_ids:
+                errors.append(f"material {m['material_id']}: unknown card {cid}")
+        for f in m["facts"]:
+            if not f.get("quotes"):
+                errors.append(f"material {m['material_id']}: fact {f['label']!r} has no quotes")
+
+    # Every quote, wherever it lives, keyed for the report.
+    quote_sets: list[tuple[str, list[dict]]] = [(c["card_id"], c["quotes"]) for c in cards]
+    quote_sets += [(f"point:{p['point_id']}", p["quotes"]) for p in points]
+    quote_sets += [
+        (f"material:{m['material_id']}:{f['label']}", f["quotes"]) for m in materials for f in m["facts"]
+    ]
+    for key, qs in quote_sets:
+        for q in qs:
+            if q["source_id"] not in sources:
+                errors.append(f"{key}: unknown source {q['source_id']}")
+
     if shutil.which("pdftotext") is None:
         print("pdftotext not found (install poppler).", file=sys.stderr)
         return 2
@@ -120,9 +156,9 @@ def main() -> int:
             texts[sid] = normalize(path.read_text(encoding="utf-8-sig"))
 
     results: dict[str, list[dict]] = {}
-    for c in cards:
+    for key, qs in quote_sets:
         rows = []
-        for i, q in enumerate(c["quotes"]):
+        for i, q in enumerate(qs):
             sid = q["source_id"]
             if sid not in texts:
                 ok = False
@@ -134,8 +170,8 @@ def main() -> int:
                 ok = normalize(q["text"]) in texts[sid]
             rows.append({"quote": i, "source_id": sid, "page": q.get("page"), "ok": ok})
             if not ok:
-                errors.append(f"{c['card_id']} quote {i} not found in {sid} p.{q.get('page')}: {q['text'][:70]!r}")
-        results[c["card_id"]] = rows
+                errors.append(f"{key} quote {i} not found in {sid} p.{q.get('page')}: {q['text'][:70]!r}")
+        results[key] = rows
 
     n_quotes = sum(len(r) for r in results.values())
     n_ok = sum(x["ok"] for r in results.values() for x in r)
@@ -143,6 +179,8 @@ def main() -> int:
         "checked_on": dt.date.today().isoformat(),
         "method": "Each quote matched word for word against the source page text (pdftotext layout and reading order) or PSI CSV, ignoring whitespace, quote/dash styles and private-use symbol glyphs.",
         "cards": len(cards),
+        "evidence_points": len(points),
+        "materials": len(materials),
         "quotes": n_quotes,
         "quotes_verified": n_ok,
         "all_passed": not errors,
@@ -150,7 +188,8 @@ def main() -> int:
         "results": results,
     }, indent=2) + "\n", encoding="utf-8")
 
-    print(f"{len(cards)} cards, {n_ok}/{n_quotes} quotes verified against sources")
+    print(f"{len(cards)} cards, {len(points)} evidence points, {len(materials)} materials: "
+          f"{n_ok}/{n_quotes} quotes verified against sources")
     for e in errors:
         print("FAIL", e)
     return 0 if not errors else 1

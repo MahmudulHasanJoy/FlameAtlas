@@ -41,7 +41,7 @@ CLASS_ORDER = ["no_spread", "marginal_spread", "spread"]
 
 # Materials known to the trained model. Anything outside this list is rejected
 # outright instead of being silently passed through the unknown-category path.
-KNOWN_MATERIALS = {"sibal", "pmma", "nomex"}
+KNOWN_MATERIALS = {"sibal", "pmma", "nomex", "silicone"}
 
 # A material needs at least this many training rows with a recorded outcome
 # before the model will predict for it. Below that, predict() returns a
@@ -232,7 +232,7 @@ class FlameAtlasModel:
         self.df = load_data()
         self.classes = list(self.meta["classes"])
         # Known materials from metadata, intersected with what the encoder saw.
-        self.known_materials = set(self.meta.get("known_materials", KNOWN_MATERIALS))
+        self.known_materials = set(self.meta.get("known_materials", [])) | KNOWN_MATERIALS
         # Materials with enough outcome rows to predict for (data-driven, so a
         # new material only needs data, not a code change).
         counts = self.df["material"].value_counts()
@@ -366,10 +366,10 @@ class FlameAtlasModel:
                 "model": self._model_summary(),
                 "nearest_experiments": [],
                 "explanation": (
-                    f"NASA has tested {material}, but burn outcomes for those tests "
-                    "are reported in the papers, not in the PSI data tables, and have "
-                    "not been entered into the FlameAtlas dataset yet. No prediction "
-                    "is returned for a material without outcome data."
+                    f"NASA has tested {material}, but its published results cannot "
+                    "support a prediction: they either all show one outcome or come "
+                    "from too few, inconsistent tests. The individual NASA test "
+                    "results and the material profile are shown instead."
                 ),
             }
 

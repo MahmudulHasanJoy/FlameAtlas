@@ -85,3 +85,22 @@ def test_every_map_report_with_a_card_resolves():
     exp_ids = {e["report_id"] for e in client.get("/boundary?material=sibal&n=10", headers=KEY).json()["experiments"]}
     linked = {r for c in client.get("/cards", headers=KEY).json()["cards"] for r in c["linked_report_ids"]}
     assert "NTRS-20210011385" in linked & exp_ids
+
+
+def test_materials_profiles_have_sourced_facts():
+    j = client.get("/materials", headers=KEY).json()
+    ids = {m["material_id"] for m in j["materials"]}
+    assert {"sibal", "pmma", "nomex", "silicone"} <= ids
+    for m in j["materials"]:
+        assert m["facts"]
+        for f in m["facts"]:
+            assert f["quotes"] and all(q["source_id"] in j["sources"] for q in f["quotes"])
+
+
+def test_evidence_points_for_gap_materials():
+    for m, at_least in (("pmma", 40), ("nomex", 4), ("silicone", 4)):
+        pts = client.get(f"/evidence?material={m}", headers=KEY).json()["points"]
+        assert len(pts) >= at_least
+        assert all(p["material_id"] == m and p["quotes"] for p in pts)
+    j = client.post("/predict", json=body(material="silicone"), headers=KEY).json()
+    assert j["data_status"] == "no_outcome_data"
