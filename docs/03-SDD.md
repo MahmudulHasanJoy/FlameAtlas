@@ -5,14 +5,50 @@
 | Product | FlameAtlas |
 | Document owner | Syed Mehedi Hussain (Integration and QA) |
 | Contributors | Md. Mahmudul Hasan, Opi Mojumdar, Aurin Subah |
-| Status | Baseline v1.0 |
+| Status | v1.1, updated to the as-built design |
 | Related | [TRD](02-TRD.md), [Data spec](05-data-spec.md), [AI/RAG spec](06-ai-rag-spec.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added Section 0, the as-built architecture and deployment |
 
 ---
+
+> **As built, 2026-11-13.** This document was baselined on 2026-10-24, before the build. Sections marked *as built* describe what FlameAtlas actually ships; the original text is kept below them for traceability. The [decision log](10-decisions.md) (ADR-0015 to ADR-0021) records why the build changed.
+
+## 0. As-built architecture (2026-11-13)
+
+```mermaid
+flowchart LR
+    browser(["User browser"])
+    subgraph render["Render web service (one container)"]
+        api["FastAPI app<br/>src/api/app.py"]
+        model["Compute layer<br/>src/compute/model.py<br/>gradient boosting + range guard"]
+        page["frontend/dashboard.html"]
+        files[("Bundled data<br/>experiments.parquet, model.joblib,<br/>cards.json, evidence_points.json,<br/>materials.json")]
+    end
+    subgraph dev["Developer machine"]
+        fetch["fetch_psi.py, fetch_ntrs.py"]
+        raw[("Raw NASA PDFs and PSI CSVs<br/>(git-ignored)")]
+        verify["verify_cards.py<br/>quote check"]
+    end
+    browser -->|"GET / (page)"| page
+    browser -->|"same-origin JSON calls"| api
+    api --> model --> files
+    api --> files
+    fetch --> raw --> verify -->|cards_verification.json| files
+```
+
+*Figure 0. As-built deployment. One service serves both the page and the API, so the browser never holds an API key. Raw NASA files stay on developer machines; only the processed, quote-checked data ships.*
+
+| Request | Handler | Returns |
+|---|---|---|
+| Slider move | `POST /predict` | Prediction, probabilities, nearest tests; or `out_of_range` / `no_outcome_data` with an explanation and no prediction |
+| Boundary plot | `GET /boundary` | P(spread) grid and experiment points (SIBAL only) |
+| Evidence-only map | `GET /evidence?material=` | Individual NASA test results with their quotes |
+| Material profile | `GET /materials` | Profiles with quoted facts and source links |
+| Evidence cards | `GET /cards`, `GET /cards/{id}` | Cards, sources and the stored quote-check result |
 
 ## 1. Design overview
 

@@ -5,12 +5,13 @@
 | Product | FlameAtlas |
 | Document owner | Opi Mojumdar (Dashboard) |
 | Contributors | Farhan Alam Chowdhury (copy and story), Aurin Subah (science wording) |
-| Status | Baseline v1.0 |
+| Status | v1.1, updated to the as-built dashboard |
 | Related | [PRD](01-PRD.md), [SDD](03-SDD.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | As built: three-column dashboard (controls and material profile, map and prediction, nearest tests) above a full-width Evidence Cards section with material filters and a card detail dialog. Dark theme by default with a light-mode toggle (ADR-0019). Evidence-only materials show NASA test points with oxygen ranges and a "research gap" notice. Clicking a map point or a nearest test opens its card; Escape closes the dialog. |
 | 1.1 | 2026-10-24 | Demo path updated from the prototype run on BASS-II Table 7.1 data |
 
 ---

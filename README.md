@@ -16,9 +16,11 @@ Set oxygen concentration, pressure, flow velocity, and material, and a gradient-
 | `src/compute/model.py` | Training pipeline: gradient-boosting on `cache/experiments.parquet`, stratified CV, model artifact + metadata |
 | `cache/experiments.parquet` | 620 rows parsed (54 with oxygen, flow and outcome are used for training; 38 are SIBAL) from PSI experimental tables + BASS-II (O₂, pressure, flow, material, outcome, report_id, source_url) |
 | `scripts/build_experiments_parquet.py` | Column-mapping parser for all 22 PSI experimental-table CSVs (BASS-II, SAFFIRE-1/2, FLEX, FLEX-2, CFI, CFI-G, ACME BRE, Flame Design) |
-| `scripts/fetch_ntrs.py` | Downloads all 43 NTRS papers (PDF + citation JSON) |
+| `scripts/fetch_ntrs.py` | Downloads all 44 NTRS papers (PDF + citation JSON) |
 | `frontend/dashboard.html` | Served at `/`; self-contained dark/light-mode slider UI with Plotly decision-boundary plot, probability bar, nearest-experiment citations |
-| `docs/` | 12 spec documents: PRD, TRD, SDD, DRD, data spec, AI/RAG spec, test plan, project plan, risk register, decision log, glossary, Glenn resources |
+| `data/processed/` | Evidence cards (11), evidence points (51) and material profiles (4), each with source quotes; `cards_verification.json` holds the quote-check result |
+| `scripts/verify_cards.py` | Checks every quote against its NASA source PDF page or PSI table row |
+| `docs/` | 12 spec documents, updated to the as-built app on 2026-11-13: PRD, TRD, SDD, DRD, data spec, AI/RAG spec, test plan, project plan, risk register, decision log, glossary, Glenn resources |
 | `demo_fixtures/` | Offline demo fixtures (sample predictions, Glenn imagery) |
 | `LICENSE` | Apache-2.0 |
 
@@ -69,6 +71,8 @@ take about a minute.
 
 - **Flame-spread prediction** — gradient-boosting classifier with honest stratified cross-validation (CV accuracy reported, not invented)
 - **Evidence cards** — 10 NASA studies (BASS, BASS-II, Saffire I/II/IV/V, FM2, exploration atmospheres) summarized as cards with conditions, key finding, safety takeaway and the exact source quotes; open one from the evidence section, a map point, or a nearest experiment
+- **Material profiles** — SIBAL, PMMA, Nomex and silicone: what each is, Earth and microgravity limits, spacecraft use and data status, every fact linked to its NASA quote
+- **Evidence-only maps** — for PMMA, Nomex and silicone the map plots the individual NASA test results instead of a prediction
 - **Research-gap response** — materials NASA tested but whose outcomes are not in the dataset yet (PMMA, Nomex) return no prediction and say why
 - **Out-of-range guard** — if requested conditions fall outside the training envelope, returns no prediction and an explanation; never extrapolates silently
 - **Nearest experiments** — each prediction links to the 3 closest real NASA tests by feature distance, with report IDs and clickable NTRS citations
@@ -97,7 +101,7 @@ reviewed by a domain expert.
 | Source | Role | Status |
 |---|---|---|
 | NASA PSI (Physical Sciences Informatics) | Combustion experiment tables (BASS, BASS-II, SAFFIRE, FLEX, CFI, ACME, …) | 22 experimental-table CSVs downloaded, parsed into `experiments.parquet` |
-| NASA NTRS (Technical Reports Server) | Research papers and reports | 43 papers downloaded (PDF + citation JSON), 0 failures |
+| NASA NTRS (Technical Reports Server) | Research papers and reports | 44 papers downloaded (PDF + citation JSON), 0 failures |
 | NASA Glenn Combustion Science | Experiment documentation, facility docs (CIR, MDCA), imagery | Documented in `docs/glenn-resources.md`, imagery cached in `demo_fixtures/glenn/` |
 
 All PSI data is CC0-1.0. NTRS documents are mostly US Government works. Raw downloads (~440 MB) are git-ignored; only manifests and curated tables are committed.
@@ -117,7 +121,7 @@ Start with [`docs/README.md`](docs/README.md). The full set:
 | [07 Test plan](docs/07-test-plan.md) | Test cases and traceability matrix |
 | [08 Project plan](docs/08-project-plan.md) | Timeline, RACI, hackathon run sheet |
 | [09 Risk register](docs/09-risk-register.md) | Risks and mitigations |
-| [10 Decision log](docs/10-decisions.md) | Architecture decision records (ADR-0001 to 0014) |
+| [10 Decision log](docs/10-decisions.md) | Architecture decision records (ADR-0001 to 0021) |
 | [11 Glossary](docs/11-glossary.md) | Fire science, NASA and AI terms |
 | [Glenn resources](docs/glenn-resources.md) | NASA Glenn Combustion Science experiments and facilities |
 

@@ -5,14 +5,23 @@
 | Product | FlameAtlas |
 | Document owner | Md. Mahmudul Hasan (Team Lead, AI and RAG) |
 | Contributors | Aurin Subah (boundary science), Syed Mehedi Hussain (evaluation tooling) |
-| Status | Baseline v1.0 |
+| Status | v1.1, as-built status added |
 | Related | [Data spec](05-data-spec.md), [SDD](03-SDD.md), [Decision log](10-decisions.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added an as-built status note: no language model at runtime, Ask deferred, gradient-boosting boundary model, cards drafted with AI assistance and checked against sources by script |
 
 ---
+
+> **As built, 2026-11-13.** This document was baselined on 2026-10-24, before the build. Sections marked *as built* describe what FlameAtlas actually ships; the original text is kept below them for traceability. The [decision log](10-decisions.md) (ADR-0015 to ADR-0021) records why the build changed.
+
+**As-built status (2026-11-13).**
+
+- **No language model runs in the app.** Ask FlameAtlas (Sections 2, 3, 6 and 7 on retrieval, confidence and prompts) is deferred because the team has no model API key for this release (ADR-0017).
+- **Boundary model.** A scikit-learn gradient-boosting classifier on oxygen, pressure, flow and material replaces the logistic regression of Section 5 (ADR-0016). It reports stratified 5-fold cross-validation accuracy (0.796 on 54 rows) and refuses to predict outside the training range or for materials with fewer than 10 outcome rows.
+- **Evidence cards and material profiles** were drafted with an AI coding assistant (Claude Code) from the downloaded NASA papers, as Section 4 intended, but with a different safeguard: instead of a person checking each field, every card carries the exact quotes behind it and `scripts/verify_cards.py` confirms each quote word for word against the source (ADR-0018). Summaries and takeaways are labeled when they are interpretation and still need expert review.
 
 ## 1. Where AI is used, and where it is not
 

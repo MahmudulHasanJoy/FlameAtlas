@@ -5,12 +5,13 @@
 | Product | FlameAtlas |
 | Document owner | Syed Mehedi Hussain (Integration and QA) |
 | Contributors | All developers |
-| Status | Baseline v1.0 |
+| Status | v1.1, as-built automated tests added |
 | Related | [PRD](01-PRD.md), [TRD](02-TRD.md), [AI/RAG spec](06-ai-rag-spec.md) |
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-24 | First baseline |
+| 1.1 | 2026-11-13 | Added Section 3.0, the automated tests that exist in the as-built repository |
 
 ---
 
@@ -55,6 +56,26 @@ flowchart BT
 | Hosted app | Streamlit Community Cloud URL (recorded in the repository README once deployed) |
 
 ## 3. Test cases
+
+### 3.0 As-built automated tests (2026-11-13)
+
+Run with `pytest tests` (API and data) and `cd prototype && pytest` (prototype, 22 tests). All pass as of 2026-11-13.
+
+| ID | File | Requirement | Test | Expected result |
+|---|---|---|---|---|
+| TC-60 | `tests/test_api.py` | FR-APP-01 | `GET /` and `GET /health` | Dashboard HTML with no API key in it; health `ok` |
+| TC-61 | `tests/test_api.py` | NFR-SEC-01 | `POST /predict` with no key, a wrong key, and a cross-site header | 401 each time |
+| TC-62 | `tests/test_api.py` | NFR-SEC-01 | `POST /predict` with the key, and as a same-origin browser request | 200 with a prediction |
+| TC-63 | `tests/test_api.py` | G-4 | PMMA, Nomex and silicone predictions; PMMA boundary | `no_outcome_data` with no prediction; boundary 422 |
+| TC-64 | `tests/test_api.py` | FR-MAP-08 | 34% O2 | `out_of_range`, no prediction, feature range returned |
+| TC-65 | `tests/test_api.py` | FR-MAP-05 | SIBAL boundary grid | Grid of the requested size with experiment points |
+| TC-66 | `tests/test_api.py` | FR-CARD-01 | `GET /cards` | At least 10 cards, each with quotes and resolvable source URLs; verification passed |
+| TC-67 | `tests/test_api.py` | FR-CARD-03 | Filter by material, look up by id, unknown id, no key | Filtered list; card; 404; 401 |
+| TC-68 | `tests/test_api.py` | FR-MAP-12 | Card links against experiment report ids | BASS-II map points resolve to a card |
+| TC-69 | `tests/test_api.py` | G-2 | `GET /materials` | Every fact has quotes whose sources resolve |
+| TC-70 | `tests/test_api.py` | G-4 | `GET /evidence` for PMMA, Nomex, silicone | At least 40, 4 and 4 points, each with quotes |
+| TC-71 | `tests/test_cards.py` | G-2, FR-DATA-03 | `scripts/verify_cards.py` (skipped if the raw NASA files are absent) | Every quote in cards, points and profiles found word for word in its source |
+
 
 Type: **U** unit, **I** integration, **D** data, **A** AI evaluation, **M** manual.
 
